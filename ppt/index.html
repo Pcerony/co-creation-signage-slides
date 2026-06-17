@@ -88,7 +88,7 @@
   body.low-power canvas.ascii-bg{display:none!important}
 
   /* ============ Deck 容器 + 翻页 ============ */
-  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
+  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1), opacity .22s var(--ease-prod);z-index:10;will-change:transform,opacity}
   .slide{
     width:100vw;height:100vh;flex:0 0 100vw;
     position:relative;
@@ -643,17 +643,15 @@
 
   /* ============ 动效 (与原模板一致) ============ */
   [data-anim]{opacity:1}
-  body.motion-ready [data-anim]{opacity:0}
-  body.motion-ready [data-anim="left"]{transform:translateX(-24px)}
-  body.motion-ready [data-anim="right"]{transform:translateX(24px)}
-  body.motion-ready [data-anim="line"]{opacity:0;transform:translateY(10px)}
-  body.motion-ready [data-animate="pipeline"] [data-anim]{opacity:.15}
+  body.motion-boot #deck{opacity:0}
+  [data-motion-item]{will-change:opacity,transform}
   body.low-power #deck{transition:none!important}
   body.low-power *,
   body.low-power *::before,
   body.low-power *::after{animation:none!important;transition:none!important}
   body.low-power.motion-ready [data-anim],
-  body.low-power [data-anim]{opacity:1!important;transform:none!important}
+  body.low-power [data-anim],
+  body.low-power [data-motion-item]{opacity:1!important;transform:none!important}
 
   /* ============================================================
      ↓↓↓ V2 EXTENSIONS · Canvas Mode + 参考图新类
@@ -1322,7 +1320,7 @@
   }
 </style>
 </head>
-<body class="canvas-mode">
+<body class="canvas-mode motion-boot">
 <script>
   // Windows 平台标记 — 雅黑没有 ExtraLight,需要字重补偿
   if(/Win/i.test(navigator.platform || navigator.userAgentData?.platform || '')){
@@ -2024,7 +2022,7 @@ addEventListener('swiss-low-power-change', e=>{e.detail.on ? stopGrid() : startG
 const deck=document.getElementById('deck');
 const slides=deck.querySelectorAll('.slide');
 const nav=document.getElementById('nav');
-let idx=0,total=slides.length,lock=false;
+let idx=0,total=slides.length,lock=false,playTO=null;
 
 deck.style.width=(total*100)+'vw';
 
@@ -2039,13 +2037,15 @@ function go(n){
   if(lock)return;
   idx=Math.max(0,Math.min(total-1,n));
   window.__currentSlideIndex = idx;
+  if(window.__prepareSlideMotion) window.__prepareSlideMotion(idx);
   deck.style.transform=`translateX(${-idx*100}vw)`;
   nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   const el=slides[idx];
   const isDark = el.classList.contains('dark') || el.classList.contains('accent');
   document.body.classList.toggle('dark-bg', isDark);
   darkMode = isDark;
-  if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 450);
+  clearTimeout(playTO);
+  if(window.__playSlide) playTO=setTimeout(()=>window.__playSlide(idx), 80);
   lock=true;setTimeout(()=>lock=false,700);
 }
 
@@ -2263,12 +2263,19 @@ go(Number.isFinite(initialSlide) ? initialSlide : 0);
 <script type="module">
 let motion;
 try {
-  motion = await import('./assets/motion.min.js');
+  if(location.protocol === 'file:'){
+    motion = await import('https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm');
+  }else{
+    motion = await import('./assets/motion.min.js');
+  }
 } catch(e1) {
   try {
-    motion = await import('https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm');
+    motion = location.protocol === 'file:'
+      ? await import('./assets/motion.min.js')
+      : await import('https://cdn.jsdelivr.net/npm/motion@11.11.17/+esm');
   } catch(e2) {
     console.warn('[motion] local + CDN both failed, disabling animations', e1, e2);
+    document.body.classList.remove('motion-boot');
     document.querySelectorAll('[data-anim]').forEach(el=>{el.style.opacity='1';el.style.transform='none'});
     document.querySelectorAll('[data-animate="pipeline"] [data-anim]').forEach(el=>el.style.opacity='1');
   }
@@ -2286,17 +2293,116 @@ if(motion){
   const EASE_ENTRY_EXP  = [0, 0, .3, 1];
 
   const slides = [...document.querySelectorAll('.slide')];
+  const activeMotionControls = new WeakMap();
   let lastIdx = -1;
 
-  function resetAnims(slide){
-    slide.querySelectorAll('[data-anim]').forEach(el=>{
-      el.style.opacity='';
-      el.style.transform='';
-    });
-    /* 同时复位需要被 recipe 接管的元素 */
-    slide.querySelectorAll('.row-fill,.tl-node,.stack-block,.bar-tower,.sub-card,.col,.vrule,.kpi-cell')
-      .forEach(el=>{el.style.cssText = el.dataset._origCss || el.style.cssText;});
+  function uniq(list){
+    return [...new Set(list)].filter(Boolean);
   }
+
+  function q(slide, selector){
+    return [...slide.querySelectorAll(selector)];
+  }
+
+  function directChildren(el){
+    return el ? [...el.children] : [];
+  }
+
+  function getMotionItems(slide){
+    if(slide.__motionItems) return slide.__motionItems;
+
+    const selectors = [
+      '.chrome-min',
+      '[data-anim]',
+      '.h-xl-zh',
+      '.canvas-card > .t-body-sm',
+      '.stat-card',
+      '.stack-block',
+      '.card-fill',
+      '.card-accent',
+      '.card-ink',
+      '.th-node .dot',
+      '.th-node .label',
+      '.process-detail',
+      '.flow-step',
+      '.flow-detail',
+      '.heatmap-label',
+      '.heatmap-card',
+      '.heatmap-picker',
+      '.bar-tower',
+      '.row-lbl',
+      '.row-track',
+      '.row-val',
+      '.ledger-row',
+      '.duo-compare .col',
+      '.duo-compare .vrule',
+      '.split-half .half'
+    ];
+
+    const rawItems = uniq(selectors.flatMap(selector => q(slide, selector)));
+    const items = rawItems.filter(el => !rawItems.some(parent => parent !== el && parent.contains(el)));
+    items.forEach(el=>{
+      el.dataset.motionItem = '1';
+      if(el.dataset.motionOrigOpacity === undefined) el.dataset.motionOrigOpacity = el.style.opacity || '';
+      if(el.dataset.motionOrigTransform === undefined) el.dataset.motionOrigTransform = el.style.transform || '';
+      if(el.dataset.motionOrigWidth === undefined) el.dataset.motionOrigWidth = el.style.width || '';
+      if(el.dataset.motionOrigFilter === undefined) el.dataset.motionOrigFilter = el.style.filter || '';
+    });
+    slide.__motionItems = items;
+    return items;
+  }
+
+  function stopSlideAnimations(slide){
+    const controls = activeMotionControls.get(slide) || [];
+    controls.forEach(control=>control?.cancel?.());
+    activeMotionControls.set(slide, []);
+  }
+
+  function run(slide, target, keyframes, options){
+    const control = animate(target, keyframes, options);
+    const controls = activeMotionControls.get(slide) || [];
+    controls.push(control);
+    activeMotionControls.set(slide, controls);
+    return control;
+  }
+
+  function setPrepared(el, from='up'){
+    const x = from === 'left' ? -24 : from === 'right' ? 24 : 0;
+    const y = from === 'down' ? -18 : from === 'static' ? 0 : 18;
+    el.style.opacity = '0';
+    el.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  function restoreMotionItem(el){
+    el.style.opacity = el.dataset.motionOrigOpacity || '';
+    el.style.transform = el.dataset.motionOrigTransform || '';
+    el.style.filter = el.dataset.motionOrigFilter || '';
+    if(el.dataset.motionOrigWidth !== undefined) el.style.width = el.dataset.motionOrigWidth;
+  }
+
+  function revealPrepared(slide){
+    getMotionItems(slide).forEach(restoreMotionItem);
+  }
+
+  function prepareSlideMotion(i){
+    const slide = slides[i];
+    if(!slide || window.__lowPowerMode) return;
+    stopSlideAnimations(slide);
+    const items = getMotionItems(slide);
+    items.forEach(el=>setPrepared(el));
+    q(slide, '.row-fill').forEach(fill=>{
+      fill.dataset.motionTargetWidth = fill.dataset.motionTargetWidth || fill.style.width || '100%';
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      fill.style.opacity = '1';
+      fill.style.transform = 'none';
+    });
+  }
+
+  slides.forEach((slide, i)=>{
+    getMotionItems(slide);
+    if(i !== (window.__currentSlideIndex || 0)) prepareSlideMotion(i);
+  });
 
   /* ---------- 通用工具 ---------- */
   const fade = (el, opts={})=>animate(el,
@@ -2901,38 +3007,247 @@ if(motion){
     }
   }
 
+  function enterItem(slide, el, opts={}){
+    if(!el) return;
+    const duration = opts.duration ?? .55;
+    const delay = opts.delay ?? 0;
+    const easing = opts.easing ?? EASE_ENTRY_EXP;
+    const x = opts.x ?? 0;
+    const y = opts.y ?? 16;
+    const finalTransform = opts.finalTransform ?? (el.dataset.motionOrigTransform || 'none');
+    const fromTransform = opts.fromTransform ?? `translate(${x}px, ${y}px)`;
+    run(slide, el,
+      {opacity:[0,1], transform:[fromTransform, finalTransform || 'none']},
+      {duration, delay, easing}
+    );
+    setTimeout(()=>restoreMotionItem(el), (delay + duration) * 1000 + 80);
+  }
+
+  function fadeItem(slide, el, opts={}){
+    if(!el) return;
+    const duration = opts.duration ?? .45;
+    const delay = opts.delay ?? 0;
+    run(slide, el, {opacity:[0,1]}, {duration, delay, easing:opts.easing ?? EASE_PROD});
+    setTimeout(()=>restoreMotionItem(el), (delay + duration) * 1000 + 80);
+  }
+
+  function enterMany(slide, els, opts={}){
+    els.filter(Boolean).forEach((el, i)=>enterItem(slide, el, {
+      ...opts,
+      delay:(opts.delay ?? 0) + i * (opts.stagger ?? .08)
+    }));
+  }
+
+  function drawRule(slide, el, opts={}){
+    if(!el) return;
+    const duration = opts.duration ?? .48;
+    const delay = opts.delay ?? 0;
+    el.style.transformOrigin = opts.origin ?? 'left center';
+    run(slide, el, {opacity:[0,1], scaleX:[0,1]}, {duration, delay, easing:EASE_ENTRY_EXP});
+    setTimeout(()=>restoreMotionItem(el), (delay + duration) * 1000 + 80);
+  }
+
+  function rDeckHero(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.36});
+    enterItem(slide, slide.querySelector('[data-anim="kicker"]'), {x:-16, y:0, delay:.12, duration:.44});
+    enterItem(slide, slide.querySelector('[data-anim="title"]'), {y:26, delay:.22, duration:.72});
+    enterItem(slide, slide.querySelector('[data-anim="bottom"]'), {y:18, delay:.72, duration:.58});
+  }
+
+  function rDeckImageHero(slide){
+    fadeItem(slide, slide.querySelector('.chrome-min'), {duration:.32});
+    fadeItem(slide, slide.querySelector('[data-anim="img"]'), {duration:.28});
+    const img = slide.querySelector('[data-anim="img"] img');
+    if(img) run(slide, img, {opacity:[0,1]}, {duration:.82, delay:.03, easing:EASE_ENTRY_EXP});
+    const titleBlock = slide.querySelector('[data-anim="title-block"]');
+    if(titleBlock){
+      titleBlock.style.transformOrigin = 'left center';
+      run(slide, titleBlock, {opacity:[0,1], scaleX:[.08,1]}, {duration:.62, delay:.22, easing:EASE_ENTRY_EXP});
+      directChildren(titleBlock).forEach((el, i)=>fadeItem(slide, el, {delay:.52 + i*.08, duration:.36}));
+      setTimeout(()=>restoreMotionItem(titleBlock), 920);
+    }
+    const body = slide.querySelector('[data-anim="kpi"]');
+    if(body){
+      fadeItem(slide, body, {delay:.48, duration:.3});
+      enterItem(slide, body.querySelector(':scope > div:first-child'), {y:14, delay:.62, duration:.55});
+      const cols = q(body, ':scope > div:nth-child(2) > div');
+      cols.forEach((col, i)=>{
+        const base = .76 + i*.12;
+        drawRule(slide, col.querySelector(':scope > div:first-child'), {delay:base});
+        enterMany(slide, directChildren(col).slice(1), {y:10, delay:base + .1, stagger:.045, duration:.42, easing:EASE_PROD});
+      });
+    }
+  }
+
+  function rDeckTimeline(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterItem(slide, slide.querySelector('.h-xl-zh'), {x:-18, y:0, delay:.1, duration:.52});
+    fadeItem(slide, slide.querySelector('.timeline-h'), {delay:.22, duration:.28});
+    const nodes = q(slide, '.timeline-h .th-node');
+    nodes.forEach((node, i)=>{
+      const base = .3 + i*.055;
+      const dot = node.querySelector('.dot');
+      const label = node.querySelector('.label');
+      if(dot) run(slide, dot, {opacity:[0,1], scale:[.2,1]}, {duration:.36, delay:base, easing:EASE_ENTRY_EXP});
+      if(label){
+        const fromY = node.classList.contains('up') ? 8 : -8;
+        run(slide, label, {opacity:[0,1], transform:[`translate(-50%, ${fromY}px)`, 'translate(-50%, 0px)']}, {duration:.42, delay:base+.08, easing:EASE_ENTRY_EXP});
+      }
+    });
+    enterItem(slide, slide.querySelector('.process-detail'), {y:14, delay:.78, duration:.5});
+    enterItem(slide, slide.querySelector('.canvas-card > .t-body-sm'), {y:8, delay:.92, duration:.42});
+  }
+
+  function rDeckSubStack(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterMany(slide, q(slide, 'h2, p.t-body'), {x:-18, y:0, delay:.12, stagger:.12, duration:.5});
+    q(slide, '.stack-block').forEach((block, i)=>{
+      enterItem(slide, block, {y:24, delay:.34 + i*.13, duration:.58});
+    });
+  }
+
+  function rDeckFieldNotes(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterMany(slide, q(slide, 'h2.h-xl-zh, .aoi-legend'), {y:12, delay:.08, stagger:.09, duration:.46});
+
+    if(slide.querySelector('[data-heatmap-overview]')){
+      enterMany(slide, q(slide, '.heatmap-label'), {y:8, delay:.22, stagger:.1, duration:.36});
+      q(slide, '.heatmap-card.active').forEach((card, i)=>fadeItem(slide, card, {delay:.36 + i*.08, duration:.48}));
+      enterMany(slide, q(slide, '.heatmap-picker'), {x:0, y:10, delay:.42, stagger:.035, duration:.32, easing:EASE_PROD});
+      fadeItem(slide, slide.querySelector('[data-heatmap-current]'), {delay:.7, duration:.28});
+      return;
+    }
+
+    if(slide.querySelector('[data-flow-group]')){
+      enterMany(slide, q(slide, '.flow-step'), {x:-18, y:0, delay:.22, stagger:.08, duration:.44});
+      enterItem(slide, slide.querySelector('.flow-detail'), {x:18, y:0, delay:.34, duration:.55});
+      enterItem(slide, slide.querySelector('.canvas-card > .t-body-sm'), {y:8, delay:.72, duration:.4});
+      return;
+    }
+
+    const cards = q(slide, 'article.card-fill, article.card-accent, .brief-grid > article');
+    if(cards.length){
+      enterMany(slide, cards, {y:20, scale:.98, delay:.24, stagger:.08, duration:.5});
+    }
+
+    q(slide, '.frame-img').forEach((frame, i)=>enterItem(slide, frame, {y:12, delay:.26 + i*.08, duration:.5}));
+    enterMany(slide, q(slide, '.brief-grid > article, .image-hero-body, .sign-aoi'), {y:14, delay:.38, stagger:.07, duration:.46});
+    enterMany(slide, q(slide, '.canvas-card > .t-body-sm'), {y:8, delay:.72, stagger:.05, duration:.36});
+  }
+
+  function rDeckStatementRise(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterItem(slide, slide.querySelector('.t-meta[style*="accent"]'), {x:-18, y:0, delay:.14, duration:.42});
+    enterItem(slide, slide.querySelector('[data-anim="statement"]'), {y:26, delay:.28, duration:.72});
+  }
+
+  function rDeckTowerGrow(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterMany(slide, q(slide, 'h2.h-xl-zh, p.t-body'), {x:-16, y:0, delay:.12, stagger:.1, duration:.48});
+    q(slide, '.bar-tower').forEach((tower, i)=>{
+      fadeItem(slide, tower, {delay:.2 + i*.06, duration:.24});
+      const block = tower.querySelector('.body-block');
+      const cap = tower.querySelector('.cap');
+      if(block){
+        block.style.transformOrigin = 'bottom center';
+        run(slide, block, {opacity:[0,1], scaleY:[.08,1]}, {duration:.7, delay:.34 + i*.1, easing:EASE_ENTRY_EXP});
+        setTimeout(()=>restoreMotionItem(block), (1.12 + i*.1) * 1000);
+      }
+      if(cap) enterItem(slide, cap, {y:-8, delay:.72 + i*.1, duration:.34, easing:EASE_PROD});
+    });
+  }
+
+  function rDeckHBarGrow(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterMany(slide, q(slide, 'h2.h-xl-zh, p.t-body'), {y:12, delay:.1, stagger:.1, duration:.46});
+    const labels = q(slide, '.row-lbl');
+    const tracks = q(slide, '.row-track');
+    const fills = q(slide, '.row-fill');
+    const values = q(slide, '.row-val');
+    labels.forEach((label, i)=>enterItem(slide, label, {x:-12, y:0, delay:.34 + i*.055, duration:.34, easing:EASE_PROD}));
+    tracks.forEach((track, i)=>fadeItem(slide, track, {delay:.36 + i*.055, duration:.24}));
+    fills.forEach((fill, i)=>{
+      const target = fill.dataset.motionTargetWidth || fill.style.width || '100%';
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      run(slide, fill, {width:['0%', target]}, {duration:.58, delay:.42 + i*.055, easing:EASE_ENTRY_EXP});
+      setTimeout(()=>{
+        fill.style.transition = 'none';
+        fill.style.width = target;
+        requestAnimationFrame(()=>{ fill.style.transition = ''; });
+      }, (1.08 + i*.055) * 1000);
+    });
+    values.forEach((value, i)=>enterItem(slide, value, {x:10, y:0, delay:.56 + i*.055, duration:.32, easing:EASE_PROD}));
+    enterItem(slide, slide.querySelector('.canvas-card > .t-body-sm'), {y:8, delay:.92, duration:.36});
+  }
+
+  function rDeckLedger(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterMany(slide, q(slide, 'h2.h-xl-zh, p.t-body'), {x:-16, y:0, delay:.12, stagger:.1, duration:.48});
+    q(slide, '.ledger-row').forEach((row, i)=>{
+      enterItem(slide, row, {y:20, delay:.32 + i*.14, duration:.52});
+    });
+  }
+
+  function rDeckDuoMirror(slide){
+    enterItem(slide, slide.querySelector('.chrome-min'), {y:-8, duration:.32});
+    enterItem(slide, slide.querySelector('h2.h-xl-zh'), {y:12, delay:.1, duration:.5});
+    const cols = q(slide, '.duo-compare .col');
+    enterItem(slide, cols[0], {x:-24, y:0, delay:.3, duration:.6});
+    const vrule = slide.querySelector('.duo-compare .vrule');
+    if(vrule){
+      vrule.style.transformOrigin = 'center';
+      run(slide, vrule, {opacity:[0,1], scaleY:[0,1]}, {duration:.5, delay:.42, easing:EASE_ENTRY_EXP});
+    }
+    enterItem(slide, cols[1], {x:24, y:0, delay:.48, duration:.6});
+  }
+
+  function rDeckSplitStatement(slide){
+    const halves = q(slide, '.split-half .half');
+    fadeItem(slide, halves[0], {duration:.28});
+    fadeItem(slide, halves[1], {delay:.12, duration:.28});
+    enterMany(slide, q(slide, '.chrome-min'), {y:-8, delay:.1, stagger:.08, duration:.32});
+    enterItem(slide, slide.querySelector('[data-anim="manifesto"]'), {y:24, delay:.18, duration:.7});
+    enterItem(slide, slide.querySelector('[data-anim="signature"]'), {y:12, delay:.74, duration:.42});
+    fadeItem(slide, slide.querySelector('[data-anim="rules"]'), {delay:.34, duration:.24});
+    q(slide, '[data-anim="rules"] > div').forEach((row, i)=>enterItem(slide, row, {x:18, y:0, delay:.42 + i*.12, duration:.48}));
+    enterItem(slide, slide.querySelector('[data-anim="foot"]'), {y:8, delay:.9, duration:.36});
+  }
+
   const RECIPES = {
-    'hero': rHero,
+    'hero': rDeckHero,
     'progression': rProgression,
     'statement': rStatement,
     'grid-reveal': rGridReveal,
     'stack-build': rStackBuild,
     'measure-up': rMeasureUp,
     'bar-grow': rBarGrow,
-    'duo-mirror': rDuoMirror,
-    'split-statement': rSplitStatement,
-    'timeline-walk': rTimelineWalk,
+    'duo-mirror': rDeckDuoMirror,
+    'split-statement': rDeckSplitStatement,
+    'timeline-walk': rDeckTimeline,
     'manifesto': rManifesto,
     'three-forces': rThreeForces,
     'loop-form': rLoopForm,
     'matrix-fill': rMatrixFill,
-    'field-notes': rFieldNotes,
+    'field-notes': rDeckFieldNotes,
     'system-diagram': rSystemDiagram,
     'why-now': rWhyNow,
     'four-cards': rFourCards,
-    'stacked-ledger': rStackedLedger,
+    'stacked-ledger': rDeckLedger,
     'tech-spec': rTechSpec,
-    'image-hero': rImageHero,
+    'image-hero': rDeckImageHero,
+    'sub-stack': rDeckSubStack,
+    'statement-rise': rDeckStatementRise,
+    'tower-grow': rDeckTowerGrow,
+    'hbar-grow': rDeckHBarGrow,
   };
 
   function revealStatic(slide){
-    resetAnims(slide);
-    document.getAnimations?.().forEach(a=>a.cancel());
-    slide.querySelectorAll('[data-anim],.row-fill,.tl-node,.stack-block,.bar-tower,.sub-card,.col,.vrule,.kpi-cell,.card-fill,.card-accent,.card-ink')
-      .forEach(el=>{
-        el.style.opacity='1';
-        el.style.transform='none';
-      });
+    stopSlideAnimations(slide);
+    revealPrepared(slide);
+    q(slide, '.row-fill').forEach(fill=>{
+      fill.style.width = fill.dataset.motionTargetWidth || fill.style.width || '100%';
+    });
   }
 
   function playSlide(i){
@@ -2945,29 +3260,23 @@ if(motion){
       return;
     }
 
-    resetAnims(slide);
-
-    /* 关键:[data-anim] 容器很多时候只是占位标记,真正的几何动画在子元素上.
-       默认强制 reveal 所有 [data-anim] 容器, recipe 想做块入场时用 motion 的 {opacity:[0,1]} 会自动覆盖 */
-    slide.querySelectorAll('[data-anim]').forEach(el=>{
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
+    prepareSlideMotion(i);
 
     const all = [...slide.querySelectorAll('[data-anim]')];
     const recipe = slide.dataset.animate;
     const fn = RECIPES[recipe];
     if(fn){ fn(slide, all); return; }
 
-    /* fallback: 平凡 fade */
-    if(all.length) animate(all, {opacity:[0,1], y:[12,0]},
-      {duration:.6, delay:i=>i*.08, easing:EASE_ENTRY_EXP});
+    enterMany(slide, getMotionItems(slide), {y:14, delay:.06, stagger:.04, duration:.42});
   }
 
+  window.__prepareSlideMotion = prepareSlideMotion;
   window.__playSlide = playSlide;
   window.__pipeAdvance = ()=>false;  /* 当前 deck 不用 pipeline recipe */
 
-  playSlide(window.__currentSlideIndex || 0);
+  prepareSlideMotion(window.__currentSlideIndex || 0);
+  document.body.classList.remove('motion-boot');
+  requestAnimationFrame(()=>playSlide(window.__currentSlideIndex || 0));
 }
 </script>
 
