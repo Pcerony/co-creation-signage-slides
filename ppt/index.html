@@ -2645,63 +2645,37 @@ if(motion){
     const px = ax + vx * t, py = ay + vy * t;
     return softBand(Math.hypot(x - px, y - py), width);
   }
-  function referencePattern(x, y, t){
-    let flow = 0;
-    for(let i=0; i<7; i++){
-      const offset = (i - 3) * 0.032;
-      const bend = -0.23 * Math.exp(-Math.pow((x - 0.29) / 0.27, 2));
-      const flatten = 0.020 * Math.sin(x * 5.2 + t * 0.35 + i);
-      const curveY = 0.46 + offset + bend + flatten;
-      flow = Math.max(flow, softBand(y - curveY, 0.006));
+  function flowerPattern(x, y, t){
+    const flowers = [
+      [.76, .26, .060, 10, 0],
+      [.88, .42, .068, 12, 1.7],
+      [.78, .62, .058, 9, 3.1],
+      [.93, .68, .048, 8, 4.2],
+      [.84, .78, .040, 7, 5.5]
+    ];
+    let shape = 0;
+    for(const f of flowers){
+      const cx = f[0] + Math.sin(t * .35 + f[4]) * .010;
+      const cy = f[1] + Math.cos(t * .30 + f[4]) * .012;
+      const r = f[2] * (1 + Math.sin(t * .65 + f[4]) * .10);
+      const petals = f[3];
+      shape = Math.max(shape, softBand(Math.hypot(x - cx, y - cy), r * .22) * 1.15);
+      for(let i=0; i<petals; i++){
+        const a = (i / petals) * Math.PI * 2 + t * .18 + f[4];
+        const px = cx + Math.cos(a) * r * .75;
+        const py = cy + Math.sin(a) * r * .75;
+        shape = Math.max(shape, ellipseMask(x, y, px, py, r * .34, r * .21) * 1.05);
+        shape = Math.max(shape, segmentMask(x, y, cx, cy, px, py, r * .055) * .86);
+      }
+      const stemTopX = cx - r * .10;
+      const stemTopY = cy + r * .72;
+      const stemBottomX = cx - r * .28 + Math.sin(t * .28 + f[4]) * .014;
+      const stemBottomY = cy + r * 2.8;
+      shape = Math.max(shape, segmentMask(x, y, stemTopX, stemTopY, stemBottomX, stemBottomY, r * .060) * .70);
+      shape = Math.max(shape, ellipseMask(x, y, stemBottomX - r * .38, stemBottomY - r * .55, r * .42, r * .18) * .50);
+      shape = Math.max(shape, ellipseMask(x, y, stemBottomX + r * .34, stemBottomY - r * .95, r * .38, r * .16) * .46);
     }
-    const drift = Math.sin(t * .82) * .018;
-    const step = Math.sin(t * 2.4);
-    const bob = Math.sin(t * 2.4 + .8) * .006;
-    const elderX = .58 + drift * .62;
-    const adultX = .70 + drift;
-    const childX = .78 + drift * 1.12;
-    const elder = Math.max(
-      ellipseMask(x,y,elderX,.45 + bob*.45,.030,.045),
-      ellipseMask(x,y,elderX,.67 + bob,.060,.190) * .72,
-      segmentMask(x,y,elderX - .025,.82,elderX - .048 - step*.012,.94,.008) * .68,
-      segmentMask(x,y,elderX + .020,.82,elderX + .046 + step*.010,.94,.008) * .52
-    );
-    const adult = Math.max(
-      ellipseMask(x,y,adultX,.40 - bob*.35,.040,.060),
-      ellipseMask(x,y,adultX,.66 + bob*.55,.070,.230) * .78,
-      segmentMask(x,y,adultX - .028,.86,adultX - .058 + step*.014,.98,.009) * .58,
-      segmentMask(x,y,adultX + .026,.86,adultX + .052 - step*.012,.98,.009) * .50
-    );
-    const child = Math.max(
-      ellipseMask(x,y,childX,.43 + bob*.35,.036,.050),
-      ellipseMask(x,y,childX,.58 + bob*.70,.052,.125) * .72,
-      segmentMask(x,y,childX - .016,.68,childX - .036 - step*.010,.78,.007) * .58,
-      segmentMask(x,y,childX + .016,.68,childX + .036 + step*.010,.78,.007) * .52
-    );
-    const trail = Math.max(
-      ellipseMask(x,y,elderX - .030,.67,.060,.190) * .18,
-      ellipseMask(x,y,adultX - .038,.66,.070,.230) * .16,
-      ellipseMask(x,y,childX - .026,.58,.052,.125) * .14
-    );
-    const signX = .855 + drift * 1.2;
-    const signY = .405 + bob * .4;
-    const stem = segmentMask(x,y,signX - .015,signY + .045,signX - .020,signY + .215,.004);
-    const flowerCore = softBand(Math.hypot(x - signX, y - signY), .012);
-    let petals = 0;
-    for(let i=0;i<12;i++){
-      const a = i * Math.PI / 6 + t * .08;
-      petals = Math.max(petals, segmentMask(
-        x,y,
-        signX + Math.cos(a) * .014,
-        signY + Math.sin(a) * .014,
-        signX + Math.cos(a) * .033,
-        signY + Math.sin(a) * .033,
-        .003
-      ));
-    }
-    const figure = Math.max(elder, adult, child, trail);
-    const sign = Math.max(stem, flowerCore, petals);
-    return Math.max(flow * 1.1, figure * .86, sign * 1.12);
+    return shape;
   }
 
   function setup(c){
@@ -2717,6 +2691,7 @@ if(motion){
     ctx.setTransform(dpr,0,0,dpr,0,0);
     const mono = (getComputedStyle(document.documentElement).getPropertyValue('--mono') || 'JetBrains Mono, monospace').trim();
     ctx.font = `500 ${FONT_SIZE}px ${mono}`;
+    ctx.__mono = mono;
     ctx.textBaseline = 'top';
     c.__ctx = ctx;
     return true;
@@ -2735,7 +2710,7 @@ if(motion){
       for(let cc=0; cc<cols; cc++){
         const x = (cc + .5) / cols;
         const y = (r + .5) / rows;
-        const pattern = patternPulse ? referencePattern(x, y, t) * patternPulse : 0;
+        const pattern = patternPulse ? flowerPattern(x, y, t) * patternPulse : 0;
         const n = (
           Math.sin(cc * 0.18 + t) +
           Math.sin(r * 0.24 - t * 0.7) +
@@ -2743,12 +2718,12 @@ if(motion){
           Math.sin(Math.hypot(cc - cols * 0.5, r - rows * 0.5) * 0.16 - t * 0.55)
         ) / 4; // [-1, 1]
         const base = (n + 1) / 2;
-        const v = Math.max(base * (1 - patternPulse * .42), pattern * 1.72); // [0, 1]
+        const v = Math.max(base, pattern * 1.85); // [0, 1]
         if(v < 0.22 && pattern < 0.05) continue;
         const idx = Math.min(PALETTE.length - 1, Math.floor((v + pattern * .8) * PALETTE.length));
         const ch = PALETTE[idx];
         if(ch === ' ') continue;
-        const alpha = Math.min(.92, 0.07 + (v - 0.22) * 0.50 + pattern * .58);
+        const alpha = Math.min(.94, 0.08 + (v - 0.22) * 0.55 + pattern * .58);
         ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
         ctx.fillText(ch, cc * CELL, r * CELL);
       }
