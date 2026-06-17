@@ -2628,89 +2628,40 @@ if(motion){
   if(!canvases.length) return;
 
   const PALETTE = '   ...:::---+++***◦◦••▢▣';
+  const FLOWER_PALETTE = '   ...:::---+++***◦◦••';
   const CELL = 16;
   const FONT_SIZE = 13;
 
-  function softBand(d, width){
-    return Math.exp(-(d * d) / (2 * width * width));
-  }
-  function ellipseMask(x, y, cx, cy, rx, ry){
-    const v = ((x - cx) * (x - cx)) / (rx * rx) + ((y - cy) * (y - cy)) / (ry * ry);
-    return v < 1 ? 1 - v : 0;
-  }
-  function segmentMask(x, y, ax, ay, bx, by, width){
-    const vx = bx - ax, vy = by - ay;
-    const wx = x - ax, wy = y - ay;
-    const t = Math.max(0, Math.min(1, (wx * vx + wy * vy) / (vx * vx + vy * vy)));
-    const px = ax + vx * t, py = ay + vy * t;
-    return softBand(Math.hypot(x - px, y - py), width);
-  }
-  function orientedEllipse(x, y, cx, cy, rx, ry, angle){
-    const dx = x - cx, dy = y - cy;
-    const ca = Math.cos(angle), sa = Math.sin(angle);
-    const u = dx * ca + dy * sa;
-    const v = -dx * sa + dy * ca;
-    const q = (u * u) / (rx * rx) + (v * v) / (ry * ry);
-    return q;
-  }
-  function ellipseFillAndRim(x, y, cx, cy, rx, ry, angle){
-    const q = orientedEllipse(x, y, cx, cy, rx, ry, angle);
-    const fill = q < 1 ? 1 - q : 0;
-    const rim = Math.exp(-Math.pow(q - 1, 2) / 0.018);
-    return Math.max(fill * .72, rim);
+  function angleDelta(a, b){
+    return Math.atan2(Math.sin(a - b), Math.cos(a - b));
   }
   function flowerPattern(x, y, t){
-    let shape = 0;
-    const cx = 1.02 + Math.sin(t * .22) * .010;
-    const cy = .52 + Math.cos(t * .20) * .012;
-    const r = .405 * (1 + Math.sin(t * .46) * .030);
-    shape = Math.max(shape, softBand(Math.hypot(x - cx, y - cy), r * .12) * 1.45);
-    const petals = [
-      [-2.88,.73,.330,.092],[-2.48,.92,.390,.118],[-2.05,.79,.350,.102],
-      [-1.55,1.02,.430,.130],[-1.08,.82,.365,.104],[-.62,.95,.405,.122],
-      [-.18,.76,.345,.096],[.27,.98,.420,.126],[.74,.86,.380,.108],
-      [1.20,.91,.395,.120],[1.68,.72,.330,.094],[2.12,.88,.375,.112],
-      [2.56,.80,.350,.100],[3.04,.96,.405,.120]
+    const cx = .805;
+    const cy = .505;
+    const px = (x - cx) * 1.52;
+    const py = y - cy;
+    const a = Math.atan2(py, px);
+    const r = Math.hypot(px, py);
+    const lobes = [
+      [-2.55, .128, .20],
+      [-1.56, .168, .18],
+      [-.54,  .142, .20],
+      [.34,   .132, .21],
+      [1.46,  .106, .24],
+      [2.42,  .136, .22]
     ];
-    for(let i=0; i<petals.length; i++){
-      const p = petals[i];
-      const a = p[0] + Math.sin(t * .16 + i * 1.7) * .045;
-      const dist = r * p[1];
-      const len = r * p[2];
-      const wid = r * p[3];
-      const px = cx + Math.cos(a) * dist;
-      const py = cy + Math.sin(a) * dist;
-      const q = orientedEllipse(x, y, px, py, len, wid, a);
-      const fill = q < 1 ? 1 - q : 0;
-      const rim = Math.exp(-Math.pow(q - 1, 2) / 0.012);
-      const tipX = px + Math.cos(a) * len * .86;
-      const tipY = py + Math.sin(a) * len * .86;
-      const innerX = cx + Math.cos(a) * r * .40;
-      const innerY = cy + Math.sin(a) * r * .40;
-      const lobeA = a + (i % 2 ? .12 : -.10);
-      const lobeB = a - (i % 2 ? .16 : -.13);
-      shape = Math.max(shape, fill * .70, rim * 1.10);
-      shape = Math.max(shape, ellipseFillAndRim(x, y, tipX, tipY, len * .28, wid * .72, lobeA) * .76);
-      shape = Math.max(shape, ellipseFillAndRim(x, y, innerX, innerY, len * .36, wid * .62, lobeB) * .58);
-      shape = Math.max(shape, segmentMask(x, y, cx, cy, tipX, tipY, r * .012) * .68);
-      shape = Math.max(shape, segmentMask(x, y, innerX, innerY, px, py, r * .018) * .44);
+    let peak = 0;
+    for(let i=0; i<lobes.length; i++){
+      const l = lobes[i];
+      const diff = angleDelta(a, l[0]);
+      peak = Math.max(peak, l[1] * Math.exp(-(diff * diff) / (2 * l[2] * l[2])));
     }
-    for(let i=0; i<29; i++){
-      const a = (i / 29) * Math.PI * 2 + Math.sin(i * 2.1) * .09 - t * .055;
-      const d = r * (.14 + (i % 5) * .026);
-      const px = cx + Math.cos(a) * d;
-      const py = cy + Math.sin(a) * d;
-      shape = Math.max(shape, softBand(Math.hypot(x - px, y - py), r * (.020 + (i % 3) * .004)) * .82);
-    }
-    shape = Math.max(shape, Math.exp(-Math.pow(Math.hypot(x - cx, y - cy) - r * .21, 2) / (2 * Math.pow(r * .016, 2))) * .95);
-    const stemTopX = cx - r * .10;
-    const stemTopY = cy + r * .72;
-    const stemBottomX = cx - r * .25 + Math.sin(t * .18) * .015;
-    const stemBottomY = cy + r * 2.45;
-    shape = Math.max(shape, segmentMask(x, y, stemTopX, stemTopY, stemBottomX, stemBottomY, r * .036) * .72);
-    shape = Math.max(shape, ellipseMask(x, y, stemBottomX - r * .26, stemBottomY - r * .52, r * .20, r * .070) * .48);
-    shape = Math.max(shape, ellipseMask(x, y, stemBottomX + r * .24, stemBottomY - r * .90, r * .18, r * .060) * .44);
-    return shape;
+    const breathe = .970 + .030 * (.5 + .5 * Math.sin(t * .52 - .4));
+    let edge = (.070 + peak) * breathe;
+    edge += .004 * Math.sin(a * 5.7 + .6) + .0025 * Math.sin(a * 11.4 - 1.1);
+    const d = r - edge;
+    const rim = Math.exp(-(d * d) / (2 * .0155 * .0155));
+    return rim * .98;
   }
 
   function setup(c){
@@ -2740,7 +2691,8 @@ if(motion){
     const rows = Math.ceil(h / CELL);
     const slide = c.closest('.slide');
     const isCover = slide && slide.dataset.layout === 'SWISS-COVER-ASCII';
-    const patternPulse = isCover ? .42 + .58 * Math.pow(Math.max(0, Math.sin(t * 1.35 + .45)), 1.45) : 0;
+    const bloom = .5 + .5 * Math.sin(t * .78 - .65);
+    const patternPulse = isCover ? .12 + .88 * bloom * bloom * (3 - 2 * bloom) : 0;
     for(let r=0; r<rows; r++){
       for(let cc=0; cc<cols; cc++){
         const x = (cc + .5) / cols;
@@ -2753,12 +2705,13 @@ if(motion){
           Math.sin(Math.hypot(cc - cols * 0.5, r - rows * 0.5) * 0.16 - t * 0.55)
         ) / 4; // [-1, 1]
         const base = (n + 1) / 2;
-        const v = Math.max(base * (1 - pattern * .16), pattern * 2.65); // [0, 1]
+        const v = Math.max(base * (1 - pattern * .10), pattern * 1.85); // [0, 1]
         if(v < 0.22 && pattern < 0.05) continue;
-        const idx = Math.min(PALETTE.length - 1, Math.floor((v + pattern * 1.15) * PALETTE.length));
-        const ch = PALETTE[idx];
+        const palette = pattern > .06 ? FLOWER_PALETTE : PALETTE;
+        const idx = Math.min(palette.length - 1, Math.floor((v + pattern * .70) * palette.length));
+        const ch = palette[idx];
         if(ch === ' ') continue;
-        const alpha = Math.min(.98, 0.08 + (v - 0.22) * 0.55 + pattern * .82);
+        const alpha = Math.min(.88, 0.08 + (v - 0.22) * 0.50 + pattern * .54);
         ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
         ctx.fillText(ch, cc * CELL, r * CELL);
       }
