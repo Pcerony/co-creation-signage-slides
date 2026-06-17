@@ -1560,10 +1560,22 @@
       <div style="display:flex;flex-direction:column;gap:1.6vh">
         <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh)">视线估计原理与物理坐标投影映射</h2>
         <div class="brief-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1vw;margin-top:auto">
-          <article class="card-fill" style="padding:1.5vh 1.1vw"><div class="t-meta">01 CAMERA</div><p class="t-body-sm">普通网络摄像头实时捕获被试面部与眼部反射特征。</p></article>
-          <article class="card-fill" style="padding:1.5vh 1.1vw"><div class="t-meta">02 WEBGAZER</div><p class="t-body-sm">利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。</p></article>
-          <article class="card-fill" style="padding:1.5vh 1.1vw"><div class="t-meta">03 PAPER MAP</div><p class="t-body-sm">通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。</p></article>
-          <article class="card-accent" style="padding:1.5vh 1.1vw"><div class="t-meta">04 OUTPUT</div><p class="t-body-sm" style="color:var(--accent-on);opacity:.9">导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。</p></article>
+          <article class="card-fill" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
+            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent)"><i data-lucide="camera" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta">01 CAMERA</div></div>
+            <p class="t-body-sm">普通网络摄像头实时捕获被试面部与眼部反射特征。</p>
+          </article>
+          <article class="card-fill" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
+            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent)"><i data-lucide="eye" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta">02 WEBGAZER</div></div>
+            <p class="t-body-sm">利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。</p>
+          </article>
+          <article class="card-fill" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
+            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent)"><i data-lucide="map-pinned" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta">03 PAPER MAP</div></div>
+            <p class="t-body-sm">通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。</p>
+          </article>
+          <article class="card-accent" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
+            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent-on)"><i data-lucide="download" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta" style="color:var(--accent-on)">04 OUTPUT</div></div>
+            <p class="t-body-sm" style="color:var(--accent-on);opacity:.9">导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。</p>
+          </article>
         </div>
       </div>
     </div>
