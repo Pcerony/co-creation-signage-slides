@@ -851,8 +851,27 @@
     display:none;min-height:14vh;padding-top:1.8vh;margin-top:1.2vh
   }
   .process-detail.active{display:block}
+  @keyframes tlFadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   .process-panel{display:none;grid-template-columns:2.2fr 4fr 4fr;gap:1.8vw;align-items:start}
   .process-panel.active{display:grid}
+  .process-panel.active .phase {
+    animation: tlFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.04s both;
+  }
+  .process-panel.active .detail-list:nth-of-type(1) {
+    animation: tlFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+  .process-panel.active .detail-list:nth-of-type(2) {
+    animation: tlFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+  }
   .process-panel .phase{
     font-family:var(--sans),var(--sans-zh);
     font-weight:200;font-size:min(3.6vw,6vh);line-height:.98;letter-spacing:-.035em
@@ -1304,7 +1323,7 @@
     <div class="chrome-min"><div class="l">RESEARCH PIPELINE · CO-CREATION TO VALIDATION (ROADMAP)</div><div class="r">03 / 16</div></div>
     <div style="display:flex;flex-direction:column;gap:1.2vh">
       
-      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">课题形成到实地验证的整体研究流程</h2>
+      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">研究流程</h2>
     </div>
     <div class="timeline-h process-timeline">
       <div class="tl-row">
@@ -1905,7 +1924,7 @@ function buildOverview(){
     
     const tlClone = originalTimeline.cloneNode(true);
     // Give it a fixed height and margin to prevent vertical collapse and overlapping
-    tlClone.style.cssText = 'height:22vh;min-height:180px;margin-top:5vh;margin-bottom:3vh;display:block;position:relative';
+    tlClone.style.cssText = 'height:15vh;min-height:120px;margin-top:3.5vh;margin-bottom:1.5vh;display:flex;align-items:center;position:relative';
     
     // Make nodes static in the ESC menu
     tlClone.querySelectorAll('[data-process-node]').forEach(btn => {
