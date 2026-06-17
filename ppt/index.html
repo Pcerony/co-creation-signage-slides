@@ -527,8 +527,8 @@
   .frame-img.h-32{height:32vh}
   .frame-img.swiss-lined{border-top:2px solid var(--accent)}
   .frame-img.swiss-keyline{border:0}
-  .frame-img.sign-aoi{aspect-ratio:2200/1556;background:#fff;width:auto;height:100%;max-width:100%;margin:0 auto}
-  .frame-img.sign-aoi > img{object-fit:contain}
+  .frame-img.sign-aoi{aspect-ratio:2200/1556;background:transparent;width:auto;height:auto;max-width:100%;max-height:100%;margin:0}
+  .frame-img.sign-aoi > img{width:100%;height:100%;object-fit:cover;display:block}
   .aoi-box{position:absolute;border:2px solid var(--accent);background:rgba(var(--accent-rgb),.08);pointer-events:none}
   .aoi-box.r{border-color:var(--ink);background:rgba(10,10,10,.05)}
   .aoi-tag{position:absolute;left:-2px;top:-2px;transform:translateY(-100%);min-width:34px;padding:.34em .56em;background:var(--accent);color:var(--accent-on);font-family:var(--mono);font-size:14px;line-height:1;letter-spacing:.12em;text-transform:uppercase}
@@ -1306,7 +1306,7 @@
       <div style="display:flex;flex-direction:column;gap:2vh">
         <div class="t-meta">A / R / S</div>
         <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">解说标识的 A/R/S 设计改良维度</h2>
-        <p class="t-body">本次 A/B 刺激把 A/R/S 原则转译到标识版面中，再用 AOI 回看这些功能是否真的被看见。</p>
+        <p class="t-body">本次 A/B 刺激直接将 A/R/S 设计原则应用于标识设计中，再用 AOI 回看这些功能是否真的被看见。</p>
       </div>
       <div class="stack-row" style="margin-top:0">
         <article class="stack-block b-grey"><div class="layer-nb">A · 01</div><i data-lucide="leaf"></i><h3 class="layer-ttl">启发性氛围</h3><p class="layer-desc">通过提问、叙事和植物情境提示，建立“为什么值得看”的入口。</p><div class="layer-tag">Plant Atmosphere</div></article>
@@ -1330,18 +1330,22 @@
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;margin-top:2.6vh">
       <article class="card-fill" style="padding:1.4vh 1.1vw 1.2vh;display:flex;flex-direction:column;gap:1vh;min-height:0">
         <div style="display:flex;justify-content:space-between;align-items:center"><div class="t-meta">CONTROL SIGN</div><div class="t-body-sm">对照版标识：信息混杂在单一长文本中</div></div>
-        <div class="frame-img sign-aoi fit-contain" style="flex:1;min-height:0">
-          <img src="images/06-control-sign.jpg" data-image-slot="s16-brief-16x10" alt="对照版标识 A/R 标注">
+        <div style="flex:1;min-height:0;display:flex;justify-content:center;align-items:center;background:#fff">
+          <div class="frame-img sign-aoi fit-contain" style="flex:none">
+            <img src="images/06-control-sign.jpg" data-image-slot="s16-brief-16x10" alt="对照版标识 A/R 标注">
+          </div>
         </div>
       </article>
       <article class="card-fill" style="padding:1.4vh 1.1vw 1.2vh;display:flex;flex-direction:column;gap:1vh;min-height:0;border-top:2px solid var(--accent)">
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="t-meta">A/R INTERVENTION</div><div class="t-body-sm">实验版标识：通过网格系统将 A/R 独立分区</div></div>
-        <div class="frame-img sign-aoi fit-contain" style="flex:1;min-height:0">
-          <img src="images/07-intervention-sign.jpg" data-image-slot="s16-brief-16x10" alt="实验版标识 A/R 标注">
-          <div class="aoi-box" style="left:5.2%;top:2.8%;width:45.3%;height:77.9%"><span class="aoi-tag">A</span></div>
-          <div class="aoi-box" style="left:20.5%;top:82.2%;width:17.4%;height:8.5%"><span class="aoi-tag">A</span></div>
-          <div class="aoi-box r" style="left:51.0%;top:58.1%;width:35.7%;height:12.7%"><span class="aoi-tag">R</span></div>
-          <div class="aoi-box r" style="left:51.0%;top:74.7%;width:42.8%;height:20.9%"><span class="aoi-tag">R</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><div class="t-meta">A/R INTERVENTION</div><div class="t-body-sm">实验版标识：直接应用 A/R 原则进行独立分区设计</div></div>
+        <div style="flex:1;min-height:0;display:flex;justify-content:center;align-items:center;background:#fff">
+          <div class="frame-img sign-aoi fit-contain" style="flex:none">
+            <img src="images/07-intervention-sign.jpg" data-image-slot="s16-brief-16x10" alt="实验版标识 A/R 标注">
+            <div class="aoi-box" style="left:5.2%;top:2.8%;width:45.3%;height:77.9%"><span class="aoi-tag">A</span></div>
+            <div class="aoi-box" style="left:20.5%;top:82.2%;width:17.4%;height:8.5%"><span class="aoi-tag">A</span></div>
+            <div class="aoi-box r" style="left:51.0%;top:58.1%;width:35.7%;height:12.7%"><span class="aoi-tag">R</span></div>
+            <div class="aoi-box r" style="left:51.0%;top:74.7%;width:42.8%;height:20.9%"><span class="aoi-tag">R</span></div>
+          </div>
         </div>
       </article>
     </div>
