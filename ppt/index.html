@@ -2645,28 +2645,43 @@ if(motion){
     const px = ax + vx * t, py = ay + vy * t;
     return softBand(Math.hypot(x - px, y - py), width);
   }
+  function orientedEllipse(x, y, cx, cy, rx, ry, angle){
+    const dx = x - cx, dy = y - cy;
+    const ca = Math.cos(angle), sa = Math.sin(angle);
+    const u = dx * ca + dy * sa;
+    const v = -dx * sa + dy * ca;
+    const q = (u * u) / (rx * rx) + (v * v) / (ry * ry);
+    return q;
+  }
+  function ellipseFillAndRim(x, y, cx, cy, rx, ry, angle){
+    const q = orientedEllipse(x, y, cx, cy, rx, ry, angle);
+    const fill = q < 1 ? 1 - q : 0;
+    const rim = Math.exp(-Math.pow(q - 1, 2) / 0.018);
+    return Math.max(fill * .72, rim);
+  }
   function flowerPattern(x, y, t){
     let shape = 0;
-    const cx = .88 + Math.sin(t * .28) * .012;
-    const cy = .48 + Math.cos(t * .24) * .012;
-    const r = .205 * (1 + Math.sin(t * .52) * .04);
-    shape = Math.max(shape, softBand(Math.hypot(x - cx, y - cy), r * .16) * 1.25);
+    const cx = .96 + Math.sin(t * .28) * .010;
+    const cy = .50 + Math.cos(t * .24) * .010;
+    const r = .335 * (1 + Math.sin(t * .52) * .035);
+    shape = Math.max(shape, softBand(Math.hypot(x - cx, y - cy), r * .14) * 1.3);
     for(let i=0; i<12; i++){
       const a = (i / 12) * Math.PI * 2 + t * .10;
-      const px = cx + Math.cos(a) * r * .82;
-      const py = cy + Math.sin(a) * r * .82;
-      const qx = cx + Math.cos(a) * r * .48;
-      const qy = cy + Math.sin(a) * r * .48;
-      shape = Math.max(shape, ellipseMask(x, y, px, py, r * .28, r * .105) * 1.14);
-      shape = Math.max(shape, ellipseMask(x, y, qx, qy, r * .19, r * .080) * .86);
-      shape = Math.max(shape, segmentMask(x, y, cx, cy, px, py, r * .026) * .92);
+      const px = cx + Math.cos(a) * r * .80;
+      const py = cy + Math.sin(a) * r * .80;
+      const qx = cx + Math.cos(a) * r * .47;
+      const qy = cy + Math.sin(a) * r * .47;
+      shape = Math.max(shape, ellipseFillAndRim(x, y, px, py, r * .30, r * .085, a) * 1.18);
+      shape = Math.max(shape, ellipseFillAndRim(x, y, qx, qy, r * .18, r * .060, a) * .72);
+      shape = Math.max(shape, segmentMask(x, y, cx, cy, px, py, r * .020) * .74);
     }
     for(let i=0; i<18; i++){
       const a = (i / 18) * Math.PI * 2 - t * .08;
       const px = cx + Math.cos(a) * r * .24;
       const py = cy + Math.sin(a) * r * .24;
-      shape = Math.max(shape, softBand(Math.hypot(x - px, y - py), r * .035) * .76);
+      shape = Math.max(shape, softBand(Math.hypot(x - px, y - py), r * .030) * .82);
     }
+    shape = Math.max(shape, Math.exp(-Math.pow(Math.hypot(x - cx, y - cy) - r * .24, 2) / (2 * Math.pow(r * .020, 2))) * .92);
     const stemTopX = cx - r * .10;
     const stemTopY = cy + r * .72;
     const stemBottomX = cx - r * .25 + Math.sin(t * .18) * .015;
@@ -2675,49 +2690,6 @@ if(motion){
     shape = Math.max(shape, ellipseMask(x, y, stemBottomX - r * .26, stemBottomY - r * .52, r * .20, r * .070) * .48);
     shape = Math.max(shape, ellipseMask(x, y, stemBottomX + r * .24, stemBottomY - r * .90, r * .18, r * .060) * .44);
     return shape;
-  }
-  function drawFlowerPetalGlyphs(ctx, cx, cy, angle, rx, ry, ch, alpha){
-    const dirX = Math.cos(angle), dirY = Math.sin(angle);
-    const perX = -dirY, perY = dirX;
-    ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-    for(let i=0; i<24; i++){
-      const a = (i / 24) * Math.PI * 2;
-      const x = cx + dirX * Math.cos(a) * rx + perX * Math.sin(a) * ry;
-      const y = cy + dirY * Math.cos(a) * rx + perY * Math.sin(a) * ry;
-      ctx.fillText(ch, x, y);
-    }
-  }
-  function drawLargeFlowerGlyphOverlay(ctx, w, h, t, pulse){
-    const alpha = Math.min(.78, .24 + pulse * .54);
-    const cx = w * (.88 + Math.sin(t * .28) * .012);
-    const cy = h * (.48 + Math.cos(t * .24) * .012);
-    const r = Math.min(w, h) * .285 * (1 + Math.sin(t * .52) * .04);
-    ctx.save();
-    ctx.font = `600 ${Math.max(15, FONT_SIZE + 3)}px ${ctx.__mono || 'JetBrains Mono, monospace'}`;
-    ctx.textBaseline = 'middle';
-    for(let i=0; i<12; i++){
-      const a = (i / 12) * Math.PI * 2 + t * .10;
-      const px = cx + Math.cos(a) * r * .80;
-      const py = cy + Math.sin(a) * r * .80;
-      drawFlowerPetalGlyphs(ctx, px, py, a, r * .28, r * .105, '▢', alpha);
-      ctx.fillStyle = `rgba(255,255,255,${(alpha * .72).toFixed(3)})`;
-      for(let j=0; j<5; j++){
-        const k = j / 4;
-        ctx.fillText('+', cx + (px - cx) * k, cy + (py - cy) * k);
-      }
-    }
-    ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-    for(let i=0; i<18; i++){
-      const a = (i / 18) * Math.PI * 2 - t * .08;
-      ctx.fillText(i % 2 ? '▣' : '▢', cx + Math.cos(a) * r * .20, cy + Math.sin(a) * r * .20);
-    }
-    ctx.fillStyle = `rgba(255,255,255,${(alpha * .62).toFixed(3)})`;
-    for(let i=0; i<20; i++){
-      const k = i / 19;
-      const sway = Math.sin(k * Math.PI * 1.3 + t * .18) * r * .10;
-      ctx.fillText('▢', cx - r*.10 - r*.32*k + sway, cy + r*.65 + r*1.70*k);
-    }
-    ctx.restore();
   }
 
   function setup(c){
@@ -2747,7 +2719,7 @@ if(motion){
     const rows = Math.ceil(h / CELL);
     const slide = c.closest('.slide');
     const isCover = slide && slide.dataset.layout === 'SWISS-COVER-ASCII';
-    const patternPulse = isCover ? .18 + .82 * Math.pow(Math.max(0, Math.sin(t * 1.35 + .45)), 1.6) : 0;
+    const patternPulse = isCover ? .42 + .58 * Math.pow(Math.max(0, Math.sin(t * 1.35 + .45)), 1.45) : 0;
     for(let r=0; r<rows; r++){
       for(let cc=0; cc<cols; cc++){
         const x = (cc + .5) / cols;
@@ -2760,17 +2732,16 @@ if(motion){
           Math.sin(Math.hypot(cc - cols * 0.5, r - rows * 0.5) * 0.16 - t * 0.55)
         ) / 4; // [-1, 1]
         const base = (n + 1) / 2;
-        const v = Math.max(base, pattern * 2.08); // [0, 1]
+        const v = Math.max(base * (1 - pattern * .16), pattern * 2.65); // [0, 1]
         if(v < 0.22 && pattern < 0.05) continue;
-        const idx = Math.min(PALETTE.length - 1, Math.floor((v + pattern * .8) * PALETTE.length));
+        const idx = Math.min(PALETTE.length - 1, Math.floor((v + pattern * 1.15) * PALETTE.length));
         const ch = PALETTE[idx];
         if(ch === ' ') continue;
-        const alpha = Math.min(.96, 0.08 + (v - 0.22) * 0.55 + pattern * .66);
+        const alpha = Math.min(.98, 0.08 + (v - 0.22) * 0.55 + pattern * .82);
         ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
         ctx.fillText(ch, cc * CELL, r * CELL);
       }
     }
-    if(isCover && patternPulse > .12) drawLargeFlowerGlyphOverlay(ctx, w, h, t, patternPulse);
   }
 
   function resizeAll(){ canvases.forEach(setup); }
