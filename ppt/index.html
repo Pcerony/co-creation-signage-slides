@@ -1271,6 +1271,43 @@
   .flow-copy .t-meta{color:var(--accent);margin-bottom:.8vh}
   .flow-copy p{margin:0;font-family:var(--sans),var(--sans-zh);font-size:max(15px,.94vw);line-height:1.55;color:var(--text-secondary)}
 
+  .heatmap-overview{display:grid;grid-template-rows:auto 1fr;gap:2vh;flex:1;min-height:0}
+  .heatmap-stage{display:grid;grid-template-columns:minmax(0,5.2fr) 86px minmax(0,5.2fr);gap:2.4vw;align-items:stretch;min-height:0}
+  .heatmap-side{display:grid;grid-template-rows:auto 1fr;gap:1.2vh;min-width:0}
+  .heatmap-label{
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--ink);padding-top:.9vh;
+    font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-helper)
+  }
+  .heatmap-stack{position:relative;min-height:0;perspective:900px;overflow:visible}
+  .heatmap-card{
+    position:absolute;left:3%;top:50%;width:94%;height:78%;margin:0;
+    background:var(--paper);border:1px solid var(--border-subtle);border-top:2px solid var(--accent);
+    box-shadow:0 18px 34px rgba(0,0,0,.12);
+    transform:translateY(calc(-50% + var(--heat-y,0px))) rotateX(var(--heat-rx,0deg)) scale(var(--heat-scale,1));
+    opacity:var(--heat-opacity,.38);
+    transition:transform .36s ease,opacity .28s ease,filter .28s ease;
+    overflow:hidden;pointer-events:none;filter:saturate(.78) contrast(.94)
+  }
+  .heatmap-card.active{opacity:1;filter:none;box-shadow:0 24px 46px rgba(0,0,0,.18)}
+  .heatmap-card img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+  .heatmap-card figcaption{
+    position:absolute;left:0;top:0;padding:.55vh .7vw;background:var(--accent);color:var(--accent-on);
+    font-family:var(--mono);font-size:12px;letter-spacing:.16em
+  }
+  .heatmap-wheel{
+    align-self:center;justify-self:center;width:70px;min-height:54vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.45vh;
+    border-left:1px solid var(--border-subtle);border-right:1px solid var(--border-subtle)
+  }
+  .heatmap-picker{
+    border:0;background:transparent;color:var(--text-helper);
+    width:56px;height:5.2vh;min-height:30px;
+    font-family:var(--mono);font-size:13px;letter-spacing:.15em;
+    cursor:pointer;transition:background .18s ease,color .18s ease,transform .18s ease
+  }
+  .heatmap-picker.active{background:var(--accent);color:var(--accent-on);transform:scale(1.08)}
+
   /* 响应式降级 */
   @media (max-width:900px){
     .h-hero{font-size:16vw}
@@ -1655,18 +1692,53 @@
 
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">EVIDENCE CHAIN · EXPERIMENT METHODOLOGY & VISUALS</div><div class="r">11 / 16</div></div>
-    <div style="display:flex;flex-direction:column;gap:1.3vh">
-      
-      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">本项研究的实验证据链条</h2>
-    </div>
-    <div class="brief-grid" style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:1.5vh 1.2vw;flex:1;margin-top:3vh;min-height:0">
-      <article class="card-fill" style="padding:1vh 1vw;display:flex;flex-direction:column;gap:.7vh"><div class="frame-img h-16 fit-contain"><img src="images/06-control-sign.jpg" data-image-slot="s16-brief-16x10" alt="对照版标识"></div><div class="t-meta">对照版标识 (Control Sign)</div></article>
-      <article class="card-fill" style="padding:1vh 1vw;display:flex;flex-direction:column;gap:.7vh"><div class="frame-img h-16 fit-contain swiss-lined"><img src="images/07-intervention-sign.jpg" data-image-slot="s16-brief-16x10" alt="A/R 实验版标识"></div><div class="t-meta">实验版标识 (Intervention Sign)</div></article>
-      <article class="card-fill" style="padding:1vh 1vw;display:flex;flex-direction:column;gap:.7vh"><div class="frame-img h-16 fit-contain"><img src="images/05-heatmap-coverage.jpg" data-image-slot="s16-brief-16x10" alt="热力图覆盖结果"></div><div class="t-meta">视线热力图 (10s Heatmap)</div></article>
-      <article class="card-fill" style="padding:1vh 1vw;display:flex;flex-direction:column;gap:.7vh"><div class="frame-img h-16 fit-contain"><img src="images/04-analysis-dashboard.jpg" data-image-slot="s16-brief-16x10" alt="分析报表界面"></div><div class="t-meta">数据分析报表 (Analysis Report)</div></article>
-      <article class="card-fill" style="padding:1vh 1vw;display:flex;flex-direction:column;gap:.7vh"><div class="frame-img h-16"><img src="images/10-calibration.jpg" data-image-slot="s16-brief-16x10" alt="九点校准现场"></div><div class="t-meta">9 点校准现场 (9-Point Calibration)</div></article>
-      <article class="card-accent" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-meta">INTERPRETATION</div><div style="font-family:var(--sans),var(--sans-zh);font-weight:300;font-size:min(2.8vw,5.2vh);line-height:1.06;letter-spacing:-.02em">图像只是证据入口；结论必须回归语义 AOI。</div><div class="t-body-sm" style="color:var(--accent-on);opacity:.88">将“看到了哪里”的物理视线，翻译为“哪类设计功能被注意”的认知响应。</div></article>
+    <div class="chrome-min"><div class="l">HEATMAP OVERVIEW · CONTROL VS INTERVENTION</div><div class="r">11 / 16</div></div>
+    <div class="heatmap-overview" data-heatmap-overview>
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:3vw">
+        <h2 class="h-xl-zh" style="font-size:min(4.6vw,8.2vh);margin:0">结果热力图一览</h2>
+        <div class="t-meta" data-heatmap-current style="color:var(--accent);padding-bottom:.9vh">P01</div>
+      </div>
+      <div class="heatmap-stage">
+        <section class="heatmap-side">
+          <div class="heatmap-label"><span>CONTROL GROUP</span><span>控制组</span></div>
+          <div class="heatmap-stack" data-heatmap-stack="control">
+            <figure class="heatmap-card active" data-heatmap-card="control" data-heatmap-index="0"><img src="../ab2/academic_heatmap_akama%20kumiko_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881%20(1).png" alt="P01 控制组热力图"><figcaption>P01</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="1"><img src="../ab2/academic_heatmap_ataqi_a1.png" alt="P02 控制组热力图"><figcaption>P02</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="2"><img src="../ab2/academic_heatmap_harada%20keiko_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P03 控制组热力图"><figcaption>P03</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="3"><img src="../ab2/academic_heatmap_kimura_b1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P04 控制组热力图"><figcaption>P04</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="4"><img src="../ab2/academic_heatmap_koga%20eiichi_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P05 控制组热力图"><figcaption>P05</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="5"><img src="../ab2/academic_heatmap_moro%20izumi_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P06 控制组热力图"><figcaption>P06</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="6"><img src="../ab2/academic_heatmap_saku%20yoshisuke_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P07 控制组热力图"><figcaption>P07</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="7"><img src="../ab2/academic_heatmap_umetu%20ayane_b1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P08 控制组热力图"><figcaption>P08</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="8"><img src="../ab2/academic_heatmap_yamada%20rena_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P09 控制组热力图"><figcaption>P09</figcaption></figure>
+          </div>
+        </section>
+        <nav class="heatmap-wheel" aria-label="Participant selector">
+          <button class="heatmap-picker active" type="button" data-heatmap-pick="0">P01</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="1">P02</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="2">P03</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="3">P04</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="4">P05</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="5">P06</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="6">P07</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="7">P08</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="8">P09</button>
+        </nav>
+        <section class="heatmap-side">
+          <div class="heatmap-label"><span>INTERVENTION GROUP</span><span>实验组</span></div>
+          <div class="heatmap-stack" data-heatmap-stack="intervention">
+            <figure class="heatmap-card active" data-heatmap-card="intervention" data-heatmap-index="0"><img src="../ab2/academic_heatmap_akama%20kumiko_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P01 实验组热力图"><figcaption>P01</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="1"><img src="../ab2/academic_heatmap_ataqi_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P02 实验组热力图"><figcaption>P02</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="2"><img src="../ab2/academic_heatmap_harada%20keiko_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P03 实验组热力图"><figcaption>P03</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="3"><img src="../ab2/academic_heatmap_kimura_b2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P04 实验组热力图"><figcaption>P04</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="4"><img src="../ab2/academic_heatmap_koga%20eiichi_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P05 实验组热力图"><figcaption>P05</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="5"><img src="../ab2/academic_heatmap_moro%20izumi_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P06 实验组热力图"><figcaption>P06</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="6"><img src="../ab2/academic_heatmap_saku%20yoshisuke_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P07 实验组热力图"><figcaption>P07</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="7"><img src="../ab2/academic_heatmap_umetu%20ayane_b2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P08 实验组热力图"><figcaption>P08</figcaption></figure>
+            <figure class="heatmap-card" data-heatmap-card="intervention" data-heatmap-index="8"><img src="../ab2/academic_heatmap_yamada%20rena_a2%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P09 实验组热力图"><figcaption>P09</figcaption></figure>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </section>
@@ -2140,6 +2212,45 @@ function initFlowSteps(){
   });
 }
 initFlowSteps();
+
+function initHeatmapOverview(){
+  document.querySelectorAll('[data-heatmap-overview]').forEach(view=>{
+    const pickers = [...view.querySelectorAll('[data-heatmap-pick]')];
+    const cards = [...view.querySelectorAll('[data-heatmap-card]')];
+    const current = view.querySelector('[data-heatmap-current]');
+
+    function selectHeatmap(activeIndex){
+      const activeLabel = `P${String(activeIndex + 1).padStart(2, '0')}`;
+      if(current) current.textContent = activeLabel;
+
+      pickers.forEach(picker=>{
+        picker.classList.toggle('active', Number(picker.dataset.heatmapPick) === activeIndex);
+      });
+
+      cards.forEach(card=>{
+        const offset = Number(card.dataset.heatmapIndex) - activeIndex;
+        const distance = Math.abs(offset);
+        const visible = distance <= 4;
+        card.classList.toggle('active', offset === 0);
+        card.style.setProperty('--heat-y', `${offset * 26}px`);
+        card.style.setProperty('--heat-rx', `${offset * -2.2}deg`);
+        card.style.setProperty('--heat-scale', String(Math.max(.72, 1 - distance * .055)));
+        card.style.setProperty('--heat-opacity', visible ? String(offset === 0 ? 1 : Math.max(.12, .5 - distance * .075)) : '0');
+        card.style.zIndex = String(100 - distance);
+      });
+    }
+
+    pickers.forEach(picker=>{
+      picker.addEventListener('click', event=>{
+        event.stopPropagation();
+        selectHeatmap(Number(picker.dataset.heatmapPick));
+      });
+    });
+
+    selectHeatmap(0);
+  });
+}
+initHeatmapOverview();
 
 const initialSlideParam = new URLSearchParams(location.search).get('slide');
 const initialSlide = initialSlideParam ? Number(initialSlideParam) - 1 : 0;
