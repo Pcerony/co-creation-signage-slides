@@ -1,0 +1,79 @@
+===== PAGE 1 =====
+（別紙様式 4）
+修士学位論文要旨・研究経過報告書
+【芸術工学専攻】
+※
+受験番号 希望指導教員 YANFANG ZHANG 氏 名 PINGCHENG WANG
+※日本語 1,600 字以内，英語 800 ワード以内で記述してください。（裏面への記載は不可）
+なお，本様式にならってワード等の文書作成ソフトにより作成したものでも可とします。
+論文題目（又は研究題目）：A Study on Co-creation Tools for Designing Interpretive Signage—
+—Case Study of Fukuoka City Botanical Garden Greenhouse
+1. Research Background and Objective
+Interpretive signage functions as the primary medium for informal learning in botanical gardens, yet the field consistently registers two
+measurable deficits: low text read-through rates and poor information retention (Bitgood, 2013; Serrell, 2015). Field reconnaissance at Fukuoka
+Botanical Garden corroborated both failures at scale. Systematic literature review identified two structural causes: existing signage practice
+lacks evidence-based design principles, and no objective diagnostic instrument exists to evaluate interpretive effectiveness—leaving iterative
+improvement without empirical grounding (Spooner et al., 2024). Both failures have been documented across museum, zoo, and botanic garden
+contexts; yet design-science remediation protocols grounded in visitor data remain scarce. The deficits are structurally coupled: absent
+principled design guidance, practitioners cannot produce cognitively accessible signs; absent diagnostic tools, they cannot determine whether
+any intervention has succeeded. This study directly addresses both gaps by formalizing co-created design principles and operationalizing a
+low-cost, open-source eye-tracking instrument to quantify their effect on read-through rates.
+2. Research Strategy and Overall Design
+The greenhouse zone of Fukuoka Botanical Garden served as the research site. The study instantiated a bottom-up paradigm—problem
+identification, principle formalization, quantitative diagnosis, experimental verification—grounded in Tilden's (1957) interpretive theory,
+Ham's (2016) EROT model, and Serrell's (2015) label design framework. Co-creation Design was adopted as the central strategy: all
+interventions were derived from documented visitor pain points rather than top-down expert assumptions. The overall framework encapsulates
+an evidence-first logic in which each design decision is anchored to a documented visitor need.
+3. Methodology
+The study employed a mixed-methods design across four sequential phases.
+Phase 1: Literature Review. Classical literature on interpretive system design, attention allocation, and cognitive load was synthesized to define
+the research scope and formalize the study architecture.
+Phase 2: Co-creation Workshop and User Survey. A participatory design session at Global Goals Jam Kyushu 2025 engaged citizens, designers,
+and garden staff. Semi-structured field interviews generated qualitative data across diverse visitor demographics; thematic coding produced
+five primary pain-point categories, confirming the two core research problems and delineating specific visitor experience barriers.
+Phase 3: Principle Derivation and Baseline Audit. Three principles targeting cognitive load reduction were formalized through systematic
+literature synthesis and expert interviews (Wang & Zhang, 2025a): (A) Inspirational Atmosphere—deploying interrogative or narrative framing
+to stimulate initial engagement; (R) Audience Relevance—mapping plant characteristics to visitors' sensory experiences and everyday
+knowledge; (S) Structural Clarity—enforcing legible information hierarchy and balanced typography.
+A custom annotation instrument, Signage Annotator, was then deployed to audit all 70 existing greenhouse signs (N = 70). The audit confirmed
+that principles A and R were systematically absent from the current signage corpus.
+
+===== PAGE 2 =====
+（別紙様式 4）
+修士学位論文要旨・研究経過報告書
+【芸術工学専攻】
+受験番号 ※ 希望指導教員 YANFANG ZHANG 氏 名 PINGCHENG WANG
+Phase 4: A/B Eye-tracking Experiment (Within-subjects). Fifteen authentic visitors (ages 20–80) were recruited for an in-situ controlled
+experiment between May and June 2025. Redesigned stimuli applied A/R/S principles as the sole manipulated variable against matched baseline
+signs. SIGN Visual Attention—a purpose-built, signage-integrated non-contact eye-tracking system—passively captured gaze heatmaps and
+scanpaths as visitors traversed their natural pathways, requiring no participant-worn instrumentation. Semantic Areas of Interest (AOI) analysis
+quantified text read-through rates at the word-region level.
+4. Results and Discussion
+The A/B experiment produced consistent positive effects across all 15 participants. Whole-sign text read-through rate in the initial 10 seconds
+increased from 38.6% to 45.3% in the intervention condition. The Audience Relevance region registered the most pronounced shift: 10-second
+reading rate rose from 5.0% to 21.4%, and full dwell time climbed from 8.5% to 35.1%, with every participant showing an upward trajectory.
+The four-fold increase in the Audience Relevance full dwell rate—from 8.5% to 35.1%—represents a magnitude rarely observed in field-based
+interpretive signage research. Effect decomposition identified the R principle—experiential knowledge linkage—as the decisive variable in
+capturing and sustaining gaze. The A principle (rhetorical framing) applied in isolation failed to generate stable fixation, establishing that co-
+creation interventions should prioritize experiential anchoring over linguistic embellishment.
+5. Conclusion and Ph.D. Research Outlook
+This study delivers three interrelated contributions to interpretive signage design. Methodologically, it delineates a framework for organizing,
+filtering, and translating visitor feedback into actionable design specifications. In applied terms, the A/R/S principles constitute transferable
+guidance for botanical gardens, science museums, and analogous informal learning environments. Instrumentally, SIGN Visual Attention—
+open-source, passive, and deployable without specialist infrastructure—demonstrates viability for field-based gaze research at minimal cost.
+Collectively, these outputs operationalize the methodological and empirical foundation for Research Problem 1; the R principle alone elevated
+full dwell time from 8.5% to 35.1%, constituting a practically significant gain for informal learning design.
+The doctoral phase will target Research Problem 2—information retention—by integrating cognitive load theory (Sweller, 1988) and dual
+coding theory (Paivio, 1971). Full-session eye-tracking paired with delayed memory tests will investigate how systematic signage design
+variables (spatial layout, thematic zoning, and inter-sign continuity) modulate memory encoding, with the aim of resolving spatial discontinuity
+as a structural barrier to learning pathway formation in botanical garden contexts.
+References
+[1] Bitgood, S. (2013). Attention and value: Keys to understanding museum visitors. Left Coast Press.
+[2] Ham, S. (2016). Interpretation: Making a difference on purpose. Fulcrum Publishing.
+[3] Paivio, A. (1971). Imagery and verbal processes. Holt, R inehart, and Winston.
+[4] Serrell, B. (2015). Exhibit labels: An interpretive approach. Bloomsbury Publishing.
+[5] Spooner, S. L., et al. (2024). Using eye-tracking to create impactful interpretation signage for botanic gardens. Journal of Zoological and Botanical Gardens, 5(3), 434-
+454.
+[6] Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. Cognitive Science, 12(2), 257-285.
+[7] Tilden, F. (1957). Interpreting our heritage. University of North Carolina Press.
+[8] Wang, P., & Zhang, Y. (2025a). 共創による植物園解説サインに関する研究Ⅰ. 日本デザイン学会研究発表大会概要集, 91.ll
