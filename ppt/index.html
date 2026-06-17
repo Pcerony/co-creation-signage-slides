@@ -1896,29 +1896,26 @@ function buildOverview(){
   if (originalTimeline) {
     const tlContainer = document.createElement('div');
     tlContainer.className = 'esc-timeline-wrap';
-    tlContainer.style.cssText = 'max-width:90vw;margin:0 auto 4vh;padding:2.5vh 2vw;background:var(--paper);border:1px solid var(--border-subtle);border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.06);position:relative;z-index:2';
+    tlContainer.style.cssText = 'max-width:90vw;margin:0 auto 4vh;padding:2vh 2vw;background:var(--paper);border:1px solid var(--border-subtle);border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.04);position:relative;z-index:2';
     
     const tlTitle = document.createElement('div');
-    tlTitle.style.cssText = 'font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:13px;letter-spacing:.12em;color:var(--text-secondary);margin-bottom:2vh;text-transform:uppercase;border-bottom:1px solid var(--border-subtle);padding-bottom:1vh;display:flex;justify-content:space-between;align-items:center';
-    tlTitle.innerHTML = '<span><span style="color:var(--accent);font-weight:700;margin-right:0.6ch">■</span> EXPERIMENT ROADMAP · 研究路线与实验一览</span><span style="font-size:11px;color:var(--text-helper);letter-spacing:0">点击节点可快速跳转至对应步骤</span>';
+    tlTitle.style.cssText = 'font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:13px;letter-spacing:.12em;color:var(--text-secondary);margin-bottom:1vh;text-transform:uppercase;border-bottom:1px solid var(--border-subtle);padding-bottom:1vh';
+    tlTitle.innerHTML = '<span><span style="color:var(--accent);font-weight:700;margin-right:0.6ch">■</span> EXPERIMENT ROADMAP · 研究路线与实验一览</span>';
     tlContainer.appendChild(tlTitle);
     
     const tlClone = originalTimeline.cloneNode(true);
-    // Make nodes interactive in the ESC menu
+    // Give it a fixed height and margin to prevent vertical collapse and overlapping
+    tlClone.style.cssText = 'height:22vh;min-height:180px;margin-top:5vh;margin-bottom:3vh;display:block;position:relative';
+    
+    // Make nodes static in the ESC menu
     tlClone.querySelectorAll('[data-process-node]').forEach(btn => {
+      btn.style.cursor = 'default';
+      btn.style.pointerEvents = 'none'; // Disable hover and click interactions completely
+      btn.type = 'button';
+      
+      // Keep active state highlight if on the timeline slide
       const key = btn.getAttribute('data-process-node');
-      btn.style.cursor = 'pointer';
-      // If we are currently on the timeline slide, highlight active nodes
       btn.classList.toggle('active', idx === 2 && document.querySelector(`.slide [data-process-node="${key}"]`).classList.contains('active'));
-      btn.onclick = (e) => {
-        e.stopPropagation();
-        toggleOverview();
-        go(2); // Go to Slide 3 (index 2)
-        setTimeout(() => {
-          const slideNode = document.querySelector(`.slide [data-process-node="${key}"]`);
-          if (slideNode) slideNode.click();
-        }, 150);
-      };
     });
     tlContainer.appendChild(tlClone);
     ov.appendChild(tlContainer);
