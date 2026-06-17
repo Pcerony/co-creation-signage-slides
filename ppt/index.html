@@ -1317,21 +1317,67 @@
   </div>
 </section>
 
-<section class="slide" data-layout="S03" data-animate="statement-rise">
+<section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">EXPERIMENT QUESTIONS · INQUIRY</div><div class="r">04 / 16</div></div>
-    <div style="flex:1;display:grid;grid-template-columns:3fr 9fr;align-items:center;gap:3vw">
-      <div class="t-meta" style="align-self:start;color:var(--accent);margin-top:1.5vh">EXPERIMENT<br/>INQUIRY</div>
-      <div style="display:flex;flex-direction:column;gap:3.5vh">
-        <h2 class="h-xl-zh" style="font-size:min(4.8vw,8vh);margin:0">实验探讨的具体问题：</h2>
-        <ul style="display:flex;flex-direction:column;gap:2.5vh;padding-left:1.5vw;margin:0" class="t-body">
-          <li style="font-size:max(20px,1.6vw);line-height:1.4"><strong style="color:var(--accent)">Q1 (视线入口)：</strong>改良设计是否能帮助视线<strong>更早、更快地进入</strong>文字区域？</li>
-          <li style="font-size:max(20px,1.6vw);line-height:1.4"><strong style="color:var(--accent)">Q2 (注意分配)：</strong>视觉注意力是否被<strong>重新组织</strong>到核心设计区域？</li>
-          <li style="font-size:max(20px,1.6vw);line-height:1.4"><strong style="color:var(--accent)">Q3 (效能比较)：</strong>在 A/R/S 原则中，哪种设计介入产生的<strong>效应最强、最稳定</strong>？</li>
-        </ul>
-      </div>
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <div class="t-meta">EXPERIMENT INQUIRY</div>
+      <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh);margin:0">实验探讨的具体问题</h2>
     </div>
-    <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:2vh">注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3 进行量化解答。</div>
+    
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1;margin-top:3vh;min-height:0">
+      
+      <!-- Card Q1 -->
+      <article class="card-fill" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--border-subtle)">
+        <div style="display:flex;flex-direction:column;gap:2vh">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta" style="color:var(--accent);font-weight:700;font-size:14px">QUESTION 01</span>
+            <i data-lucide="eye" style="width:24px;height:24px;stroke-width:1.5;color:var(--accent)"></i>
+          </div>
+          <h3 class="t-h-prod" style="font-size:max(18px,1.4vw);font-weight:600;margin-top:1vh">Q1 · 视线入口</h3>
+          <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">改良设计是否能帮助视线<strong>更早、更快地进入</strong>文字区域？</p>
+        </div>
+        <div style="border-top:1px solid var(--border-subtle);padding-top:1.5vh;margin-top:2vh">
+          <div class="t-meta" style="font-size:12px;opacity:0.7">评估指标</div>
+          <div class="t-body-sm" style="font-weight:500;font-size:14px;color:var(--text-secondary)">前 10 秒文字区域视线覆盖率</div>
+        </div>
+      </article>
+
+      <!-- Card Q2 -->
+      <article class="card-fill" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--border-subtle)">
+        <div style="display:flex;flex-direction:column;gap:2vh">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta" style="color:var(--accent);font-weight:700;font-size:14px">QUESTION 02</span>
+            <i data-lucide="layout-grid" style="width:24px;height:24px;stroke-width:1.5;color:var(--accent)"></i>
+          </div>
+          <h3 class="t-h-prod" style="font-size:max(18px,1.4vw);font-weight:600;margin-top:1vh">Q2 · 注意分配</h3>
+          <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">视觉注意力是否被<strong>重新组织</strong>到核心设计区域？</p>
+        </div>
+        <div style="border-top:1px solid var(--border-subtle);padding-top:1.5vh;margin-top:2vh">
+          <div class="t-meta" style="font-size:12px;opacity:0.7">评估指标</div>
+          <div class="t-body-sm" style="font-weight:500;font-size:14px;color:var(--text-secondary)">各语义区域 (AOI) 注意力占比</div>
+        </div>
+      </article>
+
+      <!-- Card Q3 -->
+      <article class="card-accent" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--accent)">
+        <div style="display:flex;flex-direction:column;gap:2vh">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta" style="color:var(--accent-on);font-weight:700;font-size:14px;opacity:0.9">QUESTION 03</span>
+            <i data-lucide="trending-up" style="width:24px;height:24px;stroke-width:1.5;color:var(--accent-on)"></i>
+          </div>
+          <h3 class="t-h-prod" style="font-size:max(18px,1.4vw);font-weight:600;color:var(--accent-on);margin-top:1vh">Q3 · 效能比较</h3>
+          <p class="t-body-sm" style="line-height:1.6;color:var(--accent-on)">在 A/R/S 原则中，哪种设计介入产生的<strong>效应最强、最稳定</strong>？</p>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.25);padding-top:1.5vh;margin-top:2vh">
+          <div class="t-meta" style="font-size:12px;color:var(--accent-on);opacity:0.7">评估指标</div>
+          <div class="t-body-sm" style="font-weight:500;font-size:14px;color:var(--accent-on)">9名有效被试的各区注意力增幅</div>
+        </div>
+      </article>
+
+    </div>
+    
+    <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:1.8vh;margin-top:2.6vh">注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。</div>
   </div>
 </section>
 
