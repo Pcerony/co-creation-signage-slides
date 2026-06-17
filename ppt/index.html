@@ -1257,8 +1257,8 @@
     transition:background .22s ease,color .22s ease,border-color .22s ease;
   }
   .flow-step .nb{font-family:var(--mono);font-size:14px;letter-spacing:.18em;color:var(--text-helper)}
-  .flow-step .ttl{font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:min(2.1vw,3.7vh);line-height:1.1;letter-spacing:0}
-  .flow-step .mini{font-family:var(--sans),var(--sans-zh);font-size:max(13px,.78vw);line-height:1.45;color:var(--text-secondary);margin-top:.6vh}
+  .flow-step .ttl{display:block;font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:min(2.1vw,3.7vh);line-height:1.1;letter-spacing:0}
+  .flow-step .mini{display:block;font-family:var(--sans),var(--sans-zh);font-size:max(13px,.78vw);line-height:1.45;color:var(--text-secondary);margin-top:.6vh}
   .flow-step .lucide{width:24px;height:24px;stroke-width:1.6;color:var(--accent)}
   .flow-step.active{background:var(--accent);color:var(--accent-on);border-top-color:var(--accent)}
   .flow-step.active .nb,.flow-step.active .mini,.flow-step.active .lucide{color:var(--accent-on);opacity:.86}
@@ -1653,7 +1653,7 @@
       </div>
       <div class="flow-detail">
         <article class="flow-panel active" data-flow-panel="0">
-          <div class="frame-img"><img src="images/07-intervention-sign.jpg" alt="实验版标识刺激材料"></div>
+          <div class="frame-img"><img src="images/07-intervention-sign.jpg" alt="实验版标识刺激材料" style="object-fit:contain;background:#fff"></div>
           <div class="flow-copy"><div class="t-meta">STIMULUS ORDER</div><p>按拉丁方平衡顺序呈现对照版或实验版标识，控制顺序偏误，使差异尽量来自 A/R/S 设计介入本身。</p></div>
         </article>
         <article class="flow-panel" data-flow-panel="1">
