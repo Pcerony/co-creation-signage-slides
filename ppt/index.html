@@ -604,8 +604,9 @@
   body.dark-bg #nav .dot{background:rgba(255,255,255,.32)}
   body.dark-bg #nav .dot.active{background:var(--accent)}
 
-  /* ESC 索引页: 动画元素强制可见 (覆盖 motion-ready 的 opacity:0) */
-  #overview [data-anim]{opacity:1!important;transform:none!important}
+  /* ESC 索引页: 缩略图必须脱离主放映动效状态 */
+  #overview [data-anim],
+  #overview [data-motion-item]{opacity:1!important}
   #overview .slide *{animation:none!important;transition:none!important}
 
   #overview {
@@ -614,8 +615,8 @@
     z-index: 100;
     background: rgba(250, 250, 248, 0.96);
     backdrop-filter: blur(12px);
-    overflow-y: auto;
-    padding: 4vh 4vw;
+    overflow: hidden;
+    padding: 2vh 4vw;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
@@ -626,12 +627,12 @@
     visibility: visible;
     pointer-events: auto;
   }
-  #overview .esc-timeline-wrap, #overview .esc-grid-wrap {
-    transform: scale(0.97) translateY(12px);
+  #overview .esc-grid-wrap {
+    transform: translateY(10px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  #overview.active .esc-timeline-wrap, #overview.active .esc-grid-wrap {
-    transform: scale(1) translateY(0);
+  #overview.active .esc-grid-wrap {
+    transform: translateY(0);
   }
 
   /* 统一卡片样式 token: card-fill (默认灰底 · 中性) + card-ink (反转高对比) + card-accent (单一焦点) */
@@ -2058,54 +2059,33 @@ document.body.appendChild(ov);
 
 function buildOverview(){
   ov.innerHTML='';
-  
-  // Timeline component at the top of ESC overview
-  const originalTimeline = document.querySelector('.process-timeline');
-  if (originalTimeline) {
-    const tlContainer = document.createElement('div');
-    tlContainer.className = 'esc-timeline-wrap';
-    tlContainer.style.cssText = 'max-width:90vw;margin:0 auto 4vh;padding:2vh 2vw;background:var(--paper);border:1px solid var(--border-subtle);border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.04);position:relative;z-index:2';
-    
-    const tlTitle = document.createElement('div');
-    tlTitle.style.cssText = 'font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:13px;letter-spacing:.12em;color:var(--text-secondary);margin-bottom:1vh;text-transform:uppercase;border-bottom:1px solid var(--border-subtle);padding-bottom:1vh';
-    tlTitle.innerHTML = '<span><span style="color:var(--accent);font-weight:700;margin-right:0.6ch">■</span> EXPERIMENT ROADMAP · 研究路线与实验一览</span>';
-    tlContainer.appendChild(tlTitle);
-    
-    const tlClone = originalTimeline.cloneNode(true);
-    // Give it a fixed height and margin to prevent vertical collapse and overlapping
-    tlClone.style.cssText = 'height:15vh;min-height:120px;margin-top:3.5vh;margin-bottom:1.5vh;display:flex;align-items:center;position:relative';
-    
-    // Make nodes static in the ESC menu
-    tlClone.querySelectorAll('[data-process-node]').forEach(btn => {
-      btn.style.cursor = 'default';
-      btn.style.pointerEvents = 'none'; // Disable hover and click interactions completely
-      btn.type = 'button';
-      
-      // Keep active state highlight if on the timeline slide
-      const key = btn.getAttribute('data-process-node');
-      btn.classList.toggle('active', idx === 2 && document.querySelector(`.slide [data-process-node="${key}"]`).classList.contains('active'));
-    });
-    tlContainer.appendChild(tlClone);
-    ov.appendChild(tlContainer);
-  }
-  
+
   const grid=document.createElement('div');
   grid.className='esc-grid-wrap';
-  grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2.2vh 1.6vw;max-width:90vw;margin:0 auto';
+  grid.style.cssText='display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));gap:1.2vh 1.4vw;max-width:90vw;height:96vh;margin:0 auto';
   slides.forEach((s,i)=>{
     const card=document.createElement('div');
-    card.style.cssText='cursor:pointer;overflow:hidden;border:2px solid '+(i===idx?'var(--accent)':'rgba(0,0,0,.12)')+';transition:border-color .2s;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.03);background:var(--paper)';
+    card.style.cssText='cursor:pointer;overflow:hidden;border:2px solid '+(i===idx?'var(--accent)':'rgba(0,0,0,.12)')+';transition:border-color .2s;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.03);background:var(--paper);display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0';
     card.onmouseenter=()=>card.style.borderColor='rgba(0,0,0,.4)';
     card.onmouseleave=()=>card.style.borderColor=i===idx?'var(--accent)':'rgba(0,0,0,.12)';
     const wrap=document.createElement('div');
     const isDark = s.classList.contains('dark') || s.classList.contains('accent');
-    wrap.style.cssText='width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;pointer-events:none;background:'+(isDark?'var(--ink)':'var(--paper)');
+    wrap.className='esc-thumb-wrap';
+    wrap.style.cssText='width:100%;height:100%;min-height:0;overflow:hidden;position:relative;pointer-events:none;background:'+(isDark?'var(--ink)':'var(--paper)');
     const clone=s.cloneNode(true);
-    clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
+    clone.querySelectorAll('[data-motion-item],[data-anim]').forEach(el=>{
+      el.style.opacity = el.dataset.motionOrigOpacity || '1';
+      el.style.transform = el.dataset.motionOrigTransform || '';
+      el.removeAttribute('data-motion-item');
+    });
+    clone.querySelectorAll('.row-fill').forEach(fill=>{
+      if(fill.dataset.motionTargetWidth) fill.style.width = fill.dataset.motionTargetWidth;
+    });
+    clone.style.cssText='width:100vw;height:100vh;transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
     wrap.appendChild(clone);
     const label=document.createElement('div');
     /* ESC 索引卡 label */
-    label.style.cssText='padding:10px 12px;font-family:var(--sans),var(--sans-zh);font-size:12px;color:var(--text-primary);display:flex;justify-content:space-between;align-items:center';
+    label.style.cssText='padding:8px 12px;font-family:var(--sans),var(--sans-zh);font-size:12px;color:var(--text-primary);display:flex;justify-content:space-between;align-items:center;min-height:34px';
     
     // Extract description from slide lDev
     const lDiv = s.querySelector('.chrome-min .l');
@@ -2118,12 +2098,21 @@ function buildOverview(){
     grid.appendChild(card);
   });
   ov.appendChild(grid);
+  requestAnimationFrame(()=>{
+    ov.querySelectorAll('.esc-thumb-wrap').forEach(wrap=>{
+      const clone = wrap.firstElementChild;
+      if(!clone) return;
+      const scale = Math.min(wrap.clientWidth / window.innerWidth, wrap.clientHeight / window.innerHeight);
+      clone.style.transform = `scale(${scale})`;
+    });
+  });
 }
 
 function toggleOverview(){
   overviewOn=!overviewOn;
   if(overviewOn){
     buildOverview();
+    ov.scrollTop = 0;
     ov.getBoundingClientRect(); // Force a reflow
     ov.classList.add('active');
   } else {

@@ -54,6 +54,18 @@ if (genericScalePatterns.some(pattern => pattern.test(html))) {
   pass('generic motion preparation uses no scale transforms');
 }
 
+if (!/removeAttribute\('data-motion-item'\)/.test(html)) {
+  fail('overview thumbnails do not strip motion item state from cloned slides');
+} else {
+  pass('overview thumbnails strip cloned motion item state');
+}
+
+if (!/grid-template-rows:repeat\(4,minmax\(0,1fr\)\)/.test(html)) {
+  fail('overview is not constrained to a 4x4 viewport-fitting grid');
+} else {
+  pass('overview uses a viewport-fitting 4x4 grid');
+}
+
 if (process.exitCode) {
   process.exit(process.exitCode);
 }
