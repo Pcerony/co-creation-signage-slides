@@ -2381,7 +2381,7 @@ if(motion){
     stopSlideAnimations(slide);
     const items = getMotionItems(slide);
     items.forEach(el=>setPrepared(el));
-    q(slide, '.row-fill').forEach(fill=>{
+    if(slide.dataset.animate !== 'hbar-grow') q(slide, '.row-fill').forEach(fill=>{
       fill.dataset.motionTargetWidth = fill.dataset.motionTargetWidth || fill.style.width || '100%';
       fill.style.transition = 'none';
       fill.style.width = '0%';
@@ -3154,21 +3154,16 @@ if(motion){
     const tracks = q(slide, '.row-track');
     const fills = q(slide, '.row-fill');
     const values = q(slide, '.row-val');
-    labels.forEach((label, i)=>enterItem(slide, label, {x:-12, y:0, delay:.34 + i*.055, duration:.34, easing:EASE_PROD}));
-    tracks.forEach((track, i)=>fadeItem(slide, track, {delay:.36 + i*.055, duration:.24}));
-    fills.forEach((fill, i)=>{
+    [...labels, ...tracks, ...values].forEach(restoreMotionItem);
+    fills.forEach(fill=>{
       const target = fill.dataset.motionTargetWidth || fill.style.width || '100%';
       fill.style.transition = 'none';
-      fill.style.width = '0%';
-      run(slide, fill, {width:['0%', target]}, {duration:.58, delay:.42 + i*.055, easing:EASE_ENTRY_EXP});
-      setTimeout(()=>{
-        fill.style.transition = 'none';
-        fill.style.width = target;
-        requestAnimationFrame(()=>{ fill.style.transition = ''; });
-      }, (1.08 + i*.055) * 1000);
+      fill.style.width = target;
+      fill.style.opacity = '1';
+      fill.style.transform = 'none';
+      requestAnimationFrame(()=>{ fill.style.transition = ''; });
     });
-    values.forEach((value, i)=>enterItem(slide, value, {x:10, y:0, delay:.56 + i*.055, duration:.32, easing:EASE_PROD}));
-    enterItem(slide, slide.querySelector('.canvas-card > .t-body-sm'), {y:8, delay:.92, duration:.36});
+    enterItem(slide, slide.querySelector('.canvas-card > .t-body-sm'), {y:8, delay:.55, duration:.36});
   }
 
   function rDeckLedger(slide){

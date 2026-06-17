@@ -72,6 +72,13 @@ if (/const selectors = \[[\s\S]*?['"]\\.heatmap-card['"][\s\S]*?\];/.test(html))
   pass('heatmap cards are excluded from generic motion selectors');
 }
 
+const hbarMatch = html.match(/function rDeckHBarGrow\(slide\)\{[\s\S]*?\n  \}/);
+if (hbarMatch && /width:\['0%',\s*target\]/.test(hbarMatch[0])) {
+  fail('hbar-grow still animates bar width instead of using the stable static chart');
+} else {
+  pass('hbar-grow uses stable static bar widths');
+}
+
 if (process.exitCode) {
   process.exit(process.exitCode);
 }
