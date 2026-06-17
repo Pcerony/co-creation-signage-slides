@@ -81,6 +81,23 @@
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility
   }
 
+  /* Language-specific layout adjustments for i18n */
+  body:not(.lang-zh) h1[data-anim="title"] { max-width: 80vw !important; font-size: min(3.5vw, 6vh) !important; }
+  body:not(.lang-zh) h1[data-anim="title"] > span { font-size: 0.6em !important; }
+  body:not(.lang-zh) [data-anim="title-block"] { max-width: 65vw !important; }
+  body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(16px, 1.1vw) !important; }
+  body:not(.lang-zh) .slide:not(.accent) .t-meta + div { font-size: min(2.5vw, 4vh) !important; }
+  body:not(.lang-zh) .lead { max-width: 80ch !important; }
+  body:not(.lang-zh) .flow-step .ttl { font-size: min(1.6vw, 2.8vh) !important; }
+  body:not(.lang-zh) .flow-step .mini { font-size: max(11px, 0.7vw) !important; }
+  body:not(.lang-zh) .slide9-footer-desc { font-size: min(1.1vw, 1.9vh) !important; line-height: 1.4 !important; }
+  body:not(.lang-zh) .h-xl-zh { font-size: min(3.2vw, 6vh) !important; max-width: 80vw !important; }
+  body:not(.lang-zh) .main-st { font-size: min(3vw, 5.5vh) !important; max-width: 85vw !important; }
+  body:not(.lang-zh) [data-anim="manifesto"] h2 { font-size: min(4.5vw, 8vh) !important; max-width: 90vw !important; }
+  body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(16px, 1.1vw) !important; }
+  body:not(.lang-zh) .t-meta + div { font-size: min(2.5vw, 4vh) !important; }
+  body:not(.lang-zh) .lead { max-width: 80ch !important; }
+
   /* ============ WebGL 网格背景 ============ */
   canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;opacity:.55;mix-blend-mode:multiply;pointer-events:none}
   body.dark-bg canvas.bg{mix-blend-mode:screen;opacity:.42}
@@ -1256,7 +1273,7 @@
     transition:background .22s ease,color .22s ease,border-color .22s ease;
   }
   .flow-step .nb{font-family:var(--mono);font-size:14px;letter-spacing:.18em;color:var(--text-helper)}
-  .flow-step .ttl{display:block;font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:min(2.1vw,3.7vh);line-height:1.1;letter-spacing:0}
+  .flow-step .ttl{display:block;font-family:var(--sans),var(--sans-zh);font-weight:500;font-size:min(2.1vw,3.7vh);line-height:1.1;letter-spacing:0}
   .flow-step .mini{display:block;font-family:var(--sans),var(--sans-zh);font-size:max(13px,.78vw);line-height:1.45;color:var(--text-secondary);margin-top:.6vh}
   .flow-step .lucide{width:24px;height:24px;stroke-width:1.6;color:var(--accent)}
   .flow-step.active{background:var(--accent);color:var(--accent-on);border-top-color:var(--accent)}
@@ -1303,9 +1320,11 @@
     border:0;background:transparent;color:var(--text-helper);
     width:56px;height:5.2vh;min-height:30px;
     font-family:var(--mono);font-size:13px;letter-spacing:.15em;
-    cursor:pointer;transition:background .18s ease,color .18s ease,transform .18s ease
+    cursor:pointer;transition:background .22s ease,color .22s ease,transform .22s ease,box-shadow .22s ease
   }
   .heatmap-picker.active{background:var(--accent);color:var(--accent-on);transform:scale(1.08)}
+  .heatmap-picker:hover:not(.active){background:var(--grey-1);color:var(--text-primary);transform:scale(1.04)}
+  
 
   /* 响应式降级 */
   @media (max-width:900px){
@@ -1360,12 +1379,18 @@
   <div class="canvas-card">
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div class="chrome-min">
-      <div class="l">FIELD DATA ANALYSIS · FUKUOKA BOTANICAL GARDEN</div>
+      <div class="l" style="pointer-events: auto; display: flex; align-items: center; gap: 8px;">
+        <span class="lang-top-label" style="opacity: 0.6; font-size: 11px;">Language:</span>
+        <button class="lang-top-btn" onclick="applyLanguage('zh')">ZH</button>
+        <button class="lang-top-btn" onclick="applyLanguage('en')">EN</button>
+        <button class="lang-top-btn" onclick="applyLanguage('ja')">JA</button>
+        <button class="lang-top-btn" onclick="applyLanguage('es-MX')">ES</button>
+      </div>
       <div class="r">EXPERIMENT ANALYSIS · 2026.06 · 01 / 16</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh">
       <div data-anim="kicker" class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em">A/R DESIGN · AOI EYE-TRACKING</div>
-      <h1 data-anim="title" style="align-self:center;font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.7vw,8.2vh);line-height:1.02;letter-spacing:0;color:#fff;max-width:17ch;hyphens:none">A Study on Co&#8209;creation Tools for Designing Interpretive Signage<br/><span style="display:block;margin-top:1.1vh;font-size:.46em;line-height:1.08;letter-spacing:0">Case Study of Fukuoka City Botanical Garden Greenhouse</span></h1>
+      <h1 data-anim="title" style="align-self:center;font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.7vw,8.2vh);line-height:1.02;letter-spacing:0;color:#fff;max-width:17ch;hyphens:none">关于用于设计解说标识的共创工具的研究<br/><span style="display:block;margin-top:1.1vh;font-size:.46em;line-height:1.08;letter-spacing:0">以福冈市植物园温室区域为例</span></h1>
       <div data-anim="bottom" style="display:grid;grid-template-rows:auto auto;gap:1.6vh;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh">
         <div class="lead" style="max-width:54ch;color:rgba(255,255,255,.86);font-weight:300">植物解说标识的 A/R/S 设计改良与眼动评估实验分析</div>
         <div style="display:flex;gap:1.4vw;align-items:center;color:rgba(255,255,255,.76);font-family:var(--mono);font-size:14px;letter-spacing:.16em;text-transform:uppercase">
@@ -1642,9 +1667,6 @@
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min tight"><div class="l">METHODOLOGY · EXPERIMENT PROCEDURE & ON-SITE PROTOCOL</div><div class="r">09 / 16</div></div>
-    <div style="display:flex;flex-direction:column;gap:1vh">
-      <h2 class="h-xl-zh" style="font-size:min(4.2vw,7.4vh)">现场实验流程</h2>
-    </div>
     <div class="flow-split" data-flow-group>
       <div class="flow-step-list">
         <button class="flow-step active" type="button" data-flow-step="0"><span class="nb">01</span><span><span class="ttl">环境与设备校验</span><span class="mini">确认受光、面部捕捉与摄像头状态。</span></span><i data-lucide="camera"></i></button>
@@ -1671,9 +1693,10 @@
         </article>
       </div>
     </div>
-    <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:2vh">样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。</div>
+    <div class="t-body-sm slide9-footer-desc" style="border-top:1px solid var(--border-subtle);padding-top:2vh">样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。</div>
   </div>
 </section>
+
 
 <section class="slide" data-layout="S03" data-animate="statement-rise">
   <div class="canvas-card">
@@ -1708,8 +1731,8 @@
             <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="8"><img src="../ab2/academic_heatmap_yamada%20rena_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P09 控制组热力图"><figcaption>P09</figcaption></figure>
           </div>
         </section>
-        <nav class="heatmap-wheel" aria-label="Participant selector">
-          <button class="heatmap-picker active" type="button" data-heatmap-pick="0">P01</button>
+        <nav class="heatmap-nav">
+          <button class="heatmap-picker" type="button" data-heatmap-pick="0">P01</button>
           <button class="heatmap-picker" type="button" data-heatmap-pick="1">P02</button>
           <button class="heatmap-picker" type="button" data-heatmap-pick="2">P03</button>
           <button class="heatmap-picker" type="button" data-heatmap-pick="3">P04</button>
@@ -2014,6 +2037,635 @@ if(document.body.classList.contains('canvas-mode')){
   startGrid();
 }
 addEventListener('swiss-low-power-change', e=>{e.detail.on ? stopGrid() : startGrid();});
+/* =============== 多语言切换 =============== */
+const LANGUAGES = {
+  'zh': {
+    label: '中文',
+    shortLabel: 'ZH',
+    htmlLang: 'zh-CN',
+    title: '实验数据分析结果分享 · A/R AOI Eye-tracking',
+    strings: {}
+  },
+  'en': {
+    label: 'English',
+    shortLabel: 'EN',
+    htmlLang: 'en',
+    title: 'Experiment Data Analysis · A/R AOI Eye-tracking',
+    strings: {
+      "关于用于设计解说标识的共创工具的研究": "A Study on Co-creation Tools for Designing Interpretive Signage",
+      "以福冈市植物园温室区域为例": "Case Study of Fukuoka City Botanical Garden Greenhouse",
+      "实验数据分析结果分享 · A/R AOI Eye-tracking": "Experiment Data Analysis · A/R AOI Eye-tracking",
+      "植物解说标识的 A/R/S 设计改良与眼动评估实验分析": "Eye-tracking evaluation of A/R/S design improvements for interpretive plant signage",
+      "非正式学习标识的": "Interpretive signage as",
+      "现实困境与低阅读课题": "an informal learning challenge",
+      "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。": "As an informal learning interface in the greenhouse, interpretive signs often face a “high installation, low reading” problem. This study asks how A/R/S design interventions can guide visitors’ visual attention, shorten the reading decision path, and help gaze focus earlier and more consistently on key semantic areas.",
+      "温室区": "Greenhouse",
+      "福冈市植物园": "Fukuoka City Botanical Garden",
+      "被设置": "Installed",
+      "≠ 被阅读": "≠ Read",
+      "来园者多处于随机浏览状态，大量长文本信息未被视线有效覆盖": "Many visitors browse casually, and long text blocks are not effectively covered by gaze.",
+      "设立控制组与改良组对照实验，并引入 AOI 进行眼动数据分析": "Set up control and intervention signs, then use AOI-based eye-tracking analysis.",
+      "研究流程": "Research Process",
+      "课题收集": "Topic Collection",
+      "方向确立": "Direction Setting",
+      "调查到验证": "From survey to validation",
+      "原则与工具": "Principles & Tools",
+      "ARS产出 & 工具开发": "ARS output & tool development",
+      "预备验证": "Pilot Validation",
+      "v3 更新": "v3 update",
+      "设计与原型": "Design & Prototype",
+      "ARS原则视觉映射": "Visual mapping of ARS principles",
+      "实验验证": "Experiment Validation",
+      "ARS有效性验证": "ARS effectiveness validation",
+      "快速产出": "Quick Output",
+      "后续计划": "Next Plan",
+      "数据细化与撰写": "Detailed analysis and writing",
+      "通过实地调查、焦点小组与 KJ 法收集用户反馈。": "Collected user feedback through fieldwork, focus groups, and the KJ method.",
+      "问题入口": "Problem Entry",
+      "明确植物园温室解说标识在阅读范围与记忆保持上的初始课题。": "Clarified initial issues around reading coverage and memory retention for greenhouse interpretive signs.",
+      "文献调查": "Literature Review",
+      "根据已收集课题，通过论文调查检讨研究方向。": "Reviewed papers based on collected issues to refine the research direction.",
+      "现状画像分析": "Current-state Image Analysis",
+      "对标识图像按主题编码，确认问题普遍性并收束课题。": "Coded sign images by theme, confirmed the generality of the problem, and narrowed the topic.",
+      "专家访谈": "Expert Interviews",
+      "与专家讨论可行方向，确定研究问题。": "Discussed feasible directions with experts and defined the research questions.",
+      "用焦点小组、问卷与记忆测试验证研究必要性。": "Used focus groups, questionnaires, and memory tests to verify the need for the study.",
+      "ARS 原则产出": "ARS Principle Output",
+      "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。": "Derived the principles of Inspirational Atmosphere (A), Audience Relevance (R), and Signage Structure (S) from earlier image analysis and interviews.",
+      "学术发表": "Academic Publication",
+      "将前期方法论与 ARS 框架整理并进行学术发表，奠定理论基础。": "Organized the previous methodology and ARS framework into academic outputs to establish the theoretical base.",
+      "编码与分析工具研发": "Coding and Analysis Tool Development",
+      "开发多人标识编码工具 Signage Annotator 与视线分析工具 VisualAnalytics。": "Developed the multi-user signage coding tool Signage Annotator and the gaze analysis tool VisualAnalytics.",
+      "予備実験": "Pilot Experiment",
+      "在实验室进行小规模验证，确认 VisualAnalytics 和实验本身的可行性。": "Ran a small-scale laboratory validation to confirm the feasibility of VisualAnalytics and the experiment.",
+      "工具开发 3": "Tool Development 3",
+      "根据预备实验结果与反馈，将工具更新为 VisualAttention v3。": "Updated the tool to VisualAttention v3 based on pilot results and feedback.",
+      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "Mapped the refined A/R/S principles onto concrete layout features and semantic AOI regions.",
+      "基于 VisualAnalytics 技术，设计并实现动态解说标识原型。": "Designed and implemented a dynamic interpretive signage prototype using VisualAnalytics technology.",
+      "A/B TEST 验证": "A/B Test Validation",
+      "在植物园实施眼动实验，全面验证 A/R/S 改良版标识的视线引导有效性。": "Conducted an eye-tracking experiment in the botanical garden to validate the gaze-guiding effect of the A/R/S intervention signs.",
+      "实地测试": "Field Test",
+      "实地收集来园者在自然状态下的真实眼动轨迹与注视分布。": "Collected real visitor gaze trajectories and fixation distributions in a natural field setting.",
+      "包含 Dynamic Signage 原型试用阶段，观察动态标识的可用性。": "Included a Dynamic Signage prototype trial to observe usability.",
+      "分析重点": "Analysis Focus",
+      "本阶段重点针对 A/B 眼动实验的 Quick Data 与 AOI 数据进行多维分析。": "This phase focuses on multidimensional analysis of Quick Data and AOI results from the A/B eye-tracking experiment.",
+      "Quick Data 分析": "Quick Data Analysis",
+      "迅速分析本实验 A/B 测试结果，形成早期结论。": "Quickly analyzed the A/B test results and formed early conclusions.",
+      "修士报告": "Master’s Report",
+      "基于 Quick Data 分析结果，完成博士出愿用修士报告。": "Prepared the master’s report for doctoral application based on the Quick Data analysis.",
+      "后续计划 (未来规划)": "Next Plan (Future Work)",
+      "Data 分析": "Data Analysis",
+      "详细分析本实验得到的全部数据，细化指标与图表。": "Analyze all experimental data in detail and refine metrics and charts.",
+      "修士论文": "Master’s Thesis",
+      "进入修士论文写作阶段，将实验结果整合到完整研究论述中。": "Move into thesis writing and integrate the experiment into the full research argument.",
+      "核心研究流程：原则产出——工具设计——利用工具验证原则有效性": "Core research flow: principle generation -> tool design -> validation of principle effectiveness through tools",
+      "A/R/S 解说标识设计原则假说": "A/R/S Interpretive Signage Design Principle Hypothesis",
+      "A/R/S 是一套基于先前阶段研究（实地调研与理论分析）提炼而成的解说标识设计原则，旨在通过氛围、关联与结构的维度改良，预期能够显著提升来园者的标识阅读意愿与非正式学习体验。": "A/R/S is a set of interpretive signage design principles derived from earlier field research and theoretical analysis. It aims to improve atmosphere, relevance, and structure, with the expectation of increasing visitors’ willingness to read signs and their informal learning experience.",
+      "启发性氛围": "Inspirational Atmosphere",
+      "通过提问、叙事和植物情境提示，建立“为什么值得看”的入口。": "Use questions, narrative, and plant-context cues to create an entry point for “why this is worth looking at.”",
+      "观众关联性": "Audience Relevance",
+      "把植物特征连接到触摸、用途、感官经验和行动可能性。": "Connect plant characteristics to touch, use, sensory experience, and possible actions.",
+      "结构清晰性": "Signage Structure",
+      "用标识层级与视觉分区降低读解负荷，支撑关键区域可达。": "Use hierarchy and visual zoning to reduce reading load and make key areas reachable.",
+      "实验组与对照组": "Experiment Group and Control Group",
+      "对照组": "Control Group",
+      "信息混杂在单一长文本中": "Information is mixed into one long text block",
+      "实验组": "Experiment Group",
+      "应用 A/R 原则进行独立分区设计": "Independent zones based on A/R principles",
+      "实验探讨的具体问题": "Specific Experimental Questions",
+      "Q1 · 完读率提升": "Q1 · Reading Coverage Increase",
+      "改良设计是否能提升受众对文字区域的": "Can the improved design increase audience coverage of the text area",
+      "完读率": "reading coverage",
+      "评估指标": "Evaluation Metric",
+      "前 10 秒文字区域完读率 (覆盖率)": "Text-area reading coverage in the first 10 seconds",
+      "Q2 · 注意分配": "Q2 · Attention Allocation",
+      "视觉注意力是否被": "Is visual attention",
+      "重新组织": "reorganized",
+      "到核心设计区域？": "toward core design areas?",
+      "各语义区域 (AOI) 注意力占比": "Attention share by semantic AOI",
+      "Q3 · 效能比较": "Q3 · Effect Comparison",
+      "在 A/R/S 原则中，哪种设计介入产生的": "Among A/R/S principles, which intervention produces the",
+      "效应最强、最稳定": "strongest and most stable effect",
+      "9名有效被试的各区注意力增幅": "Attention increase by region across 9 valid participants",
+      "注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。": "Note: The experimental questions are answered quantitatively in the following analysis as Q1, Q2, and Q3 (Data 1, 2, and 3).",
+      "眼动追踪的现场": "On-site gaze tracking",
+      "测量系统与软硬件": "measurement system and setup",
+      "参与者在自然状态下阅读实体印刷标识。系统仅通过普通网络摄像头捕捉面部与眼部状态，实时估计视线视点，并将其动态映射至纸面二维坐标，输出学术分析级热力图与眼动轨迹。": "Participants read physical printed signs in a natural state. The system uses a standard webcam to capture face and eye states, estimates gaze points in real time, maps them to two-dimensional paper coordinates, and outputs analysis-grade heatmaps and gaze trajectories.",
+      "基于 WebGazer 核心研发的非接触式眼动追踪与注视分析软件。": "A non-contact eye-tracking and gaze analysis tool built around WebGazer.",
+      "阅读两个标识": "Read Two Signs",
+      "依次阅读一个控制组和一个实验组纸质标识，记录被试在自然观看状态下的视线轨迹。": "Read one control sign and one intervention sign in sequence, recording gaze trajectories during natural viewing.",
+      "注视点数据": "Fixation-point Data",
+      "参与者的二维坐标与注视流数据，用于后续的 AOI 语义分析。": "Participants’ two-dimensional coordinates and gaze stream data for later AOI semantic analysis.",
+      "视线估计原理与物理坐标投影映射": "Gaze Estimation and Physical Coordinate Projection",
+      "普通网络摄像头实时捕获被试面部与眼部反射特征。": "A standard webcam captures facial and eye reflection features in real time.",
+      "利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。": "The WebGazer engine estimates gaze feature points in the browser.",
+      "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。": "A 9-point paper calibration builds a projective mapping from screen space to physical sign coordinates.",
+      "导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。": "Export gaze coordinates, time logs, trajectory maps, heatmaps, and editable AOI data packages.",
+      "现场实验流程": "Field Experiment Procedure",
+      "环境与设备校验": "Environment and Device Check",
+      "确认受光、面部捕捉与摄像头状态。": "Check lighting, face capture, and camera status.",
+      "9点物理空间校准": "9-point Physical Calibration",
+      "建立视线估计与纸面坐标的映射。": "Build the mapping between gaze estimation and paper coordinates.",
+      "自由观看与视轨记录": "Free Viewing and Gaze Recording",
+      "参与者自然阅读，系统静默记录视线。": "Participants read naturally while the system records gaze in the background.",
+      "数据导出与数据包清洗": "Data Export and Package Cleaning",
+      "保存注视点、轨迹、热力图与 AOI 统计。": "Save fixation points, trajectories, heatmaps, and AOI statistics.",
+      "在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。": "Check face lighting, shadow interference, eye-capture range, and camera frame rate in the greenhouse to avoid distorted gaze records.",
+      "被试依次注视纸面 9 个物理校准点，实验者多次触发确认，用于校正空间透视映射并稳定纸面坐标。": "Participants gaze at nine physical calibration points on paper; the experimenter confirms multiple times to calibrate perspective mapping and stabilize paper coordinates.",
+      "被试在自然状态下阅读纸面标识，系统在后台记录映射后的二维坐标、注视流和观看时序。": "Participants read the paper sign naturally while the system records mapped two-dimensional coordinates, gaze flow, and viewing time in the background.",
+      "停止追踪后保存日志，导出注视点记录、归一化热力图、轨迹图与可修正的 AOI 统计表，用于 Quick Data 分析。": "After tracking stops, logs are saved and fixation records, normalized heatmaps, trajectory maps, and editable AOI statistics are exported for Quick Data analysis.",
+      "样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。": "Sample and data scope: the field experiment recruited 15 real visitors; this Quick Data/AOI analysis uses corrected heatmaps from 9 participants as valid samples.",
+      "设计干预的核心成效：": "Core effect of the design intervention:",
+      "引导视线更早聚焦": "guiding gaze earlier toward",
+      "设计意图区域": "design-intended areas",
+      "结果热力图一览": "Heatmap Results Overview",
+      "控制组": "Control Group",
+      "Q1: 完读率是否有被提升 (前 10 秒覆盖率)": "Q1: Did reading coverage improve? (first 10 seconds)",
+      "在前 10 秒的黄金阅读窗口中，实验组的文字区域完读率平均提升了 6.7pp (从对照组的 38.6% 提高到 45.3%)。这证明改良设计能有效提升阅读效率，迅速激活信息入口。": "In the first 10-second reading window, the intervention group’s text-area coverage increased by 6.7 percentage points on average, from 38.6% to 45.3%. This indicates that the improved design can activate the information entry point more quickly.",
+      "对照组 (38.6%)": "Control (38.6%)",
+      "实验组 (45.3%)": "Intervention (45.3%)",
+      "平均提升 +6.7pp": "Average increase +6.7pp",
+      "人↑": "people ↑",
+      "9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp": "6 of 9 valid samples increased; median change reached +8.2pp",
+      "Q2: 注意力向设计意图区域重组 (AOI 占比)": "Q2: Attention reorganized toward design-intended areas (AOI share)",
+      "实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。": "The intervention group did not simply expand indiscriminate reading area. Through layout segmentation and hierarchy, attention was organized toward semantic areas directly tied to the design principles.",
+      "A/R 目标区域 · 全程 (实验组)": "A/R target areas · full session (intervention)",
+      "A/R 目标区域 · 全程 (对照组)": "A/R target areas · full session (control)",
+      "A/R 目标区域 · 10s (实验组)": "A/R target areas · 10s (intervention)",
+      "A/R 目标区域 · 10s (对照组)": "A/R target areas · 10s (control)",
+      "非目标区域 · 全程 (实验组)": "Non-target areas · full session (intervention)",
+      "S原则: 杂乱扫视大幅缩减": "S principle: noisy scanning reduced",
+      "非目标区域 · 全程 (对照组)": "Non-target areas · full session (control)",
+      "对照组参考：A/R 相关区域 10s 为 38.7%，全程为 45.0%；非目标区域 10s 为 30.1%，全程为 34.5%。": "Control reference: A/R-related areas were 38.7% at 10s and 45.0% overall; non-target areas were 30.1% at 10s and 34.5% overall.",
+      "Q3: 观众关联性 (R原则) 产生最稳定、最强的视线吸引效应": "Q3: Audience relevance (R principle) produced the strongest and most stable gaze attraction",
+      "“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。": "“Audience relevance” connects objective plant traits with visitors’ touch, sensory experience, everyday use, and possible actions. The experiment suggests this dimension played the dominant role in sustaining reading motivation and gaze retention.",
+      "前 10 秒 R 区注意力占比": "Attention share in R area, first 10s",
+      "提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。": "An increase of 16.4pp shows that audience-relevance information can be captured quickly as a strong visual anchor.",
+      "全程时间 R 区注意力占比": "Attention share in R area, full session",
+      "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "A large 26.6pp increase indicates a long-term reorganization of gaze structure, drawing viewers into deeper information processing.",
+      "全样本表现一致": "Consistent across all samples",
+      "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Across the 9 valid participants, attention share in the R area increased without exception.",
+      "讨论与局限：全程完读率下降的客观判读": "Discussion and Limitations: Objective Reading of the Full-session Coverage Decline",
+      "事实与边界": "Facts and Boundaries",
+      "全程文字覆盖率下降": "Full-session text coverage declined",
+      "实验组的全程文字区域覆盖率从 65.4% 降至 60.0%，这是本次 Quick Data 中必须承认的结果。它说明改良版并没有在全程尺度上增加文字区域的总体覆盖量。": "The intervention group’s full-session text-area coverage fell from 65.4% to 60.0%. This is a result that must be acknowledged in the Quick Data. It means the improved version did not increase total text-area coverage over the full session.",
+      "不能宣称“整体阅读量全面提升”": "Do not claim “overall reading volume fully increased.”",
+      "当前结论基于 9 名有效样本与修正后热力图": "Current conclusions are based on 9 valid samples and corrected heatmaps.",
+      "结果可能受到现场环境、观看路径与个体兴趣差异影响": "Results may be affected by field conditions, viewing paths, and individual interests.",
+      "讨论方向": "Discussion Direction",
+      "早期入口与 AOI 重组": "Early entry and AOI reorganization",
+      "在承认全程完读率下降的前提下，其他指标显示注意力并非简单减少，而是向特定语义区域重新分配。这更适合表述为局部有效，而非全局阅读量提升。": "While acknowledging the decline in full-session coverage, other metrics show that attention did not simply decrease; it was redistributed toward specific semantic areas. This should be described as local effectiveness, not a global increase in reading volume.",
+      "前 10 秒文字覆盖率 38.6% → 45.3%，9 人中 6 人上升": "Text coverage in the first 10s: 38.6% -> 45.3%; 6 of 9 participants increased.",
+      "A/R 目标区域全程占比 45.0% → 60.2%": "A/R target area share across the full session: 45.0% -> 60.2%.",
+      "R 区全程占比 8.5% → 35.1%，9 名样本均上升": "R area share across the full session: 8.5% -> 35.1%; all 9 samples increased.",
+      "总结：从信息解说": "Conclusion: from information explanation",
+      "转向": "toward",
+      "行为与体验诱导": "behavior and experience guidance",
+      "A/R/S 的核心价值并非修饰版面，而是系统性重构注意力，将无序的“盲目扫视”组织为具有非正式学习与感官体验意义的深度阅读。": "The core value of A/R/S is not decorative layout improvement, but systematic attention restructuring: turning unordered “blind scanning” into deeper reading with informal learning and sensory-experience meaning.",
+      "前 10 秒文字覆盖率提升": "First-10-second text coverage improved",
+      "改良版在早期阅读窗口中提升文字区域覆盖率：38.6% → 45.3%；但全程文字覆盖率下降，不能解释为整体阅读量全面增加。": "The improved version increased text-area coverage in the early reading window: 38.6% -> 45.3%. However, full-session coverage declined, so it cannot be interpreted as an overall increase in reading volume.",
+      "注意力转向设计意图区域": "Attention shifted to design-intended areas",
+      "A/R 目标区域的注意力占比上升：10 秒内 38.7% → 47.8%，全程 45.0% → 60.2%，说明视线被重新组织到核心语义区。": "Attention share in A/R target areas increased: 38.7% -> 47.8% within 10 seconds and 45.0% -> 60.2% over the full session, indicating that gaze was reorganized toward core semantic areas.",
+      "R 原则产生最稳定效应": "The R principle produced the most stable effect",
+      "观众关联性区域提升最明显：前 10 秒 5.0% → 21.4%，全程 8.5% → 35.1%，且 9 名有效样本均出现上升。": "Audience-relevance areas showed the clearest increase: 5.0% -> 21.4% in the first 10 seconds and 8.5% -> 35.1% over the full session; all 9 valid samples increased."
+}
+  },
+    'ja': {
+    label: '日本語',
+    shortLabel: 'JA',
+    htmlLang: 'ja',
+    title: '実験データ分析結果共有 · A/R AOI Eye-tracking',
+    strings: {
+      "关于用于设计解说标识的共创工具的研究": "解説サインのための共創ツールに関する研究",
+      "以福冈市植物园温室区域为例": "福岡市植物園温室エリアを事例として",
+      "实验数据分析结果分享 · A/R AOI Eye-tracking": "実験データ分析結果共有 · A/R AOI Eye-tracking",
+      "植物解说标识的 A/R/S 设计改良与眼动评估实验分析": "植物解説サインの A/R/S デザイン改良と視線計測評価実験分析",
+      "非正式学习标识的": "インフォーマル学習サインの",
+      "现实困境与低阅读课题": "「設置されているが読まれない」現実的課題",
+      "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。": "温室環境におけるインフォーマル学習のインターフェースとして、解説サインはしばしば「設置されているが読まれない」というジレンマに直面します。本研究では、A/R/Sデザインによる介入を通じて、来園者の視覚的注意を誘導し、読解の意思決定プロセスを短縮し、視線をより早くかつ持続的に主要な意味領域へ集中させる方法を検証します。",
+      "温室区": "温室エリア",
+      "福冈市植物园": "福岡市植物園",
+      "被设置": "設置される",
+      "≠ 被阅读": "≠ 読まれる",
+      "来园者多处于随机浏览状态，大量长文本信息未被视线有效覆盖": "来園者の多くは散策状態にあり、大量の長文テキスト情報は視線によって効果的にカバーされていません",
+      "设立控制组与改良组对照实验，并引入 AOI 进行眼动数据分析": "コントロール群と改良群の対照実験を設計し、AOIを導入して視線データを分析します",
+      "研究流程": "研究プロセス",
+      "课题收集": "課題収集",
+      "方向确立": "方向性確立",
+      "调查到验证": "調査から検証へ",
+      "原则与工具": "原則とツール",
+      "ARS产出 & 工具开发": "ARS原則の策定とツール開発",
+      "预备验证": "予備検証",
+      "v3 更新": "v3 アップデート",
+      "设计与原型": "デザインとプロトタイプ",
+      "ARS原则视觉映射": "ARS原則の視覚的マッピング",
+      "实验验证": "実験検証",
+      "ARS有效性验证": "ARS有効性の検証",
+      "快速产出": "迅速なアウトプット",
+      "后续计划": "今後の計画",
+      "数据细化与撰写": "データの精緻化と執筆",
+      "通过实地调查、焦点小组与 KJ 法收集用户反馈。": "フィールド調査、フォーカスグループ、およびKJ法を通じてユーザーフィードバックを収集。",
+      "问题入口": "課題の入り口",
+      "明确植物园温室解说标识在阅读范围与记忆保持上的初始课题。": "植物園温室の解説サインにおける読解範囲と記憶保持に関する初期課題を明確化。",
+      "文献调查": "文献調査",
+      "根据已收集课题，通过论文调查检讨研究方向。": "収集した課題に基づき、論文調査を通じて研究方向を検討。",
+      "现状画像分析": "现状画像分析",
+      "对标识图像按主题编码，确认问题普遍性并收束课题。": "解説サイン画像をテーマごとにコーディングし、課題の普遍性を確認して絞り込む。",
+      "专家访谈": "専門家インタビュー",
+      "与专家讨论可行方向，确定研究问题。": "専門家と実現可能な方向性を議論し、リサーチクエスチョンを策定。",
+      "用焦点小组、问卷与记忆测试验证研究必要性。": "フォーカスグループ、アンケート、および記憶テストを用いて研究の必要性を検証。",
+      "ARS 原则产出": "ARS原則の策定",
+      "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。": "初期画像分析とインタビューに基づき、植物の雰囲気（A）、観客との関連性（R）、サインの構造（S）の各原則を抽出。",
+      "学术发表": "学会発表",
+      "将前期方法论与 ARS 框架整理并进行学术发表，奠定理论基础。": "初期のメタドロジーとARSフレームワークを整理して学会発表を行い、理論的基盤を確立。",
+      "编码与分析工具研发": "コーディングと分析ツールの開発",
+      "开发多人标识编码工具 Signage Annotator 与视线分析工具 VisualAnalytics。": "共同サインコーディングツール「Signage Annotator」および視線分析ツール「VisualAnalytics」を開発。",
+      "予備実験": "予備実験",
+      "在实验室进行小规模验证，确认 VisualAnalytics 和实验本身的可行性。": "研究室での小規模な検証を通じて、VisualAnalyticsおよび実験自体の実現可能性を確認。",
+      "工具开发 3": "ツール開発 3",
+      "根据预备实验结果与反馈，将工具更新为 VisualAttention v3。": "予備実験の結果とフィードバックに基づき、ツールを「VisualAttention v3」にアップデート。",
+      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "抽出されたA/R/S理論原則を、具体的なレイアウト特徴と意味領域（AOI）にマッピング。",
+      "基于 VisualAnalytics 技术，设计并实现动态解说标识原型。": "VisualAnalytics技術に基づき、動的解説サインのプロトタイプを設計・実装。",
+      "A/B TEST 验证": "A/Bテスト検証",
+      "在植物园实施眼动实验，全面验证 A/R/S 改良版标识的视线引导有效性。": "植物園内で視線計測実験を実施し、A/R/S改良版サインの視線誘導の有効性を全面的に検証。",
+      "实地测试": "フィールドテスト",
+      "实地收集来园者在自然状态下的真实眼动轨迹与注视分布。": "自然な状態における来園者のリアルな視線軌跡と注視分布を現地で収集。",
+      "包含 Dynamic Signage 原型试用阶段，观察动态标识的可用性。": "Dynamic Signage（動的サイン）のプロトタイプ試用段階を含め、動的サインのユーザビリティを観察。",
+      "分析重点": "分析の重点",
+      "本阶段重点针对 A/B 眼动实验的 Quick Data 与 AOI 数据进行多维分析。": "このフェーズでは、A/Bテスト実験の「Quick Data」とAOIデータに関する多次元分析に焦点を当てます。",
+      "Quick Data 分析": "Quick Data 分析",
+      "迅速分析本实验 A/B 测试结果，形成早期结论。": "実験のA/Bテスト結果を迅速に分析し、早期の結論を導出。",
+      "修士报告": "修士報告",
+      "基于 Quick Data 分析结果，完成博士出愿用修士报告。": "Quick Dataの分析結果に基づき、博士課程出願用の修士報告を作成。",
+      "后续计划 (未来规划)": "今後の計画（将来の展望）",
+      "Data 分析": "Data 分析",
+      "详细分析本实验得到的全部数据，细化指标与图表。": "実験で得られたすべてのデータを詳細に分析し、指標とグラフを精緻化。",
+      "修士论文": "修士論文",
+      "进入修士论文写作阶段，将实验结果整合到完整研究论述中。": "修士論文の執筆段階に入り、実験結果を包括的な研究論文に統合。",
+      "核心研究流程：原则产出——工具设计——利用工具验证原则有效性": "核心的な研究プロセス：原則の抽出 → ツール設計 → ツールによる原則の有効性検証",
+      "A/R/S 解说标识设计原则假说": "A/R/S 解説サイン設計原則の仮説",
+      "A/R/S 是一套基于先前阶段研究（实地调研与理论分析）提炼而成的解说标识设计原则，旨在通过氛围、关联与结构的维度改良，预期能够显著提升来园者的标识阅读意愿与非正式学习体验。": "A/R/Sは、前段階の研究（フィールド調査と理論分析）に基づいて構築された解説サインの設計原則であり、雰囲気（Atmosphere）、関連性（Relevance）、構造（Structure）の各次元における改良を通じて、来園者のサイン読解意欲とインフォーマル学習体験を大幅に向上させることを目指しています。",
+      "启发性氛围": "植物の雰囲気（Inspirational Atmosphere）",
+      "通过提问、叙事和植物情境提示，建立“为什么值得看”的入口。": "問いかけ、ナラティブ、および植物の状況的手がかりを通じて、「なぜ見る価値があるのか」を示す入り口を構築します。",
+      "观众关联性": "観客との関連性（Audience Relevance）",
+      "把植物特征连接到触摸、用途、感官经验和行动可能性。": "植物の特徴を、触覚、用途、感覚的経験、および行動の可能性へと結びつけます。",
+      "结构清晰性": "サインの構造（Signage Structure）",
+      "用标识层级与视觉分区降低读解负荷，支撑关键区域可达。": "サインの視覚的階層とゾーニングによって読解負荷を軽減し、重要エリアへのアクセスをサポートします。",
+      "实验组与对照组": "実験群とコントロール群",
+      "对照组": "コントロール群",
+      "信息混杂在单一长文本中": "情報が単一の長文テキスト内に混在している",
+      "实验组": "実験群",
+      "应用 A/R 原则进行独立分区设计": "A/R原則を応用した独立ゾーニング設計",
+      "实验探讨的具体问题": "実験が探究する具体的な問い",
+      "Q1 · 完读率提升": "Q1 · 読了率の向上",
+      "改良设计是否能提升受众对文字区域的": "改良設計はテキスト領域に対するターゲットの",
+      "完读率": "読了率（カバー率）を向上できるか？",
+      "评估指标": "評価指標",
+      "前 10 秒文字区域完读率 (覆盖率)": "最初の10秒におけるテキスト領域読了率（カバー率）",
+      "Q2 · 注意分配": "Q2 · 注意の配分",
+      "视觉注意力是否被": "視覚的注意が",
+      "重新组织": "再組織化",
+      "到核心设计区域？": "され、核心的な設計エリアへと誘導されているか？",
+      "各语义区域 (AOI) 注意力占比": "意味領域（AOI）ごとの注意割合",
+      "Q3 · 效能比较": "Q3 · 効果 of 比較",
+      "在 A/R/S 原则中，哪种设计介入产生的": "A/R/S原則の中で、どのデザイン介入が最も",
+      "效应最强、最稳定": "強く安定した効果をもたらすか？",
+      "9名有效被试 of 各区注意力增幅": "有効被験者9名における各領域の注意増加量",
+      "9名有效被试的各区注意力增幅": "有効被験者9名における各領域の注意増加量",
+      "注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。": "注：上記の実験課題は、後続のデータ分析において順次 Q1、Q2、Q3（すなわちデータ1、2、3の各スライド）として定量的に解答・論証されます。",
+      "眼动追踪的现场": "視線計測（眼球運動）の現場",
+      "测量系统与软硬件": "計測システムとハード・ソフト構成",
+      "参与者在自然状态下阅读实体印刷标识。系统仅通过普通网络摄像头捕捉面部与眼部状态，实时估计视线视点，并将其动态映射至纸面二维坐标，输出学术分析级热力图与眼动轨迹。": "被験者は自然な状態で物理的に印刷された解説サインを読みます。システムは通常のWebカメラのみで顔面と眼球の状態を捉え、視線位置をリアルタイムで推定。これを物理的なサインの2次元座標に動的にマッピングし、学術分析レベルのヒートマップと視線軌跡を出力します。",
+      "基于 WebGazer 核心研发的非接触式眼动追踪与注视分析软件。": "WebGazerエンジンをコアに自社開発した非接触型視線計測・注視分析ソフトウェア。",
+      "阅读两个标识": "2つのサインの読解",
+      "依次阅读一个控制组和一个实验组纸质标识，记录被试在自然观看状态下的视线轨迹。": "コントロール群と実験群の紙面サインを順に読解し、自然な観察状態における視線軌跡を記録。",
+      "注视点数据": "注視点データ",
+      "参与者的二维坐标与注视流数据，用于后续的 AOI 语义分析。": "被験者の2次元座標と注視フローデータ。後続のAOIセマンティック分析に使用。",
+      "视线估计原理与物理坐标投影映射": "視線推定の原理と物理座標への投影マッピング",
+      "普通网络摄像头实时捕获被试面部与眼部反射特征。": "通常のWebカメラにより、被験者の顔部および眼球の反射特徴をリアルタイムに補足。",
+      "利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。": "WebGazerエンジンを利用し、ブラウザ上で視線特徴点の解算と推定を実行。",
+      "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标 the 射影几何映射。": "紙面上での9点物理キャリブレーションを通じて、画面空間から物理的な解説サインの座標への射影幾何学的マッピングを構築。",
+      "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。": "紙面上での9点物理キャリブレーションを通じて、画面空間から物理的な解説サインの座標への射影幾何学的マッピングを構築。",
+      "导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。": "視点座標、時系列ログ、軌跡マップ、ヒートマップ、および修正可能なAOIデータパックをエクスポート。",
+      "现场实验流程": "現地実験プロセス",
+      "环境与设备校验": "環境とデバイスの検証",
+      "确认受光、面部捕捉与摄像头状态。": "環境光、顔認識状態、およびカメラの動作を確認。",
+      "9点物理空间校准": "9点物理空間キャリブレーション",
+      "建立视线估计与纸面坐标的映射。": "視線推定と紙面座標とのマッピングを確立。",
+      "自由观看与视轨记录": "自由観察と視線軌跡の記録",
+      "参与者自然阅读，系统静默记录视线。": "被験者が自然に読解する間、システムがバックグラウンドで視線を記録。",
+      "数据导出与数据包清洗": "データエクスポートとクリーニング",
+      "保存注视点、轨迹、热力图与 AOI 统计。": "注視点、軌跡、ヒートマップ、およびAOI統計を保存。",
+      "在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。": "温室内の自然環境において、顔の受光、影の干渉、眼の捕捉範囲、カメラのフレームレートを確認し、後続の注視点記録の歪みを防ぐ。",
+      "被试依次注视纸面 9 个物理校准点，实验者多次触发确认，用于校正空间透视映射并稳定纸面坐标。": "被験者が紙面上の9つの物理的校正点を順に注視し、実験者が複数回確認トリガーを引くことで、空間透視マッピングを校正し紙面座標を安定させる。",
+      "被试在自然状态下阅读纸面标识，系统在后台记录映射后的二维坐标、注视流和观看时序。": "被験者が自然な状態で紙面サインを読解する間、システムがバックグラウンドで投影後の2次元座標、注視フロー、観察シーケンスを記録。",
+      "停止追踪后保存日志，导出注视点记录、归一化热力图、轨迹图与可修正的 AOI 统计表，用于 Quick Data 分析。": "トラッキング停止後にログを保存し、注視点記録、正規化ヒートマップ、軌跡マップ、および修正可能なAOI統計表をエクスポートし、Quick Data分析に供する。",
+      "样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。": "被験者数とデータ定義：現地実験では計15名の実際の来園者を募集。今回のQuick Data/AOI分析では、9名の有効な被験者の補正後ヒートマップを有効サンプルとして使用。",
+      "设计干预的核心成效：": "デザイン介入の主な成果：",
+      "引导视线更早聚焦": "視線をより早期に",
+      "设计意图区域": "意図したデザイン領域へ誘導",
+      "结果热力图一览": "結果ヒートマップ一覧",
+      "控制组": "コントロール群",
+      "Q1: 完读率是否有被提升 (前 10 秒覆盖率)": "Q1: 読了率は向上したか？（最初の10秒のカバー率）",
+      "在前 10 秒的黄金阅读窗口中，实验组的文字区域完读率平均提升了 6.7pp (从对照组的 38.6% 提高到 45.3%)。这证明改良设计能有效提升阅读效率，迅速激活信息入口。": "最初の10秒間という重要な読解ウィンドウにおいて、実験群のテキスト領域の読了率は平均で6.7ポイント向上しました（コントロール群の38.6%から45.3%へ）。これは、改良設計が読解効率を効果的に向上させ、情報の入り口を迅速にアクティブ化できることを証明しています。",
+      "对照组 (38.6%)": "コントロール群 (38.6%)",
+      "实验组 (45.3%)": "実験群 (45.3%)",
+      "平均提升 +6.7pp": "平均向上 +6.7pp",
+      "人↑": "人↑",
+      "9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp": "有効サンプル9名のうち6名で上昇傾向が見られ、中央値の変化は+8.2ポイントに達しました",
+      "Q2: 注意力向设计意图区域重组 (AOI 占比)": "Q2: 意図したデザイン領域への注意の再組織化（AOI割合）",
+      "实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。": "実験群は、単に来園者の盲目的な読解面積を無差別に広げたのではなく、レイアウト分割と視覚的階層設計により、設計原則に直接関連する意味領域（AOI）へ注意を精密に再組織化しました。",
+      "A/R 目标区域 · 全程 (实验组)": "A/R目標領域 · 全体（実験群）",
+      "A/R 目标区域 · 全程 (对照组)": "A/R目標領域 · 全体（コントロール群）",
+      "A/R 目标区域 · 10s (实验组)": "A/R目標領域 · 10秒（実験群）",
+      "A/R 目标区域 · 10s (对照组)": "A/R目標領域 · 10秒（コントロール群）",
+      "非目标区域 · 全程 (实验组)": "非目標領域 · 全体（実験群）",
+      "S原则: 杂乱扫视大幅缩减": "S原則：不規則なスキャンの大幅な削減",
+      "非目标区域 · 全程 (对照组)": "非目標領域 · 全体（コントロール群）",
+      "对照组参考：A/R 相关区域 10s 为 38.7%，全程为 45.0%；非目标区域 10s 为 30.1%，全程为 34.5%。": "コントロール群参考：A/R関連領域の10秒値は38.7%、全体値は45.0%。非目標領域の10秒値は30.1%、全体値は34.5%。",
+      "Q3: 观众关联性 (R原则) 产生最稳定、最强的视线吸引效应": "Q3: 観客との関連性（R原則）が最も強力かつ安定した視線誘引効果を発揮",
+      "“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。": "「観客との関連性」は、植物の客観的な性状・特徴を、観客の触覚、五感の経験、実生活での用途、および行動可能性と結びつけます。実験の結果、この設計アプローチが継続的な読解動機付けと視線維持において支配的な役割を果たしたことが示されました。",
+      "前 10 秒 R 区注意力占比": "最初の10秒間におけるR領域の注意割合",
+      "提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。": "16.4ポイント増加。観客との関連情報が瞬時に捉えられ、極めて優れた「ビジュアルアンカー」として機能することを示しています。",
+      "全程时间 R 区注意力占比": "全体時間におけるR領域の注意割合",
+      "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "26.6ポイントの大幅増加。視覚構造が長期的に再組織化され、より深い情報処理へ誘導されました。",
+      "全样本表现一致": "全サンプルで一貫した傾向",
+      "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "計測された有効被験者9名全員において、R領域の注意割合は一例外もなく顕著に上昇しました。",
+      "讨论与局限：全程完读率下降的客观判读": "考察と限界：全体読了率低下の客観的評価",
+      "事实与边界": "事実と境界条件",
+      "全程文字覆盖率下降": "全体を通じたテキストカバー率の低下",
+      "实验组的全程文字区域覆盖率从 65.4% 降至 60.0%，这是本次 Quick Data 中必须承认的结果。它说明改良版并没有在全程尺度上增加文字区域的总体覆盖量。": "実験群における全体時間を通じたテキスト領域カバー率は、65.4%から60.0%へと低下しました。これは本Quick Dataにおいて認めるべき結果です。改良版は全体時間スケールにおいて、テキスト全体のカバー総量を増加させたわけではないことを示しています。",
+      "不能宣称“整体阅读量全面提升”": "「全体的な読解量の全面的な向上」と主張することはできません",
+      "当前结论基于 9 名有效样本与修正后热力图": "現在の結論は、9名の有効サンプルと補正後ヒートマップに基づいています",
+      "结果可能受到现场环境、观看路径与个体兴趣差异影响": "結果は現地環境、観察ルート、および個人の興味関心の差異に影響を受ける可能性があります",
+      "讨论方向": "考察の方向性",
+      "早期入口与 AOI 重组": "早期の入り口とAOIの再組織化",
+      "在承认全程完读率下降的前提下，其他指标显示注意力并非简单减少，而是向特定语义区域重新分配。这更适合表述为局部有效，而非全局阅读量提升。": "全体読了率の低下を認めた上で、他の指標は注意が単純に減少したのではなく、特定の意味領域（AOI）へ再分配されたことを示しています。これは、グローバルな読解量の増加ではなく、「ローカルな有効性」として記述するのが妥当です。",
+      "前 10 秒文字覆盖率 38.6% → 45.3%，9 人中 6 人上升": "最初の10秒間のテキストカバー率：38.6% → 45.3%、9名中6名が上昇。",
+      "A/R 目标区域全程占比 45.0% → 60.2%": "A/R目標領域全体の割合：45.0% → 60.2%。",
+      "R 区全程占比 8.5% → 35.1%，9 名样本均上升": "R領域全体の割合：8.5% → 35.1%、被験者9名全員が上昇。",
+      "总结：从信息解说": "結論：情報の解説から",
+      "转向": "へ",
+      "行为与体验诱导": "行動と体験の誘導へ",
+      "A/R/S 的核心价值并非修饰版面，而是系统性重构注意力，将无序的“盲目扫视”组织为具有非正式学习与感官体验意义的深度阅读。": "A/R/Sの核心的価値は、単にレイアウトを装飾することではなく、注意力を体系的に再構成し、無秩序な「盲目的なスキャン」を、インフォーマル学習と感覚的体験の意味を持つ深い読解へと組織化することにあります。",
+      "前 10 秒文字覆盖率提升": "最初の10秒間のテキストカバー率の向上",
+      "改良版在早期阅读窗口中提升文字区域覆盖率：38.6% → 45.3%；但全程文字覆盖率下降，不能解释为整体阅读量全面增加。": "改良版は初期読解ウィンドウにおいてテキスト領域カバー率を向上させました（38.6% → 45.3%）。しかし、全体時間を通じては低下しており、全体的な読解量が全面的に増加したと解釈することはできません。",
+      "轻量化 / 注意力转向设计意图区域": "意図したデザイン領域への注意の移行",
+      "注意力转向设计意图区域": "意図したデザイン領域への注意の移行",
+      "A/R 目标区域的注意力占比上升：10 秒内 38.7% → 47.8%，全程 45.0% → 60.2%，说明视线被重新组织到核心语义区。": "A/R目標領域の注意割合の上昇：10秒値 38.7% → 47.8%、全体値 45.0% → 60.2%。これは、視覚が主要な意味領域へ再組織化されたことを示します。",
+      "R 原则产生最稳定效应": "R原則が最も安定した効果を発揮",
+      "观众关联性区域提升最明显：前 10 秒 5.0% → 21.4%，全程 8.5% → 35.1%，且 9 名有效样本均出现上升。": "観客との関連性領域の上昇が最も顕著であり、最初の10秒で 5.0% → 21.4%、全体時間で 8.5% → 35.1%に達し、有効被験者9名全員が上昇を示しました。"
+}
+  },
+  'es-MX': {
+    label: 'Español (MX)',
+    shortLabel: 'ES-MX',
+    htmlLang: 'es-MX',
+    title: 'Resultados del análisis de datos experimentales · A/R AOI Eye-tracking',
+    strings: {
+      "关于用于设计解说标识的共创工具的研究": "Un estudio sobre herramientas de co-creación para el diseño de señalización interpretativa",
+      "以福冈市植物园温室区域为例": "Caso de estudio del invernadero del Jardín Botánico de la Ciudad de Fukuoka",
+      "实验数据分析结果分享 · A/R AOI Eye-tracking": "Resultados del análisis de datos experimentales · A/R AOI Seguimiento Ocular",
+      "植物解说标识的 A/R/S 设计改良与眼动评估实验分析": "Análisis experimental del diseño mejorado A/R/S de señalización interpretativa de plantas y evaluación ocular",
+      "非正式学习标识的": "La señalización de aprendizaje informal como",
+      "现实困境与低阅读课题": "dilema de instalación y bajo nivel de lectura",
+      "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。": "Como interfaz de aprendizaje informal en invernaderos, la señalización interpretativa a menudo enfrenta el dilema de \"alta instalación, baja lectura\". Este estudio explora cómo las intervenciones de diseño A/R/S pueden guiar la atención visual de los visitantes, acortar la toma de decisiones de lectura y ayudar a que la mirada se enfoque antes y de manera más constante en áreas semánticas clave.",
+      "温室区": "Zona de invernadero",
+      "福冈市植物园": "Jardín Botánico de la Ciudad de Fukuoka",
+      "被设置": "Instalada",
+      "≠ 被阅读": "≠ Leída",
+      "来园者多处于随机浏览状态，大量长文本信息未被视线有效覆盖": "La mayoría de los visitantes navegan al azar, y los bloques de texto largo no están cubiertos de manera efectiva por la mirada",
+      "设立控制组与改良组对照实验，并引入 AOI 进行眼动数据分析": "Se estableció un experimento de control entre el diseño original y el mejorado, y se usó AOI para analizar datos de seguimiento ocular",
+      "研究流程": "Proceso de investigación",
+      "课题收集": "Recopilación de temas",
+      "方向确立": "Definición del rumbo",
+      "调查到验证": "De la encuesta a la validación",
+      "原则与工具": "Principios y herramientas",
+      "ARS产出 & 工具开发": "Creación de ARS y desarrollo de herramientas",
+      "预备验证": "Validación piloto",
+      "v3 更新": "Actualización v3",
+      "设计与原型": "Diseño y prototipo",
+      "ARS原则视觉映射": "Mapeo visual de principios ARS",
+      "实验验证": "Validación experimental",
+      "ARS有效性验证": "Validación de la efectividad de ARS",
+      "快速产出": "Resultados preliminares",
+      "后续计划": "Planes futuros",
+      "数据细化与撰写": "Refinamiento de datos y redacción",
+      "通过实地调查、焦点小组与 KJ 法收集用户反馈。": "Recopilación de comentarios de usuarios mediante trabajo de campo, grupos focales y el método KJ.",
+      "问题入口": "Planteamiento del problema",
+      "明确植物园温室解说标识在阅读范围与记忆保持上的初始课题。": "Clarificación de los problemas iniciales sobre el alcance de lectura y la retención de memoria en la señalización interpretativa.",
+      "文献调查": "Revisión de literatura",
+      "根据已收集课题，通过论文调查检讨研究方向。": "Revisión de publicaciones académicas para definir la dirección de la investigación basada en los temas recopilados.",
+      "现状画像分析": "Análisis de imágenes del estado actual",
+      "对标识图像按主题编码，确认问题普遍性并收束课题。": "Codificación de las imágenes de señalización por tema para confirmar la generalidad del problema y delimitar la investigación.",
+      "专家访谈": "Entrevistas con expertos",
+      "与专家讨论可行方向，确定研究问题。": "Discusión de rumbos viables con expertos para formular las preguntas de investigación.",
+      "用焦点小组、问卷与记忆测试验证研究必要性。": "Uso de grupos focales, cuestionarios y pruebas de memoria para verificar la necesidad de la investigación.",
+      "ARS 原则产出": "Creación de principios ARS",
+      "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。": "Extracción de los principios de atmósfera inspiradora (A), relevancia para la audiencia (R) y estructura de señalización (S) a partir del análisis y entrevistas.",
+      "学术发表": "Publicación académica",
+      "将前期方法论与 ARS 框架整理并进行学术发表，奠定理论基础。": "Organización de la metodología previa y el marco ARS en publicaciones académicas para establecer la base teórica.",
+      "编码与分析工具研发": "Desarrollo de herramientas de codificación y análisis",
+      "开发多人标识编码工具 Signage Annotator 与视线分析工具 VisualAnalytics。": "Desarrollo de la herramienta de codificación de señalización multiusuario Signage Annotator y la herramienta de análisis ocular VisualAnalytics.",
+      "予備実験": "Experimento piloto",
+      "在实验室进行小规模验证，确认 VisualAnalytics 和实验本身的可行性。": "Validación a pequeña escala en laboratorio para confirmar la viabilidad de VisualAnalytics y del experimento.",
+      "工具开发 3": "Desarrollo de herramientas 3",
+      "根据预备实验结果与反馈，将工具更新为 VisualAttention v3。": "Actualización de la herramienta a VisualAttention v3 basada en los resultados y comentarios del piloto.",
+      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "Mapeo de los principios teóricos A/R/S en características específicas de diseño y regiones semánticas de interés (AOI).",
+      "基于 VisualAnalytics 技术，设计并实现动态解说标识原型。": "Diseño e implementación de un prototipo de señalización dinámica usando tecnología de VisualAnalytics.",
+      "A/B TEST 验证": "Validación mediante prueba A/B",
+      "在植物园实施眼动实验，全面验证 A/R/S 改良版标识的视线引导有效性。": "Experimento de seguimiento ocular en el jardín botánico para validar la eficacia de guía visual de las señales mejoradas con A/R/S.",
+      "实地测试": "Prueba de campo",
+      "实地收集来园者在自然状态下的真实眼动轨迹与注视分布。": "Recopilación en campo de trayectorias oculares reales y distribución de fijación de visitantes en condiciones naturales.",
+      "包含 Dynamic Signage 原型试用阶段，观察动态标识的可用性。": "Fase de prueba del prototipo de señalización dinámica para observar la usabilidad.",
+      "分析重点": "Enfoque de análisis",
+      "本阶段重点针对 A/B 眼动实验的 Quick Data 与 AOI 数据进行多维分析。": "Esta fase se enfoca en el análisis multidimensional de Quick Data y los resultados de AOI del experimento A/B.",
+      "Quick Data 分析": "Análisis de Quick Data",
+      "迅速分析本实验 A/B 测试结果，形成早期结论。": "Análisis rápido de los resultados de la prueba A/B para formular conclusiones tempranas.",
+      "修士报告": "Informe de maestría",
+      "基于 Quick Data 分析结果，完成博士出愿用修士报告。": "Preparación del informe de maestría para postulación doctoral basada en el análisis de Quick Data.",
+      "后续计划 (未来规划)": "Planes futuros (trabajo posterior)",
+      "Data 分析": "Análisis de datos",
+      "详细分析本实验得到的全部数据，细化指标与图表。": "Análisis detallado de todos los datos experimentales y refinamiento de métricas y gráficos.",
+      "修士论文": "Tesis de maestría",
+      "进入修士论文写作阶段，将实验结果整合到完整研究论述中。": "Escritura de la tesis de maestría para integrar el experimento en el argumento general de la investigación.",
+      "核心研究流程：原则产出——工具设计——利用工具验证原则有效性": "Flujo central de investigación: generación de principios -> diseño de herramientas -> validación de la efectividad con herramientas",
+      "A/R/S 解说标识设计原则假说": "Hipótesis de los principios de diseño de señalización interpretativa A/R/S",
+      "A/R/S 是一套基于先前阶段研究（实地调研与理论分析）提炼而成的解说标识设计原则，旨在通过氛围、关联与结构的维度改良，预期能够显著提升来园者的标识阅读意愿与非正式学习体验。": "A/R/S es un conjunto de principios de diseño de señalización interpretativa derivados de investigaciones previas en el sitio y análisis teóricos. Su objetivo es mejorar las dimensiones de atmósfera, relevancia y estructura, con la expectativa de aumentar significativamente la disposición de los visitantes a leer las señales y mejorar su experiencia de aprendizaje informal.",
+      "启发性氛围": "Atmósfera inspiradora",
+      "通过提问、叙事和植物情境提示，建立“为什么值得看”的入口。": "Uso de preguntas, narrativas e indicaciones de contexto para crear un punto de entrada que explique por qué vale la pena mirar.",
+      "观众关联性": "Relevancia para la audiencia",
+      "把植物特征连接到触摸、用途、感官经验和行动可能性。": "Conexión de los rasgos de la planta con el tacto, el uso, la experiencia sensorial y las posibilidades de acción.",
+      "结构清晰性": "Estructura de la señalización",
+      "用标识层级与视觉分区降低读解负荷，支撑关键区域可达。": "Uso de jerarquías y división visual para reducir la carga de lectura y facilitar el acceso a áreas clave.",
+      "实验组与对照组": "Grupo experimental y grupo de control",
+      "对照组": "Grupo de control",
+      "控制组": "Grupo de control",
+      "信息混杂在单一长文本中": "La información está mezclada en un solo bloque de texto largo",
+      "实验组": "Grupo experimental",
+      "应用 A/R 原则进行独立分区设计": "Diseño de zonas independientes basado en los principios A/R",
+      "实验探讨的具体问题": "Preguntas de investigación del experimento",
+      "Q1 · 完读率提升": "Q1 · Aumento de la cobertura de lectura",
+      "改良设计是否能提升受众对文字区域的": "¿Puede el diseño mejorado aumentar la cobertura de lectura",
+      "完读率": "de los bloques de texto?",
+      "评估指标": "Métrica de evaluación",
+      "前 10 秒文字区域完读率 (覆盖率)": "Cobertura de lectura del área de texto en los primeros 10 segundos",
+      "Q2 · 注意分配": "Q2 · Distribución de la atención",
+      "视觉注意力是否被": "¿Se reorganiza la",
+      "重新组织": "atención visual",
+      "到核心设计区域？": "hacia las áreas de diseño principales?",
+      "各语义区域 (AOI) 注意力占比": "Distribución de atención por áreas de interés semánticas (AOI)",
+      "Q3 · 效能比较": "Q3 · Comparación de efectividad",
+      "在 A/R/S 原则中，哪种设计介入产生的": "Entre los principios A/R/S, ¿qué intervención produce el",
+      "效应最强、最稳定": "efecto más fuerte y estable?",
+      "9名有效被试的各区注意力增幅": "Incremento de atención por región en los 9 participantes válidos",
+      "注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。": "Nota: Las preguntas de investigación se responderán cuantitativamente más adelante como Q1, Q2 y Q3 (Diapositivas de datos 1, 2 y 3).",
+      "眼动追踪的现场": "Seguimiento ocular en campo",
+      "测量系统与软硬件": "Sistema de medición y hardware/software",
+      "参与者在自然状态下阅读实体印刷标识。系统仅通过普通网络摄像头捕捉面部与眼部状态，实时估计视线视点，并将其动态映射至纸面二维坐标，输出学术分析级热力图与眼动轨迹。": "Los participantes leen señales impresas físicas en condiciones naturales. El sistema usa una cámara web estándar para capturar rostros y ojos, estima la mirada en tiempo real, la mapea a coordenadas de papel y genera mapas de calor y trayectorias de calidad científica.",
+      "基于 WebGazer 核心研发的非接触式眼动追踪与注视分析软件。": "Software de análisis de mirada y seguimiento ocular sin contacto desarrollado en base a WebGazer.",
+      "阅读两个标识": "Leer dos señales",
+      "依次阅读一个控制组和一个实验组纸质标识，记录被试在自然观看状态下的视线轨迹。": "Lectura consecutiva de una señal de control y una señal de intervención, registrando las trayectorias de la mirada en condiciones naturales.",
+      "注注视点数据": "Datos de fijación",
+      "注视点数据": "Datos de fijación",
+      "参与者的二维坐标与注视流数据，用于后续的 AOI 语义分析。": "Coordenadas bidimensionales y flujo de mirada de los participantes para el posterior análisis semántico de AOI.",
+      "视线估计原理与物理坐标投影映射": "Principio de estimulación de mirada y mapeo proyectivo de coordenadas físicas",
+      "普通网络摄像头实时捕获被试面部与眼部反射特征。": "Una cámara web estándar captura rasgos faciales y de reflexión ocular en tiempo real.",
+      "利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。": "El motor WebGazer estima los puntos de rasgos oculares dentro del navegador.",
+      "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。": "La calibración física de 9 puntos en papel construye un mapeo proyectivo desde la pantalla a las coordenadas de la señal física.",
+      "导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。": "Exportación de coordenadas de mirada, registros de tiempo, mapas de trayectoria, mapas de calor y paquetes de datos AOI editables.",
+      "现场实验流程": "Procedimiento del experimento de campo",
+      "环境与设备校验": "Validación de entorno y equipos",
+      "确认受光、面部捕捉与摄像头状态。": "Comprobación de la iluminación, captura facial y estado de la cámara.",
+      "9点物理空间校准": "Calibración espacial de 9 puntos",
+      "建立视线估计与纸面坐标的映射。": "Establecimiento de la relación entre estimación de mirada y coordenadas de papel.",
+      "自由观看与视轨记录": "Lectura libre y registro de trayectoria ocular",
+      "参与者自然阅读，系统静默记录视线。": "Lectura libre por parte de los participantes mientras el sistema registra la mirada de forma silenciosa.",
+      "数据导出与数据包清洗": "Exportación y limpieza de datos",
+      "保存注视点、轨迹、热力图与 AOI 统计。": "Guardado de puntos de fijación, trayectorias, mapas de calor y estadísticas de AOI.",
+      "在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。": "Comprobación de la iluminación facial, interferencias de sombras, rango de captura ocular y fotogramas por segundo en el invernadero para evitar distorsión en los registros de fijación.",
+      "被试依次注视纸面 9 个物理校准点，实验者多次触发确认，用于校正空间透视映射并稳定纸面坐标。": "Los participantes fijan la vista consecutivamente en 9 puntos de calibración en el papel; el experimentador confirma varias veces para calibrar la perspectiva y estabilizar las coordenadas de papel.",
+      "被试在自然状态下阅读纸面标识，系统在后台记录映射后的二维坐标、注视流和观看时序。": "Los participantes leen la señal física de manera natural mientras el sistema registra de fondo las coordenadas bidimensionales mapeadas, el flujo de la mirada y el tiempo de lectura.",
+      "停止追踪后保存日志，导出注视点记录、归一化热力图、轨迹图与可修正的 AOI 统计表，用于 Quick Data 分析。": "Al detener el seguimiento, se guardan los registros y se exportan fijaciones, mapas de calor normalizados, trayectorias y tablas de AOI editables para el análisis Quick Data.",
+      "样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。": "Alcance de muestra y datos: el experimento reclutó a 15 visitantes reales; este análisis Quick Data/AOI usa mapas de calor corregidos de 9 participantes como muestras válidas.",
+      "设计干预的核心成效：": "Efecto central de la intervención de diseño:",
+      "引导视线更早聚焦": "guiar la mirada de manera más temprana",
+      "设计意图区域": "hacia las áreas clave del diseño",
+      "结果热力图一览": "Resumen de mapas de calor",
+      "Q1: 完读率是否有被提升 (前 10 秒覆盖率)": "Q1: ¿Mejoró la cobertura de lectura? (primeros 10 segundos)",
+      "在前 10 秒的黄金阅读窗口中，实验组的文字区域完读率平均提升了 6.7pp (从对照组的 38.6% 提高到 45.3%)。这证明改良设计能有效提升阅读效率，迅速激活信息入口。": "En el período clave de los primeros 10 segundos, la cobertura del área de texto del grupo de intervención aumentó 6.7 pp en promedio, pasando del 38.6% al 45.3%. Esto demuestra que el diseño mejorado puede activar de forma más rápida el punto de entrada de información.",
+      "对照组 (38.6%)": "Grupo de control (38.6%)",
+      "实验组 (45.3%)": "Grupo de intervención (45.3%)",
+      "平均提升 +6.7pp": "Incremento promedio de +6.7 pp",
+      "人↑": "personas ↑",
+      "9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp": "6 de las 9 muestras válidas mostraron un incremento; el cambio mediano alcanzó los +8.2 pp",
+      "Q2: 注意力向设计意图区域重组 (AOI 占比)": "Q2: Atención reorganizada hacia las áreas clave de diseño (proporción de AOI)",
+      "实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。": "El grupo de intervención no expandió de forma generalizada el área de lectura aleatoria. Mediante la segmentación del diseño y jerarquías, la atención se organizó con precisión hacia las áreas semánticas directamente relacionadas con los principios de diseño.",
+      "A/R 目标区域 · 全程 (实验组)": "Áreas clave A/R · sesión completa (intervención)",
+      "A/R 目标区域 · 全程 (对照组)": "Áreas clave A/R · sesión completa (control)",
+      "A/R 目标区域 · 10s (实验组)": "Áreas clave A/R · 10 s (intervención)",
+      "A/R 目标区域 · 10s (对照组)": "Áreas clave A/R · 10 s (control)",
+      "非目标区域 · 全程 (实验组)": "Áreas secundarias · sesión completa (intervención)",
+      "S原则: 杂乱扫视大幅缩减": "Principio S: reducción drástica de escaneos erráticos",
+      "非目标区域 · 全程 (对照组)": "Áreas secundarias · sesión completa (control)",
+      "对照组参考：A/R 相关区域 10s 为 38.7%，全程为 45.0%；非目标区域 10s 为 30.1%，全程为 34.5%。": "Referencia de control: áreas relacionadas con A/R fueron del 38.7% a los 10 s y 45.0% general; las secundarias fueron del 30.1% a los 10 s y 34.5% general.",
+      "Q3: 观众关联性 (R原则) 产生最稳定、最强的视线吸引效应": "Q3: La relevancia para la audiencia (principio R) produjo el efecto más estable y fuerte de atracción visual",
+      "“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。": "La \"relevancia para la audiencia\" conecta los rasgos objetivos de las plantas con el tacto, la experiencia sensorial, el uso cotidiano y las posibilidades de acción. El experimento sugiere que esta dimensión desempeñó el rol principal al mantener la motivación de lectura y la retención visual.",
+      "前 10 秒 R 区注意力占比": "Proporción de atención en área R, primeros 10 s",
+      "提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。": "Incremento de 16.4 pp, mostrando que la relevancia para la audiencia se captura rápidamente como un ancla visual excelente.",
+      "全程时间 R 区注意力占比": "Proporción de atención en área R, sesión completa",
+      "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "Aumento notable de 26.6 pp, indicando una reorganización a largo plazo de la estructura visual y atrayendo al usuario a procesar información más profunda.",
+      "全样本表现一致": "Comportamiento consistente en todas las muestras",
+      "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "En los 9 participantes válidos evaluados, la proporción de atención en el área R aumentó significativamente sin excepción.",
+      "讨论与局限：全程完读率下降的客观判读": "Discusión y limitaciones: lectura objetiva de la disminución en cobertura total",
+      "事实与边界": "Hechos y límites",
+      "全程文字覆盖率下降": "Disminución de cobertura de texto en sesión completa",
+      "实验组的全程文字区域覆盖率从 65.4% 降至 60.0%，这是本次 Quick Data 中必须承认的结果。它说明改良版并没有在全程尺度上增加文字区域的总体覆盖量。": "La cobertura del área de texto en la sesión completa del grupo de intervención bajó de 65.4% a 60.0%. Este resultado debe reconocerse en Quick Data. Demuestra que la versión mejorada no aumentó el volumen total de lectura a nivel general.",
+      "不能宣称“整体阅读量全面提升”": "No se puede afirmar que haya un \"incremento generalizado en el volumen de lectura\"",
+      "当前结论基于 9 名有效样本与修正后热力图": "Las conclusiones actuales se basan en 9 muestras válidas y mapas de calor corregidos",
+      "结果可能受到现场环境、观看路径与个体兴趣差异影响": "Los resultados pueden verse afectados por el entorno, las rutas de visualización y el interés individual",
+      "讨论方向": "Dirección de la discusión",
+      "早期入口与 AOI 重组": "Punto de entrada temprano y reorganización de AOI",
+      "在承认全程完读率下降的前提下，其他指标显示注意力并非简单减少，而是向特定语义区域重新分配。这更适合表述为局部有效，而非全局阅读量提升。": "Aunque se reconoce la disminución de cobertura en la sesión completa, otras métricas indican que la atención no simplemente disminuyó, sino que se redistribuyó hacia áreas semánticas específicas. Debe describirse como efectividad local y no como aumento global.",
+      "前 10 秒文字覆盖率 38.6% → 45.3%，9 人中 6 人上升": "Cobertura de texto en los primeros 10 s: 38.6% -> 45.3%; 6 de 9 participantes mostraron incremento.",
+      "A/R 目标区域全程占比 45.0% → 60.2%": "Proporción de áreas clave A/R en sesión completa: 45.0% -> 60.2%.",
+      "R 区全程占比 8.5% → 35.1%，9 名样本均上升": "Proporción de área R en sesión completa: 8.5% -> 35.1%; incremento en las 9 muestras.",
+      "总结：从信息解说": "Conclusión: de la explicación de información",
+      "转向": "al",
+      "行为与体验诱导": "guiado de comportamiento y experiencia",
+      "A/R/S 的核心价值并非修饰版面，而是系统性重构注意力，将无序的“盲目扫视”组织为具有非正式学习与感官体验意义的深度阅读。": "El valor principal de A/R/S no radica en decorar el diseño, sino en reestructurar sistemáticamente la atención, transformando el escaneo desordenado en una lectura profunda orientada al aprendizaje informal y la experiencia sensorial.",
+      "前 10 秒文字覆盖率提升": "Mejora de cobertura de texto en los primeros 10 segundos",
+      "改良版在早期阅读窗口中提升文字区域覆盖率：38.6% → 45.3%；但全程文字覆盖率下降，不能解释为整体阅读量全面增加。": "La versión mejorada aumentó la cobertura del área de texto en el inicio de la lectura: 38.6% -> 45.3%. Sin embargo, la cobertura general disminuyó, por lo que no puede interpretarse como un aumento total de lectura.",
+      "轻量化 / 注意力转向设计意图区域": "Atención dirigida a las áreas clave del diseño",
+      "注意力转向设计意图区域": "Atención dirigida a las áreas clave del diseño",
+      "A/R 目标区域的注意力占比上升：10 秒内 38.7% → 47.8%，全程 45.0% → 60.2%，说明视线被重新组织到核心语义区。": "Aumento en la proporción de atención en las áreas clave A/R: 38.7% -> 47.8% a los 10 s y 45.0% -> 60.2% en general, indicando una reorganización de la mirada hacia zonas con significado.",
+      "R 原则产生最稳定效应": "El principio R produjo el efecto más estable",
+      "观众关联性区域提升最明显：前 10 秒 5.0% → 21.4%，全程 8.5% → 35.1%，且 9 名有效样本均出现上升。": "El incremento más evidente ocurrió en las áreas de relevancia para la audiencia: 5.0% -> 21.4% en los primeros 10 s y 8.5% -> 35.1% en general; las 9 muestras válidas mostraron incremento."
+}
+  }
+}
+const LANG_ORDER = ['zh', 'en', 'ja', 'es-MX'];
+let currentLanguage = localStorage.getItem('deck-language') || 'zh';
+if(!LANGUAGES[currentLanguage]) currentLanguage = 'zh';
+let i18nTargets = [];
+
+function captureI18nTargets(){
+  i18nTargets = [];
+  const root = document.getElementById('deck');
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  let node;
+  while(node = walker.nextNode()){
+    const text = node.nodeValue.trim();
+    if(text) {
+      i18nTargets.push({
+        node: node,
+        original: node.nodeValue
+      });
+    }
+  }
+}
+
+function applyLanguage(lang, opts = {}){
+  if(!LANGUAGES[lang]) return;
+  currentLanguage = lang;
+  localStorage.setItem('deck-language', lang);
+  document.documentElement.lang = LANGUAGES[lang].htmlLang || 'zh-CN';
+  document.title = LANGUAGES[lang].title || '';
+
+  document.body.classList.remove('lang-zh', 'lang-en', 'lang-ja', 'lang-es-MX');
+  document.body.classList.add('lang-' + lang);
+
+  const strings = LANGUAGES[lang].strings || {};
+  i18nTargets.forEach(target => {
+    const orig = target.original;
+    const trimmed = orig.trim();
+    if (lang === 'zh') {
+      target.node.nodeValue = orig;
+    } else if (strings[trimmed]) {
+      const leading = orig.match(/^\s*/)[0];
+      const trailing = orig.match(/\s*$/)[0];
+      target.node.nodeValue = leading + strings[trimmed] + trailing;
+    } else {
+      target.node.nodeValue = orig;
+    }
+  });
+
+  if (opts.rebuildOverview) {
+    buildOverview();
+  } else {
+    document.querySelectorAll('[data-lang-button]').forEach(btn => {
+      const active = btn.dataset.langButton === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('.lang-top-btn').forEach(btn => {
+    const active = btn.getAttribute('onclick').includes(`'${lang}'`);
+    btn.classList.toggle('active', active);
+  });
+}
+
 
 // =============== 导航 ===============
 const deck=document.getElementById('deck');
@@ -2094,6 +2746,26 @@ function buildOverview(){
     grid.appendChild(card);
   });
   ov.appendChild(grid);
+
+  const langSwitch = document.createElement('div');
+  langSwitch.className = 'lang-switch';
+  langSwitch.dataset.langSwitch = 'true';
+  langSwitch.innerHTML = `<div>Language</div><div class="lang-options"></div>`;
+  const langOptions = langSwitch.querySelector('.lang-options');
+  LANG_ORDER.forEach(lang => {
+    const button = document.createElement('button');
+    button.className = 'lang-button' + (lang === currentLanguage ? ' active' : '');
+    button.dataset.langButton = lang;
+    button.setAttribute('aria-pressed', lang === currentLanguage ? 'true' : 'false');
+    button.textContent = LANGUAGES[lang].label;
+    button.onclick = (e) => {
+      e.stopPropagation();
+      applyLanguage(lang, {rebuildOverview: true});
+    };
+    langOptions.appendChild(button);
+  });
+  ov.appendChild(langSwitch);
+
   requestAnimationFrame(()=>{
     ov.querySelectorAll('.esc-thumb-wrap').forEach(wrap=>{
       const clone = wrap.firstElementChild;
@@ -2228,10 +2900,17 @@ function initHeatmapOverview(){
       });
     }
 
+    let hoverTimer = null;
     pickers.forEach(picker=>{
-      picker.addEventListener('click', event=>{
+      picker.addEventListener('mouseenter', event=>{
         event.stopPropagation();
-        selectHeatmap(Number(picker.dataset.heatmapPick));
+        if(hoverTimer) clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(()=>{
+          selectHeatmap(Number(picker.dataset.heatmapPick));
+        }, 120);
+      });
+      picker.addEventListener('mouseleave', ()=>{
+        if(hoverTimer){ clearTimeout(hoverTimer); hoverTimer = null; }
       });
     });
 
@@ -2239,6 +2918,9 @@ function initHeatmapOverview(){
   });
 }
 initHeatmapOverview();
+
+captureI18nTargets();
+applyLanguage(currentLanguage);
 
 const initialSlideParam = new URLSearchParams(location.search).get('slide');
 const initialSlide = initialSlideParam ? Number(initialSlideParam) - 1 : 0;
