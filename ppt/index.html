@@ -2654,35 +2654,54 @@ if(motion){
       const curveY = 0.46 + offset + bend + flatten;
       flow = Math.max(flow, softBand(y - curveY, 0.006));
     }
+    const drift = Math.sin(t * .82) * .018;
+    const step = Math.sin(t * 2.4);
+    const bob = Math.sin(t * 2.4 + .8) * .006;
+    const elderX = .58 + drift * .62;
+    const adultX = .70 + drift;
+    const childX = .78 + drift * 1.12;
     const elder = Math.max(
-      ellipseMask(x,y,.58,.45,.030,.045),
-      ellipseMask(x,y,.58,.67,.060,.190) * .72
+      ellipseMask(x,y,elderX,.45 + bob*.45,.030,.045),
+      ellipseMask(x,y,elderX,.67 + bob,.060,.190) * .72,
+      segmentMask(x,y,elderX - .025,.82,elderX - .048 - step*.012,.94,.008) * .68,
+      segmentMask(x,y,elderX + .020,.82,elderX + .046 + step*.010,.94,.008) * .52
     );
     const adult = Math.max(
-      ellipseMask(x,y,.70,.40,.040,.060),
-      ellipseMask(x,y,.70,.66,.070,.230) * .78
+      ellipseMask(x,y,adultX,.40 - bob*.35,.040,.060),
+      ellipseMask(x,y,adultX,.66 + bob*.55,.070,.230) * .78,
+      segmentMask(x,y,adultX - .028,.86,adultX - .058 + step*.014,.98,.009) * .58,
+      segmentMask(x,y,adultX + .026,.86,adultX + .052 - step*.012,.98,.009) * .50
     );
     const child = Math.max(
-      ellipseMask(x,y,.78,.43,.036,.050),
-      ellipseMask(x,y,.78,.58,.052,.125) * .72
+      ellipseMask(x,y,childX,.43 + bob*.35,.036,.050),
+      ellipseMask(x,y,childX,.58 + bob*.70,.052,.125) * .72,
+      segmentMask(x,y,childX - .016,.68,childX - .036 - step*.010,.78,.007) * .58,
+      segmentMask(x,y,childX + .016,.68,childX + .036 + step*.010,.78,.007) * .52
     );
-    const stem = segmentMask(x,y,.84,.45,.835,.62,.004);
-    const flowerCore = softBand(Math.hypot(x - .855, y - .405), .012);
+    const trail = Math.max(
+      ellipseMask(x,y,elderX - .030,.67,.060,.190) * .18,
+      ellipseMask(x,y,adultX - .038,.66,.070,.230) * .16,
+      ellipseMask(x,y,childX - .026,.58,.052,.125) * .14
+    );
+    const signX = .855 + drift * 1.2;
+    const signY = .405 + bob * .4;
+    const stem = segmentMask(x,y,signX - .015,signY + .045,signX - .020,signY + .215,.004);
+    const flowerCore = softBand(Math.hypot(x - signX, y - signY), .012);
     let petals = 0;
     for(let i=0;i<12;i++){
       const a = i * Math.PI / 6 + t * .08;
       petals = Math.max(petals, segmentMask(
         x,y,
-        .855 + Math.cos(a) * .014,
-        .405 + Math.sin(a) * .014,
-        .855 + Math.cos(a) * .033,
-        .405 + Math.sin(a) * .033,
+        signX + Math.cos(a) * .014,
+        signY + Math.sin(a) * .014,
+        signX + Math.cos(a) * .033,
+        signY + Math.sin(a) * .033,
         .003
       ));
     }
-    const figure = Math.max(elder, adult, child);
+    const figure = Math.max(elder, adult, child, trail);
     const sign = Math.max(stem, flowerCore, petals);
-    return Math.max(flow * .85, figure * .62, sign * .9);
+    return Math.max(flow * 1.1, figure * .86, sign * 1.12);
   }
 
   function setup(c){
@@ -2711,7 +2730,7 @@ if(motion){
     const rows = Math.ceil(h / CELL);
     const slide = c.closest('.slide');
     const isCover = slide && slide.dataset.layout === 'SWISS-COVER-ASCII';
-    const patternPulse = isCover ? Math.pow(Math.max(0, Math.sin(t * 0.52 - 0.75)), 2.6) : 0;
+    const patternPulse = isCover ? .18 + .82 * Math.pow(Math.max(0, Math.sin(t * 1.35 + .45)), 1.6) : 0;
     for(let r=0; r<rows; r++){
       for(let cc=0; cc<cols; cc++){
         const x = (cc + .5) / cols;
@@ -2723,12 +2742,13 @@ if(motion){
           Math.sin((cc + r) * 0.12 + t * 0.45) +
           Math.sin(Math.hypot(cc - cols * 0.5, r - rows * 0.5) * 0.16 - t * 0.55)
         ) / 4; // [-1, 1]
-        const v = Math.max((n + 1) / 2, pattern * 1.12); // [0, 1]
-        if(v < 0.22 && pattern < 0.08) continue;
-        const idx = Math.min(PALETTE.length - 1, Math.floor((v + pattern * .35) * PALETTE.length));
+        const base = (n + 1) / 2;
+        const v = Math.max(base * (1 - patternPulse * .42), pattern * 1.72); // [0, 1]
+        if(v < 0.22 && pattern < 0.05) continue;
+        const idx = Math.min(PALETTE.length - 1, Math.floor((v + pattern * .8) * PALETTE.length));
         const ch = PALETTE[idx];
         if(ch === ' ') continue;
-        const alpha = Math.min(.72, 0.08 + (v - 0.22) * 0.55 + pattern * .22);
+        const alpha = Math.min(.92, 0.07 + (v - 0.22) * 0.50 + pattern * .58);
         ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
         ctx.fillText(ch, cc * CELL, r * CELL);
       }
