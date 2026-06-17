@@ -2220,6 +2220,9 @@ function initHeatmapOverview(){
         const offset = Number(card.dataset.heatmapIndex) - activeIndex;
         const distance = Math.abs(offset);
         const visible = distance <= 4;
+        card.style.opacity = '';
+        card.style.transform = '';
+        card.style.filter = '';
         card.classList.toggle('active', offset === 0);
         card.style.setProperty('--heat-y', `${offset * 26}px`);
         card.style.setProperty('--heat-rx', `${offset * -2.2}deg`);
@@ -2316,7 +2319,6 @@ if(motion){
       '.flow-step',
       '.flow-detail',
       '.heatmap-label',
-      '.heatmap-card',
       '.heatmap-picker',
       '.bar-tower',
       '.row-lbl',
@@ -3101,7 +3103,6 @@ if(motion){
 
     if(slide.querySelector('[data-heatmap-overview]')){
       enterMany(slide, q(slide, '.heatmap-label'), {y:8, delay:.22, stagger:.1, duration:.36});
-      q(slide, '.heatmap-card.active').forEach((card, i)=>fadeItem(slide, card, {delay:.36 + i*.08, duration:.48}));
       enterMany(slide, q(slide, '.heatmap-picker'), {x:0, y:10, delay:.42, stagger:.035, duration:.32, easing:EASE_PROD});
       fadeItem(slide, slide.querySelector('[data-heatmap-current]'), {delay:.7, duration:.28});
       return;

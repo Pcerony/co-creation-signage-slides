@@ -66,6 +66,12 @@ if (!/grid-template-rows:repeat\(4,minmax\(0,1fr\)\)/.test(html)) {
   pass('overview uses a viewport-fitting 4x4 grid');
 }
 
+if (/const selectors = \[[\s\S]*?['"]\\.heatmap-card['"][\s\S]*?\];/.test(html)) {
+  fail('heatmap cards are still included in generic motion selectors');
+} else {
+  pass('heatmap cards are excluded from generic motion selectors');
+}
+
 if (process.exitCode) {
   process.exit(process.exitCode);
 }
