@@ -540,7 +540,7 @@
 
   /* P22 Image Hero: 下半屏内容区必须和图片拉开距离,不要贴在图下沿 */
   .image-hero-body{
-    display:grid;grid-template-columns:6fr 6fr;gap:3vw;
+    display:grid;grid-template-columns:5fr 7fr;gap:3vw;
     padding:6.6vh 5vw 4.4vh;flex:1;align-content:start
   }
   .image-hero-stats{
@@ -1246,6 +1246,31 @@
   }
   .slide.dark .canvas-card .chrome-min,.split-half .half.b-ink .canvas-card .chrome-min{color:rgba(255,255,255,.62)}
 
+  .flow-split{display:grid;grid-template-columns:5fr 7fr;gap:2.8vw;flex:1;min-height:0;margin-top:2vh}
+  .flow-step-list{display:grid;grid-template-columns:1fr;gap:1.2vh;align-content:start}
+  .flow-step{
+    border:0;border-top:1px solid var(--border-subtle);
+    background:var(--grey-1);color:var(--text-primary);
+    text-align:left;padding:1.7vh 1.35vw;
+    display:grid;grid-template-columns:3.2em 1fr auto;gap:1vw;align-items:center;
+    cursor:pointer;min-height:14vh;
+    transition:background .22s ease,color .22s ease,border-color .22s ease;
+  }
+  .flow-step .nb{font-family:var(--mono);font-size:14px;letter-spacing:.18em;color:var(--text-helper)}
+  .flow-step .ttl{font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:min(2.1vw,3.7vh);line-height:1.1;letter-spacing:0}
+  .flow-step .mini{font-family:var(--sans),var(--sans-zh);font-size:max(13px,.78vw);line-height:1.45;color:var(--text-secondary);margin-top:.6vh}
+  .flow-step .lucide{width:24px;height:24px;stroke-width:1.6;color:var(--accent)}
+  .flow-step.active{background:var(--accent);color:var(--accent-on);border-top-color:var(--accent)}
+  .flow-step.active .nb,.flow-step.active .mini,.flow-step.active .lucide{color:var(--accent-on);opacity:.86}
+  .flow-detail{position:relative;min-height:0;background:var(--grey-1);border-top:2px solid var(--accent);overflow:hidden}
+  .flow-panel{position:absolute;inset:0;display:grid;grid-template-rows:1fr auto;gap:0;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .22s ease,transform .22s ease}
+  .flow-panel.active{opacity:1;pointer-events:auto;transform:none}
+  .flow-panel .frame-img{height:100%;min-height:0;border:0;background:var(--paper)}
+  .flow-panel .frame-img img{width:100%;height:100%;object-fit:cover}
+  .flow-copy{padding:2vh 1.6vw;background:var(--paper);border-top:1px solid var(--border-subtle)}
+  .flow-copy .t-meta{color:var(--accent);margin-bottom:.8vh}
+  .flow-copy p{margin:0;font-family:var(--sans),var(--sans-zh);font-size:max(15px,.94vw);line-height:1.55;color:var(--text-secondary)}
+
   /* 响应式降级 */
   @media (max-width:900px){
     .h-hero{font-size:16vw}
@@ -1300,7 +1325,7 @@
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div class="chrome-min">
       <div class="l">FIELD DATA ANALYSIS · FUKUOKA BOTANICAL GARDEN</div>
-      <div class="r">EXPERIMENT ANALYSIS · 2026.06 · 01 / 16</div>
+      <div class="r">EXPERIMENT ANALYSIS · 2026.06 · 01 / 17</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh">
       <div data-anim="kicker" class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em">A/R DESIGN · AOI EYE-TRACKING</div>
@@ -1326,7 +1351,7 @@
     <div data-anim="img" style="position:relative;flex:0 0 58%;overflow:hidden;background:var(--grey-1)">
       <img src="images/01-field-observation.jpg" data-image-slot="s22-hero-21x9" alt="福冈市植物园温室实地环境" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%">
       <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;color:rgba(255,255,255,.9);padding:5.6vh 5vw 0">
-        <div class="l">CONTEXT · INFORMAL LEARNING INTERFACE</div><div class="r">02 / 16</div>
+        <div class="l">CONTEXT · INFORMAL LEARNING INTERFACE</div><div class="r">02 / 17</div>
       </div>
       <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:42vw">
         <div style="display:flex;align-items:center;gap:1vw;margin-bottom:1.6vh;color:var(--accent)"><i data-lucide="leaf" style="width:28px;height:28px;stroke-width:1.5"></i><i data-lucide="eye" style="width:28px;height:28px;stroke-width:1.5"></i><i data-lucide="signpost" style="width:28px;height:28px;stroke-width:1.5"></i></div>
@@ -1346,7 +1371,7 @@
 
 <section class="slide" data-layout="S11" data-animate="timeline-walk">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">RESEARCH PIPELINE · CO-CREATION TO VALIDATION (ROADMAP)</div><div class="r">03 / 16</div></div>
+    <div class="chrome-min"><div class="l">RESEARCH PIPELINE · CO-CREATION TO VALIDATION (ROADMAP)</div><div class="r">03 / 17</div></div>
     <div style="display:flex;flex-direction:column;gap:1.2vh">
       <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">研究流程</h2>
     </div>
@@ -1410,7 +1435,7 @@
 
 <section class="slide" data-layout="S05" data-animate="sub-stack">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DESIGN PRINCIPLES</div><div class="r">04 / 16</div></div>
+    <div class="chrome-min"><div class="l">DESIGN PRINCIPLES</div><div class="r">04 / 17</div></div>
     <div style="display:grid;grid-template-columns:4fr 8fr;gap:4vw;flex:1;min-height:0">
       <div style="display:flex;flex-direction:column;gap:2vh">
         
@@ -1428,7 +1453,7 @@
 
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">STIMULUS MAPPING · A/R AOI</div><div class="r">05 / 16</div></div>
+    <div class="chrome-min"><div class="l">STIMULUS MAPPING · A/R AOI</div><div class="r">05 / 17</div></div>
     <div style="display:flex;justify-content:space-between;align-items:end;gap:3vw">
       <div style="display:flex;flex-direction:column;gap:1.2vh">
         
@@ -1466,7 +1491,7 @@
 
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">EXPERIMENT QUESTIONS · INQUIRY</div><div class="r">06 / 16</div></div>
+    <div class="chrome-min"><div class="l">EXPERIMENT QUESTIONS · INQUIRY</div><div class="r">06 / 17</div></div>
     <div style="display:flex;flex-direction:column;gap:1vh">
       
       <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh);margin:0">实验探讨的具体问题</h2>
@@ -1532,15 +1557,15 @@
   <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
     <div data-anim="img" style="position:relative;flex:0 0 58%;overflow:hidden;background:var(--grey-1)">
       <img src="images/02-experiment-scene.jpg" data-image-slot="s22-hero-21x9" alt="实验现场中的非接触眼动记录" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%">
-      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;color:rgba(255,255,255,.9);padding:5.6vh 5vw 0"><div class="l">METHODOLOGY · NON-CONTACT GAZE TRACKING TOOL</div><div class="r">07 / 16</div></div>
+      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;color:rgba(255,255,255,.9);padding:5.6vh 5vw 0"><div class="l">METHODOLOGY · NON-CONTACT GAZE TRACKING TOOL</div><div class="r">07 / 17</div></div>
       <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:42vw"><div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">眼动追踪的现场<br/>测量系统与软硬件</div></div>
     </div>
     <div data-anim="kpi" class="image-hero-body">
       <div style="max-width:52ch;font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.25vw);line-height:1.55;font-weight:400;color:var(--text-primary)">参与者在自然状态下阅读实体印刷标识。系统仅通过普通网络摄像头捕捉面部与眼部状态，实时估计视线视点，并将其动态映射至纸面二维坐标，输出学术分析级热力图与眼动轨迹。</div>
-      <div class="image-hero-stats" style="gap:2vw;grid-template-columns:1fr 1.2fr 1fr">
-        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">TOOL</div><div style="display:flex;align-items:center;gap:.7vw"><i data-lucide="eye" style="width:26px;height:26px;stroke-width:1.5;color:var(--accent)"></i><div style="font-family:var(--sans);font-weight:200;font-size:min(3.1vw,5.8vh);line-height:.95;letter-spacing:-.035em">WebGazer</div></div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.25">WebGazer 框架 (基于浏览器的视线估计)</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">TASK</div><div style="display:flex;align-items:center;gap:.7vw"><i data-lucide="signpost" style="width:26px;height:26px;stroke-width:1.5;color:var(--accent)"></i><div style="font-family:var(--sans);font-weight:200;font-size:min(2.9vw,5.2vh);line-height:.95;letter-spacing:-.035em">9 点</div></div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.35">在纸面上依次注视 9 个校准点，帮助系统完成视线与纸面坐标的对应。</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">OUTPUT</div><div style="display:flex;align-items:center;gap:.7vw;color:var(--accent)"><i data-lucide="leaf" style="width:26px;height:26px;stroke-width:1.5"></i><div style="font-family:var(--sans);font-weight:200;font-size:min(3.1vw,5.8vh);line-height:.95;letter-spacing:-.035em">注视点数据</div></div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.25">参与者的注视点记录，用于后续分析</p></div>
+      <div class="image-hero-stats" style="gap:2.5vw;grid-template-columns:1.1fr 1fr 1.2fr">
+        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">TOOL</div><div style="display:flex;align-items:center;gap:.7vw"><i data-lucide="eye" style="flex-shrink:0;min-width:26px;width:26px;height:26px;stroke-width:1.5;color:var(--accent)"></i><div style="font-family:var(--sans);font-weight:200;font-size:min(3.1vw,5.8vh);line-height:.95;letter-spacing:-.035em">WebGazer</div></div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.25">WebGazer 框架 (基于浏览器的视线估计)</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">TASK</div><div style="display:flex;align-items:center;gap:.7vw"><i data-lucide="signpost" style="flex-shrink:0;min-width:26px;width:26px;height:26px;stroke-width:1.5;color:var(--accent)"></i><div style="font-family:var(--sans);font-weight:200;font-size:min(2.9vw,5.2vh);line-height:.95;letter-spacing:-.035em">9 点</div></div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.35">在纸面上依次注视 9 个校准点，帮助系统完成视线与纸面坐标的对应。</p></div>
+        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">OUTPUT</div><div style="display:flex;align-items:center;gap:.7vw;color:var(--accent)"><i data-lucide="leaf" style="flex-shrink:0;min-width:26px;width:26px;height:26px;stroke-width:1.5"></i><div style="font-family:var(--sans);font-weight:200;font-size:min(3.1vw,5.8vh);line-height:.95;letter-spacing:-.035em">注视点数据</div></div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.25">参与者的注视点记录，用于后续分析</p></div>
       </div>
     </div>
   </div>
@@ -1548,7 +1573,7 @@
 
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">METHODOLOGY · GAZE ESTIMATION & PAPER COORDINATE PROJECTION</div><div class="r">08 / 16</div></div>
+    <div class="chrome-min"><div class="l">METHODOLOGY · GAZE ESTIMATION & PAPER COORDINATE PROJECTION</div><div class="r">08 / 17</div></div>
     <div style="display:grid;grid-template-columns:7fr 5fr;gap:2.4vw;flex:1;min-height:0">
       <div style="display:flex;flex-direction:column;gap:1.2vh;min-height:0">
         <div class="t-meta">SIGN VISUAL ATTENTION V3</div>
@@ -1584,18 +1609,62 @@
 
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">METHODOLOGY · EXPERIMENT PROCEDURE & ON-SITE PROTOCOL</div><div class="r">09 / 16</div></div>
-    <div style="display:flex;flex-direction:column;gap:1.4vh">
-      
-      <h2 class="h-xl-zh" style="font-size:min(4.6vw,8.2vh)">现场实验流程：非侵入式“自由观看与视轨记录”测试规范</h2>
+    <div class="chrome-min tight"><div class="l">METHODOLOGY · EXPERIMENT PROCEDURE · SETUP</div><div class="r">09 / 17</div></div>
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <div class="t-meta" style="color:var(--accent)">PROCESS 01-03 · CLICK TO EXPAND</div>
+      <h2 class="h-xl-zh" style="font-size:min(4.2vw,7.4vh)">现场实验流程：准备、设备与 9 点校准</h2>
     </div>
-    <div class="brief-grid" style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:1.4vh 1.2vw;flex:1;margin-top:3.2vh;min-height:0">
-      <article class="card-fill" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh"><div class="t-meta">01 PARTICIPANT</div><h3 class="t-h-prod">登记被试信息</h3><p class="t-body-sm">录入性别、年龄段与被试编号，建立可追踪的数据集标识。</p></article>
-      <article class="card-fill" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh"><div class="t-meta">02 CAMERA</div><h3 class="t-h-prod">环境与设备校验</h3><p class="t-body-sm">检查面部受光与阴影干扰，校验眼部捕捉范围与摄像头帧率。</p></article>
-      <article class="card-accent" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh"><div class="t-meta">03 CALIBRATION</div><h3 class="t-h-prod">9点物理空间校准</h3><p class="t-body-sm" style="color:var(--accent-on);opacity:.9">被试注视纸面特定物理校准点，实验者多次触发确认以校正空间透视映射。</p></article>
-      <article class="card-fill" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh"><div class="t-meta">04 STIMULUS</div><h3 class="t-h-prod">刺激呈现与随机化</h3><p class="t-body-sm">按拉丁方平衡顺序呈现对照版或实验版标识，有效控制顺序偏误效应。</p></article>
-      <article class="card-fill" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh"><div class="t-meta">05 OBSERVATION</div><h3 class="t-h-prod">自由观看与视轨记录</h3><p class="t-body-sm">被试在自然状态下阅读纸面标识，系统背景静默记录映射后的二维坐标与注视流。</p></article>
-      <article class="card-ink" style="padding:1.8vh 1.4vw;display:flex;flex-direction:column;gap:1vh"><div class="t-meta" style="color:rgba(255,255,255,.62)">06 EXPORT</div><h3 class="t-h-prod" style="color:#fff">数据导出与数据包清洗</h3><p class="t-body-sm" style="color:rgba(255,255,255,.78)">停止追踪，云端保存日志，自动生成归一化热力图、轨迹与 AOI 统计表。</p></article>
+    <div class="flow-split" data-flow-group>
+      <div class="flow-step-list">
+        <button class="flow-step active" type="button" data-flow-step="0"><span class="nb">01</span><span><span class="ttl">登记被试信息</span><span class="mini">建立编号、属性与数据记录口径。</span></span><i data-lucide="clipboard-list"></i></button>
+        <button class="flow-step" type="button" data-flow-step="1"><span class="nb">02</span><span><span class="ttl">环境与设备校验</span><span class="mini">确认受光、面部捕捉与摄像头状态。</span></span><i data-lucide="camera"></i></button>
+        <button class="flow-step" type="button" data-flow-step="2"><span class="nb">03</span><span><span class="ttl">9点物理空间校准</span><span class="mini">建立视线估计与纸面坐标的映射。</span></span><i data-lucide="crosshair"></i></button>
+      </div>
+      <div class="flow-detail">
+        <article class="flow-panel active" data-flow-panel="0">
+          <div class="frame-img"><img src="images/09-recruitment-card.jpg" alt="被试招募与登记材料"></div>
+          <div class="flow-copy"><div class="t-meta">PARTICIPANT SETUP</div><p>录入性别、年龄段与被试编号，建立可追踪的数据集标识，并确保后续热力图、轨迹和 AOI 表能够回到同一名参与者。</p></div>
+        </article>
+        <article class="flow-panel" data-flow-panel="1">
+          <div class="frame-img"><img src="images/02-experiment-scene.jpg" alt="现场摄像头与阅读环境校验"></div>
+          <div class="flow-copy"><div class="t-meta">CAMERA CHECK</div><p>在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。</p></div>
+        </article>
+        <article class="flow-panel" data-flow-panel="2">
+          <div class="frame-img"><img src="images/10-calibration.jpg" alt="纸面 9 点物理校准"></div>
+          <div class="flow-copy"><div class="t-meta">9-POINT CALIBRATION</div><p>被试依次注视纸面 9 个物理校准点，实验者多次触发确认，用于校正空间透视映射并稳定纸面坐标。</p></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min tight"><div class="l">METHODOLOGY · EXPERIMENT PROCEDURE · RECORDING</div><div class="r">10 / 17</div></div>
+    <div style="display:flex;flex-direction:column;gap:1vh">
+      <div class="t-meta" style="color:var(--accent)">PROCESS 04-06 · CLICK TO EXPAND</div>
+      <h2 class="h-xl-zh" style="font-size:min(4.2vw,7.4vh)">现场实验流程：刺激呈现、自由观看与数据导出</h2>
+    </div>
+    <div class="flow-split" data-flow-group>
+      <div class="flow-step-list">
+        <button class="flow-step active" type="button" data-flow-step="0"><span class="nb">04</span><span><span class="ttl">刺激呈现与随机化</span><span class="mini">按平衡顺序呈现对照版或实验版标识。</span></span><i data-lucide="shuffle"></i></button>
+        <button class="flow-step" type="button" data-flow-step="1"><span class="nb">05</span><span><span class="ttl">自由观看与视轨记录</span><span class="mini">参与者自然阅读，系统静默记录视线。</span></span><i data-lucide="eye"></i></button>
+        <button class="flow-step" type="button" data-flow-step="2"><span class="nb">06</span><span><span class="ttl">数据导出与数据包清洗</span><span class="mini">保存注视点、轨迹、热力图与 AOI 统计。</span></span><i data-lucide="download"></i></button>
+      </div>
+      <div class="flow-detail">
+        <article class="flow-panel active" data-flow-panel="0">
+          <div class="frame-img"><img src="images/07-intervention-sign.jpg" alt="实验版标识刺激材料"></div>
+          <div class="flow-copy"><div class="t-meta">STIMULUS ORDER</div><p>按拉丁方平衡顺序呈现对照版或实验版标识，控制顺序偏误，使差异尽量来自 A/R/S 设计介入本身。</p></div>
+        </article>
+        <article class="flow-panel" data-flow-panel="1">
+          <div class="frame-img"><img src="images/01-field-observation.jpg" alt="来园者现场自由观看"></div>
+          <div class="flow-copy"><div class="t-meta">FREE VIEWING</div><p>被试在自然状态下阅读纸面标识，系统在后台记录映射后的二维坐标、注视流和观看时序。</p></div>
+        </article>
+        <article class="flow-panel" data-flow-panel="2">
+          <div class="frame-img"><img src="images/04-analysis-dashboard.jpg" alt="数据导出与分析报表界面"></div>
+          <div class="flow-copy"><div class="t-meta">DATA EXPORT</div><p>停止追踪后保存日志，导出注视点记录、归一化热力图、轨迹图与可修正的 AOI 统计表，用于 Quick Data 分析。</p></div>
+        </article>
+      </div>
     </div>
     <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:2vh">样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。记录包括估计视点、追踪时间、归一化坐标与参与者编号。</div>
   </div>
@@ -1603,7 +1672,7 @@
 
 <section class="slide" data-layout="S03" data-animate="statement-rise">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">CORE FINDING · RESULT SUMMARY</div><div class="r">10 / 16</div></div>
+    <div class="chrome-min"><div class="l">CORE FINDING · RESULT SUMMARY</div><div class="r">11 / 17</div></div>
     <div style="flex:1;display:grid;grid-template-columns:2fr 10fr;align-items:center;gap:3vw">
       <div class="t-meta" style="align-self:start;color:var(--accent)">RESULT<br/>IN ONE LINE</div>
       <h1 data-anim="statement" style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.8vw,10vh);line-height:1.02;letter-spacing:-.028em;max-width:13ch">设计干预的核心成效：<br/>引导视线更早聚焦<br/><span style="color:var(--accent);font-weight:300">设计意图区域</span>。</h1>
@@ -1613,7 +1682,7 @@
 
 <section class="slide" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">EVIDENCE CHAIN · EXPERIMENT METHODOLOGY & VISUALS</div><div class="r">11 / 16</div></div>
+    <div class="chrome-min"><div class="l">EVIDENCE CHAIN · EXPERIMENT METHODOLOGY & VISUALS</div><div class="r">12 / 17</div></div>
     <div style="display:flex;flex-direction:column;gap:1.3vh">
       
       <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">本项研究的实验证据链条</h2>
@@ -1631,7 +1700,7 @@
 
 <section class="slide" data-layout="S06" data-animate="tower-grow">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DATA 01 · INITIAL 10 SECONDS TEXT READING COVERAGE (Q1)</div><div class="r">12 / 16</div></div>
+    <div class="chrome-min"><div class="l">DATA 01 · INITIAL 10 SECONDS TEXT READING COVERAGE (Q1)</div><div class="r">13 / 17</div></div>
     <div style="display:grid;grid-template-columns:4fr 8fr;gap:4vw;align-items:start;flex:1">
       <div style="display:flex;flex-direction:column;gap:2vh">
         
@@ -1650,7 +1719,7 @@
 
 <section class="slide" data-layout="S07" data-animate="hbar-grow">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DATA 02 · AOI CATEGORY RELATIVE ATTENTION SHARE (Q2)</div><div class="r">13 / 16</div></div>
+    <div class="chrome-min"><div class="l">DATA 02 · AOI CATEGORY RELATIVE ATTENTION SHARE (Q2)</div><div class="r">14 / 17</div></div>
     <div style="display:flex;flex-direction:column;gap:1.4vh">
       
       <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">Q2: 注意力向设计意图区域重组 (AOI 占比)</h2>
@@ -1690,7 +1759,7 @@
 
 <section class="slide" data-layout="S20" data-animate="stacked-ledger">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DATA 03 · AUDIENCE RELEVANCE EFFECT (Q3)</div><div class="r">14 / 16</div></div>
+    <div class="chrome-min"><div class="l">DATA 03 · AUDIENCE RELEVANCE EFFECT (Q3)</div><div class="r">15 / 17</div></div>
     <div style="display:grid;grid-template-columns:4fr 8fr;gap:4vw;flex:1;min-height:0">
       <div style="display:flex;flex-direction:column;gap:2vh">
         
@@ -1714,7 +1783,7 @@
 
 <section class="slide" data-layout="S08" data-animate="duo-mirror">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DISCUSSION · METHODOLOGICAL BOUNDARY & INTERPRETATION</div><div class="r">15 / 16</div></div>
+    <div class="chrome-min"><div class="l">DISCUSSION · METHODOLOGICAL BOUNDARY & INTERPRETATION</div><div class="r">16 / 17</div></div>
     <div style="display:flex;flex-direction:column;gap:1.4vh">
       
       <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">数据判读边界与均值变动的合理解释</h2>
@@ -1732,7 +1801,7 @@
     <div class="split-half">
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
-        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">15 / 15</div><div class="r">CLOSING</div></div>
+        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">17 / 17</div><div class="r">CLOSING</div></div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
           
           <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">总结：从信息解说<br/>转向<span style="font-style:italic;font-weight:300">行为与体验诱导</span></h2>
@@ -2082,6 +2151,22 @@ function initProcessTimeline(){
   });
 }
 initProcessTimeline();
+
+function initFlowSteps(){
+  document.querySelectorAll('[data-flow-group]').forEach(group=>{
+    const steps = [...group.querySelectorAll('[data-flow-step]')];
+    const panels = [...group.querySelectorAll('[data-flow-panel]')];
+    steps.forEach(step=>{
+      step.addEventListener('click', e=>{
+        e.stopPropagation();
+        const key = step.dataset.flowStep;
+        steps.forEach(s=>s.classList.toggle('active', s === step));
+        panels.forEach(panel=>panel.classList.toggle('active', panel.dataset.flowPanel === key));
+      });
+    });
+  });
+}
+initFlowSteps();
 
 const initialSlideParam = new URLSearchParams(location.search).get('slide');
 const initialSlide = initialSlideParam ? Number(initialSlideParam) - 1 : 0;
