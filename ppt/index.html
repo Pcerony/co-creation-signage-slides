@@ -212,6 +212,18 @@
     line-height: 1.35 !important;
   }
 
+  /* === Global Multilingual Typography Enhancements === */
+  body:not(.lang-zh) .t-meta {
+    font-family: var(--sans), var(--sans-zh) !important;
+    font-size: max(11px, 0.72vw) !important;
+    letter-spacing: 0.05em !important;
+  }
+  body:not(.lang-zh) .slide5-grid .t-body-sm {
+    font-size: max(11px, 0.75vw) !important;
+    font-weight: 500 !important;
+    color: var(--text-secondary) !important;
+  }
+
   /* ============ Heatmap Navigation Wheel Centering ============ */
   .heatmap-nav {
     display: grid !important;
@@ -1735,7 +1747,7 @@
         <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh)">实验组与对照组</h2>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;margin-top:2.6vh">
+    <div class="slide5-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;margin-top:2.6vh">
       <article class="card-fill" style="padding:1.4vh 1.1vw 1.2vh;display:flex;flex-direction:column;gap:1vh;min-height:0">
         <div style="display:flex;justify-content:space-between;align-items:center"><div class="t-meta">对照组</div><div class="t-body-sm">信息混杂在单一长文本中</div></div>
         <div style="flex:1;min-height:0;position:relative;background:#fff">
