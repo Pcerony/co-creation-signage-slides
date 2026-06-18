@@ -97,7 +97,7 @@
   body:not(.lang-zh) h1[data-anim="title"] > span { font-size: 0.65em !important; }
   body:not(.lang-zh) [data-anim="title-block"] { max-width: 65vw !important; }
   body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(15px, 1.05vw) !important; line-height: 1.5 !important; }
-  body:not(.lang-zh) .slide:not(.accent) .t-meta + div { font-size: min(2.2vw, 3.8vh) !important; line-height: 1.15 !important; }
+  body:not(.lang-zh) [data-layout="S22"] .t-meta + div { font-size: min(2.2vw, 3.8vh) !important; line-height: 1.15 !important; }
   body:not(.lang-zh) .lead { max-width: 80ch !important; }
   body:not(.lang-zh) .flow-step .ttl { font-size: min(1.5vw, 2.6vh) !important; line-height: 1.2 !important; font-weight: 400 !important; }
   body:not(.lang-zh) .flow-step .mini { font-size: max(11px, 0.68vw) !important; line-height: 1.35 !important; }
@@ -1509,6 +1509,22 @@
   .flow-panel.active{opacity:1;pointer-events:auto;transform:none}
   .flow-panel .frame-img{height:100%;min-height:0;border:0;background:var(--paper)}
   .flow-panel .frame-img img{width:100%;height:100%;object-fit:cover}
+
+/* Carousel for flow panel */
+.flow-panel .frame-img.carousel{overflow:hidden}
+.carousel-track{display:flex;height:100%;transition:transform .35s cubic-bezier(.4,0,.2,1);min-height:0}
+.carousel-slide{flex:0 0 100%;min-width:0;min-height:0}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;background:rgba(255,255,255,.88);border:0;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s,transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.15);color:var(--text-primary)}
+.carousel:hover .carousel-btn{opacity:.85}
+.carousel-btn:hover{opacity:1!important}
+.carousel-btn:active{transform:translateY(-50%) scale(.94)}
+.carousel-btn-prev{left:10px}
+.carousel-btn-next{right:10px}
+.carousel-btn .lucide{width:20px;height:20px;stroke-width:2.5}
+.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:5}
+.carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);border:1px solid rgba(0,0,0,.12);cursor:pointer;transition:all .2s;padding:0}
+.carousel-dot.active{background:#fff;border-color:rgba(0,0,0,.25);transform:scale(1.25)}
   .flow-copy{padding:2vh 1.6vw;background:var(--paper);border-top:1px solid var(--border-subtle)}
   .flow-copy .t-meta{color:var(--accent);margin-bottom:.8vh}
   .flow-copy p{margin:0;font-family:var(--sans),var(--sans-zh);font-size:max(15px,.94vw);line-height:1.55;color:var(--text-secondary)}
@@ -1902,7 +1918,16 @@
       </div>
       <div class="flow-detail">
         <article class="flow-panel active" data-flow-panel="0">
-          <div class="frame-img"><img src="images/02-experiment-scene.jpg" alt="现场摄像头与阅读环境校验"></div>
+          <div class="frame-img carousel" data-carousel>
+            <div class="carousel-track" data-carousel-track>
+              <div class="carousel-slide"><img src="images/02-experiment-scene.jpg" alt="现场摄像头与阅读环境校验"></div>
+              <div class="carousel-slide"><img src="images/03-sign-visual-attention.jpg" alt="标识视觉注意工具界面"></div>
+              <div class="carousel-slide"><img src="images/12-tool-screen.jpg" alt="非接触式眼动追踪工具界面"></div>
+            </div>
+            <button class="carousel-btn carousel-btn-prev" data-carousel-prev type="button"><i data-lucide="chevron-left"></i></button>
+            <button class="carousel-btn carousel-btn-next" data-carousel-next type="button"><i data-lucide="chevron-right"></i></button>
+            <div class="carousel-dots" data-carousel-dots></div>
+          </div>
           <div class="flow-copy"><div class="t-meta">CAMERA CHECK</div><p>在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。</p></div>
         </article>
         <article class="flow-panel" data-flow-panel="1">
@@ -3098,6 +3123,34 @@ function initFlowSteps(){
   });
 }
 initFlowSteps();
+function initCarousels(){
+  document.querySelectorAll("[data-carousel]").forEach(c=>{
+    const t=c.querySelector("[data-carousel-track]");
+    const s=[...t.querySelectorAll(".carousel-slide")];
+    const p=c.querySelector("[data-carousel-prev]");
+    const n=c.querySelector("[data-carousel-next]");
+    const d=c.querySelector("[data-carousel-dots]");
+    let i=0;
+    function g(idx){
+      if(idx<0) idx=s.length-1;
+      if(idx>=s.length) idx=0;
+      i=idx;
+      t.style.transform="translateX(-"+(i*100)+"%)";
+      [...d.children].forEach((dot,j)=>dot.classList.toggle("active",j===i))
+    }
+    s.forEach((_,j)=>{
+      const dot=document.createElement("button");
+      dot.className="carousel-dot";
+      dot.type="button";
+      dot.addEventListener("click",()=>g(j));
+      d.appendChild(dot)
+    });
+    p.addEventListener("click",()=>g(i-1));
+    n.addEventListener("click",()=>g(i+1));
+    g(0)
+  })
+}
+initCarousels();
 
 function initHeatmapOverview(){
   document.querySelectorAll('[data-heatmap-overview]').forEach(view=>{
