@@ -82,21 +82,142 @@
   }
 
   /* Language-specific layout adjustments for i18n */
-  body:not(.lang-zh) h1[data-anim="title"] { max-width: 80vw !important; font-size: min(3.5vw, 6vh) !important; }
-  body:not(.lang-zh) h1[data-anim="title"] > span { font-size: 0.6em !important; }
+  body:not(.lang-zh) {
+    font-family: var(--sans), var(--sans-zh);
+  }
+  /* 统一调整非中文环境下的标题字重，避免 200 字重过细或残缺 */
+  body:not(.lang-zh) h1,
+  body:not(.lang-zh) h2,
+  body:not(.lang-zh) h3,
+  body:not(.lang-zh) .h-xl-zh,
+  body:not(.lang-zh) .h-xl {
+    font-weight: 300 !important;
+  }
+  body:not(.lang-zh) h1[data-anim="title"] { max-width: 80vw !important; font-size: min(3.3vw, 5.5vh) !important; line-height: 1.12 !important; }
+  body:not(.lang-zh) h1[data-anim="title"] > span { font-size: 0.65em !important; }
   body:not(.lang-zh) [data-anim="title-block"] { max-width: 65vw !important; }
-  body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(16px, 1.1vw) !important; }
-  body:not(.lang-zh) .slide:not(.accent) .t-meta + div { font-size: min(2.5vw, 4vh) !important; }
+  body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(15px, 1.05vw) !important; line-height: 1.5 !important; }
+  body:not(.lang-zh) .slide:not(.accent) .t-meta + div { font-size: min(2.2vw, 3.8vh) !important; line-height: 1.15 !important; }
   body:not(.lang-zh) .lead { max-width: 80ch !important; }
-  body:not(.lang-zh) .flow-step .ttl { font-size: min(1.6vw, 2.8vh) !important; }
-  body:not(.lang-zh) .flow-step .mini { font-size: max(11px, 0.7vw) !important; }
-  body:not(.lang-zh) .slide9-footer-desc { font-size: min(1.1vw, 1.9vh) !important; line-height: 1.4 !important; }
-  body:not(.lang-zh) .h-xl-zh { font-size: min(3.2vw, 6vh) !important; max-width: 80vw !important; }
-  body:not(.lang-zh) .main-st { font-size: min(3vw, 5.5vh) !important; max-width: 85vw !important; }
-  body:not(.lang-zh) [data-anim="manifesto"] h2 { font-size: min(4.5vw, 8vh) !important; max-width: 90vw !important; }
-  body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(16px, 1.1vw) !important; }
-  body:not(.lang-zh) .t-meta + div { font-size: min(2.5vw, 4vh) !important; }
-  body:not(.lang-zh) .lead { max-width: 80ch !important; }
+  body:not(.lang-zh) .flow-step .ttl { font-size: min(1.5vw, 2.6vh) !important; line-height: 1.2 !important; font-weight: 400 !important; }
+  body:not(.lang-zh) .flow-step .mini { font-size: max(11px, 0.68vw) !important; line-height: 1.35 !important; }
+  body:not(.lang-zh) .slide9-footer-desc { font-size: min(0.85vw, 1.5vh) !important; line-height: 1.4 !important; padding-top: 1.2vh !important; }
+  body:not(.lang-zh) .flow-split { margin-top: 1.5vh !important; }
+  body:not(.lang-zh) .flow-step { min-height: 9.5vh !important; }
+  body:not(.lang-zh) .h-xl-zh { font-size: min(2.8vw, 5.2vh) !important; max-width: 82vw !important; line-height: 1.15 !important; }
+  body:not(.lang-zh) .main-st { font-size: min(2.8vw, 5vh) !important; max-width: 85vw !important; }
+  body:not(.lang-zh) [data-anim="manifesto"] h2 { font-size: min(4vw, 7vh) !important; max-width: 90vw !important; line-height: 1.12 !important; }
+
+  /* === Cover Page: prevent title and meta collision === */
+  body:not(.lang-zh) [data-layout="SWISS-COVER-ASCII"] h1[data-anim="title"] {
+    font-size: min(3.3vw, 5vh) !important;
+    line-height: 1.12 !important;
+  }
+  body:not(.lang-zh) [data-layout="SWISS-COVER-ASCII"] .lead {
+    font-size: max(14px, 0.95vw) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* === Slide 2 & 7: S22 layout adjustments === */
+  body:not(.lang-zh) [data-layout="S22"] [data-anim="img"] {
+    flex: 0 0 53% !important;
+  }
+  body:not(.lang-zh) [data-layout="S22"] .image-hero-body {
+    padding: 4.5vh 5vw 3vh !important;
+  }
+  body:not(.lang-zh) [data-layout="S22"] .image-hero-stats {
+    gap: 1.8vw !important;
+  }
+  body:not(.lang-zh) [data-layout="S22"] [data-anim="title-block"] div {
+    font-size: min(3vw, 5.2vh) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* === Slide 5 & 6: Question & Stimulus page height tuning === */
+  body:not(.lang-zh) .slide6-grid .card-fill {
+    padding: 2.2vh 1.4vw 2vh !important;
+  }
+  body:not(.lang-zh) .slide5-note {
+    margin-top: 1.8vh !important;
+    padding-top: 1.2vh !important;
+  }
+  body:not(.lang-zh) .slide6-grid {
+    max-height: 52vh !important;
+  }
+
+  /* === Slide 8: Tool URL page height limit === */
+  .tool-url {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+    padding-top: 0.6vh !important;
+  }
+  .slide8-frame-img {
+    max-height: 48vh !important;
+  }
+
+  /* === Slide 10: S03 Statement layout tuning === */
+  body:not(.lang-zh) [data-layout="S03"] h1[data-anim="statement"] {
+    max-width: 24ch !important;
+    font-size: min(4.2vw, 7vh) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* === Slide 13 & 14: Restrict inline h2 sizes & ledger row columns === */
+  body:not(.lang-zh) [data-layout="S07"] h2.h-xl-zh,
+  body:not(.lang-zh) [data-layout="S20"] h2.h-xl-zh {
+    font-size: min(2.8vw, 5.2vh) !important;
+  }
+  /* === Slide 13: S07 h-bar-chart & footer note tuning === */
+  body:not(.lang-zh) [data-layout="S07"] .h-bar-chart {
+    gap: 0.8vh 1.6vw !important;
+  }
+  body:not(.lang-zh) [data-layout="S07"] .t-body-sm {
+    font-size: min(0.85vw, 1.5vh) !important;
+    padding-top: 1.0vh !important;
+  }
+  body:not(.lang-zh) [data-layout="S20"] .canvas-card > div[style*="grid-template-columns"] {
+    grid-template-columns: 4.2fr 7.8fr !important;
+  }
+  body:not(.lang-zh) [data-layout="S20"] .ledger-row {
+    grid-template-columns: 4.5fr 2.7fr 4.8fr !important;
+    padding: 1.2vh 0 !important;
+  }
+  body:not(.lang-zh) [data-layout="S20"] .ledger-row > div[style*="font-size"] {
+    font-size: min(4.8vw, 7.5vh) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* === Slide 15: S08 duo-compare spacing & text tuning === */
+  body:not(.lang-zh) .duo-compare {
+    margin-top: 4.5vh !important;
+    margin-bottom: 5.5vh !important;
+  }
+  body:not(.lang-zh) .duo-compare .col {
+    gap: 1.0vh !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-ttl {
+    font-size: min(2.2vw, 3.8vh) !important;
+    line-height: 1.15 !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-desc {
+    font-size: max(12px, 0.82vw) !important;
+    line-height: 1.4 !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-list {
+    gap: 0.5vh !important;
+    padding-top: 1.2vh !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-list li {
+    font-size: max(12px, 0.78vw) !important;
+    line-height: 1.35 !important;
+  }
+
+  /* === Slide 16: Closing page title size tuning === */
+  body:not(.lang-zh) .slide16-title {
+    font-size: min(4.6vw, 8vh) !important;
+    max-width: 95% !important;
+    line-height: 1.1 !important;
+  }
 
   /* ============ WebGL 网格背景 ============ */
   canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;opacity:.55;mix-blend-mode:multiply;pointer-events:none}
@@ -219,7 +340,7 @@
     font-family:var(--sans),var(--sans-zh);
     font-weight:200;
     font-size:5vw;
-    line-height:1.05;
+    line-height:1.15;
     letter-spacing:-.025em;
   }
   .h-md{
@@ -1554,7 +1675,7 @@
       <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh);margin:0">实验探讨的具体问题</h2>
     </div>
     
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1;margin-top:3vh;min-height:0">
+    <div class="slide6-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1;margin-top:3vh;min-height:0">
       
       <!-- Card Q1 -->
       <article class="card-fill" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--border-subtle)">
@@ -1606,7 +1727,7 @@
 
     </div>
     
-    <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:1.8vh;margin-top:2.6vh">注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。</div>
+    <div class="t-body-sm slide5-note" style="border-top:1px solid var(--border-subtle);padding-top:1.8vh;margin-top:2.6vh">注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。</div>
   </div>
 </section>
 
@@ -1634,10 +1755,10 @@
     <div style="display:grid;grid-template-columns:7fr 5fr;gap:2.4vw;flex:1;min-height:0">
       <div style="display:flex;flex-direction:column;gap:1.2vh;min-height:0">
         <div class="t-meta">SIGN VISUAL ATTENTION V3</div>
-        <div class="frame-img r-16x10 fit-contain swiss-lined" style="max-height:none;flex:1">
+        <div class="frame-img r-16x10 fit-contain swiss-lined slide8-frame-img" style="max-height:none;flex:1">
           <img src="images/13-tool-live-interface.png" data-image-slot="s16-brief-16x10" alt="SIGN Visual Attention v3 网页界面截图">
         </div>
-        <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:1vh">https://pcerony.github.io/eye-tracking-tool-3/</div>
+        <div class="t-body-sm tool-url" style="border-top:1px solid var(--border-subtle);padding-top:1vh">https://pcerony.github.io/eye-tracking-tool-3/</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1.6vh">
         <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh)">视线估计原理与物理坐标投影映射</h2>
@@ -1867,7 +1988,7 @@
         <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">16 / 16</div><div class="r">CLOSING</div></div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
           
-          <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">总结：从信息解说<br/>转向<span style="font-style:italic;font-weight:300">行为与体验诱导</span></h2>
+          <h2 class="slide16-title" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">总结：从信息解说<br/>转向<span style="font-style:italic;font-weight:300">行为与体验诱导</span></h2>
           <div style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1vw);line-height:1.6;color:rgba(255,255,255,.82);font-weight:400;max-width:38ch;margin-top:1.4vh">A/R/S 的核心价值并非修饰版面，而是系统性重构注意力，将无序的“盲目扫视”组织为具有非正式学习与感官体验意义的深度阅读。</div>
         </div>
         <div data-anim="signature" style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1"><div class="t-meta" style="color:rgba(255,255,255,.62)">EXPERIMENT DATA ANALYSIS</div><div class="t-meta" style="color:rgba(255,255,255,.62)">2026.06</div></div>
@@ -2430,7 +2551,7 @@ const LANGUAGES = {
       "非正式学习标识的": "La señalización de aprendizaje informal como",
       "现实困境与低阅读课题": "dilema de instalación y bajo nivel de lectura",
       "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。": "Como interfaz de aprendizaje informal en invernaderos, la señalización interpretativa a menudo enfrenta el dilema de \"alta instalación, baja lectura\". Este estudio explora cómo las intervenciones de diseño A/R/S pueden guiar la atención visual de los visitantes, acortar la toma de decisiones de lectura y ayudar a que la mirada se enfoque antes y de manera más constante en áreas semánticas clave.",
-      "温室区": "Zona de invernadero",
+      "温室区": "Invernadero",
       "福冈市植物园": "Jardín Botánico de la Ciudad de Fukuoka",
       "被设置": "Instalada",
       "≠ 被阅读": "≠ Leída",
