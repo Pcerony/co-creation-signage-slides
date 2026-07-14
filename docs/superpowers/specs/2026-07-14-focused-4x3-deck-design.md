@@ -17,8 +17,9 @@ full-screen website.
 - Show the current slide centered, with narrow, clipped previews of adjacent
   slides on both sides.
 - Add rounded corners to the slide canvas and to meaningful visual elements.
-- Add a detailed top indicator with chapter, chapter progress, overall progress,
-  and page number.
+- Add a two-row top indicator: the upper row shows the chapter, while the lower
+  row shows the compact slide title and page numbers. Keep the chapter timeline
+  below these rows and do not render a full-width progress bar.
 - Preserve keyboard, wheel, touch, click-to-navigate, overview, language switch,
   reduced-motion, and low-power behavior.
 
@@ -44,14 +45,12 @@ The indicator is outside the slide canvases and contains:
 
 - Chapter number and chapter name.
 - Current slide title in compact form.
-- Chapter-local position.
-- Overall page number, formatted as `06 / 19`.
-- A continuous overall progress bar.
+- Chapter-local position and overall page number, formatted as `01 / 02 · 06 / 19`.
+- A chapter timeline with clickable slide dots.
 
 Chapter metadata is stored directly on each slide through `data-chapter` and
-`data-chapter-title`. The runtime derives page and progress values from the
-current slide. The indicator updates on every `go()` call and after language
-changes.
+`data-chapter-title`. The runtime derives page values from the current slide.
+The indicator updates on every `go()` call and after language changes.
 
 ## Content Compression
 
@@ -101,7 +100,8 @@ Automated structural tests must fail before implementation and then verify:
 - Logical slide dimensions are 1200 by 900 or an equivalent 4:3 ratio.
 - The deck uses a carousel pitch rather than `100vw` navigation.
 - Previous, current, and next state classes are assigned.
-- The top indicator exposes chapter, page, and progress fields.
+- The top indicator exposes separate upper chapter and lower title/page rows,
+  plus the chapter timeline, without a full-width progress bar.
 - `go()` updates the top indicator and neighboring slide states.
 - Existing motion and internationalization tests continue to pass.
 

@@ -3,8 +3,8 @@
 ## Sources
 
 - Spatial reference: `codex-clipboard-d3d0e23c-87cd-4355-a658-310ab5197406.png`
-- Desktop capture: `output/playwright/focused-deck-desktop.png` at 1440 x 1000
-- Narrow capture: `output/playwright/focused-deck-narrow.png` at 900 x 900
+- Desktop capture: `output/playwright/focused-deck-navigation-desktop.png` at 1440 x 1000
+- Narrow capture: `output/playwright/focused-deck-navigation-narrow.png` at 900 x 900
 - Overview capture: `output/playwright/focused-deck-overview-5x4.png` at 1440 x 1000
 
 ## Layout Fidelity
@@ -14,13 +14,15 @@
 - The carousel uses a consistent gap and centers the active slide at both tested
   viewport sizes.
 - The top indicator is aligned to the active slide width and never overlaps it.
+- The indicator uses an upper chapter row and a lower title/page row; the former
+  full-width progress bar is absent.
 
 ## Visual Hierarchy
 
 - The active slide uses full opacity and a restrained shadow.
 - Adjacent slides are recognizable but visually subordinate.
 - The neutral stage separates the presentation surface from the slide paper.
-- Forest green remains the single action/progress accent while images and neutral
+- Forest green remains the single action accent while images and neutral
   surfaces keep the palette varied.
 
 ## Typography And Density
@@ -38,14 +40,14 @@
 
 ## Rounded Surfaces
 
-- Slide canvases, media, cards, controls, tracks, and bounded evidence surfaces
+- Slide canvases, media, cards, controls, and bounded evidence surfaces
   use consistent 8-18px logical radii.
 - No nested decorative card treatment was added.
 
 ## Interaction
 
-- Keyboard navigation changes slide, page number, chapter-local progress, and
-  overall progress together.
+- Keyboard navigation changes slide, page number, and chapter-local position
+  together.
 - Clicking the visible previous-slide edge moved from page 10 to page 9.
 - ESC overview opened and closed successfully.
 - ESC overview rendered all 19 thumbnails at usable height across five rows;

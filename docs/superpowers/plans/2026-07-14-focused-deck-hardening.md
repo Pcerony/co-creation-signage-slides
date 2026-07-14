@@ -75,9 +75,9 @@ git commit -m "test: lock deck hardening regressions"
 **Files:**
 - Modify: \`ppt/index.html\`
 
-- [x] **Step 1: Move chapter, title, local page, total page, and progress into the visible header**
+- [x] **Step 1: Move chapter, title, local page, and total page into the visible header**
 
-Replace the hidden footer/display-none structure with a header containing a summary row, the chapter timeline, and a visible progress track. Keep the IDs used by the runtime and make the narrow layout wrap without overlapping the slide.
+Replace the hidden footer/display-none structure with a header containing an upper chapter row, a lower title/page row, and the chapter timeline. Keep the IDs used by the runtime, remove the deprecated full-width progress track, and make the narrow layout wrap without overlapping the slide.
 
 - [x] **Step 2: Add localized indicator-title data**
 
@@ -85,7 +85,7 @@ Define one \`INDICATOR_TITLES\` table for the 19 slides with \`zh\`, \`en\`, \`j
 
 - [x] **Step 3: Update the indicator from the current language**
 
-Set chapter text from the localized chapter table, set the title from \`INDICATOR_TITLES[currentLanguage][idx]\`, and preserve local page, overall page, and progress updates in \`go()\` and \`applyLanguage()\`.
+Set chapter text from the localized chapter table, set the title from \`INDICATOR_TITLES[currentLanguage][idx]\`, and preserve local page and overall page updates in \`go()\` and \`applyLanguage()\`.
 
 - [x] **Step 4: Run the browser regression and the existing structural suites**
 

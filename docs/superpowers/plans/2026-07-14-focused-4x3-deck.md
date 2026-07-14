@@ -40,7 +40,9 @@ check('slides use a fixed 4:3 logical canvas', /--slide-width:\s*1200px[\s\S]*--
 check('top indicator includes chapter', /id="indicator-chapter"/);
 check('top indicator includes title', /id="indicator-title"/);
 check('top indicator includes page number', /id="indicator-page"/);
-check('top indicator includes progress', /id="indicator-progress"/);
+check('top indicator uses an upper chapter row', /class="indicator-chapter-row"[\s\S]*id="indicator-chapter"/);
+check('top indicator uses a lower title/page row', /class="indicator-detail-row"[\s\S]*id="indicator-title"[\s\S]*id="indicator-page"/);
+check('deprecated wide indicator progress bar is removed', !/indicator-track|indicator-progress|indicatorProgress/.test(html));
 check('slides provide chapter metadata', /data-chapter="\d+"\s+data-chapter-title=/);
 check('navigation assigns previous state', /classList\.toggle\('is-prev'/);
 check('navigation assigns current state', /classList\.toggle\('is-current'/);
@@ -79,16 +81,18 @@ Wrap the deck in a stage and place this indicator before it:
 ```html
 <main id="presentation-stage">
   <header id="presentation-indicator" aria-live="polite">
-    <div class="indicator-copy">
+    <div class="indicator-chapter-row">
       <span id="indicator-chapter"></span>
+    </div>
+    <div class="indicator-detail-row">
       <span id="indicator-title"></span>
+      <div class="indicator-position">
+        <span id="indicator-section-page"></span>
+        <span id="indicator-page"></span>
+      </div>
     </div>
-    <div class="indicator-position">
-      <span id="indicator-section-page"></span>
-      <span id="indicator-page"></span>
-    </div>
-    <div class="indicator-track" aria-hidden="true">
-      <span id="indicator-progress"></span>
+    <div class="indicator-timeline-container">
+      <div id="indicator-timeline-chapters"></div>
     </div>
   </header>
   <div id="deck">...</div>
@@ -172,9 +176,9 @@ Assign chapters across the existing sequence:
 18-19  06 / Discussion & Conclusion
 ```
 
-Implement `updatePresentationIndicator()` to derive the chapter-local position,
-set the overall page string, and set progress width to
-`((idx + 1) / total) * 100` percent.
+Implement `updatePresentationIndicator()` to derive the chapter-local position
+and set the overall page string. Keep the chapter timeline dots synchronized
+with the current slide.
 
 - [ ] **Step 5: Preserve interactions and add preview click navigation**
 
@@ -239,7 +243,7 @@ Add radii without nesting decorative cards:
 
 ```css
 .canvas-card,.card-fill,.sub-card,.frame-img,.tile img,.heatmap-side,
-.flow-step,.data-tower,.duo-compare .col,.bar-track,.indicator-track {
+.flow-step,.data-tower,.duo-compare .col,.bar-track {
   border-radius:10px;
 }
 .slide img { border-radius:8px; }
@@ -300,7 +304,8 @@ Open `http://127.0.0.1:4173/ppt/index.html` at 1440 by 1000. Confirm:
 
 - The current 4:3 slide is fully visible.
 - Both adjacent slide edges are visible.
-- The top indicator contains chapter, title, progress, and page number.
+- The top indicator contains an upper chapter row, a lower title/page row, and
+  the chapter timeline without a full-width progress bar.
 - No text overlaps the indicator or escapes the slide.
 
 Capture `output/playwright/focused-deck-desktop.png`.
