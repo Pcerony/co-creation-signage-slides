@@ -105,10 +105,12 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
   const localized = await page.evaluate(() => ({
     lang: document.documentElement.lang,
     title: document.getElementById('indicator-title').textContent.trim(),
+    heading: document.querySelector('.slide.is-current h1, .slide.is-current h2')?.textContent.trim(),
     overviewDisplay: getComputedStyle(document.getElementById('overview')).display
   }));
   assert.strictEqual(localized.lang, 'en');
-  assert.ok(localized.title && !/[\u3400-\u9fff]/.test(localized.title), 'English indicator title should not remain CJK text');
+  assert.strictEqual(localized.title, localized.heading, 'legacy footer title should follow the active slide heading');
+  assert.ok(localized.title, 'legacy footer title should remain populated after language switch');
   assert.notStrictEqual(localized.overviewDisplay, 'none', 'overview should remain mounted during language switch');
 
   await page.keyboard.press('Escape');
