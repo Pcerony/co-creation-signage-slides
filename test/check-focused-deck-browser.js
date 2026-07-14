@@ -24,9 +24,12 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
       'indicator-chapter',
       'indicator-title',
       'indicator-section-page',
-      'indicator-page',
-      'indicator-progress'
+      'indicator-page'
     ];
+    const rowRect = selector => {
+      const row = document.querySelector(selector)?.getBoundingClientRect();
+      return row ? { top: row.top, bottom: row.bottom, height: row.height } : null;
+    };
     return {
       slides: document.querySelectorAll('.slide').length,
       rect: { width: rect.width, height: rect.height },
@@ -39,6 +42,12 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
         current: document.querySelectorAll('.slide.is-current').length,
         next: document.querySelectorAll('.slide.is-next').length
       },
+      indicatorRows: {
+        chapter: rowRect('.indicator-chapter-row'),
+        detail: rowRect('.indicator-detail-row'),
+        timeline: rowRect('.indicator-timeline-container'),
+        hasDeprecatedProgress: Boolean(document.querySelector('.indicator-track, #indicator-progress'))
+      },
       imagesLoaded: [...document.querySelectorAll('.slide img')]
         .every(image => image.complete && image.naturalWidth > 0)
     };
@@ -47,6 +56,11 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
   assert.strictEqual(initial.slides, 19, 'deck should expose 19 slides');
   assert.ok(Math.abs(initial.rect.width / initial.rect.height - 4 / 3) < 0.01, 'current slide should be 4:3');
   assert.ok(initial.indicator.every(field => field.visible), 'indicator fields should be visible');
+  assert.ok(initial.indicatorRows.chapter?.height > 0, 'chapter row should be visible');
+  assert.ok(initial.indicatorRows.detail?.height > 0, 'subtitle and page row should be visible');
+  assert.ok(initial.indicatorRows.timeline?.height > 0, 'chapter timeline should be visible');
+  assert.ok(initial.indicatorRows.detail.top >= initial.indicatorRows.chapter.bottom - 1, 'detail row should sit below chapter row');
+  assert.ok(!initial.indicatorRows.hasDeprecatedProgress, 'deprecated wide progress bar should be absent');
   assert.deepStrictEqual(initial.states, { prev: 0, current: 1, next: 1 });
   assert.ok(initial.imagesLoaded, 'all slide images should load');
 

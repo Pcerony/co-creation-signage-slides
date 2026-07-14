@@ -23,7 +23,18 @@ check(
 check('top indicator includes chapter', /id="indicator-chapter"/.test(html));
 check('top indicator includes title', /id="indicator-title"/.test(html));
 check('top indicator includes page number', /id="indicator-page"/.test(html));
-check('top indicator includes progress', /id="indicator-progress"/.test(html));
+check(
+  'top indicator puts the chapter in its own upper row',
+  /class="indicator-chapter-row"[\s\S]*id="indicator-chapter"/.test(html)
+);
+check(
+  'top indicator puts subtitle and page in its lower row',
+  /class="indicator-detail-row"[\s\S]*id="indicator-title"[\s\S]*id="indicator-section-page"[\s\S]*id="indicator-page"/.test(html)
+);
+check(
+  'deprecated wide indicator progress bar is removed',
+  !/indicator-track|indicator-progress|indicatorProgress/.test(html)
+);
 check(
   'slides provide chapter metadata',
   /data-chapter="\d+"\s+data-chapter-title="[^"]+"/.test(html)
@@ -62,8 +73,7 @@ const indicatorFields = [
   'indicator-chapter',
   'indicator-title',
   'indicator-section-page',
-  'indicator-page',
-  'indicator-progress'
+  'indicator-page'
 ];
 
 check(
