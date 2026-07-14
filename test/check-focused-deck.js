@@ -24,16 +24,16 @@ check('top indicator includes chapter', /id="indicator-chapter"/.test(html));
 check('top indicator includes title', /id="indicator-title"/.test(html));
 check('top indicator includes page number', /id="indicator-page"/.test(html));
 check(
-  'top indicator puts the chapter in its own upper row',
-  /class="indicator-chapter-row"[\s\S]*id="indicator-chapter"/.test(html)
+  'legacy navigation keeps the chapter timeline in the upper region',
+  /id="presentation-indicator"[\s\S]*id="indicator-timeline-chapters"/.test(html)
 );
 check(
-  'top indicator puts subtitle and page in its lower row',
-  /class="indicator-detail-row"[\s\S]*id="indicator-title"[\s\S]*id="indicator-section-page"[\s\S]*id="indicator-page"/.test(html)
+  'legacy navigation keeps subtitle and page in the lower footer',
+  /id="presentation-footer"[\s\S]*id="indicator-title"[\s\S]*id="indicator-page"/.test(html)
 );
 check(
-  'deprecated wide indicator progress bar is removed',
-  !/indicator-track|indicator-progress|indicatorProgress/.test(html)
+  'legacy navigation replaces the two-row header',
+  /id="presentation-footer"/.test(html) && !/indicator-detail-row/.test(html)
 );
 check(
   'slides provide chapter metadata',
@@ -69,17 +69,24 @@ check(
 const indicatorMarkup = html.match(
   /<header\s+id="presentation-indicator"[\s\S]*?<\/header>/
 )?.[0] || '';
-const indicatorFields = [
-  'indicator-chapter',
-  'indicator-title',
-  'indicator-section-page',
-  'indicator-page'
-];
+const footerMarkup = html.match(
+  /<footer\s+id="presentation-footer"[\s\S]*?<\/footer>/
+)?.[0] || '';
 
 check(
-  'all indicator fields are owned by the visible header',
-  indicatorFields.every(id => indicatorMarkup.includes(`id="${id}"`)) &&
-    !/display\s*:\s*none/i.test(indicatorMarkup)
+  'legacy visible navigation owns title and page in the footer',
+  /id="indicator-title"[\s\S]*id="indicator-page"/.test(footerMarkup) &&
+    /class="chapter-sub-zh"/.test(footerMarkup) &&
+    /class="indicator-page-wrapper"/.test(footerMarkup)
+);
+check(
+  'deprecated wide progress bar is hidden and not rendered in the header',
+  !/indicator-track/.test(indicatorMarkup) &&
+    /<div\s+style="display:none;">[\s\S]*indicator-progress/.test(footerMarkup)
+);
+check(
+  'legacy indicator title follows the active slide heading',
+  /const heading=slide\.querySelector\('h1,h2'\)/.test(html)
 );
 check('deck does not truncate text with line-clamp', !/line-clamp/i.test(html));
 check(
@@ -90,9 +97,4 @@ check(
   'legacy viewport-sized deck shell is removed',
   !/#deck\s*\{[^}]*width\s*:\s*10000vw/i.test(html) &&
     !/\.slide\s*\{[^}]*width\s*:\s*100vw/i.test(html)
-);
-check(
-  'indicator titles have independent language packs',
-  /const\s+INDICATOR_TITLES\s*=/.test(html) &&
-    /INDICATOR_TITLES\[currentLanguage\]/.test(html)
 );

@@ -21,9 +21,7 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
     const slide = document.querySelector('.slide.is-current');
     const rect = slide.getBoundingClientRect();
     const ids = [
-      'indicator-chapter',
       'indicator-title',
-      'indicator-section-page',
       'indicator-page'
     ];
     const rowRect = selector => {
@@ -42,11 +40,19 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
         current: document.querySelectorAll('.slide.is-current').length,
         next: document.querySelectorAll('.slide.is-next').length
       },
-      indicatorRows: {
-        chapter: rowRect('.indicator-chapter-row'),
-        detail: rowRect('.indicator-detail-row'),
+      navigation: {
+        header: rowRect('#presentation-indicator'),
         timeline: rowRect('.indicator-timeline-container'),
-        hasDeprecatedProgress: Boolean(document.querySelector('.indicator-track, #indicator-progress'))
+        footer: rowRect('#presentation-footer'),
+        footerTitle: rowRect('#presentation-footer #indicator-title'),
+        footerPage: rowRect('#presentation-footer #indicator-page'),
+        hasTwoRowHeader: Boolean(document.querySelector('.indicator-detail-row')),
+        hasVisibleProgress: [...document.querySelectorAll('.indicator-track, #indicator-progress')]
+          .some(node => {
+            const style = getComputedStyle(node);
+            const rect = node.getBoundingClientRect();
+            return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+          })
       },
       imagesLoaded: [...document.querySelectorAll('.slide img')]
         .every(image => image.complete && image.naturalWidth > 0)
@@ -56,11 +62,13 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
   assert.strictEqual(initial.slides, 19, 'deck should expose 19 slides');
   assert.ok(Math.abs(initial.rect.width / initial.rect.height - 4 / 3) < 0.01, 'current slide should be 4:3');
   assert.ok(initial.indicator.every(field => field.visible), 'indicator fields should be visible');
-  assert.ok(initial.indicatorRows.chapter?.height > 0, 'chapter row should be visible');
-  assert.ok(initial.indicatorRows.detail?.height > 0, 'subtitle and page row should be visible');
-  assert.ok(initial.indicatorRows.timeline?.height > 0, 'chapter timeline should be visible');
-  assert.ok(initial.indicatorRows.detail.top >= initial.indicatorRows.chapter.bottom - 1, 'detail row should sit below chapter row');
-  assert.ok(!initial.indicatorRows.hasDeprecatedProgress, 'deprecated wide progress bar should be absent');
+  assert.ok(initial.navigation.header?.height > 0, 'chapter timeline header should be visible');
+  assert.ok(initial.navigation.timeline?.height > 0, 'chapter timeline should be visible');
+  assert.ok(initial.navigation.footer?.height > 0, 'legacy footer should be visible');
+  assert.ok(initial.navigation.footerTitle?.height > 0, 'legacy footer subtitle should be visible');
+  assert.ok(initial.navigation.footerPage?.height > 0, 'legacy footer page should be visible');
+  assert.ok(!initial.navigation.hasTwoRowHeader, 'deprecated two-row header should be absent');
+  assert.ok(!initial.navigation.hasVisibleProgress, 'deprecated wide progress bar should not be visible');
   assert.deepStrictEqual(initial.states, { prev: 0, current: 1, next: 1 });
   assert.ok(initial.imagesLoaded, 'all slide images should load');
 
