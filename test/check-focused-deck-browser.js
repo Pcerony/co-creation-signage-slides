@@ -64,6 +64,21 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
   assert.deepStrictEqual(navigated.states, { prev: 1, current: 1, next: 1 });
 
   await page.keyboard.press('Escape');
+  await page.waitForTimeout(450);
+  const overview = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('#overview .esc-grid-wrap > div')];
+    const rows = new Set(cards.map(card => Math.round(card.getBoundingClientRect().top)));
+    return {
+      count: cards.length,
+      usable: cards.every(card => {
+        const rect = card.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      }),
+      rows: rows.size
+    };
+  });
+  assert.deepStrictEqual(overview, { count: 19, usable: true, rows: 5 }, 'overview should render all 19 thumbnails across five usable rows');
+
   await page.getByRole('button', { name: 'English' }).click();
   const localized = await page.evaluate(() => ({
     lang: document.documentElement.lang,

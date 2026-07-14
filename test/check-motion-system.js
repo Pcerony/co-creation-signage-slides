@@ -60,10 +60,10 @@ if (!/removeAttribute\('data-motion-item'\)/.test(html)) {
   pass('overview thumbnails strip cloned motion item state');
 }
 
-if (!/grid-template-rows:repeat\(4,minmax\(0,1fr\)\)/.test(html)) {
-  fail('overview is not constrained to a 4x4 viewport-fitting grid');
+if (!/grid-template-rows:repeat\(5,minmax\(0,1fr\)\)/.test(html)) {
+  fail('overview is not constrained to a 5x4 viewport-fitting grid for the 19-slide deck');
 } else {
-  pass('overview uses a viewport-fitting 4x4 grid');
+  pass('overview uses a viewport-fitting 5x4 grid for all 19 slides');
 }
 
 if (/const selectors = \[[\s\S]*?['"]\\.heatmap-card['"][\s\S]*?\];/.test(html)) {
