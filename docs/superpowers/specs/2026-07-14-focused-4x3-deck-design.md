@@ -45,7 +45,7 @@ The indicator is outside the slide canvases and contains:
 - Chapter number and chapter name.
 - Current slide title in compact form.
 - Chapter-local position.
-- Overall page number, formatted as `06 / 16`.
+- Overall page number, formatted as `06 / 19`.
 - A continuous overall progress bar.
 
 Chapter metadata is stored directly on each slide through `data-chapter` and
@@ -65,6 +65,8 @@ follows these rules:
 5. Captions describe evidence, not interface mechanics.
 6. Long multilingual translations are allowed to wrap but may not increase the
    slide's logical dimensions.
+7. Visible text remains fully readable; the focused canvas does not truncate
+   copy or use viewport-dependent font sizes.
 
 Existing content is simplified in place so translation lookup and slide-specific
 motion recipes remain compatible.
@@ -88,7 +90,8 @@ motion recipes remain compatible.
   behavior.
 - Clicking the visible previous or next slide preview navigates to that slide.
 - Clicking the current slide does not navigate.
-- ESC overview remains available and shows 4:3 thumbnails.
+- ESC overview remains available and shows all 19 4:3 thumbnails in a 4-column,
+  5-row grid.
 - On narrow screens, adjacent previews become slimmer but remain visible.
 
 ## Testing

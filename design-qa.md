@@ -1,0 +1,64 @@
+# Focused 4:3 Deck Design QA
+
+## Sources
+
+- Spatial reference: `codex-clipboard-d3d0e23c-87cd-4355-a658-310ab5197406.png`
+- Desktop capture: `output/playwright/focused-deck-desktop.png` at 1440 x 1000
+- Narrow capture: `output/playwright/focused-deck-narrow.png` at 900 x 900
+- Overview capture: `output/playwright/focused-deck-overview-5x4.png` at 1440 x 1000
+
+## Layout Fidelity
+
+- The current slide is a fixed 4:3 landscape canvas and remains fully visible.
+- The previous slide's right edge and next slide's left edge remain visible.
+- The carousel uses a consistent gap and centers the active slide at both tested
+  viewport sizes.
+- The top indicator is aligned to the active slide width and never overlaps it.
+
+## Visual Hierarchy
+
+- The active slide uses full opacity and a restrained shadow.
+- Adjacent slides are recognizable but visually subordinate.
+- The neutral stage separates the presentation surface from the slide paper.
+- Forest green remains the single action/progress accent while images and neutral
+  surfaces keep the palette varied.
+
+## Typography And Density
+
+- Repeated in-slide chrome is hidden because the stage indicator now owns that
+  information.
+- Long body copy and supporting explanations remain fully visible; no text
+  truncation rule is used.
+- Font sizes use fixed logical pixels rather than `vw` or `vh`, so typography
+  scales with the 1200 x 900 canvas instead of changing with the browser window.
+- Formula/help blocks and repeated instructional copy are removed from the
+  display without changing the underlying research numbers.
+- Heading sizes remain readable at both tested widths and do not escape the 4:3
+  canvas.
+
+## Rounded Surfaces
+
+- Slide canvases, media, cards, controls, tracks, and bounded evidence surfaces
+  use consistent 8-18px logical radii.
+- No nested decorative card treatment was added.
+
+## Interaction
+
+- Keyboard navigation changes slide, page number, chapter-local progress, and
+  overall progress together.
+- Clicking the visible previous-slide edge moved from page 10 to page 9.
+- ESC overview opened and closed successfully.
+- ESC overview rendered all 19 thumbnails at usable height across five rows;
+  the former collapsed final row is gone.
+- The language switch changed the document to English and updated the indicator
+  to `03 · Method & Tool`; switching back to Chinese also succeeded.
+
+## Responsiveness And Runtime
+
+- At 1440 x 1000 the active slide rendered at 1008 x 756.
+- At 900 x 900 the active slide rendered at 666 x 499.5, preserving 4:3.
+- At 390 x 844 the active slide rendered at 360 x 270, preserving 4:3.
+- Both adjacent previews remained visible at the narrow viewport.
+- Browser console finished with 0 errors and 0 warnings.
+
+final result: passed

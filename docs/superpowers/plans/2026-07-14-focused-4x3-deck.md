@@ -257,8 +257,9 @@ remove unused translation keys only when clearly safe.
 
 - [ ] **Step 4: Update project documentation**
 
-Change `ppt/项目记录.md` to record 16 slides, the five chapter groups,
-the fixed 4:3 canvas, the adjacent-slide preview, and the top indicator.
+Change `ppt/项目记录.md` to record 19 slides, the six chapter groups, the
+fixed 4:3 canvas, the adjacent-slide preview, the 5-row overview grid, and the
+top indicator.
 
 - [ ] **Step 5: Run all tests**
 
