@@ -98,3 +98,5 @@ check(
   !/#deck\s*\{[^}]*width\s*:\s*10000vw/i.test(html) &&
     !/\.slide\s*\{[^}]*width\s*:\s*100vw/i.test(html)
 );
+check('deck declares evidence-slide styling', /\.evidence-layout\s*\{/.test(html));
+check('deck declares card reduction mode', /card-reduction-mode/.test(html));
