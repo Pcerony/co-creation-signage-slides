@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Convert the 16-slide deck into a compact 4:3 carousel with visible adjacent-page edges, rounded surfaces, compressed content, and a detailed chapter-aware top indicator.
+**Goal:** Convert the 19-slide deck into a compact 4:3 carousel with visible adjacent-page edges, rounded surfaces, compressed content, and a detailed chapter-aware top indicator.
 
 **Architecture:** Keep the single-file HTML deck and its existing slide markup, translations, and motion system. Add a stage-level presentation shell, compute one responsive carousel geometry in JavaScript, and derive indicator state from slide metadata. Lock behavior with a structural Node test before modifying production code, then verify visually in a real browser.
 
@@ -165,10 +165,11 @@ Assign chapters across the existing sequence:
 
 ```text
 01-02  01 / Context
-03-05  02 / Design Framework
-06-10  03 / Method & Tool
-11-15  04 / Findings
-16     05 / Conclusion
+03-06  02 / Research Design
+07-12  03 / Method & Tool
+13-14  04 / Result Overview
+15-17  05 / Findings
+18-19  06 / Discussion & Conclusion
 ```
 
 Implement `updatePresentationIndicator()` to derive the chapter-local position,

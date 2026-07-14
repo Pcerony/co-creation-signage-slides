@@ -9,7 +9,7 @@ full-screen website.
 
 ## Scope
 
-- Keep the existing 16-slide research narrative and multilingual content.
+- Keep the existing 19-slide research narrative and multilingual content.
 - Compress each slide to one claim plus one evidence group. Remove repeated
   explanations, secondary labels, and long prose where the data or image already
   communicates the point.
@@ -55,7 +55,7 @@ changes.
 
 ## Content Compression
 
-The deck keeps 16 slides to preserve the current speaking sequence. Compression
+The deck keeps 19 slides to preserve the current speaking sequence. Compression
 follows these rules:
 
 1. One visible claim per slide.

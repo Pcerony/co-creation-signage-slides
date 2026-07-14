@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>实验数据分析结果分享 · A/R AOI Eye-tracking</title>
+<link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -71,6 +72,15 @@
 
     /* 底部分页组件安全区: 主内容最低处不要进入这条区域 */
     --nav-safe-bottom:8vh;
+
+    /* Focused 4:3 presentation geometry */
+    --slide-width:1200px;
+    --slide-height:900px;
+    --slide-radius:18px;
+    --slide-gap:28px;
+    --slide-scale:1;
+    --slide-render-width:1200px;
+    --slide-render-height:900px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{
@@ -1580,6 +1590,460 @@
     .grid-2-7-5,.grid-2-6-6,.grid-2-8-4,.grid-2-4-8{grid-template-columns:1fr}
     .grid-12{grid-template-columns:repeat(6,1fr)}
   }
+
+  /* ============================================================
+     SD 受众方法解说组件 · v2 大幅修改新增
+     ============================================================ */
+
+  /* 方法前置定义横幅 */
+  .method-intro-banner{
+    background:var(--grey-1);
+    border-left:3px solid var(--accent);
+    padding:1.6vh 1.6vw;
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(15px,1vw);
+    line-height:1.6;
+    color:var(--text-primary);
+    margin-bottom:2vh;
+  }
+  .method-intro-banner strong{color:var(--accent)}
+
+  /* 输出链条（TOOL卡 OUTPUT 扩展）*/
+  .output-chain{
+    display:flex;align-items:center;gap:.8vw;flex-wrap:wrap;
+    margin-top:1.2vh;
+    font-family:var(--mono);font-size:max(12px,.75vw);
+    letter-spacing:.08em;
+  }
+  .output-chain .oc-item{
+    background:var(--paper);
+    border:1px solid var(--border-strong);
+    padding:.4em .8em;
+    color:var(--text-primary);
+    white-space:nowrap;
+  }
+  .output-chain .oc-arrow{
+    color:var(--accent);font-size:1.2em;font-weight:700;opacity:.7
+  }
+  .output-chain .oc-item.accent{
+    background:var(--accent);color:var(--accent-on);border-color:var(--accent)
+  }
+
+  /* AOI 四步流程条（横向）*/
+  .aoi-flow{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:0;flex:1;align-items:stretch;
+    position:relative;
+  }
+  .aoi-flow::before{
+    content:"";position:absolute;
+    top:4.8vh;left:12.5%;right:12.5%;height:2px;
+    background:repeating-linear-gradient(to right,var(--accent) 0 8px,transparent 8px 14px);
+    opacity:.45;z-index:0;
+  }
+  .aoi-flow-step{
+    display:flex;flex-direction:column;align-items:center;
+    padding:0 1.2vw;
+    position:relative;z-index:1;
+  }
+  .aoi-flow-step .step-num{
+    width:9vh;height:9vh;min-width:52px;min-height:52px;
+    border-radius:50%;
+    background:var(--paper);border:2px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:max(16px,1.2vw);font-weight:600;
+    color:var(--accent);flex-shrink:0;
+    margin-bottom:2vh;
+  }
+  .aoi-flow-step.step-active .step-num{
+    background:var(--accent);color:var(--accent-on);
+  }
+  .aoi-flow-step .step-icon{
+    font-size:2.2vw;margin-bottom:1.2vh;color:var(--accent);
+    width:2.6vw;height:2.6vw;
+  }
+  .aoi-flow-step h4{
+    font-family:var(--sans),var(--sans-zh);
+    font-weight:600;font-size:max(16px,1.1vw);
+    text-align:center;margin-bottom:1.2vh;
+    line-height:1.2;
+  }
+  .aoi-flow-step .step-plain{
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(14px,.88vw);
+    color:var(--text-secondary);
+    text-align:center;line-height:1.55;
+    flex:1;
+  }
+  .aoi-flow-step .step-sub{
+    font-family:var(--mono);
+    font-size:max(12px,.72vw);
+    color:var(--accent);letter-spacing:.08em;
+    text-align:center;margin-top:1vh;
+    border-top:1px solid var(--border-subtle);
+    padding-top:.8vh;width:100%;
+  }
+
+  /* 计算公式块 */
+  .formula-block{
+    background:var(--grey-1);
+    border:1px solid var(--border-subtle);
+    border-left:3px solid var(--accent);
+    padding:2vh 1.8vw;
+    font-family:var(--sans),var(--sans-zh);
+  }
+  .formula-block .f-label{
+    font-family:var(--mono);font-size:max(12px,.78vw);
+    letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1.2vh;
+  }
+  .formula-block .f-title{
+    font-size:max(15px,1vw);font-weight:600;
+    color:var(--text-primary);margin-bottom:1.6vh;
+  }
+  .formula-frac{
+    display:flex;flex-direction:column;align-items:flex-start;gap:0;
+    font-size:max(14px,.9vw);
+  }
+  .formula-frac .f-num{
+    color:var(--text-primary);padding-bottom:.4vh;
+    border-bottom:2px solid var(--text-primary);
+    font-weight:500;
+  }
+  .formula-frac .f-den{
+    color:var(--text-secondary);padding-top:.4vh;
+  }
+  .formula-frac .f-times{
+    color:var(--accent);font-weight:700;margin-left:.8vw;
+    align-self:center;font-size:1.1em;display:inline-block;
+  }
+  .formula-note{
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(13px,.8vw);
+    color:var(--text-helper);margin-top:1.2vh;line-height:1.5;
+  }
+
+  /* 热力图凡例条 */
+  .heatmap-legend{
+    display:flex;flex-direction:column;gap:.8vh;
+    padding:1.4vh 1.4vw;
+    background:var(--paper);
+    border-top:2px solid var(--border-subtle);
+  }
+  .heatmap-legend-bar{
+    height:12px;width:100%;
+    background:linear-gradient(to right,
+      #313695 0%,
+      #4575b4 15%,
+      #74add1 28%,
+      #abd9e9 38%,
+      #e0f3f8 46%,
+      #fee090 54%,
+      #fdae61 64%,
+      #f46d43 76%,
+      #d73027 88%,
+      #a50026 100%
+    );
+  }
+  .heatmap-legend-labels{
+    display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:max(11px,.7vw);
+    letter-spacing:.1em;color:var(--text-helper);
+  }
+  .heatmap-legend-note{
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(13px,.78vw);
+    color:var(--text-secondary);line-height:1.4;
+    margin-top:.4vh;
+  }
+
+  /* AOI 区域标注叠加层（Q2 标识图） */
+  .aoi-annotated-sign{
+    position:relative;
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .aoi-annotated-sign img{
+    width:100%;height:100%;object-fit:contain;
+    border-top:2px solid var(--accent);
+  }
+  .aoi-zone{
+    position:absolute;
+    border:2px dashed;
+    display:flex;align-items:flex-start;justify-content:flex-start;
+    pointer-events:none;
+  }
+  .aoi-zone-label{
+    font-family:var(--mono);font-size:max(11px,.7vw);
+    font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:.25em .5em;
+    line-height:1;
+  }
+  .aoi-zone.zone-a{border-color:var(--accent);background:rgba(11,93,59,.08)}
+  .aoi-zone.zone-a .aoi-zone-label{background:var(--accent);color:var(--accent-on)}
+  .aoi-zone.zone-r{border-color:#1565c0;background:rgba(21,101,192,.08)}
+  .aoi-zone.zone-r .aoi-zone-label{background:#1565c0;color:#fff}
+  .aoi-zone.zone-s{border-color:var(--grey-3);background:rgba(115,115,115,.05)}
+  .aoi-zone.zone-s .aoi-zone-label{background:var(--grey-3);color:#fff}
+
+  /* AOI 图例说明 */
+  .aoi-zone-legend{
+    display:flex;flex-direction:column;gap:1.2vh;
+    padding:1.6vh 1.4vw;
+    background:var(--grey-1);
+    border-top:1px solid var(--border-subtle);
+  }
+  .aoi-zone-legend-item{
+    display:flex;align-items:flex-start;gap:.8vw;
+  }
+  .azl-dot{
+    width:14px;height:14px;border-radius:2px;flex-shrink:0;margin-top:2px;
+  }
+  .aoi-zone-legend-item .azl-label{
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(13px,.82vw);line-height:1.5;
+  }
+  .aoi-zone-legend-item .azl-label strong{
+    font-weight:600;display:block;margin-bottom:.2vh;
+  }
+
+  /* 数据语义解读条（Q3 新增）*/
+  .data-insight{
+    display:flex;align-items:flex-start;gap:1vw;
+    padding:1.2vh 1.2vw;
+    background:rgba(var(--accent-rgb),.07);
+    border-left:3px solid var(--accent);
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(13px,.82vw);
+    color:var(--text-primary);line-height:1.5;
+    margin-top:.8vh;
+  }
+  .data-insight .di-icon{
+    flex-shrink:0;width:18px;height:18px;
+    color:var(--accent);margin-top:.1em;
+  }
+
+  /* 纵向流程图（Slide 08 重构）*/
+  .vert-pipeline{
+    display:flex;flex-direction:column;gap:0;
+    flex:1;justify-content:center;
+    position:relative;
+  }
+  .vert-pipeline::before{
+    content:"";position:absolute;
+    left:4vh;top:5vh;bottom:5vh;width:2px;
+    background:repeating-linear-gradient(to bottom,var(--accent) 0 6px,transparent 6px 12px);
+    opacity:.35;
+  }
+  .vert-step{
+    display:grid;
+    grid-template-columns:8vh 1fr;
+    gap:0 1.6vw;
+    padding:1.8vh 0;
+    align-items:center;
+    border-bottom:1px solid var(--border-subtle);
+    position:relative;
+  }
+  .vert-step:last-child{border-bottom:0}
+  .vert-step-num{
+    width:8vh;height:8vh;min-width:44px;min-height:44px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:max(14px,.9vw);font-weight:700;
+    color:var(--accent);
+    z-index:1;position:relative;
+    flex-shrink:0;
+    justify-self:center;
+  }
+  .vert-step.vs-accent .vert-step-num{
+    background:var(--accent);color:var(--accent-on);
+  }
+  .vert-step-body{display:flex;flex-direction:column;gap:.5vh;padding-right:1vw;}
+  .vert-step-tag{
+    font-family:var(--mono);font-size:max(12px,.75vw);
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+  }
+  .vert-step-title{
+    font-family:var(--sans),var(--sans-zh);
+    font-weight:600;font-size:max(17px,1.15vw);
+    color:var(--text-primary);line-height:1.2;
+  }
+  .vert-step-plain{
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(14px,.88vw);
+    color:var(--text-secondary);line-height:1.55;
+  }
+  .vert-step-plain em{
+    font-style:normal;
+    color:var(--text-primary);font-weight:500;
+  }
+
+  /* 样本说明卡片（Slide 11 新）*/
+  .sample-stat-card{
+    background:var(--grey-1);
+    padding:2.4vh 1.8vw 2vh;
+    display:flex;flex-direction:column;gap:1.2vh;
+    border-top:2px solid var(--accent);
+  }
+  .sample-stat-card.neutral{border-top-color:var(--border-strong)}
+  .sample-stat-card .ssc-label{
+    font-family:var(--mono);font-size:max(12px,.78vw);
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-helper);
+  }
+  .sample-stat-card .ssc-nb{
+    font-family:var(--sans);font-weight:200;
+    font-size:min(6vw,10vh);line-height:1;
+    letter-spacing:-.04em;color:var(--accent);
+    font-feature-settings:"tnum";
+  }
+  .sample-stat-card.neutral .ssc-nb{color:var(--text-primary)}
+  .sample-stat-card .ssc-desc{
+    font-family:var(--sans),var(--sans-zh);
+    font-size:max(14px,.9vw);line-height:1.55;
+    color:var(--text-secondary);
+  }
+
+  /* ============ Focused 4:3 presentation stage ============ */
+  html,body{background:#eceeeb}
+  #presentation-stage{
+    position:fixed;inset:0;z-index:10;overflow:hidden;
+    background:#eceeeb;
+  }
+  #presentation-indicator{
+    position:absolute;z-index:40;top:20px;left:50%;
+    width:min(95vw,1200px);transform:translateX(-50%);
+    display:flex;justify-content:center;align-items:flex-end;
+    color:var(--ink);padding:0;
+  }
+  .indicator-timeline-container{
+    position:relative;display:flex;align-items:flex-end;padding-bottom:2px;
+    justify-content:center;width:100%;
+  }
+  #indicator-timeline-chapters{
+    position:relative;z-index:1;display:flex;align-items:flex-end;gap:24px;
+    background:transparent;
+  }
+  .timeline-chapter-group{
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+  }
+  .chapter-dots{
+    display:flex;gap:4px;align-items:center;
+    background:transparent;padding:0;
+  }
+  .chapter-dot{
+    width:6px;height:6px;background:#c5c9c3;border:none;padding:0;
+    border-radius:1px;cursor:pointer;
+    transition:all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .chapter-dot.is-active{
+    width:16px;background:var(--accent);border-radius:3px;
+  }
+  .chapter-dot:hover:not(.is-active){
+    background:var(--accent);
+  }
+  .chapter-label{
+    font-family:var(--mono);font-size:9px;font-weight:500;
+    letter-spacing:0.06em;color:#a0a49e;text-transform:uppercase;
+    white-space:nowrap;transition:color 0.3s ease;
+  }
+  .chapter-label.is-active{
+    color:var(--accent);font-weight:700;
+  }
+  #presentation-footer{
+    position:absolute;z-index:40;bottom:24px;left:50%;
+    width:min(95vw,1200px);transform:translateX(-50%);
+    display:flex;align-items:center;justify-content:center;gap:16px;
+    color:var(--ink);padding:0;white-space:nowrap;
+  }
+  .chapter-sub-zh{
+    font-family:var(--sans),var(--sans-zh);font-size:12px;font-weight:600;
+    color:var(--text-primary);opacity:0.6;white-space:nowrap;
+  }
+  .indicator-page-wrapper{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    color:var(--text-primary);opacity:0.8;white-space:nowrap;
+  }
+  #indicator-page{
+    font-weight:700;color:var(--text-primary);
+  }
+  #deck{
+    position:absolute;inset:auto;left:0;top:96px;
+    width:max-content;height:var(--slide-render-height);
+    display:flex;flex-wrap:nowrap;gap:var(--slide-gap);
+    transition:transform .76s cubic-bezier(0.16, 1, 0.3, 1),opacity .22s var(--ease-prod);
+    will-change:transform;z-index:10;
+  }
+  .slide-shell{
+    position:relative;flex:0 0 var(--slide-render-width);
+    width:var(--slide-render-width);height:var(--slide-render-height);
+    border-radius:calc(var(--slide-radius) * var(--slide-scale));
+    transition:opacity .42s var(--ease-prod),filter .42s var(--ease-prod);
+  }
+  .slide{
+    width:var(--slide-width);height:var(--slide-height);flex:0 0 var(--slide-width);
+    border-radius:var(--slide-radius);transform:scale(var(--slide-scale));
+    transform-origin:top left;box-shadow:none;
+    transition:box-shadow .42s var(--ease-prod),opacity .42s var(--ease-prod);
+  }
+  .slide.is-current{box-shadow:0 24px 64px rgba(10,10,10,.16);opacity:1}
+  .slide.is-prev,.slide.is-next{opacity:.56;cursor:pointer}
+  .slide:not(.is-current):not(.is-prev):not(.is-next){opacity:.22}
+  .slide.is-prev:hover,.slide.is-next:hover{opacity:.72}
+  body.canvas-mode .slide{border-radius:var(--slide-radius);overflow:hidden}
+  body.canvas-mode .slide .canvas-card{border-radius:inherit;overflow:hidden}
+  body.canvas-mode canvas.bg{display:none!important}
+  #nav{display:none!important}
+
+  /* Compact research canvas: the stage indicator replaces repeated slide chrome. */
+  .slide .chrome-min{display:none!important}
+  .slide .canvas-card{width:100%;height:100%;padding:44px 50px 46px}
+  .slide .h-xl-zh{font-size:52px!important;line-height:1.08!important}
+  .slide [data-anim="title-block"]>div:last-child{font-size:54px!important;line-height:1.05!important}
+  .slide .image-hero-body{padding:38px 50px 30px!important;gap:30px!important}
+  .slide .image-hero-body>div:first-child{
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+    overflow:hidden;font-size:17px!important;line-height:1.45!important;
+  }
+  .slide .body-sm{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .slide [style*="letter-spacing:-"]{letter-spacing:0!important}
+  .slide .t-body,.slide .lead{line-height:1.42}
+  .slide .t-body-sm,.slide .mini,.slide .col-desc,.slide .ssc-desc{
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+    overflow:hidden;line-height:1.4;
+  }
+  .slide .t-helper{display:none}
+  .slide .method-intro-banner,.slide .formula-block,.slide .heatmap-legend-note{display:none!important}
+  .slide .process-timeline .desc{display:none}
+  .slide .vert-step-plain,.slide .aoi-flow-step p{
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+  }
+  .slide[data-layout="S20"] .ledger-row{padding:12px 0!important;min-height:0!important}
+  .slide[data-layout="S20"] .ledger-row>div[style*="font-size"]{font-size:52px!important;line-height:1!important}
+  .slide[data-layout="S20"] .canvas-card>div[style*="grid-template-columns"]{gap:28px!important}
+  .slide .flow-step,.slide .card-fill,.slide .sub-card,
+  .slide .sample-stat-card,.slide .heatmap-side,.slide .data-tower,
+  .slide .duo-compare .col,.slide .ledger-row,.slide .bar-track,
+  .slide .frame-img,.slide figure.tile>img,.slide img,
+  .slide .tag,.slide button,.slide .tool-url,.slide .screen-frame{
+    border-radius:10px;
+  }
+  .slide img{overflow:hidden}
+  .slide .bar-fill,.slide .row-fill{border-radius:inherit}
+  .slide .rule{border-radius:999px}
+
+  @media (max-width:900px){
+    #presentation-indicator{width:95vw;top:12px;}
+    #presentation-footer{width:95vw;bottom:16px;}
+    .chapter-sub-zh{display:none}
+    .chapter-label{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #deck,.slide,.slide-shell,#indicator-progress{transition:none!important}
+  }
 </style>
 </head>
 <body class="canvas-mode motion-boot">
@@ -1609,6 +2073,23 @@
 
 <canvas id="bg-grid" class="bg"></canvas>
 
+<main id="presentation-stage">
+<header id="presentation-indicator" aria-live="polite">
+  <div class="indicator-timeline-container">
+    <div id="indicator-timeline-chapters"></div>
+  </div>
+</header>
+
+<footer id="presentation-footer">
+  <span id="indicator-title" class="chapter-sub-zh"></span>
+  <span id="indicator-page" class="indicator-page-wrapper"></span>
+  <div style="display:none;">
+    <span id="indicator-chapter"></span>
+    <span id="indicator-section-page"></span>
+    <div class="indicator-track" aria-hidden="true"><span id="indicator-progress"></span></div>
+  </div>
+</footer>
+
 <div id="deck">
 
 <!-- ============================================================
@@ -1617,7 +2098,221 @@
      主题色配置参考 references/themes-swiss.md
      ============================================================ -->
 
-<section class="slide accent" data-layout="SWISS-COVER-ASCII" data-animate="hero">
+
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<style>
+  /* Override line-clamp to ensure all slide texts are fully visible and readable */
+  .slide .t-body-sm, .slide .body-sm {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+  }
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+</style>
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<style>
+  /* Override line-clamp to ensure all slide texts are fully visible and readable */
+  .slide .t-body-sm, .slide .body-sm {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+  }
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+</style>
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<style>
+  /* Override line-clamp to ensure all slide texts are fully visible and readable */
+  .slide .t-body-sm, .slide .body-sm {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+  }
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  /* Slide font scale overrides for presentation visibility */
+  .slide h2.h-xl-zh {
+    font-size: min(4.4vw, 7.8vh) !important;
+    line-height: 1.12 !important;
+    margin-bottom: 1vh !important;
+  }
+  .slide .t-body {
+    font-size: max(18px, 1.3vw) !important;
+    line-height: 1.55 !important;
+  }
+  .slide .t-body-sm {
+    font-size: max(15px, 1.1vw) !important;
+    line-height: 1.5 !important;
+  }
+  .slide .t-meta {
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+  }
+</style>
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<style>
+  /* Override line-clamp to ensure all slide texts are fully visible and readable */
+  .slide .t-body-sm, .slide .body-sm {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+  }
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  /* Slide font scale overrides for presentation visibility */
+  .slide h2.h-xl-zh {
+    font-size: 52px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.5vh !important;
+  }
+  .slide .t-body {
+    font-size: 26px !important;
+    line-height: 1.6 !important;
+  }
+  .slide .t-body-sm {
+    font-size: 22px !important;
+    line-height: 1.55 !important;
+  }
+  .slide .t-h-prod, .slide h3 {
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+  }
+  .slide .t-meta {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .slide .process-detail .detail-list div {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+  }
+  .slide .process-detail .phase {
+    font-size: 26px !important;
+  }
+</style>
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<style>
+  /* Override line-clamp to ensure all slide texts are fully visible and readable */
+  .slide .t-body-sm, .slide .body-sm {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+  }
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  /* Slide font scale overrides for presentation visibility */
+  .slide h2.h-xl-zh {
+    font-size: 52px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.5vh !important;
+  }
+  .slide .t-body {
+    font-size: 26px !important;
+    line-height: 1.6 !important;
+  }
+  .slide .t-body-sm {
+    font-size: 22px !important;
+    line-height: 1.55 !important;
+  }
+  .slide .t-h-prod, .slide h3 {
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+  }
+  .slide .t-meta {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .slide .process-detail .detail-list div {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+  }
+  .slide .process-detail .phase {
+    font-size: 26px !important;
+  }
+</style>
+
+<!-- Chapter 1: 研究背景与目的 -->
+
+<style>
+  /* Override line-clamp to ensure all slide texts are fully visible and readable */
+  .slide .t-body-sm, .slide .body-sm {
+    display: block !important;
+    -webkit-line-clamp: none !important;
+    overflow: visible !important;
+  }
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  /* Slide font scale overrides for presentation visibility */
+  .slide h2.h-xl-zh {
+    font-size: 52px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.5vh !important;
+  }
+  .slide .t-body {
+    font-size: 26px !important;
+    line-height: 1.6 !important;
+  }
+  .slide .t-body-sm {
+    font-size: 22px !important;
+    line-height: 1.55 !important;
+  }
+  .slide .t-h-prod, .slide h3 {
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+  }
+  .slide .t-meta {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .slide .process-detail .detail-list div {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+  }
+  .slide .process-detail .phase {
+    font-size: 26px !important;
+  }
+  /* Results 1 tower chart label scale overrides */
+  .slide .bar-tower .sub {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+  .slide .bar-tower .lbl {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+</style>
+
+<!-- Chapter 1: 研究背景与目的 -->
+<section class="slide accent" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究主题" data-layout="SWISS-COVER-ASCII" data-animate="hero">
   <div class="canvas-card">
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div class="chrome-min">
@@ -1628,10 +2323,10 @@
         <button class="lang-top-btn" onclick="applyLanguage('ja')">JA</button>
         <button class="lang-top-btn" onclick="applyLanguage('es-MX')">ES</button>
       </div>
-      <div class="r">EXPERIMENT ANALYSIS · 2026.06 · 01 / 16</div>
+      <div class="r">MASTER'S REPORT · 2026.06 · 01 / 19</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh">
-      <div data-anim="kicker" class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em">A/R DESIGN · AOI EYE-TRACKING</div>
+      <div data-anim="kicker" class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em">INTERIM RESEARCH REPORT</div>
       <h1 data-anim="title" style="align-self:center;font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.7vw,8.2vh);line-height:1.02;letter-spacing:0;color:#fff;max-width:17ch;hyphens:none">关于用于设计解说标识的共创工具的研究<br/><span style="display:block;margin-top:1.1vh;font-size:.46em;line-height:1.08;letter-spacing:0">以福冈市植物园温室区域为例</span></h1>
       <div data-anim="bottom" style="display:grid;grid-template-rows:auto auto;gap:1.6vh;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh">
         <div class="lead" style="max-width:54ch;color:rgba(255,255,255,.86);font-weight:300">植物解说标识的 A/R/S 设计改良与眼动评估实验分析</div>
@@ -1642,41 +2337,138 @@
         </div>
         <div style="display:flex;justify-content:space-between;align-items:end">
           <div class="t-meta" style="color:rgba(255,255,255,.6)">PINGCHENG WANG · 2026.06</div>
-          <div class="t-meta" style="color:rgba(255,255,255,.6)">RESEARCH REPORT</div>
+          <div class="t-meta" style="color:rgba(255,255,255,.6)">KYUSHU UNIVERSITY</div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：知识超载" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">02 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">现实困境一：专家导向的知识超载</h2>
+      </div>
+      
+      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+        <h3 class="t-h-prod" style="font-size:max(18px,1.3vw);color:var(--accent);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
+          <i data-lucide="alert-triangle" style="width:20px;height:20px"></i>
+          “标识被设置，但不等于被阅读”
+        </h3>
+        <p class="t-body" style="color:var(--text-primary);margin:0">
+          现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
+        <span style="font-size:16px;color:var(--text-helper)">SITE: 福冈市植物园温室大棚区 · N = 70 BASELINE AUDIT</span>
+        <div class="frame-img fit-cover" style="height:14vh;width:28vw;border-radius:0;border:1px solid var(--border-subtle)">
+          <img src="images/01-field-observation.jpg" alt="福冈市植物园温室实地环境" style="width:100%;height:100%;object-fit:cover">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-layout="S22" data-animate="image-hero">
-  <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 58%;overflow:hidden;background:var(--grey-1)">
-      <img src="images/01-field-observation.jpg" data-image-slot="s22-hero-21x9" alt="福冈市植物园温室实地环境" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%">
-      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;color:rgba(255,255,255,.9);padding:5.6vh 5vw 0">
-        <div class="l">CONTEXT · INFORMAL LEARNING INTERFACE</div><div class="r">02 / 16</div>
+<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：评估局限" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">03 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">现实困境二：主观定性的评估局限</h2>
       </div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:42vw">
-        <div style="display:flex;align-items:center;gap:1vw;margin-bottom:1.6vh;color:var(--accent)"><i data-lucide="leaf" style="width:28px;height:28px;stroke-width:1.5"></i><i data-lucide="eye" style="width:28px;height:28px;stroke-width:1.5"></i><i data-lucide="signpost" style="width:28px;height:28px;stroke-width:1.5"></i></div>
-        <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.8vw,8.2vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">非正式学习标识的<br/>现实困境与低阅读课题</div>
+      
+      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+        <h3 class="t-h-prod" style="font-size:max(18px,1.3vw);color:var(--accent);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
+          <i data-lucide="eye-off" style="width:20px;height:20px"></i>
+          传统评估工具的客观度缺失
+        </h3>
+        <p class="t-body" style="color:var(--text-primary);margin:0">
+          设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。
+        </p>
       </div>
-    </div>
-    <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.25vw);line-height:1.55;font-weight:400;color:var(--text-primary)">作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。</div>
-      <div class="image-hero-stats" style="gap:3vw">
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">SITE</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4vw,7vh);line-height:.95;letter-spacing:-.035em">温室区</div><p class="body-sm" style="margin-top:auto">福冈市植物园</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">ISSUE</div><div style="font-family:var(--sans);font-weight:200;font-size:min(3.2vw,5.6vh);line-height:.98;letter-spacing:-.03em">被设置<br/>≠ 被阅读</div><p class="body-sm" style="margin-top:auto">来园者多处于随机浏览状态，大量长文本信息未被视线有效覆盖</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">METHOD</div><div style="font-family:var(--sans);font-weight:200;font-size:min(3.8vw,6.5vh);line-height:.95;letter-spacing:-.035em;color:var(--accent)">A/B Test</div><p class="body-sm" style="margin-top:auto">设立控制组与改良组对照实验，并引入 AOI 进行眼动数据分析</p></div>
+
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
+        <span style="font-size:16px;color:var(--text-helper)">FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录</span>
+        <div class="frame-img fit-cover" style="height:14vh;width:28vw;border-radius:0;border:1px solid var(--border-subtle)">
+          <img src="images/02-experiment-scene.jpg" alt="游客在植物园阅读标识场景" style="width:100%;height:100%;object-fit:cover">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-layout="S11" data-animate="timeline-walk">
+<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究目的：RQ1" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">RESEARCH PIPELINE · CO-CREATION TO VALIDATION (ROADMAP)</div><div class="r">03 / 16</div></div>
+    <div class="chrome-min"><div class="l">RESEARCH OBJECTIVES</div><div class="r">04 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:3vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">探究解说标识的实证化改良路径</h2>
+      </div>
+      
+      <p class="t-body" style="color:var(--text-primary);margin:0">
+        本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。
+      </p>
+
+      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--mono);font-size:20px;color:var(--accent);font-weight:700">RESEARCH QUESTION 1</span>
+          <i data-lucide="eye" style="color:var(--accent);width:28px;height:28px"></i>
+        </div>
+        <h3 class="t-h-prod" style="margin:0;font-size:max(20px,1.4vw);color:var(--ink);font-weight:600">Q1 · 初期文字区域完读率提升</h3>
+        <p class="t-body" style="color:var(--text-primary);margin:0">
+          A/R设计是否能在游客与标识接触的黄金前 10 秒（视觉入口期）内，有效提高游客对核心文字内容的整体空间覆盖率，降低盲目扫视率？
+        </p>
+        <span class="t-meta" style="color:var(--text-helper);margin-top:1.5vh">EVALUATION METRIC: TEXT COVERAGE (10S)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究目的：RQ2/3" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">RESEARCH OBJECTIVES</div><div class="r">05 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">语义区注意力配额与视线转换机制</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:stretch">
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 2.5vw;display:flex;flex-direction:column;gap:1.5vh">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh">
+            <span style="font-family:var(--mono);font-size:16px;color:var(--accent);font-weight:700">RQ2</span>
+            <i data-lucide="layout-grid" style="color:var(--accent);width:24px;height:24px"></i>
+          </div>
+          <h3 class="t-h-prod" style="margin:0;font-size:16px;color:var(--ink);font-weight:600">A/R 兴趣区注意力配额</h3>
+          <p class="t-body-sm" style="color:var(--text-primary);margin:0">
+            通过精确分割 A 区域（启发背景）与 R 区域（感官与栽培用途）的语义兴趣区（AOI），检验实验组设计是否实现了注意力从背景噪声区向关键行为诱导区的结构化转移。
+          </p>
+          <span class="t-meta" style="color:var(--text-helper);margin-top:auto">METRIC: SEMANTIC AOI SHARE</span>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 2.5vw;display:flex;flex-direction:column;gap:1.5vh">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh">
+            <span style="font-family:var(--mono);font-size:16px;color:var(--accent);font-weight:700">RQ3</span>
+            <i data-lucide="activity" style="color:var(--accent);width:24px;height:24px"></i>
+          </div>
+          <h3 class="t-h-prod" style="margin:0;font-size:16px;color:var(--ink);font-weight:600">双维协同的动作映射机制</h3>
+          <p class="t-body-sm" style="color:var(--text-primary);margin:0">
+            揭示以“问句”为首的启发性氛围（A）和以“感官用途”为首的观众关联（R）如何相互支撑，在长效阅读流中共同充当视觉引导漏斗与动作诱导锚点。
+          </p>
+          <span class="t-meta" style="color:var(--text-helper);margin-top:auto">ANALYSIS: GAZE DYNAMICS MODEL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 2: 研究策略与整体设计 -->
+<section class="slide" data-layout="S11" data-chapter="2" data-chapter-title="研究策略与整体设计" data-short-title="整体设计" data-animate="timeline-walk">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">RESEARCH PIPELINE · CO-CREATION TO VALIDATION (ROADMAP)</div><div class="r">06 / 19</div></div>
     <div style="display:flex;flex-direction:column;gap:1.2vh">
-      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">研究流程</h2>
+      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh);color:var(--ink)">研究整体技术路线</h2>
     </div>
     <div class="timeline-h process-timeline">
       <div class="tl-row">
@@ -1728,265 +2520,251 @@
       </article>
       <article class="process-panel" data-process-panel="7">
         <div class="phase"><span>2026.08-10</span>后续计划 (未来规划)</div>
-        <div class="detail-list"><div><strong>Data 分析</strong><span>详细分析本实验得到的全部数据，细化指标与图表。</span></div></div>
-        <div class="detail-list"><div><strong>修士论文</strong><span>进入修士论文写作阶段，将实验结果整合到完整研究论述中。</span></div></div>
+        <div class="detail-list"><div><strong>Data 分析</strong><span>详细分析本实验得到的全部数据，细化指标与图表。</span></div><div><strong>修士论文</strong><span>进入修士论文写作阶段，将实验结果整合到完整研究论述中。</span></div></div>
       </article>
     </div>
     <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:1.6vh">核心研究流程：原则产出——工具设计——利用工具验证原则有效性</div>
   </div>
 </section>
 
-<section class="slide" data-layout="S05" data-animate="sub-stack">
+<!-- Chapter 3: 研究方法 -->
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段1：文献调查" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DESIGN PRINCIPLES</div><div class="r">04 / 16</div></div>
-    <div style="display:grid;grid-template-columns:4fr 8fr;gap:4vw;flex:1;min-height:0">
-      <div style="display:flex;flex-direction:column;gap:2vh">
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 1</div><div class="r">07 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 1：文献调查与经典理论模型</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:stretch">
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+          <h3 class="t-h-prod" style="font-size:18px;color:var(--accent);margin:0;font-weight:600;display:flex;align-items:center;gap:8px">
+            <i data-lucide="book-open" style="width:22px;height:22px"></i>
+            文献脉络梳理
+          </h3>
+          <p class="t-body" style="color:var(--text-primary);margin:0">
+            综合 Tilden (1957) 的解说六原则、Ham (2016) 的 EROT 解释机制、与 Serrell (2015) 的微观排版规约。锁定视觉注意力瓶颈与游客认知负荷的对立关系，推导出了适用于动态园艺环境的低负荷传达框架。
+          </p>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+          <h3 class="t-h-prod" style="font-size:18px;color:var(--ink);margin:0;font-weight:600;display:flex;align-items:center;gap:8px">
+            <i data-lucide="brain" style="width:22px;height:22px"></i>
+            解说学的三大理论支柱
+          </h3>
+          <ul class="t-body-sm" style="color:var(--text-primary);margin:0;padding-left:1.5em;display:flex;flex-direction:column;gap:1vh">
+            <li><strong>Tilden 原则</strong>：解说必须与来园者的个人经验及日常利益建立关联；</li>
+            <li><strong>EROT 模型</strong>：强调解说的启发性（Provocative）与组织清晰度；</li>
+            <li><strong>Serrell 策略</strong>：关注微观版面层级对短文本加工负荷的直接影响。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段2：共创工坊" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 2</div><div class="r">08 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 2：三方共创工坊与市民访谈</h2>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 3vw;display:flex;flex-direction:column;gap:1.2vh">
+        <h3 class="t-h-prod" style="font-size:16px;color:var(--accent);margin:0;font-weight:600;display:flex;align-items:center;gap:8px">
+          <i data-lucide="users" style="width:20px;height:20px"></i>
+          三方视角下的 KJ 痛点审计与编码
+        </h3>
+        <p class="t-body-sm" style="color:var(--text-primary);margin:0">
+          在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下 <strong>5 大核心认知痛点分类</strong>：
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:1vw;margin-top:1.5vh">
+          <span style="font-size:20px;background:#f5f5f4;padding:8px 16px;color:var(--ink);font-weight:600;border-radius:4px;margin:2px">1. 排版拥挤字号小</span>
+          <span style="font-size:20px;background:#f5f5f4;padding:8px 16px;color:var(--ink);font-weight:600;border-radius:4px;margin:2px">2. 信息超载无焦点</span>
+          <span style="font-size:20px;background:#f5f5f4;padding:8px 16px;color:var(--ink);font-weight:600;border-radius:4px;margin:2px">3. 缺乏日常经验联结</span>
+          <span style="font-size:20px;background:#f5f5f4;padding:8px 16px;color:var(--ink);font-weight:600;border-radius:4px;margin:2px">4. 学术词汇过密难读</span>
+          <span style="font-size:20px;background:#f5f5f4;padding:8px 16px;color:var(--ink);font-weight:600;border-radius:4px;margin:2px">5. 缺互动行动性引导</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
+        <span style="font-size:16px;color:var(--text-helper)">IMAGE: Global Goals Jam 2025 九州共创现场讨论记录</span>
+        <div class="frame-img fit-cover" style="height:12vh;width:24vw;border-radius:0;border:1px solid var(--border-subtle)">
+          <img src="images/02-experiment-scene.jpg" alt="共创工坊现场照片" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段3：AR原则" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 3 PRINCIPLES</div><div class="r">09 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 3：A/R/S 设计原则之 A 与 R</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:stretch">
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta" style="color:var(--accent);font-family:var(--mono)">A / ATMOSPHERE</span>
+            <i data-lucide="help-circle" style="color:var(--accent);width:24px;height:24px"></i>
+          </div>
+          <h3 class="t-h-prod" style="color:var(--ink);margin:0">启发性氛围</h3>
+          <p class="t-body" style="color:var(--text-primary);margin:0">
+            拒绝平铺直叙的客观描述，通过问句启发（如“你能在这片叶子下找到什么？”）或情感隐喻，创造亲和的注意导入切面，诱导游客停下视线并切入深度加工。
+          </p>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta" style="color:var(--accent);font-family:var(--mono)">R / RELEVANCE</span>
+            <i data-lucide="leaf" style="color:var(--accent);width:24px;height:24px"></i>
+          </div>
+          <h3 class="t-h-prod" style="color:var(--ink);margin:0">观众关联性</h3>
+          <p class="t-body" style="color:var(--text-primary);margin:0">
+            将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段3：S原则" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 3 PRINCIPLES</div><div class="r">10 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 3：A/R/S 设计原则之 S 结构清晰</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:3vw;align-items:stretch">
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta" style="color:var(--accent);font-family:var(--mono)">S / STRUCTURE</span>
+            <i data-lucide="layout" style="color:var(--accent);width:24px;height:24px"></i>
+          </div>
+          <h3 class="t-h-prod" style="color:var(--ink);margin:0">结构清晰性</h3>
+          <p class="t-body" style="color:var(--text-primary);margin:0">
+            采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。
+          </p>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:2vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1vh">
+          <img src="images/07-intervention-sign.jpg" alt="A/R/S原则版面映射" style="height:32vh;width:20vw;object-fit:contain;border:1px solid var(--border-subtle)">
+          <span style="font-size:14px;color:var(--text-helper)">A/R/S 原则的版面语义映射样例 (实验组 A2)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段3：现状审计" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 3 AUDIT</div><div class="r">11 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 3：现有标识的基线现状审计</h2>
+      </div>
+
+      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
+        <h3 class="t-h-prod" style="font-size:16px;color:var(--accent);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
+          <i data-lucide="database" style="width:20px;height:20px"></i>
+          N = 70 块大棚标识审计结论
+        </h3>
+        <p class="t-body-sm" style="color:var(--text-primary);margin:0">
+          基于自主开发的 **Signage Annotator** 多人协同标注平台，对温室大棚内现存 of 70 块传统解说标识进行系统审计。结果显示 **91.4% 的旧标识在 A（启发性）与 R（关联性）维度上完全缺位**，证明了进行设计重构与优化的紧迫必要性。
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
+        <span style="font-size:16px;color:var(--text-helper)">ILLUSTRATION: Signage Annotator 标识分类与定量标注工具界面</span>
+        <div class="frame-img fit-cover" style="height:12vh;width:24vw;border-radius:0;border:1px solid var(--border-subtle)">
+          <img src="images/08-tool-annotator.jpg" alt="Signage Annotator 标注系统" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段4：干预对比" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 4 DESIGN</div><div class="r">12 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:2.5vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 4：眼动实验组与控制组刺激物对比</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:stretch">
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:2.5vh 2.5vw;display:flex;align-items:center;justify-content:space-between;gap:1.5vw">
+          <div style="flex:1">
+            <span class="t-meta" style="color:var(--text-helper)">CONTROL GROUP</span>
+            <h4 class="t-h-prod" style="font-size:14px;margin-bottom:0.5vh;color:var(--ink)">控制组 A1 (经典版)</h4>
+            <p class="t-body-sm" style="line-height:1.4;color:var(--text-primary);margin:0">传统的全通栏大段正文排版，缺乏视觉分区，导致游客无焦点地随意浏览。</p>
+          </div>
+          <img src="images/06-control-sign.jpg" alt="控制组经典标识" style="height:15vh;width:11vw;object-fit:contain;background:#fff;border:1px solid var(--border-subtle)">
+        </div>
         
-        <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">A/R/S 解说标识设计原则假说</h2>
-        <p class="t-body">A/R/S 是一套基于先前阶段研究（实地调研与理论分析）提炼而成的解说标识设计原则，旨在通过氛围、关联与结构的维度改良，预期能够显著提升来园者的标识阅读意愿与非正式学习体验。</p>
-      </div>
-      <div class="stack-row" style="margin-top:0">
-        <article class="stack-block b-grey"><div class="layer-nb">A · 01</div><i data-lucide="leaf"></i><h3 class="layer-ttl">启发性氛围</h3><p class="layer-desc">通过提问、叙事和植物情境提示，建立“为什么值得看”的入口。</p><div class="layer-tag">Plant Atmosphere</div></article>
-        <article class="stack-block b-accent"><div class="layer-nb">R · 02</div><i data-lucide="users"></i><h3 class="layer-ttl">观众关联性</h3><p class="layer-desc">把植物特征连接到触摸、用途、感官经验和行动可能性。</p><div class="layer-tag">Audience Relevance</div></article>
-        <article class="stack-block b-ink"><div class="layer-nb">S · 03</div><i data-lucide="signpost"></i><h3 class="layer-ttl">结构清晰性</h3><p class="layer-desc">用标识层级与视觉分区降低读解负荷，支撑关键区域可达。</p><div class="layer-tag">Signage Structure</div></article>
+        <div style="background:#fff;border:1px solid var(--accent);padding:2.5vh 2.5vw;display:flex;align-items:center;justify-content:space-between;gap:1.5vw">
+          <div style="flex:1">
+            <span class="t-meta" style="color:var(--accent)">INTERVENTION GROUP</span>
+            <h4 class="t-h-prod" style="font-size:14px;margin-bottom:0.5vh;color:var(--accent)">实验组 A2 (改良版)</h4>
+            <p class="t-body-sm" style="line-height:1.4;color:var(--text-primary);margin:0">整合大气泡问句引导（A）与感官用途框（R），运用模块设计引导动作映射。</p>
+          </div>
+          <img src="images/07-intervention-sign.jpg" alt="实验组改良标识" style="height:15vh;width:11vw;object-fit:contain;background:#fff;border:1px solid var(--border-subtle)">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-layout="S16" data-animate="field-notes">
+<section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段4：视线系统" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">STIMULUS MATERIAL · CONTROL VS EXPERIMENT</div><div class="r">05 / 16</div></div>
-    <div style="display:flex;justify-content:space-between;align-items:end;gap:3vw">
-      <div style="display:flex;flex-direction:column;gap:1.2vh">
-        
-        <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh)">实验组与对照组</h2>
+    <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 4 EYE TRACKING</div><div class="r">13 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
+      <div>
+        <h2 class="h-xl-zh" style="color:var(--ink)">阶段 4：眼动系统部署与射影校准</h2>
       </div>
-    </div>
-    <div class="slide5-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0;margin-top:2.6vh">
-      <article class="card-fill" style="padding:1.4vh 1.1vw 1.2vh;display:flex;flex-direction:column;gap:1vh;min-height:0">
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="t-meta">对照组</div><div class="t-body-sm">信息混杂在单一长文本中</div></div>
-        <div style="flex:1;min-height:0;position:relative;background:#fff">
-          <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center">
-            <div class="frame-img sign-aoi fit-contain" style="position:relative;width:100%;max-height:100%">
-              <img src="images/06-control-sign.jpg" data-image-slot="s16-brief-16x10" alt="对照版标识">
-            </div>
-          </div>
+
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:3vw;align-items:stretch">
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 2.5vw;display:flex;flex-direction:column;gap:1.2vh">
+          <h3 class="t-h-prod" style="font-size:16px;color:var(--accent);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
+            <i data-lucide="settings" style="width:20px;height:20px"></i>
+            非接触估计与漂移补偿
+          </h3>
+          <p class="t-body-sm" style="color:var(--text-primary);margin:0">
+            基于 WebGazer.js 研发 non-contact 视线估计系统 **SIGN Visual Attention**。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。
+          </p>
         </div>
-      </article>
-      <article class="card-fill" style="padding:1.4vh 1.1vw 1.2vh;display:flex;flex-direction:column;gap:1vh;min-height:0;border-top:2px solid var(--accent)">
-        <div style="display:flex;justify-content:space-between;align-items:center"><div class="t-meta">实验组</div><div class="t-body-sm">应用 A/R 原则进行独立分区设计</div></div>
-        <div style="flex:1;min-height:0;position:relative;background:#fff">
-          <div style="position:absolute;top:0;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center">
-            <div class="frame-img sign-aoi fit-contain" style="position:relative;width:100%;max-height:100%">
-              <img src="images/07-intervention-sign.jpg" data-image-slot="s16-brief-16x10" alt="实验版标识">
-            </div>
-          </div>
+
+        <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 2.5vw;display:flex;flex-direction:column;gap:1.2vh">
+          <h3 class="t-h-prod" style="font-size:16px;color:var(--ink);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
+            <i data-lucide="crosshair" style="width:20px;height:20px"></i>
+            纸面 9 点校准映射
+          </h3>
+          <p class="t-body-sm" style="color:var(--text-primary);margin:0">
+            游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识的 2D 坐标系上。
+          </p>
         </div>
-      </article>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
+        <span style="font-size:16px;color:var(--text-helper)">ILLUSTRATION: Web 端 9 点视线偏移物理校准与误差补偿界面</span>
+        <div class="frame-img fit-cover" style="height:11vh;width:24vw;border-radius:0;border:1px solid var(--border-subtle)">
+          <img src="images/10-calibration.jpg" alt="眼动校准界面" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-layout="S16" data-animate="field-notes">
+<!-- Chapter 4: 结果与讨论 -->
+<section class="slide" data-chapter="4" data-chapter-title="结果与讨论" data-short-title="热力图一览" data-layout="S21" data-animate="statement-rise">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">EXPERIMENT QUESTIONS · INQUIRY</div><div class="r">06 / 16</div></div>
-    <div style="display:flex;flex-direction:column;gap:1vh">
-      
-      <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh);margin:0">实验探讨的具体问题</h2>
-    </div>
-    
-    <div class="slide6-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1;margin-top:3vh;min-height:0">
-      
-      <!-- Card Q1 -->
-      <article class="card-fill" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--border-subtle)">
-        <div style="display:flex;flex-direction:column;gap:2vh">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span class="t-meta" style="color:var(--accent);font-weight:700;font-size:14px">QUESTION 01</span>
-            <i data-lucide="eye" style="width:24px;height:24px;stroke-width:1.5;color:var(--accent)"></i>
-          </div>
-          <h3 class="t-h-prod" style="font-size:max(18px,1.4vw);font-weight:600;margin-top:1vh">Q1 · 完读率提升</h3>
-          <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">改良设计是否能提升受众对文字区域的<strong>完读率</strong>？</p>
-        </div>
-        <div style="border-top:1px solid var(--border-subtle);padding-top:1.5vh;margin-top:2vh">
-          <div class="t-meta" style="font-size:12px;opacity:0.7">评估指标</div>
-          <div class="t-body-sm" style="font-weight:500;font-size:14px;color:var(--text-secondary)">前 10 秒文字区域完读率 (覆盖率)</div>
-        </div>
-      </article>
-
-      <!-- Card Q2 -->
-      <article class="card-fill" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--border-subtle)">
-        <div style="display:flex;flex-direction:column;gap:2vh">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span class="t-meta" style="color:var(--accent);font-weight:700;font-size:14px">QUESTION 02</span>
-            <i data-lucide="layout-grid" style="width:24px;height:24px;stroke-width:1.5;color:var(--accent)"></i>
-          </div>
-          <h3 class="t-h-prod" style="font-size:max(18px,1.4vw);font-weight:600;margin-top:1vh">Q2 · 注意分配</h3>
-          <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">视觉注意力是否被<strong>重新组织</strong>到核心设计区域？</p>
-        </div>
-        <div style="border-top:1px solid var(--border-subtle);padding-top:1.5vh;margin-top:2vh">
-          <div class="t-meta" style="font-size:12px;opacity:0.7">评估指标</div>
-          <div class="t-body-sm" style="font-weight:500;font-size:14px;color:var(--text-secondary)">各语义区域 (AOI) 注意力占比</div>
-        </div>
-      </article>
-
-      <!-- Card Q3 -->
-      <article class="card-accent" style="padding:3vh 2vw 2.5vh;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid var(--accent)">
-        <div style="display:flex;flex-direction:column;gap:2vh">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span class="t-meta" style="color:var(--accent-on);font-weight:700;font-size:14px;opacity:0.9">QUESTION 03</span>
-            <i data-lucide="trending-up" style="width:24px;height:24px;stroke-width:1.5;color:var(--accent-on)"></i>
-          </div>
-          <h3 class="t-h-prod" style="font-size:max(18px,1.4vw);font-weight:600;color:var(--accent-on);margin-top:1vh">Q3 · 效能比较</h3>
-          <p class="t-body-sm" style="line-height:1.6;color:var(--accent-on)">在 A/R/S 原则中，哪种设计介入产生的<strong>效应最强、最稳定</strong>？</p>
-        </div>
-        <div style="border-top:1px solid rgba(255,255,255,0.25);padding-top:1.5vh;margin-top:2vh">
-          <div class="t-meta" style="font-size:12px;color:var(--accent-on);opacity:0.7">评估指标</div>
-          <div class="t-body-sm" style="font-weight:500;font-size:14px;color:var(--accent-on)">9名有效被试的各区注意力增幅</div>
-        </div>
-      </article>
-
-    </div>
-    
-    <div class="t-body-sm slide5-note" style="border-top:1px solid var(--border-subtle);padding-top:1.8vh;margin-top:2.6vh">注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。</div>
-  </div>
-</section>
-
-<section class="slide" data-layout="S22" data-animate="image-hero">
-  <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 58%;overflow:hidden;background:var(--grey-1)">
-      <img src="images/02-experiment-scene.jpg" data-image-slot="s22-hero-21x9" alt="实验现场中的非接触眼动记录" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%">
-      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;color:rgba(255,255,255,.9);padding:5.6vh 5vw 0"><div class="l">METHODOLOGY · NON-CONTACT GAZE TRACKING TOOL</div><div class="r">07 / 16</div></div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:42vw"><div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">眼动追踪的现场<br/>测量系统与软硬件</div></div>
-    </div>
-    <div data-anim="kpi" class="image-hero-body" style="grid-template-columns:4.2fr 7.8fr">
-      <div style="max-width:52ch;font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.25vw);line-height:1.55;font-weight:400;color:var(--text-primary)">参与者在自然状态下阅读实体印刷标识。系统仅通过普通网络摄像头捕捉面部与眼部状态，实时估计视线视点，并将其动态映射至纸面二维坐标，输出学术分析级热力图与眼动轨迹。</div>
-      <div class="image-hero-stats" style="gap:2.5vw;grid-template-columns:1fr 1fr 1fr">
-        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">TOOL</div><div style="font-family:var(--sans);font-weight:200;font-size:min(2.6vw,4.8vh);line-height:1.05;letter-spacing:-.03em;margin:1.2vh 0 0.8vh">SIGN Visual<br/>Attention v3</div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.25">基于 WebGazer 核心研发的非接触式眼动追踪与注视分析软件。</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">PROCESS</div><div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(2.6vw,4.8vh);line-height:1.05;letter-spacing:-.03em;margin:1.2vh 0 0.8vh">阅读两个标识</div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.35">依次阅读一个控制组和一个实验组纸质标识，记录被试在自然观看状态下的视线轨迹。</p></div>
-        <div style="display:flex;flex-direction:column;gap:.6vh;min-width:0"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">OUTPUT</div><div style="font-family:var(--sans);font-weight:200;font-size:min(2.6vw,4.8vh);line-height:1.05;letter-spacing:-.03em;color:var(--accent);margin:1.2vh 0 0.8vh">注视点数据</div><p class="body-sm" style="margin-top:auto;font-size:max(12px,.8vw);line-height:1.25">参与者的二维坐标与注视流数据，用于后续的 AOI 语义分析。</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-layout="S16" data-animate="field-notes">
-  <div class="canvas-card">
-    <div class="chrome-min"><div class="l">METHODOLOGY · GAZE ESTIMATION & PAPER COORDINATE PROJECTION</div><div class="r">08 / 16</div></div>
-    <div style="display:grid;grid-template-columns:7fr 5fr;gap:2.4vw;flex:1;min-height:0">
-      <div style="display:flex;flex-direction:column;gap:1.2vh;min-height:0">
-        <div class="t-meta">SIGN VISUAL ATTENTION V3</div>
-        <div class="frame-img r-16x10 fit-contain swiss-lined slide8-frame-img" style="max-height:none;flex:1">
-          <img src="images/13-tool-live-interface.png" data-image-slot="s16-brief-16x10" alt="SIGN Visual Attention v3 网页界面截图">
-        </div>
-        <div class="t-body-sm tool-url" style="border-top:1px solid var(--border-subtle);padding-top:1vh">https://pcerony.github.io/eye-tracking-tool-3/</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:1.6vh">
-        <h2 class="h-xl-zh" style="font-size:min(4.4vw,7.8vh)">视线估计原理与物理坐标投影映射</h2>
-        <div class="brief-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.2vh 1vw;margin-top:auto">
-          <article class="card-fill" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
-            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent)"><i data-lucide="camera" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta">01 CAMERA</div></div>
-            <p class="t-body-sm">普通网络摄像头实时捕获被试面部与眼部反射特征。</p>
-          </article>
-          <article class="card-fill" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
-            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent)"><i data-lucide="eye" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta">02 WEBGAZER</div></div>
-            <p class="t-body-sm">利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。</p>
-          </article>
-          <article class="card-fill" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
-            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent)"><i data-lucide="map-pinned" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta">03 PAPER MAP</div></div>
-            <p class="t-body-sm">通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。</p>
-          </article>
-          <article class="card-accent" style="padding:1.5vh 1.1vw;display:flex;flex-direction:column;gap:1vh">
-            <div style="display:flex;align-items:center;gap:.8vw;color:var(--accent-on)"><i data-lucide="download" style="width:22px;height:22px;stroke-width:1.7"></i><div class="t-meta" style="color:var(--accent-on)">04 OUTPUT</div></div>
-            <p class="t-body-sm" style="color:var(--accent-on);opacity:.9">导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。</p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-layout="S16" data-animate="field-notes">
-  <div class="canvas-card">
-    <div class="chrome-min tight"><div class="l">METHODOLOGY · EXPERIMENT PROCEDURE & ON-SITE PROTOCOL</div><div class="r">09 / 16</div></div>
-    <div class="flow-split" data-flow-group>
-      <div class="flow-step-list">
-        <button class="flow-step active" type="button" data-flow-step="0"><span class="nb">01</span><span><span class="ttl">环境与设备校验</span><span class="mini">确认受光、面部捕捉与摄像头状态。</span></span><i data-lucide="camera"></i></button>
-        <button class="flow-step" type="button" data-flow-step="1"><span class="nb">02</span><span><span class="ttl">9点物理空间校准</span><span class="mini">建立视线估计与纸面坐标的映射。</span></span><i data-lucide="crosshair"></i></button>
-        <button class="flow-step" type="button" data-flow-step="2"><span class="nb">03</span><span><span class="ttl">自由观看与视轨记录</span><span class="mini">参与者自然阅读，系统静默记录视线。</span></span><i data-lucide="eye"></i></button>
-        <button class="flow-step" type="button" data-flow-step="3"><span class="nb">04</span><span><span class="ttl">数据导出与数据包清洗</span><span class="mini">保存注视点、轨迹、热力图与 AOI 统计。</span></span><i data-lucide="download"></i></button>
-      </div>
-      <div class="flow-detail">
-        <article class="flow-panel active" data-flow-panel="0">
-          <div class="frame-img carousel" data-carousel>
-            <div class="carousel-track" data-carousel-track>
-              <div class="carousel-slide"><img src="images/01a.jpg" alt="现场摄像头与阅读环境校验"></div>
-              <div class="carousel-slide"><img src="images/01b.jpg" alt="面部识别与视线捕捉范围校验"></div>
-            </div>
-            <button class="carousel-btn carousel-btn-prev" data-carousel-prev type="button"><i data-lucide="chevron-left"></i></button>
-            <button class="carousel-btn carousel-btn-next" data-carousel-next type="button"><i data-lucide="chevron-right"></i></button>
-            <div class="carousel-dots" data-carousel-dots></div>
-          </div>
-          <div class="flow-copy"><div class="t-meta">CAMERA CHECK</div><p>在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。</p></div>
-        </article>
-        <article class="flow-panel" data-flow-panel="1">
-          <div class="frame-img carousel" data-carousel>
-            <div class="carousel-track" data-carousel-track>
-              <div class="carousel-slide"><img src="images/02a.jpg" alt="纸面 9 点物理校准"></div>
-              <div class="carousel-slide"><img src="images/02b.jpg" alt="校准触发校验"></div>
-              <div class="carousel-slide"><img src="images/02c.png" alt="9点校准映射结果"></div>
-            </div>
-            <button class="carousel-btn carousel-btn-prev" data-carousel-prev type="button"><i data-lucide="chevron-left"></i></button>
-            <button class="carousel-btn carousel-btn-next" data-carousel-next type="button"><i data-lucide="chevron-right"></i></button>
-            <div class="carousel-dots" data-carousel-dots></div>
-          </div>
-          <div class="flow-copy"><div class="t-meta">9-POINT CALIBRATION</div><p>被试依次注视纸面 9 个物理校准点，实验者多次触发确认，用于校正空间透视映射并稳定纸面坐标。</p></div>
-        </article>
-        <article class="flow-panel" data-flow-panel="2">
-          <div class="frame-img carousel" data-carousel>
-            <div class="carousel-track" data-carousel-track>
-              <div class="carousel-slide"><img src="images/03a.jpg" alt="来园者现场自由观看"></div>
-              <div class="carousel-slide"><img src="images/03b.jpg" alt="视线轨迹记录"></div>
-              <div class="carousel-slide"><img src="images/03c.png" alt="视轨图与热力图后台流记录"></div>
-            </div>
-            <button class="carousel-btn carousel-btn-prev" data-carousel-prev type="button"><i data-lucide="chevron-left"></i></button>
-            <button class="carousel-btn carousel-btn-next" data-carousel-next type="button"><i data-lucide="chevron-right"></i></button>
-            <div class="carousel-dots" data-carousel-dots></div>
-          </div>
-          <div class="flow-copy"><div class="t-meta">FREE VIEWING</div><p>被试在自然状态下阅读纸面标识，系统在后台记录映射后的二维坐标、注视流和观看时序。</p></div>
-        </article>
-        <article class="flow-panel" data-flow-panel="3">
-          <div class="frame-img carousel" data-carousel>
-            <div class="carousel-track" data-carousel-track>
-              <div class="carousel-slide"><img src="images/04a.png" alt="数据清洗与导出"></div>
-              <div class="carousel-slide"><img src="images/04b.png" alt="热力图数据与 Quick Data 分析"></div>
-            </div>
-            <button class="carousel-btn carousel-btn-prev" data-carousel-prev type="button"><i data-lucide="chevron-left"></i></button>
-            <button class="carousel-btn carousel-btn-next" data-carousel-next type="button"><i data-lucide="chevron-right"></i></button>
-            <div class="carousel-dots" data-carousel-dots></div>
-          </div>
-          <div class="flow-copy"><div class="t-meta">DATA EXPORT</div><p>停止追踪后保存日志，导出注视点记录、归一化热力图、轨迹图与可修正的 AOI 统计表，用于 Quick Data 分析。</p></div>
-        </article>
-      </div>
-    </div>
-    <div class="t-body-sm slide9-footer-desc" style="border-top:1px solid var(--border-subtle);padding-top:2vh">样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。</div>
-  </div>
-</section>
-
-
-<section class="slide" data-layout="S03" data-animate="statement-rise">
-  <div class="canvas-card">
-    <div class="chrome-min"><div class="l">CORE FINDING · RESULT SUMMARY</div><div class="r">10 / 16</div></div>
-    <div style="flex:1;display:grid;grid-template-columns:2fr 10fr;align-items:center;gap:3vw">
-      <div class="t-meta" style="align-self:start;color:var(--accent)">RESULT<br/>IN ONE LINE</div>
-      <h1 data-anim="statement" style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.8vw,10vh);line-height:1.02;letter-spacing:-.028em;max-width:13ch">设计干预的核心成效：<br/>引导视线更早聚焦<br/><span style="color:var(--accent);font-weight:300">设计意图区域</span>。</h1>
-    </div>
-  </div>
-</section>
-
-<section class="slide" data-layout="S16" data-animate="field-notes">
-  <div class="canvas-card">
-    <div class="chrome-min"><div class="l">HEATMAP OVERVIEW · CONTROL VS INTERVENTION</div><div class="r">11 / 16</div></div>
+    <div class="chrome-min"><div class="l">HEATMAP OVERVIEW · CONTROL VS INTERVENTION</div><div class="r">08 / 13</div></div>
     <div class="heatmap-overview" data-heatmap-overview>
       <div style="display:flex;justify-content:space-between;align-items:end;gap:3vw">
         <h2 class="h-xl-zh" style="font-size:min(4.6vw,8.2vh);margin:0">结果热力图一览</h2>
@@ -2007,19 +2785,16 @@
             <figure class="heatmap-card" data-heatmap-card="control" data-heatmap-index="8"><img src="../ab2/academic_heatmap_yamada%20rena_a1%20%E4%BF%AE%E6%AD%A3%E7%89%881.png" alt="P09 控制组热力图"><figcaption>P09</figcaption></figure>
           </div>
         </section>
-        <nav class="heatmap-nav">
-          <div class="heatmap-label" style="border-top-color:transparent;padding-top:.9vh;font-size:13px;visibility:hidden" aria-hidden="true">&nbsp;</div>
-          <div class="heatmap-wheel">
-            <button class="heatmap-picker" type="button" data-heatmap-pick="0">P01</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="1">P02</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="2">P03</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="3">P04</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="4">P05</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="5">P06</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="6">P07</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="7">P08</button>
-            <button class="heatmap-picker" type="button" data-heatmap-pick="8">P09</button>
-          </div>
+        <nav class="heatmap-wheel" aria-label="Participant selector">
+          <button class="heatmap-picker active" type="button" data-heatmap-pick="0">P01</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="1">P02</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="2">P03</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="3">P04</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="4">P05</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="5">P06</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="6">P07</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="7">P08</button>
+          <button class="heatmap-picker" type="button" data-heatmap-pick="8">P09</button>
         </nav>
         <section class="heatmap-side">
           <div class="heatmap-label"><span>INTERVENTION GROUP</span><span>实验组</span></div>
@@ -2040,132 +2815,198 @@
   </div>
 </section>
 
-<section class="slide" data-layout="S06" data-animate="tower-grow">
+<!-- Chapter 4: 结果与讨论 - Q1 文字区域完读率提升 -->
+<section class="slide" data-chapter="4" data-chapter-title="结果与讨论" data-short-title="结果一：完读率提升" data-layout="S06" data-animate="tower-grow">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DATA 01 · INITIAL 10 SECONDS TEXT READING COVERAGE (Q1)</div><div class="r">12 / 16</div></div>
-    <div style="display:grid;grid-template-columns:4fr 8fr;gap:4vw;align-items:start;flex:1">
-      <div style="display:flex;flex-direction:column;gap:2vh">
-        
-        <h2 class="h-xl-zh" style="font-size:min(4.6vw,8.2vh)">Q1: 完读率是否有被提升 (前 10 秒覆盖率)</h2>
-        <p class="t-body">在前 10 秒的黄金阅读窗口中，实验组的文字区域完读率平均提升了 6.7pp (从对照组的 38.6% 提高到 45.3%)。这证明改良设计能有效提升阅读效率，迅速激活信息入口。</p>
+    <div class="chrome-min"><div class="l">DATA 01 · INITIAL 10 SECONDS TEXT READING COVERAGE (Q1)</div><div class="r">15 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0">
+      <!-- Top Row: Academic discussion -->
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:4vw;align-items:center">
+        <div>
+          <h2 class="h-xl-zh" style="color:var(--ink)">结果 (1)：初期文字区域完读率提升</h2>
+        </div>
+        <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">
+          文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 <strong>38.6%</strong> 提升至实验组的 <strong>45.3%</strong>（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 <strong>+8.2pp</strong>。这证明了实验组成功将视线从盲目扫视引流至感官行动区。
+        </p>
       </div>
-      <div class="bar-towers" style="height:58vh;margin-top:0">
-        <div class="bar-tower"><div class="cap"><i data-lucide="baseline"></i></div><div class="body-block h-2"><div class="lbl">CONTROL</div><div class="nb">38.6<span class="unit">%</span></div><div class="sub">对照组 (38.6%)</div></div></div>
-        <div class="bar-tower"><div class="cap"><i data-lucide="move-up-right"></i></div><div class="body-block h-3 b-accent"><div class="lbl">INTERVENTION</div><div class="nb">45.3<span class="unit">%</span></div><div class="sub">实验组 (45.3%)</div></div></div>
-        <div class="bar-tower"><div class="cap"><i data-lucide="plus"></i></div><div class="body-block h-1"><div class="lbl">DELTA</div><div class="nb">+6.7<span class="unit">pp</span></div><div class="sub">平均提升 +6.7pp</div></div></div>
-        <div class="bar-tower"><div class="cap"><i data-lucide="users"></i></div><div class="body-block h-2"><div class="lbl">RELIABILITY</div><div class="nb">6/9<span class="unit">人↑</span></div><div class="sub">9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp</div></div></div>
+      <!-- Bottom Row: Towers -->
+      <div class="bar-towers" style="height:38vh;margin-top:auto;margin-bottom:auto">
+        <div class="bar-tower"><div class="cap"><i data-lucide="baseline"></i></div><div class="body-block h-2" style="background:#fff;border:1px solid var(--border-subtle);color:var(--ink)"><div class="lbl">CONTROL</div><div class="nb">38.6<span class="unit">%</span></div><div class="sub">对照组完读率 (10s)</div></div></div>
+        <div class="bar-tower"><div class="cap"><i data-lucide="move-up-right"></i></div><div class="body-block h-3 b-accent" style="background:var(--accent);color:#fff"><div class="lbl">INTERVENTION</div><div class="nb">45.3<span class="unit">%</span></div><div class="sub">实验组完读率 (10s)</div></div></div>
+        <div class="bar-tower"><div class="cap"><i data-lucide="plus"></i></div><div class="body-block h-1" style="background:#fff;border:1px solid var(--border-subtle);color:var(--ink)"><div class="lbl">DELTA</div><div class="nb">+6.7<span class="unit">pp</span></div><div class="sub">平均完读率净增量</div></div></div>
+        <div class="bar-tower"><div class="cap"><i data-lucide="users"></i></div><div class="body-block h-2" style="background:#fff;border:1px solid var(--border-subtle);color:var(--ink)"><div class="lbl">RELIABILITY</div><div class="nb">6/9<span class="unit">人↑</span></div><div class="sub">中位提升 +8.2pp</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-layout="S07" data-animate="hbar-grow">
+<!-- Chapter 4: 结果与讨论 - Q2 & Q3 R原则与AOI注意力分配 -->
+<section class="slide" data-chapter="4" data-chapter-title="结果与讨论" data-short-title="结果二：R原则效应" data-layout="S20" data-animate="stacked-ledger">
   <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DATA 02 · AOI CATEGORY RELATIVE ATTENTION SHARE (Q2)</div><div class="r">13 / 16</div></div>
-    <div style="display:flex;flex-direction:column;gap:1.4vh">
-      
-      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">Q2: 注意力向设计意图区域重组 (AOI 占比)</h2>
-      <p class="t-body" style="max-width:75ch">实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。</p>
-    </div>
-    <div class="h-bar-chart" style="margin-top:auto;margin-bottom:auto;grid-template-columns:16em minmax(0,1fr) 9em;gap:1.2vh 1.6vw">
-        <!-- A/R 全程 对比 -->
-        <div class="row-lbl">A/R 目标区域 · 全程 (实验组)</div>
-        <div class="row-track"><div class="row-fill accent" style="width:60.2%"></div></div>
-        <div class="row-val">60.2<span class="unit">%</span></div>
-
-        <div class="row-lbl" style="color:var(--text-helper)">A/R 目标区域 · 全程 (对照组)</div>
-        <div class="row-track"><div class="row-fill grey" style="width:45.0%"></div></div>
-        <div class="row-val" style="color:var(--text-helper)">45.0<span class="unit">%</span></div>
-
-        <!-- A/R 10s 对比 -->
-        <div class="row-lbl" style="border-top:1px dashed var(--border-subtle);padding-top:1vh">A/R 目标区域 · 10s (实验组)</div>
-        <div class="row-track" style="margin-top:1vh"><div class="row-fill accent" style="width:47.8%"></div></div>
-        <div class="row-val" style="margin-top:1vh">47.8<span class="unit">%</span></div>
-
-        <div class="row-lbl" style="color:var(--text-helper)">A/R 目标区域 · 10s (对照组)</div>
-        <div class="row-track"><div class="row-fill grey" style="width:38.7%"></div></div>
-        <div class="row-val" style="color:var(--text-helper)">38.7<span class="unit">%</span></div>
-
-        <!-- 非目标区域 对比 -->
-        <div class="row-lbl" style="border-top:1px dashed var(--border-subtle);padding-top:1vh">非目标区域 · 全程 (实验组)</div>
-        <div class="row-track" style="margin-top:1vh"><div class="row-fill grey" style="width:19.8%"></div></div>
-        <div class="row-val" style="margin-top:1vh">19.8<span class="unit">%</span> <span style="font-size:11px;color:var(--accent);display:block;font-weight:normal;line-height:1.2;margin-top:0.2vh">S原则: 杂乱扫视大幅缩减</span></div>
-
-        <div class="row-lbl" style="color:var(--text-helper)">非目标区域 · 全程 (对照组)</div>
-        <div class="row-track"><div class="row-fill grey" style="width:34.5%"></div></div>
-        <div class="row-val" style="color:var(--text-helper)">34.5<span class="unit">%</span></div>
+    <div class="chrome-min"><div class="l">DATA 03 · AUDIENCE RELEVANCE EFFECT (Q3)</div><div class="r">16 / 19</div></div>
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0">
+      <!-- Top Row: Academic Discussion -->
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:4vw;align-items:center">
+        <div>
+          <h2 class="h-xl-zh" style="color:var(--ink)">结果 (2)：R原则发挥核心决定性效应</h2>
+        </div>
+        <p class="t-body-sm" style="line-height:1.55;color:var(--text-primary)">
+          对各语义兴趣区（AOI）进行分类分析，结果证实了 <strong>Audience Relevance（R原则，感官与栽培用途）</strong> 获得了极强的注意力捕获效能，注意力从其他装饰区（21.2% -> 8.9%）成功引流。而 Inspirational Atmosphere（A原则）主要充当阅读情境的引导漏斗。
+        </p>
       </div>
-    <div class="t-body-sm" style="border-top:1px solid var(--border-subtle);padding-top:1.8vh">对照组参考：A/R 相关区域 10s 为 38.7%，全程为 45.0%；非目标区域 10s 为 30.1%，全程为 34.5%。</div>
-  </div>
-</section>
-
-<section class="slide" data-layout="S20" data-animate="stacked-ledger">
-  <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DATA 03 · AUDIENCE RELEVANCE EFFECT (Q3)</div><div class="r">14 / 16</div></div>
-    <div style="display:grid;grid-template-columns:4fr 8fr;gap:4vw;flex:1;min-height:0">
-      <div style="display:flex;flex-direction:column;gap:2vh">
-        
-        <h2 class="h-xl-zh" style="font-size:min(4.6vw,8.2vh)">Q3: 观众关联性 (R原则) 产生最稳定、最强的视线吸引效应</h2>
-        <p class="t-body">“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。</p>
-      </div>
+      <!-- Bottom Row: Stacked Ledger -->
       <div style="display:flex;flex-direction:column;justify-content:center;gap:0">
-        <div class="ledger-row" style="display:grid;grid-template-columns:5fr 4fr 3fr;gap:2vw;align-items:end;border-bottom:1px solid var(--border-subtle);padding:2.2vh 0">
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(8vw,13vh);line-height:.9;letter-spacing:-.04em;color:var(--accent)">5.0 → 21.4<span style="font-size:.25em;font-weight:300;margin-left:.2em">%</span></div><div class="t-h-prod">前 10 秒 R 区注意力占比</div><div class="t-body-sm">提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。</div>
+        <div class="ledger-row" style="display:grid;grid-template-columns:5fr 4fr 3fr;gap:2vw;align-items:end;border-bottom:1px solid var(--border-subtle);padding:1.8vh 0">
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(8vw,13vh);line-height:.9;letter-spacing:-.04em;color:var(--accent)">5.0 → 21.4<span style="font-size:.25em;font-weight:300;margin-left:.2em">%</span></div>
+          <div class="t-h-prod" style="color:var(--ink)">前 10 秒 R 区注意力占比</div>
+          <div class="t-body-sm" style="color:var(--text-primary)">提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。</div>
         </div>
-        <div class="ledger-row" style="display:grid;grid-template-columns:5fr 4fr 3fr;gap:2vw;align-items:end;border-bottom:1px solid var(--border-subtle);padding:2.2vh 0">
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(8vw,13vh);line-height:.9;letter-spacing:-.04em;color:var(--accent)">8.5 → 35.1<span style="font-size:.25em;font-weight:300;margin-left:.2em">%</span></div><div class="t-h-prod">全程时间 R 区注意力占比</div><div class="t-body-sm">大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。</div>
+        <div class="ledger-row" style="display:grid;grid-template-columns:5fr 4fr 3fr;gap:2vw;align-items:end;border-bottom:1px solid var(--border-subtle);padding:1.8vh 0">
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(8vw,13vh);line-height:.9;letter-spacing:-.04em;color:var(--accent)">8.5 → 35.1<span style="font-size:.25em;font-weight:300;margin-left:.2em">%</span></div>
+          <div class="t-h-prod" style="color:var(--ink)">全程时间 R 区注意力占比</div>
+          <div class="t-body-sm" style="color:var(--text-primary)">大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。</div>
         </div>
-        <div class="ledger-row" style="display:grid;grid-template-columns:5fr 4fr 3fr;gap:2vw;align-items:end;padding:2.2vh 0">
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(8vw,13vh);line-height:.9;letter-spacing:-.04em">9/9</div><div class="t-h-prod">全样本表现一致</div><div class="t-body-sm">在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。</div>
+        <div class="ledger-row" style="display:grid;grid-template-columns:5fr 4fr 3fr;gap:2vw;align-items:end;padding:1.8vh 0">
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(8vw,13vh);line-height:.9;letter-spacing:-.04em;color:var(--ink)">9 / 9人</div>
+          <div class="t-h-prod" style="color:var(--ink)">全样本表现一致</div>
+          <div class="t-body-sm" style="color:var(--text-primary)">在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-layout="S08" data-animate="duo-mirror">
-  <div class="canvas-card">
-    <div class="chrome-min"><div class="l">DISCUSSION · LIMITATIONS & INTERPRETATION</div><div class="r">15 / 16</div></div>
-    <div style="display:flex;flex-direction:column;gap:1.4vh">
-      
-      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">讨论与局限：全程完读率下降的客观判读</h2>
-    </div>
-    <div class="duo-compare">
-      <div class="col"><div class="col-tag"><span class="num">01</span>事实与边界</div><div class="col-ttl">全程文字覆盖率下降</div><p class="col-desc">实验组的全程文字区域覆盖率从 65.4% 降至 60.0%，这是本次 Quick Data 中必须承认的结果。它说明改良版并没有在全程尺度上增加文字区域的总体覆盖量。</p><ul class="col-list"><li>不能宣称“整体阅读量全面提升”</li><li>当前结论基于 9 名有效样本与修正后热力图</li><li>结果可能受到现场环境、观看路径与个体兴趣差异影响</li></ul></div>
-      <span class="vrule"></span>
-      <div class="col accent"><div class="col-tag"><span class="num">02</span>讨论方向</div><div class="col-ttl">早期入口与 AOI 重组</div><p class="col-desc">在承认全程完读率下降的前提下，其他指标显示注意力并非简单减少，而是向特定语义区域重新分配。这更适合表述为局部有效，而非全局阅读量提升。</p><ul class="col-list"><li>前 10 秒文字覆盖率 38.6% → 45.3%，9 人中 6 人上升</li><li>A/R 目标区域全程占比 45.0% → 60.2%</li><li>R 区全程占比 8.5% → 35.1%，9 名样本均上升</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide split" data-layout="SWISS-CLOSING-ASCII" data-animate="split-statement">
+<!-- Chapter 5: 结论与未来展望 -->
+<section class="slide split" data-chapter="5" data-chapter-title="结论与未来展望" data-short-title="研究结论" data-layout="SWISS-CLOSING-ASCII" data-animate="split-statement">
   <div class="canvas-card">
     <div class="split-half">
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
-        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">16 / 16</div><div class="r">CLOSING</div></div>
+        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1"><div class="l">17 / 19</div><div class="r">CONCLUSIONS</div></div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
-          
-          <h2 class="slide16-title" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">总结：从信息解说<br/>转向<span style="font-style:italic;font-weight:300">行为与体验诱导</span></h2>
-          <div style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1vw);line-height:1.6;color:rgba(255,255,255,.82);font-weight:400;max-width:38ch;margin-top:1.4vh">A/R/S 的核心价值并非修饰版面，而是系统性重构注意力，将无序的“盲目扫视”组织为具有非正式学习与感官体验意义的深度阅读。</div>
+          <h2 class="slide16-title" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">结论：解决非正式<br/><span style="font-style:italic;font-weight:300">学习中的结构性失败</span></h2>
+          <div style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1vw);line-height:1.6;color:rgba(255,255,255,.82);font-weight:400;max-width:38ch;margin-top:1.4vh">本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。</div>
         </div>
-        <div data-anim="signature" style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1"><div class="t-meta" style="color:rgba(255,255,255,.62)">EXPERIMENT DATA ANALYSIS</div><div class="t-meta" style="color:rgba(255,255,255,.62)">2026.06</div></div>
+        <div data-anim="signature" style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1"><div class="t-meta" style="color:rgba(255,255,255,.62)">MASTER'S REPORT</div><div class="t-meta" style="color:rgba(255,255,255,.62)">KYUSHU UNIVERSITY</div></div>
       </div>
       <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
-        <div class="chrome-min"><div class="l">RQ ANSWERS</div><div class="r">Q1-Q3</div></div>
+        <div class="chrome-min"><div class="l">CONTRIBUTIONS</div><div class="r">THREE PILLARS</div></div>
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:2.2vh">
-          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh"><div class="t-meta">Q1</div><div><h3 class="t-h-prod">前 10 秒文字覆盖率提升</h3><p class="t-body-sm">改良版在早期阅读窗口中提升文字区域覆盖率：38.6% → 45.3%；但全程文字覆盖率下降，不能解释为整体阅读量全面增加。</p></div></div>
-          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh"><div class="t-meta">Q2</div><div><h3 class="t-h-prod">注意力转向设计意图区域</h3><p class="t-body-sm">A/R 目标区域的注意力占比上升：10 秒内 38.7% → 47.8%，全程 45.0% → 60.2%，说明视线被重新组织到核心语义区。</p></div></div>
-          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--accent);padding-top:2vh"><div class="t-meta" style="color:var(--accent)">Q3</div><div><h3 class="t-h-prod" style="color:var(--accent)">R 原则产生最稳定效应</h3><p class="t-body-sm">观众关联性区域提升最明显：前 10 秒 5.0% → 21.4%，全程 8.5% → 35.1%，且 9 名有效样本均出现上升。</p></div></div>
+          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh">
+            <div class="t-meta" style="color:var(--ink);font-weight:600">01</div>
+            <div>
+              <h3 class="t-h-prod" style="color:var(--ink)">方法论贡献 (Methodological)</h3>
+              <p class="t-body-sm" style="line-height:1.5;color:var(--text-primary)">建立标准化转化闭环，将杂散的用户行为数据或共创意见，结构化输出为具备证据支撑的解说设计系统参数。</p>
+            </div>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh">
+            <div class="t-meta" style="color:var(--ink);font-weight:600">02</div>
+            <div>
+              <h3 class="t-h-prod" style="color:var(--ink)">应用实践价值 (Applied)</h3>
+              <p class="t-body-sm" style="line-height:1.5;color:var(--text-primary)">A/R/S 设计优化原则突破了场域限制，可直接移植运用至科学馆、历史博览会和自然博物馆等非正式教育界面中。</p>
+            </div>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh">
+            <div class="t-meta" style="color:var(--accent);font-weight:600">03</div>
+            <div>
+              <h3 class="t-h-prod" style="color:var(--accent)">工具链支持 (Instrumental)</h3>
+              <p class="t-body-sm" style="line-height:1.5;color:var(--text-primary)">
+                开源非接触式视线系统 SIGN Visual Attention 证明了利用常规摄像头和大棚本地计算开展学术分析的轻量化潜能。
+              </p>
+            </div>
+          </div>
         </div>
-        <div data-anim="foot" class="t-meta" style="color:var(--text-helper);text-align:right">END OF FIELD NOTE</div>
+        <div data-anim="foot" class="t-meta" style="color:var(--text-helper);text-align:right">RESEARCH CONCLUSIONS</div>
       </div>
     </div>
   </div>
 </section>
 
+<section class="slide split" data-chapter="5" data-chapter-title="结论与未来展望" data-short-title="博士阶段展望" data-layout="SWISS-CLOSING-ASCII" data-animate="split-statement">
+  <div class="canvas-card">
+    <div class="split-half">
+      <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden;background-color:var(--ink)">
+        <canvas class="ascii-bg" aria-hidden="true"></canvas>
+        <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1;color:#fff"><div class="l">18 / 19</div><div class="r">FUTURE AGENDA</div></div>
+        <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
+          <h2 class="slide16-title" style="font-family:var(--sans),var(--sans-zh);font-size:min(6.5vw,11.5vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">博士阶段展望：<br/>从<span style="font-style:italic;font-weight:300">视觉捕获</span>到信息提取</h2>
+          <div style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1vw);line-height:1.6;color:rgba(255,255,255,.82);font-weight:400;max-width:38ch;margin-top:1.4vh">在第一阶段突破了“视觉可达性与注意力分流”屏障后，博士阶段将向大脑的信息解码与空间导航连贯性发起挑战。</div>
+        </div>
+        <div data-anim="signature" style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1;color:#fff"><div class="t-meta" style="color:rgba(255,255,255,.62)">DOCTORAL RESEARCH AGENDA</div></div>
+      </div>
+      <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
+        <div class="chrome-min"><div class="l">NEXT STEPS</div><div class="r">TARGETING PROBLEM 2</div></div>
+        <div data-anim="rules" style="display:flex;flex-direction:column;gap:2.2vh">
+          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh">
+            <div class="t-meta" style="color:var(--ink);font-weight:600">STEP 1</div>
+            <div>
+              <h3 class="t-h-prod">解决第二痛点：信息记忆衰退</h3>
+              <p class="t-body-sm" style="line-height:1.5;color:var(--text-primary)">引入认知负荷理论 (Sweller, 1988) 与双重编码理论 (Paivio, 1971)，研究如何通过合理的图文匹配优化大脑记忆编码强度。</p>
+            </div>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh">
+            <div class="t-meta" style="color:var(--ink);font-weight:600">STEP 2</div>
+            <div>
+              <h3 class="t-h-prod">全生命周期眼动与延迟信息召回</h3>
+              <p class="t-body-sm" style="line-height:1.5;color:var(--text-primary)">结合更长期的动态视线数据流，在游客离开温室 10-30 分钟后开展延迟记忆提取实验，探明注视时间与最终知识存留的关系系数。</p>
+            </div>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh">
+            <div class="t-meta" style="color:var(--accent);font-weight:600">STEP 3</div>
+            <div>
+              <h3 class="t-h-prod" style="color:var(--accent)">突破空间不连续性</h3>
+              <p class="t-body-sm" style="line-height:1.5;color:var(--text-primary)">
+                从单体标识研究过渡到系统布局（空间动线引导、 inter-sign continuity），研究标识群的空间排布对游客在大温室中建立连贯心智地图的价值。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div data-anim="foot" class="t-meta" style="color:var(--text-helper);text-align:right">DOCTORAL AGENDA</div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- Chapter 6: 参考文献 -->
+<section class="slide" data-chapter="6" data-chapter-title="参考文献" data-short-title="References" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min"><div class="l">REFERENCES</div><div class="r">19 / 19</div></div>
+    <div style="display:flex;flex-direction:column;gap:1.4vh">
+      <h2 class="h-xl-zh" style="font-size:min(4.8vw,8.5vh)">参考文献 (References)</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.6vh;margin-top:3vh;flex:1">
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.5vh">
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Bitgood, S. (2013).</strong> Attention and value: Keys to understanding museum visitors. <i>Left Coast Press</i>.</p>
+        </li>
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Ham, S. (2016).</strong> Interpretation: Making a difference on purpose. <i>Fulcrum Publishing</i>.</p>
+        </li>
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Paivio, A. (1971).</strong> Imagery and verbal processes. <i>Holt, Rinehart, and Winston</i>.</p>
+        </li>
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Serrell, B. (2015).</strong> Exhibit labels: An interpretive approach. <i>Bloomsbury Publishing</i>.</p>
+        </li>
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Spooner, S. L., et al. (2024).</strong> Using eye-tracking to create impactful interpretation signage for botanic gardens. <i>Journal of Zoological and Botanical Gardens, 5(3)</i>, 434-454.</p>
+        </li>
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Sweller, J. (1988).</strong> Cognitive load during problem solving: Effects on learning. <i>Cognitive Science, 12(2)</i>, 257-285.</p>
+        </li>
+        <li style="padding-bottom:1.5vh;border-bottom:1px solid var(--border-subtle)">
+          <p class="t-body-sm" style="line-height:1.6"><strong>Tilden, F. (1957).</strong> Interpreting our heritage. <i>University of North Carolina Press</i>.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 </div>
+</main>
 
 <div id="nav"></div>
 
@@ -2943,6 +3784,10 @@ function applyLanguage(lang, opts = {}){
     const active = btn.getAttribute('onclick').includes(`'${lang}'`);
     btn.classList.toggle('active', active);
   });
+
+  if(typeof updatePresentationIndicator === 'function'){
+    updatePresentationIndicator();
+  }
 }
 
 
@@ -2950,9 +3795,163 @@ function applyLanguage(lang, opts = {}){
 const deck=document.getElementById('deck');
 const slides=deck.querySelectorAll('.slide');
 const nav=document.getElementById('nav');
+const presentationIndicator=document.getElementById('presentation-indicator');
+const indicatorChapter=document.getElementById('indicator-chapter');
+const indicatorTitle=document.getElementById('indicator-title');
+const indicatorSectionPage=document.getElementById('indicator-section-page');
+const indicatorPage=document.getElementById('indicator-page');
+const indicatorProgress=document.getElementById('indicator-progress');
 let idx=0,total=slides.length,lock=false,playTO=null;
+let carouselGeometry={renderedWidth:1200,renderedHeight:900,gap:28,top:96};
 
-deck.style.width=(total*100)+'vw';
+slides.forEach(slide=>{
+  const shell=document.createElement('div');
+  shell.className='slide-shell';
+  slide.parentNode.insertBefore(shell,slide);
+  shell.appendChild(slide);
+});
+const slideShells=deck.querySelectorAll('.slide-shell');
+
+const CHAPTER_LABELS={
+  zh:['研究背景','研究设计','方法与工具','结果概览','数据发现','讨论与结论'],
+  en:['Context','Research Design','Method & Tool','Result Overview','Findings','Discussion & Conclusion'],
+  ja:['研究背景','研究設計','方法とツール','結果概要','データ分析','考察と結論'],
+  'es-MX':['Contexto','Diseño de investigación','Método y herramienta','Resumen de resultados','Hallazgos','Discusión y conclusión']
+};
+
+function positionDeck(){
+  const pitch=carouselGeometry.renderedWidth+carouselGeometry.gap;
+  const x=(innerWidth-carouselGeometry.renderedWidth)/2-(idx*pitch);
+  deck.style.transform=`translate3d(${x}px,0,0)`;
+}
+
+function updateCarouselGeometry(){
+  const indicatorBottom=presentationIndicator.getBoundingClientRect().bottom;
+  const vMargin=Math.max(64,Math.round(indicatorBottom+20));
+  const maxHeight=Math.max(240,innerHeight-2*vMargin);
+  const widthRatio=innerWidth<=900?.74:.70;
+  const maxWidth=Math.max(360,innerWidth*widthRatio);
+  const scale=Math.min(maxWidth/1200,maxHeight/900,1);
+  const renderedWidth=1200*scale;
+  const renderedHeight=900*scale;
+  const gap=Math.max(16,Math.min(28,innerWidth*.018));
+  
+  // Center slide vertically in the viewport (always symmetric top & bottom spacing)
+  const top=Math.round((innerHeight-renderedHeight)/2);
+  
+  carouselGeometry={renderedWidth,renderedHeight,gap,top};
+  document.documentElement.style.setProperty('--slide-scale',String(scale));
+  document.documentElement.style.setProperty('--slide-render-width',`${renderedWidth}px`);
+  document.documentElement.style.setProperty('--slide-render-height',`${renderedHeight}px`);
+  document.documentElement.style.setProperty('--slide-gap',`${gap}px`);
+  deck.style.top=`${top}px`;
+  positionDeck();
+}
+
+function updateSlideStates(){
+  slides.forEach((slide,slideIndex)=>{
+    slide.classList.toggle('is-prev',slideIndex===idx-1);
+    slide.classList.toggle('is-current',slideIndex===idx);
+    slide.classList.toggle('is-next',slideIndex===idx+1);
+  });
+  slideShells.forEach((shell,slideIndex)=>{
+    shell.classList.toggle('is-prev',slideIndex===idx-1);
+    shell.classList.toggle('is-current',slideIndex===idx);
+    shell.classList.toggle('is-next',slideIndex===idx+1);
+  });
+}
+
+function initPresentationIndicator() {
+  const timelineChapters = document.getElementById('indicator-timeline-chapters');
+  if (!timelineChapters) return;
+  timelineChapters.innerHTML = '';
+
+  const chapters = {};
+  slides.forEach((slide, index) => {
+    const ch = Number(slide.dataset.chapter || 1);
+    if (!chapters[ch]) {
+      chapters[ch] = {
+        id: ch,
+        titleEn: (CHAPTER_LABELS.en[ch - 1] || '').toUpperCase(),
+        slides: []
+      };
+    }
+    chapters[ch].slides.push(index);
+  });
+
+  Object.keys(chapters).sort((a,b)=>a-b).forEach(chKey => {
+    const ch = chapters[chKey];
+    const group = document.createElement('div');
+    group.className = 'timeline-chapter-group';
+    group.dataset.chapterId = ch.id;
+
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'chapter-dots';
+
+    ch.slides.forEach(slideIndex => {
+      const dot = document.createElement('button');
+      dot.className = 'chapter-dot';
+      dot.dataset.slideIndex = slideIndex;
+      dot.setAttribute('aria-label', `Go to slide ${slideIndex + 1}`);
+      dot.onclick = () => go(slideIndex);
+      dotsContainer.appendChild(dot);
+    });
+
+    const label = document.createElement('div');
+    label.className = 'chapter-label';
+    label.textContent = ch.titleEn;
+
+    group.appendChild(dotsContainer);
+    group.appendChild(label);
+    timelineChapters.appendChild(group);
+  });
+}
+
+function updatePresentationIndicator(){
+  const slide=slides[idx];
+  if(!slide)return;
+  const chapter=Number(slide.dataset.chapter||1);
+  const peers=[...slides].filter(item=>Number(item.dataset.chapter||1)===chapter);
+  const localIndex=peers.indexOf(slide)+1;
+  const chapterNames=CHAPTER_LABELS[currentLanguage]||CHAPTER_LABELS.zh;
+  const heading=slide.querySelector('h1,h2');
+  const title=(heading?.textContent||slide.dataset.shortTitle||'').replace(/\s+/g,' ').trim();
+
+  // Left Titles
+  indicatorChapter.textContent = (CHAPTER_LABELS.en[chapter-1] || '').toUpperCase();
+  indicatorTitle.textContent = title;
+
+  // Page Numbers
+  indicatorSectionPage.textContent=`${String(localIndex).padStart(2,'0')} / ${String(peers.length).padStart(2,'0')}`;
+  indicatorPage.textContent=`${String(idx+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  indicatorProgress.style.width=`${((idx+1)/total)*100}%`;
+
+  // Timeline groups & dots active classes
+  const timelineChapters = document.getElementById('indicator-timeline-chapters');
+  if (timelineChapters) {
+    timelineChapters.querySelectorAll('.timeline-chapter-group').forEach(group => {
+      const chId = Number(group.dataset.chapterId);
+      const isCurrentChapter = (chId === chapter);
+      group.classList.toggle('is-active', isCurrentChapter);
+
+      const label = group.querySelector('.chapter-label');
+      if (label) {
+        label.classList.toggle('is-active', isCurrentChapter);
+        const chName = chapterNames[chId-1] || '';
+        label.textContent = chName.toUpperCase();
+      }
+
+      group.querySelectorAll('.chapter-dot').forEach(dot => {
+        const sIdx = Number(dot.dataset.slideIndex);
+        dot.classList.toggle('is-active', sIdx === idx);
+        dot.classList.toggle('is-visited', sIdx < idx);
+      });
+    });
+  }
+}
+
+updateCarouselGeometry();
+addEventListener('resize',()=>requestAnimationFrame(updateCarouselGeometry),{passive:true});
 
 slides.forEach((s,i)=>{
   const b=document.createElement('button');
@@ -2966,7 +3965,9 @@ function go(n){
   idx=Math.max(0,Math.min(total-1,n));
   window.__currentSlideIndex = idx;
   if(window.__prepareSlideMotion) window.__prepareSlideMotion(idx);
-  deck.style.transform=`translateX(${-idx*100}vw)`;
+  updateSlideStates();
+  positionDeck();
+  updatePresentationIndicator();
   nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   const el=slides[idx];
   const isDark = el.classList.contains('dark') || el.classList.contains('accent');
@@ -2976,6 +3977,13 @@ function go(n){
   if(window.__playSlide) playTO=setTimeout(()=>window.__playSlide(idx), 80);
   lock=true;setTimeout(()=>lock=false,700);
 }
+
+deck.addEventListener('click',event=>{
+  const slide=event.target.closest('.slide');
+  if(!slide)return;
+  if(slide.classList.contains('is-prev'))go(idx-1);
+  if(slide.classList.contains('is-next'))go(idx+1);
+});
 
 /* =============== ESC 索引视图 =============== */
 let overviewOn=false;
@@ -3226,6 +4234,7 @@ function initHeatmapOverview(){
 }
 initHeatmapOverview();
 
+initPresentationIndicator();
 captureI18nTargets();
 applyLanguage(currentLanguage);
 
@@ -3259,15 +4268,30 @@ try {
 }
 
 if(motion){
-  const { animate } = motion;
+  const rawAnimate = motion.animate;
+  const animate = (target, keyframes, options) => {
+    if (keyframes && typeof keyframes === 'object') {
+      if (Array.isArray(keyframes)) {
+        keyframes = keyframes.map(kf => {
+          const newKf = { ...kf };
+          if (newKf.opacity !== undefined) delete newKf.opacity;
+          return newKf;
+        });
+      } else {
+        keyframes = { ...keyframes };
+        if (keyframes.opacity !== undefined) delete keyframes.opacity;
+      }
+    }
+    return rawAnimate(target, keyframes, options);
+  };
   document.body.classList.add('motion-ready');
 
   /* ============================================================
      IBM Carbon Motion · 每个 recipe 服务一种表达
      不是一刀切的 stagger,而是把动效绑在内容语义上
      ============================================================ */
-  const EASE_PROD       = [.2, 0, .38, .9];
-  const EASE_ENTRY_EXP  = [0, 0, .3, 1];
+  const EASE_PROD       = [0.22, 1, 0.36, 1];
+  const EASE_ENTRY_EXP  = [0.34, 1.25, 0.64, 1];
 
   const slides = [...document.querySelectorAll('.slide')];
   const activeMotionControls = new WeakMap();
@@ -3345,7 +4369,7 @@ if(motion){
   function setPrepared(el, from='up'){
     const x = from === 'left' ? -24 : from === 'right' ? 24 : 0;
     const y = from === 'down' ? -18 : from === 'static' ? 0 : 18;
-    el.style.opacity = '0';
+    el.style.opacity = '1';
     el.style.transform = `translate(${x}px, ${y}px)`;
   }
 
@@ -3993,7 +5017,7 @@ if(motion){
     const finalTransform = opts.finalTransform ?? (el.dataset.motionOrigTransform || 'none');
     const fromTransform = opts.fromTransform ?? `translate(${x}px, ${y}px)`;
     run(slide, el,
-      {opacity:[0,1], transform:[fromTransform, finalTransform || 'none']},
+      {transform:[fromTransform, finalTransform || 'none']},
       {duration, delay, easing}
     );
     setTimeout(()=>restoreMotionItem(el), (delay + duration) * 1000 + 80);
@@ -4003,7 +5027,7 @@ if(motion){
     if(!el) return;
     const duration = opts.duration ?? .45;
     const delay = opts.delay ?? 0;
-    run(slide, el, {opacity:[0,1]}, {duration, delay, easing:opts.easing ?? EASE_PROD});
+    run(slide, el, {scale:[0.98, 1]}, {duration, delay, easing:opts.easing ?? EASE_PROD});
     setTimeout(()=>restoreMotionItem(el), (delay + duration) * 1000 + 80);
   }
 
@@ -4019,7 +5043,7 @@ if(motion){
     const duration = opts.duration ?? .48;
     const delay = opts.delay ?? 0;
     el.style.transformOrigin = opts.origin ?? 'left center';
-    run(slide, el, {opacity:[0,1], scaleX:[0,1]}, {duration, delay, easing:EASE_ENTRY_EXP});
+    run(slide, el, {scaleX:[0,1]}, {duration, delay, easing:EASE_ENTRY_EXP});
     setTimeout(()=>restoreMotionItem(el), (delay + duration) * 1000 + 80);
   }
 
