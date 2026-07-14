@@ -17,9 +17,9 @@ full-screen website.
 - Show the current slide centered, with narrow, clipped previews of adjacent
   slides on both sides.
 - Add rounded corners to the slide canvas and to meaningful visual elements.
-- Add a two-row top indicator: the upper row shows the chapter, while the lower
-  row shows the compact slide title and page numbers. Keep the chapter timeline
-  below these rows and do not render a full-width progress bar.
+- Keep the chapter timeline in the upper indicator area. Show the active slide
+  heading and overall page number in the lower footer; do not render a wide
+  progress bar or a two-row title header.
 - Preserve keyboard, wheel, touch, click-to-navigate, overview, language switch,
   reduced-motion, and low-power behavior.
 
@@ -43,10 +43,9 @@ pitch. No slide-specific JavaScript positioning is allowed.
 
 The indicator is outside the slide canvases and contains:
 
-- Chapter number and chapter name.
-- Current slide title in compact form.
-- Chapter-local position and overall page number, formatted as `01 / 02 · 06 / 19`.
-- A chapter timeline with clickable slide dots.
+- A chapter timeline with clickable slide dots in the upper region.
+- The active slide heading and overall page number in the lower footer.
+- Runtime-only chapter and local-position fields retained for compatibility.
 
 Chapter metadata is stored directly on each slide through `data-chapter` and
 `data-chapter-title`. The runtime derives page values from the current slide.
@@ -100,8 +99,8 @@ Automated structural tests must fail before implementation and then verify:
 - Logical slide dimensions are 1200 by 900 or an equivalent 4:3 ratio.
 - The deck uses a carousel pitch rather than `100vw` navigation.
 - Previous, current, and next state classes are assigned.
-- The top indicator exposes separate upper chapter and lower title/page rows,
-  plus the chapter timeline, without a full-width progress bar.
+- The top indicator exposes the upper chapter timeline and lower title/page
+  footer, without a full-width progress bar or a two-row title header.
 - `go()` updates the top indicator and neighboring slide states.
 - Existing motion and internationalization tests continue to pass.
 

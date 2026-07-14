@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Convert the 19-slide deck into a compact 4:3 carousel with visible adjacent-page edges, rounded surfaces, compressed content, and a detailed chapter-aware top indicator.
+**Goal:** Convert the 19-slide deck into a compact 4:3 carousel with visible adjacent-page edges, rounded surfaces, compressed content, and a chapter-aware indicator with a legacy footer.
 
 **Architecture:** Keep the single-file HTML deck and its existing slide markup, translations, and motion system. Add a stage-level presentation shell, compute one responsive carousel geometry in JavaScript, and derive indicator state from slide metadata. Lock behavior with a structural Node test before modifying production code, then verify visually in a real browser.
 
@@ -40,9 +40,9 @@ check('slides use a fixed 4:3 logical canvas', /--slide-width:\s*1200px[\s\S]*--
 check('top indicator includes chapter', /id="indicator-chapter"/);
 check('top indicator includes title', /id="indicator-title"/);
 check('top indicator includes page number', /id="indicator-page"/);
-check('top indicator uses an upper chapter row', /class="indicator-chapter-row"[\s\S]*id="indicator-chapter"/);
-check('top indicator uses a lower title/page row', /class="indicator-detail-row"[\s\S]*id="indicator-title"[\s\S]*id="indicator-page"/);
-check('deprecated wide indicator progress bar is removed', !/indicator-track|indicator-progress|indicatorProgress/.test(html));
+check('top indicator keeps the chapter timeline in the upper region', /id="presentation-indicator"[\s\S]*id="indicator-timeline-chapters"/);
+check('legacy footer owns the title and page', /id="presentation-footer"[\s\S]*id="indicator-title"[\s\S]*id="indicator-page"/);
+check('deprecated two-row header and wide progress bar are absent', !/indicator-detail-row|indicator-track/.test(html));
 check('slides provide chapter metadata', /data-chapter="\d+"\s+data-chapter-title=/);
 check('navigation assigns previous state', /classList\.toggle\('is-prev'/);
 check('navigation assigns current state', /classList\.toggle\('is-current'/);
@@ -81,20 +81,19 @@ Wrap the deck in a stage and place this indicator before it:
 ```html
 <main id="presentation-stage">
   <header id="presentation-indicator" aria-live="polite">
-    <div class="indicator-chapter-row">
-      <span id="indicator-chapter"></span>
-    </div>
-    <div class="indicator-detail-row">
-      <span id="indicator-title"></span>
-      <div class="indicator-position">
-        <span id="indicator-section-page"></span>
-        <span id="indicator-page"></span>
-      </div>
-    </div>
     <div class="indicator-timeline-container">
       <div id="indicator-timeline-chapters"></div>
     </div>
   </header>
+  <footer id="presentation-footer">
+    <span id="indicator-title" class="chapter-sub-zh"></span>
+    <span id="indicator-page" class="indicator-page-wrapper"></span>
+    <div style="display:none;">
+      <span id="indicator-chapter"></span>
+      <span id="indicator-section-page"></span>
+      <div class="indicator-track" aria-hidden="true"><span id="indicator-progress"></span></div>
+    </div>
+  </footer>
   <div id="deck">...</div>
 </main>
 ```
@@ -176,9 +175,9 @@ Assign chapters across the existing sequence:
 18-19  06 / Discussion & Conclusion
 ```
 
-Implement `updatePresentationIndicator()` to derive the chapter-local position
-and set the overall page string. Keep the chapter timeline dots synchronized
-with the current slide.
+Implement `updatePresentationIndicator()` to derive the chapter-local position,
+read the active slide's `h1` or `h2` into the footer title, and set the overall
+page string. Keep the chapter timeline dots synchronized with the current slide.
 
 - [ ] **Step 5: Preserve interactions and add preview click navigation**
 
@@ -304,8 +303,8 @@ Open `http://127.0.0.1:4173/ppt/index.html` at 1440 by 1000. Confirm:
 
 - The current 4:3 slide is fully visible.
 - Both adjacent slide edges are visible.
-- The top indicator contains an upper chapter row, a lower title/page row, and
-  the chapter timeline without a full-width progress bar.
+- The top indicator contains the chapter timeline, while the lower footer shows
+  the active title and page without a full-width progress bar.
 - No text overlaps the indicator or escapes the slide.
 
 Capture `output/playwright/focused-deck-desktop.png`.

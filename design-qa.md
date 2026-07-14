@@ -13,9 +13,9 @@
 - The previous slide's right edge and next slide's left edge remain visible.
 - The carousel uses a consistent gap and centers the active slide at both tested
   viewport sizes.
-- The top indicator is aligned to the active slide width and never overlaps it.
-- The indicator uses an upper chapter row and a lower title/page row; the former
-  full-width progress bar is absent.
+- The chapter timeline sits in the upper stage area and the active slide title
+  plus page number sit in the lower footer without overlapping the slide.
+- The deprecated two-row title header and full-width progress bar are absent.
 
 ## Visual Hierarchy
 
@@ -52,8 +52,8 @@
 - ESC overview opened and closed successfully.
 - ESC overview rendered all 19 thumbnails at usable height across five rows;
   the former collapsed final row is gone.
-- The language switch changed the document to English and updated the indicator
-  to `03 · Method & Tool`; switching back to Chinese also succeeded.
+- The language switch changed the document language while the footer continued
+  to follow the active slide heading; switching back to Chinese also succeeded.
 
 ## Responsiveness And Runtime
 

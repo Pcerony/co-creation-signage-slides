@@ -4,7 +4,7 @@
 
 **Goal:** Bring the focused 4:3 deck, its conventions, browser behavior, and Git history into one consistent, testable state.
 
-**Architecture:** Keep the single-file HTML deck and vanilla runtime. Make the stage indicator the only presentation chrome, centralize localized indicator titles, remove truncation and viewport-dependent typography from the source, and retain the existing carousel/motion architecture. Generated QA output remains local and is ignored; source rules and durable QA documentation are committed.
+**Architecture:** Keep the single-file HTML deck and vanilla runtime. Make the stage indicator the only presentation chrome, keep the legacy chapter-timeline-plus-footer navigation contract, remove truncation and viewport-dependent typography from the source, and retain the existing carousel/motion architecture. Generated QA output remains local and is ignored; source rules and durable QA documentation are committed.
 
 **Tech Stack:** HTML, CSS, vanilla JavaScript, Node assertion scripts, Playwright CLI, Git.
 
@@ -61,7 +61,7 @@ Expected: the new visibility, truncation, typography, and localization checks fa
 
 - [x] **Step 3: Add a browser regression script**
 
-The script opens \`http://127.0.0.1:4174/ppt/index.html\`, checks the visible indicator fields and 4:3 bounds, switches to English in the overview, checks that the indicator title changes language, verifies all 19 overview thumbnails occupy five usable rows, navigates once, and asserts exactly one previous/current/next state where applicable.
+The script opens \`http://127.0.0.1:4174/ppt/index.html\`, checks the legacy footer fields and 4:3 bounds, switches the overview language without changing the heading-driven footer contract, verifies all 19 overview thumbnails occupy five usable rows, navigates once, and asserts exactly one previous/current/next state where applicable.
 
 - [x] **Step 4: Commit only the regression tests**
 
@@ -70,7 +70,7 @@ git add test/check-focused-deck.js test/check-focused-deck-browser.js
 git commit -m "test: lock deck hardening regressions"
 \`\`\`
 
-### Task 3: Make The Presentation Indicator Visible And Localized
+### Task 3: Make The Presentation Indicator Visible And Localized (Superseded By Task 7)
 
 **Files:**
 - Modify: \`ppt/index.html\`
@@ -151,7 +151,7 @@ Use 19 slides and 6 chapters consistently, including the indicator page example 
 
 - [x] **Step 2: Update QA claims to match the enforced rules**
 
-Replace the line-clamp claim with full-text visibility, record the visible indicator fields, record the localized title check, and preserve the actual browser viewport and console evidence.
+Replace the line-clamp claim with full-text visibility, record the legacy footer fields and heading-driven title check, and preserve the actual browser viewport and console evidence.
 
 - [x] **Step 3: Run documentation consistency checks**
 
@@ -193,3 +193,29 @@ Confirm every implementation/documentation change is represented by a focused co
 - [x] **Step 3: Stop the temporary server and report only verified results**
 
 Do not claim completion until all commands above have fresh, successful output.
+
+### Task 7: Restore The Legacy Navigation Contract
+
+**Files:**
+- Modify: \`ppt/index.html\`
+- Modify: \`test/check-focused-deck.js\`
+- Modify: \`test/check-focused-deck-browser.js\`
+- Modify: the durable design and QA records
+
+- [x] **Step 1: Lock the rollback contract with failing tests**
+
+Require the chapter timeline in the upper region, the active heading and total
+page in the lower footer, no two-row title header, and no visible wide progress
+bar.
+
+- [x] **Step 2: Restore the pre-hardening navigation implementation**
+
+Return the markup and CSS to the timeline-plus-footer structure used by the
+pre-hardening focused deck. Derive the footer title from the active slide's
+\`h1\` or \`h2\` instead of maintaining an independent title table.
+
+- [x] **Step 3: Verify desktop and narrow layouts**
+
+At 1440 x 1000 and 900 x 900, confirm the timeline and footer remain visible,
+the deprecated header and progress bar stay absent, the slide remains 4:3,
+adjacent previews remain usable, and the browser console stays clean.
