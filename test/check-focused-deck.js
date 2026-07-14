@@ -54,3 +54,35 @@ check(
   /slide\.classList\.contains\(['"]is-prev['"]\)[\s\S]*go\(idx\s*-\s*1\)/.test(html) &&
     /slide\.classList\.contains\(['"]is-next['"]\)[\s\S]*go\(idx\s*\+\s*1\)/.test(html)
 );
+
+const indicatorMarkup = html.match(
+  /<header\s+id="presentation-indicator"[\s\S]*?<\/header>/
+)?.[0] || '';
+const indicatorFields = [
+  'indicator-chapter',
+  'indicator-title',
+  'indicator-section-page',
+  'indicator-page',
+  'indicator-progress'
+];
+
+check(
+  'all indicator fields are owned by the visible header',
+  indicatorFields.every(id => indicatorMarkup.includes(`id="${id}"`)) &&
+    !/display\s*:\s*none/i.test(indicatorMarkup)
+);
+check('deck does not truncate text with line-clamp', !/line-clamp/i.test(html));
+check(
+  'font sizes use logical pixels instead of viewport units',
+  !/font-size\s*:[^;}]*(?:vw|vh)/i.test(html)
+);
+check(
+  'legacy viewport-sized deck shell is removed',
+  !/#deck\s*\{[^}]*width\s*:\s*10000vw/i.test(html) &&
+    !/\.slide\s*\{[^}]*width\s*:\s*100vw/i.test(html)
+);
+check(
+  'indicator titles have independent language packs',
+  /const\s+INDICATOR_TITLES\s*=/.test(html) &&
+    /INDICATOR_TITLES\[currentLanguage\]/.test(html)
+);
