@@ -1916,21 +1916,19 @@
   #presentation-indicator{
     position:absolute;z-index:40;top:20px;left:50%;
     width:min(95vw,1200px);transform:translateX(-50%);
-    display:grid;gap:8px;color:var(--ink);padding:0;
+    display:grid;gap:6px;color:var(--ink);padding:0;
   }
-  .indicator-topline{
-    display:grid;grid-template-columns:minmax(0,1fr) auto;
-    gap:16px;align-items:start;
-  }
-  .indicator-summary{
-    display:flex;align-items:baseline;gap:10px;min-width:0;
-    flex-wrap:wrap;line-height:1.2;
+  .indicator-chapter-row{
+    display:flex;align-items:baseline;min-width:0;min-height:16px;
   }
   .indicator-chapter{
     color:var(--accent);font-family:var(--mono);font-size:11px;
     font-weight:700;letter-spacing:.04em;white-space:nowrap;
   }
-  .indicator-separator{color:var(--text-helper);font-size:12px}
+  .indicator-detail-row{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;
+    gap:16px;align-items:baseline;min-width:0;
+  }
   .indicator-title{
     color:var(--text-primary);font-family:var(--sans),var(--sans-zh);
     font-size:14px;font-weight:600;min-width:0;overflow-wrap:anywhere;
@@ -1941,17 +1939,9 @@
     font-weight:700;white-space:nowrap;
   }
   .indicator-position .sep{color:var(--text-helper);font-weight:400}
-  .indicator-track{
-    width:100%;height:3px;background:rgba(10,10,10,.12);
-    border-radius:999px;overflow:hidden;
-  }
-  #indicator-progress{
-    display:block;width:0;height:100%;background:var(--accent);
-    border-radius:inherit;transition:width .42s var(--ease-prod);
-  }
   .indicator-timeline-container{
-    position:relative;display:flex;align-items:flex-end;padding-bottom:2px;
-    justify-content:center;width:100%;order:2;
+    position:relative;display:flex;align-items:flex-end;padding-top:2px;
+    justify-content:center;width:100%;
   }
   #indicator-timeline-chapters{
     position:relative;z-index:1;display:flex;align-items:flex-end;gap:24px;
@@ -2058,12 +2048,11 @@
 
   @media (max-width:900px){
     #presentation-indicator{width:calc(100vw - 32px);top:12px;}
-    .indicator-topline{gap:10px;}
-    .indicator-summary{gap:6px;}
+    .indicator-detail-row{gap:8px;}
     .chapter-label{display:none}
   }
   @media (prefers-reduced-motion:reduce){
-    #deck,.slide,.slide-shell,#indicator-progress{transition:none!important}
+    #deck,.slide,.slide-shell{transition:none!important}
   }
 </style>
 </head>
@@ -2096,12 +2085,11 @@
 
 <main id="presentation-stage">
 <header id="presentation-indicator" aria-live="polite">
-  <div class="indicator-topline">
-    <div class="indicator-summary">
-      <span id="indicator-chapter" class="indicator-chapter"></span>
-      <span class="indicator-separator" aria-hidden="true">·</span>
-      <span id="indicator-title" class="indicator-title"></span>
-    </div>
+  <div class="indicator-chapter-row">
+    <span id="indicator-chapter" class="indicator-chapter"></span>
+  </div>
+  <div class="indicator-detail-row">
+    <span id="indicator-title" class="indicator-title"></span>
     <div class="indicator-position">
       <span id="indicator-section-page"></span>
       <span class="sep" aria-hidden="true">·</span>
@@ -2111,7 +2099,6 @@
   <div class="indicator-timeline-container">
     <div id="indicator-timeline-chapters"></div>
   </div>
-  <div class="indicator-track" aria-hidden="true"><span id="indicator-progress"></span></div>
 </header>
 
 <div id="deck">
@@ -3635,7 +3622,6 @@ const indicatorChapter=document.getElementById('indicator-chapter');
 const indicatorTitle=document.getElementById('indicator-title');
 const indicatorSectionPage=document.getElementById('indicator-section-page');
 const indicatorPage=document.getElementById('indicator-page');
-const indicatorProgress=document.getElementById('indicator-progress');
 let idx=0,total=slides.length,lock=false,playTO=null;
 let carouselGeometry={renderedWidth:1200,renderedHeight:900,gap:28,top:96};
 
@@ -3784,7 +3770,6 @@ function updatePresentationIndicator(){
   // Page Numbers
   indicatorSectionPage.textContent=`${String(localIndex).padStart(2,'0')} / ${String(peers.length).padStart(2,'0')}`;
   indicatorPage.textContent=`${String(idx+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
-  indicatorProgress.style.width=`${((idx+1)/total)*100}%`;
 
   // Timeline groups & dots active classes
   const timelineChapters = document.getElementById('indicator-timeline-chapters');
