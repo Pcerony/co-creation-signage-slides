@@ -72,10 +72,15 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
   }));
   assert.strictEqual(localized.lang, 'en');
   assert.ok(localized.title && !/[\u3400-\u9fff]/.test(localized.title), 'English indicator title should not remain CJK text');
-  assert.notStrictEqual(localized.overviewDisplay, 'none', 'overview should remain open during language switch');
+  assert.notStrictEqual(localized.overviewDisplay, 'none', 'overview should remain mounted during language switch');
 
   await page.keyboard.press('Escape');
-  assert.strictEqual(await page.locator('#overview').evaluate(node => getComputedStyle(node).display), 'none');
+  await page.waitForTimeout(450);
+  const overviewClosed = await page.locator('#overview').evaluate(node => ({
+    active: node.classList.contains('active'),
+    visibility: getComputedStyle(node).visibility
+  }));
+  assert.deepStrictEqual(overviewClosed, { active: false, visibility: 'hidden' });
   assert.deepStrictEqual(consoleIssues, [], `browser console should be clean: ${consoleIssues.join('; ')}`);
 
   await browser.close();
