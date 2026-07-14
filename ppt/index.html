@@ -2043,18 +2043,77 @@
   .slide .bar-fill,.slide .row-fill{border-radius:inherit}
   .slide .rule{border-radius:999px}
 
+  /* Evidence pages: one editorial copy column beside one dominant image. */
+  .evidence-layout{
+    display:grid;grid-template-columns:5fr 7fr;gap:4vw;
+    flex:1;min-height:0;align-items:stretch;
+  }
+  .evidence-copy{
+    display:flex;flex-direction:column;min-width:0;
+    padding:2vh 0 1vh;
+  }
+  .evidence-copy h2{max-width:12ch}
+  .evidence-rule{border-top:2px solid var(--accent);margin:3vh 0 2.4vh}
+  .evidence-lead{
+    color:var(--accent);font-family:var(--sans),var(--sans-zh);
+    font-size:28px;font-weight:600;line-height:1.25;
+  }
+  .evidence-copy .t-body{max-width:30ch}
+  .evidence-meta{
+    display:flex;justify-content:space-between;align-items:end;
+    margin-top:auto;padding-top:2vh;border-top:1px solid var(--border-subtle);
+  }
+  .evidence-index{font-family:var(--mono);font-size:14px;color:var(--accent)}
+  .evidence-media{
+    min-height:0;height:auto;aspect-ratio:4/3;align-self:center;
+    border:0;border-top:2px solid var(--accent);background:var(--grey-1);
+  }
+  .evidence-media.evidence-media-wide{aspect-ratio:16/9}
+  .evidence-media img{object-fit:cover;object-position:center}
+  .evidence-media figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:1.2vh 1vw;
+    background:rgba(0,0,0,.62);color:#fff;font-family:var(--mono);
+    font-size:13px;letter-spacing:.08em;
+  }
+
+  /* Reduce generic neutral cards to open editorial groupings. */
+  .card-reduction-mode .slide div[style*="background:#fff"][style*="border:1px solid var(--border-subtle)"],
+  .card-reduction-mode .slide div[style*="background:#fff"][style*="border:1px solid var(--accent)"]{
+    background:transparent!important;border:0!important;
+    border-top:1px solid var(--border-subtle)!important;
+    border-radius:0!important;box-shadow:none!important;padding:2.6vh 0!important;
+  }
+  .card-reduction-mode .slide span[style*="background:#f5f5f4"]{
+    background:transparent!important;border-radius:0!important;
+    border-bottom:1px solid var(--border-subtle);padding:0!important;margin:0!important;
+  }
+  .card-reduction-mode .slide .card-fill:not(.card-ink):not(.card-accent),
+  .card-reduction-mode .slide .sub-card:not(.accent):not(.ink),
+  .card-reduction-mode .slide .sample-stat-card.neutral,
+  .card-reduction-mode .slide .flow-step:not(.active),
+  .card-reduction-mode .slide .duo-compare .col,
+  .card-reduction-mode .slide .ledger-row{
+    background:transparent!important;border:0!important;
+    border-top:1px solid var(--border-subtle)!important;
+    border-radius:0!important;box-shadow:none!important;
+  }
+
   @media (max-width:900px){
     #presentation-indicator{width:95vw;top:12px;}
     #presentation-footer{width:95vw;bottom:16px;}
     .chapter-sub-zh{display:none}
     .chapter-label{display:none}
+    .evidence-layout{grid-template-columns:1fr;gap:3vh}
+    .evidence-copy{padding:0}
+    .evidence-copy h2{max-width:100%}
+    .evidence-media,.evidence-media.evidence-media-wide{width:100%;aspect-ratio:16/9;align-self:stretch}
   }
   @media (prefers-reduced-motion:reduce){
     #deck,.slide,.slide-shell,#indicator-progress{transition:none!important}
   }
 </style>
 </head>
-<body class="canvas-mode motion-boot">
+<body class="canvas-mode motion-boot card-reduction-mode">
 <script>
   // Windows 平台标记 — 雅黑没有 ExtraLight,需要字重补偿
   if(/Win/i.test(navigator.platform || navigator.userAgentData?.platform || '')){
@@ -2162,58 +2221,50 @@
     </div>
 </section>
 
-<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：知识超载" data-layout="S16" data-animate="field-notes">
+<section class="slide evidence-slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：知识超载" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">02 / 19</div></div>
-    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
-      <div>
+    <div class="evidence-layout">
+      <div class="evidence-copy">
         <h2 class="h-xl-zh" style="color:var(--ink)">现实困境一：专家导向的知识超载</h2>
-      </div>
-      
-      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
-        <h3 class="t-h-prod" style="font-size:max(18px,15.6px);color:var(--accent);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
-          <i data-lucide="alert-triangle" style="width:20px;height:20px"></i>
-          “标识被设置，但不等于被阅读”
-        </h3>
-        <p class="t-body" style="color:var(--text-primary);margin:0">
+        <div class="evidence-rule" aria-hidden="true"></div>
+        <p class="evidence-lead">“标识被设置，但不等于被阅读”</p>
+        <p class="t-body" style="color:var(--text-primary);margin-top:2.4vh">
           现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。
         </p>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
-        <span style="font-size:16px;color:var(--text-helper)">SITE: 福冈市植物园温室大棚区 · N = 70 BASELINE AUDIT</span>
-        <div class="frame-img fit-cover" style="height:14vh;width:28vw;border-radius:0;border:1px solid var(--border-subtle)">
-          <img src="images/01-field-observation.jpg" alt="福冈市植物园温室实地环境" style="width:100%;height:100%;object-fit:cover">
+        <div class="evidence-meta">
+          <span class="t-meta" style="color:var(--text-helper)">SITE / N = 70 BASELINE AUDIT</span>
+          <span class="evidence-index">01</span>
         </div>
       </div>
+      <figure class="evidence-media frame-img fit-cover">
+        <img src="images/01-field-observation.jpg" alt="福冈市植物园温室实地环境">
+        <figcaption>福冈市植物园温室大棚区 · 现场观察</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：评估局限" data-layout="S16" data-animate="field-notes">
+<section class="slide evidence-slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：评估局限" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">03 / 19</div></div>
-    <div style="display:grid;grid-template-rows:auto auto 1fr;gap:2.5vh;flex:1;min-height:0">
-      <div>
+    <div class="evidence-layout">
+      <div class="evidence-copy">
         <h2 class="h-xl-zh" style="color:var(--ink)">现实困境二：主观定性的评估局限</h2>
-      </div>
-      
-      <div style="background:#fff;border:1px solid var(--border-subtle);padding:3vh 3vw;display:flex;flex-direction:column;gap:1.5vh">
-        <h3 class="t-h-prod" style="font-size:max(18px,15.6px);color:var(--accent);font-weight:600;margin:0;display:flex;align-items:center;gap:8px">
-          <i data-lucide="eye-off" style="width:20px;height:20px"></i>
-          传统评估工具的客观度缺失
-        </h3>
-        <p class="t-body" style="color:var(--text-primary);margin:0">
+        <div class="evidence-rule" aria-hidden="true"></div>
+        <p class="evidence-lead">传统评估工具的客观度缺失</p>
+        <p class="t-body" style="color:var(--text-primary);margin-top:2.4vh">
           设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。
         </p>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr auto;gap:2vw;align-items:center;border-top:1px solid var(--border-subtle);padding-top:1.5vh">
-        <span style="font-size:16px;color:var(--text-helper)">FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录</span>
-        <div class="frame-img fit-cover" style="height:14vh;width:28vw;border-radius:0;border:1px solid var(--border-subtle)">
-          <img src="images/02-experiment-scene.jpg" alt="游客在植物园阅读标识场景" style="width:100%;height:100%;object-fit:cover">
+        <div class="evidence-meta">
+          <span class="t-meta" style="color:var(--text-helper)">FIELD TRIAL / EYE-TRACKING</span>
+          <span class="evidence-index">02</span>
         </div>
       </div>
+      <figure class="evidence-media evidence-media-wide frame-img fit-cover">
+        <img src="images/02-experiment-scene.jpg" alt="游客在植物园阅读标识场景">
+        <figcaption>游客自然状态下的无感视线捕捉与记录</figcaption>
+      </figure>
     </div>
   </div>
 </section>
