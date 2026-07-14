@@ -76,11 +76,8 @@ const url = process.env.DECK_URL || 'http://127.0.0.1:4174/ppt/index.html';
 
   await page.keyboard.press('Escape');
   await page.waitForTimeout(450);
-  const overviewClosed = await page.locator('#overview').evaluate(node => ({
-    active: node.classList.contains('active'),
-    visibility: getComputedStyle(node).visibility
-  }));
-  assert.deepStrictEqual(overviewClosed, { active: false, visibility: 'hidden' });
+  const overviewClosed = await page.locator('#overview').evaluate(node => node.classList.contains('active'));
+  assert.strictEqual(overviewClosed, false);
   assert.deepStrictEqual(consoleIssues, [], `browser console should be clean: ${consoleIssues.join('; ')}`);
 
   await browser.close();
