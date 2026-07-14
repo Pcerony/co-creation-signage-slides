@@ -16,7 +16,7 @@
 - Modify: `test/check-focused-deck.js`
 - Create: `test/check-slide-2-3.js`
 
-- [ ] **Step 1: Add structural checks for the evidence slides and card mode**
+- [x] **Step 1: Add structural checks for the evidence slides and card mode**
 
 Assert that both slides identified by `data-short-title="困境：知识超载"` and
 `data-short-title="困境：评估局限"` have `evidence-slide`,
@@ -25,7 +25,7 @@ exactly one `h2` and no `h3`. Assert that the source declares
 `card-reduction-mode`, the neutral card override uses transparent backgrounds,
 and the old S22 thumbnail sizing is not applied to these slides.
 
-- [ ] **Step 2: Run the new test and verify RED**
+- [x] **Step 2: Run the new test and verify RED**
 
 Run:
 
@@ -36,7 +36,7 @@ node test/check-slide-2-3.js
 Expected: the current slides fail because they still use the generic stacked
 layout, duplicate heading levels, and a small inline image frame.
 
-- [ ] **Step 3: Commit the failing contract**
+- [x] **Step 3: Commit the failing contract**
 
 ```bash
 git add test/check-focused-deck.js test/check-slide-2-3.js
@@ -48,7 +48,7 @@ git commit -m "test: lock slide 2-3 evidence layout"
 **Files:**
 - Modify: `ppt/index.html:2165-2220`
 
-- [ ] **Step 1: Replace the nested title/card/thumbnail markup**
+- [x] **Step 1: Replace the nested title/card/thumbnail markup**
 
 Use this structure for both slides, preserving the existing title, paragraph,
 image source, alt text, and page metadata:
@@ -75,7 +75,7 @@ The visible hierarchy must be one slide `h2`, one paragraph, one image, and one
 small metadata line. The former inner `h3` quote becomes the opening sentence
 of the paragraph or a short accent line, not a second heading.
 
-- [ ] **Step 2: Add the dedicated evidence layout styles**
+- [x] **Step 2: Add the dedicated evidence layout styles**
 
 Add fixed logical-pixel-safe layout rules near the focused canvas overrides:
 
@@ -111,7 +111,7 @@ Add fixed logical-pixel-safe layout rules near the focused canvas overrides:
 At `max-width:900px`, switch to one column with the image below the copy and
 keep the image aspect ratio stable instead of using viewport-height thumbnails.
 
-- [ ] **Step 3: Run the focused structural tests**
+- [x] **Step 3: Run the focused structural tests**
 
 Run:
 
@@ -122,7 +122,7 @@ node test/check-focused-deck.js
 
 Expected: both pass without changing slide count or navigation assertions.
 
-- [ ] **Step 4: Commit the slide layout**
+- [x] **Step 4: Commit the slide layout**
 
 ```bash
 git add ppt/index.html
@@ -135,7 +135,7 @@ git commit -m "fix: simplify slides 2 and 3 evidence layout"
 - Modify: `ppt/index.html` (focused canvas CSS only)
 - Modify: `test/check-slide-2-3.js`
 
-- [ ] **Step 1: Add the global reduction mode contract**
+- [x] **Step 1: Add the global reduction mode contract**
 
 Apply `card-reduction-mode` to the body and add a focused-canvas override that:
 
@@ -150,12 +150,12 @@ Apply `card-reduction-mode` to the body and add a focused-canvas override that:
 The selector must be scoped to `.slide` and `body.card-reduction-mode` so the
 ESC overview and navigation chrome retain their existing behavior.
 
-- [ ] **Step 2: Extend the static regression**
+- [x] **Step 2: Extend the static regression**
 
 Assert that the source contains the reduction mode, neutral surface override,
 and no page-2/page-3 inline `background:#fff` card block remains.
 
-- [ ] **Step 3: Run focused tests and commit**
+- [x] **Step 3: Run focused tests and commit**
 
 Run:
 
@@ -182,14 +182,14 @@ git commit -m "refactor: reduce neutral card surfaces"
 - Modify: `ppt/项目记录.md`
 - Modify: `design-qa.md`
 
-- [ ] **Step 1: Add browser checks for both target slides**
+- [x] **Step 1: Add browser checks for both target slides**
 
 At 1440 x 1000 and 900 x 900, navigate to slides 2 and 3 and assert one
 heading, no nested `h3`, a visible right-side image on desktop, a stable 4:3
 current slide, no horizontal overflow inside the current slide, and no console
 errors or warnings.
 
-- [ ] **Step 2: Run browser verification**
+- [x] **Step 2: Run browser verification**
 
 Start `python3 -m http.server 4174 --directory .`, then run:
 
@@ -201,16 +201,20 @@ node test/check-focused-deck-browser.js
 Capture desktop and narrow screenshots in `output/playwright/`, inspect them
 visually, and stop the temporary server after verification.
 
-- [ ] **Step 3: Align durable documentation**
+- [x] **Step 3: Align durable documentation**
 
 Record that pages 2 and 3 use the evidence layout and that neutral cards are
 replaced by open editorial grouping while intentional accent/ink surfaces and
 functional image frames remain.
 
-- [ ] **Step 4: Commit documentation**
+- [x] **Step 4: Commit documentation**
+
+The browser regression was committed separately so the test and durable
+documentation remain independently traceable. The documentation commit follows
+the same focused scope.
 
 ```bash
-git add test/check-slide-2-3-browser.js docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md ppt/项目记录.md design-qa.md
+git add docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md ppt/项目记录.md design-qa.md docs/superpowers/plans/2026-07-15-slide-2-3-card-simplification.md
 git commit -m "docs: record evidence layout and card reduction"
 ```
 

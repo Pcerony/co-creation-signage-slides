@@ -13,6 +13,9 @@ full-screen website.
 - Compress each slide to one claim plus one evidence group. Remove repeated
   explanations, secondary labels, and long prose where the data or image already
   communicates the point.
+- Rebuild pages 2 and 3 as editorial evidence pages: one heading and one short
+  copy column on the left, with a dominant field image on the right. Do not nest
+  a second heading inside a neutral card.
 - Change every slide to a fixed 4:3 landscape canvas.
 - Show the current slide centered, with narrow, clipped previews of adjacent
   slides on both sides.
@@ -73,7 +76,12 @@ motion recipes remain compatible.
 
 - Stage background: quiet neutral grey with no decorative gradients.
 - Slide radius: 18 logical pixels.
-- Media, cards, charts, and controls: 8 to 12 logical pixels.
+- Media, charts, controls, and intentional ink/accent surfaces: 8 to 12 logical
+  pixels.
+- Generic neutral content cards are open editorial groupings: transparent paper,
+  no shadow or rounded container, and one separating rule. Data surfaces,
+  accent/ink blocks, and functional image frames remain bounded where their
+  contrast or geometry carries meaning.
 - Current slide uses a restrained shadow and full opacity.
 - Adjacent previews use reduced opacity and no blur so their content remains
   recognizable.
@@ -102,6 +110,10 @@ Automated structural tests must fail before implementation and then verify:
 - The top indicator exposes the upper chapter timeline and lower title/page
   footer, without a full-width progress bar or a two-row title header.
 - `go()` updates the top indicator and neighboring slide states.
+- Pages 2 and 3 expose one `h2`, no nested `h3`, a visible evidence image, and
+  a stable left-copy/right-image desktop layout that stacks on narrow screens.
+- Neutral card reduction preserves intentional data, accent, ink, and image
+  surfaces while removing generic nested white card treatments.
 - Existing motion and internationalization tests continue to pass.
 
 Browser QA must capture at least one desktop viewport and one narrow viewport,

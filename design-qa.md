@@ -16,6 +16,8 @@
 - The chapter timeline sits in the upper stage area and the active slide title
   plus page number sit in the lower footer without overlapping the slide.
 - The deprecated two-row title header and full-width progress bar are absent.
+- Pages 2 and 3 use a single evidence hierarchy: copy on the left and a
+  dominant field image on the right, with no nested title card.
 
 ## Visual Hierarchy
 
@@ -35,6 +37,12 @@
   scales with the 1200 x 900 canvas instead of changing with the browser window.
 - Formula/help blocks and repeated instructional copy are removed from the
   display without changing the underlying research numbers.
+- Pages 2 and 3 keep one `h2`, no nested `h3`, one short evidence paragraph,
+  and a small metadata line; their images remain large enough to carry the
+  visual evidence.
+- Generic neutral cards read as open editorial groupings with rules rather than
+  a repeated stack of white boxes. Intentional accent, ink, data, and image
+  surfaces remain bounded.
 - Heading sizes remain readable at both tested widths and do not escape the 4:3
   canvas.
 
@@ -61,6 +69,8 @@
 - At 900 x 900 the active slide rendered at 666 x 499.5, preserving 4:3.
 - At 390 x 844 the active slide rendered at 360 x 270, preserving 4:3.
 - Both adjacent previews remained visible at the narrow viewport.
+- At 1440 x 1000 pages 2 and 3 used the left-copy/right-image evidence layout;
+  at 900 x 900 the image stacked below the copy without overflow.
 - Browser console finished with 0 errors and 0 warnings.
 
 final result: passed
