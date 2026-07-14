@@ -73,8 +73,8 @@ check(
 );
 check('deck does not truncate text with line-clamp', !/line-clamp/i.test(html));
 check(
-  'font sizes use logical pixels instead of viewport units',
-  !/font-size\s*:[^;}]*(?:vw|vh)/i.test(html)
+  'font sizes use absolute logical pixels',
+  !/font-size\s*:[^;}]*(?:vw|vh|em|rem|%)/i.test(html)
 );
 check(
   'legacy viewport-sized deck shell is removed',
