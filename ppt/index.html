@@ -1916,12 +1916,42 @@
   #presentation-indicator{
     position:absolute;z-index:40;top:20px;left:50%;
     width:min(95vw,1200px);transform:translateX(-50%);
-    display:flex;justify-content:center;align-items:flex-end;
-    color:var(--ink);padding:0;
+    display:grid;gap:8px;color:var(--ink);padding:0;
+  }
+  .indicator-topline{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;
+    gap:16px;align-items:start;
+  }
+  .indicator-summary{
+    display:flex;align-items:baseline;gap:10px;min-width:0;
+    flex-wrap:wrap;line-height:1.2;
+  }
+  .indicator-chapter{
+    color:var(--accent);font-family:var(--mono);font-size:11px;
+    font-weight:700;letter-spacing:.04em;white-space:nowrap;
+  }
+  .indicator-separator{color:var(--text-helper);font-size:12px}
+  .indicator-title{
+    color:var(--text-primary);font-family:var(--sans),var(--sans-zh);
+    font-size:14px;font-weight:600;min-width:0;overflow-wrap:anywhere;
+  }
+  .indicator-position{
+    display:flex;align-items:baseline;gap:8px;justify-content:flex-end;
+    color:var(--text-primary);font-family:var(--mono);font-size:11px;
+    font-weight:700;white-space:nowrap;
+  }
+  .indicator-position .sep{color:var(--text-helper);font-weight:400}
+  .indicator-track{
+    width:100%;height:3px;background:rgba(10,10,10,.12);
+    border-radius:999px;overflow:hidden;
+  }
+  #indicator-progress{
+    display:block;width:0;height:100%;background:var(--accent);
+    border-radius:inherit;transition:width .42s var(--ease-prod);
   }
   .indicator-timeline-container{
     position:relative;display:flex;align-items:flex-end;padding-bottom:2px;
-    justify-content:center;width:100%;
+    justify-content:center;width:100%;order:2;
   }
   #indicator-timeline-chapters{
     position:relative;z-index:1;display:flex;align-items:flex-end;gap:24px;
@@ -1952,23 +1982,6 @@
   }
   .chapter-label.is-active{
     color:var(--accent);font-weight:700;
-  }
-  #presentation-footer{
-    position:absolute;z-index:40;bottom:24px;left:50%;
-    width:min(95vw,1200px);transform:translateX(-50%);
-    display:flex;align-items:center;justify-content:center;gap:16px;
-    color:var(--ink);padding:0;white-space:nowrap;
-  }
-  .chapter-sub-zh{
-    font-family:var(--sans),var(--sans-zh);font-size:12px;font-weight:600;
-    color:var(--text-primary);opacity:0.6;white-space:nowrap;
-  }
-  .indicator-page-wrapper{
-    font-family:var(--mono);font-size:11px;font-weight:700;
-    color:var(--text-primary);opacity:0.8;white-space:nowrap;
-  }
-  #indicator-page{
-    font-weight:700;color:var(--text-primary);
   }
   #deck{
     position:absolute;inset:auto;left:0;top:96px;
@@ -2036,9 +2049,9 @@
   .slide .rule{border-radius:999px}
 
   @media (max-width:900px){
-    #presentation-indicator{width:95vw;top:12px;}
-    #presentation-footer{width:95vw;bottom:16px;}
-    .chapter-sub-zh{display:none}
+    #presentation-indicator{width:calc(100vw - 32px);top:12px;}
+    .indicator-topline{gap:10px;}
+    .indicator-summary{gap:6px;}
     .chapter-label{display:none}
   }
   @media (prefers-reduced-motion:reduce){
@@ -2075,20 +2088,23 @@
 
 <main id="presentation-stage">
 <header id="presentation-indicator" aria-live="polite">
+  <div class="indicator-topline">
+    <div class="indicator-summary">
+      <span id="indicator-chapter" class="indicator-chapter"></span>
+      <span class="indicator-separator" aria-hidden="true">·</span>
+      <span id="indicator-title" class="indicator-title"></span>
+    </div>
+    <div class="indicator-position">
+      <span id="indicator-section-page"></span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span id="indicator-page"></span>
+    </div>
+  </div>
   <div class="indicator-timeline-container">
     <div id="indicator-timeline-chapters"></div>
   </div>
+  <div class="indicator-track" aria-hidden="true"><span id="indicator-progress"></span></div>
 </header>
-
-<footer id="presentation-footer">
-  <span id="indicator-title" class="chapter-sub-zh"></span>
-  <span id="indicator-page" class="indicator-page-wrapper"></span>
-  <div style="display:none;">
-    <span id="indicator-chapter"></span>
-    <span id="indicator-section-page"></span>
-    <div class="indicator-track" aria-hidden="true"><span id="indicator-progress"></span></div>
-  </div>
-</footer>
 
 <div id="deck">
 
@@ -3819,6 +3835,33 @@ const CHAPTER_LABELS={
   'es-MX':['Contexto','Diseño de investigación','Método y herramienta','Resumen de resultados','Hallazgos','Discusión y conclusión']
 };
 
+const INDICATOR_TITLES={
+  zh:[
+    '研究主题','困境：知识超载','困境：评估局限','研究目的：RQ1','研究目的：RQ2/3',
+    '整体设计','阶段1：文献调查','阶段2：共创工坊','阶段3：A/R 原则','阶段3：S 原则',
+    '阶段3：现状审计','阶段4：干预对比','阶段4：视线系统','热力图一览','结果一：文字覆盖率',
+    '结果二：R 原则效应','研究结论','博士阶段展望','参考文献'
+  ],
+  en:[
+    'Research Topic','Problem: Knowledge Overload','Problem: Evaluation Limits','Objective: RQ1','Objectives: RQ2/3',
+    'Research Design','Stage 1: Literature','Stage 2: Co-creation','Stage 3: A/R Principles','Stage 3: S Principle',
+    'Stage 3: Baseline Audit','Stage 4: Intervention','Stage 4: Eye-tracking','Heatmap Overview','Result 1: Text Coverage',
+    'Result 2: R Effect','Research Conclusion','Doctoral Outlook','References'
+  ],
+  ja:[
+    '研究テーマ','課題：知識過多','課題：評価の限界','研究目的：RQ1','研究目的：RQ2/3',
+    '研究デザイン','段階1：文献調査','段階2：共創ワークショップ','段階3：A/R原則','段階3：S原則',
+    '段階3：現状監査','段階4：介入比較','段階4：視線システム','ヒートマップ一覧','結果1：テキストカバー率',
+    '結果2：R原則の効果','研究結論','博士課程の展望','参考文献'
+  ],
+  'es-MX':[
+    'Tema de investigación','Problema: sobrecarga de conocimiento','Problema: límites de evaluación','Objetivo: RQ1','Objetivos: RQ2/3',
+    'Diseño de investigación','Etapa 1: literatura','Etapa 2: co-creación','Etapa 3: principios A/R','Etapa 3: principio S',
+    'Etapa 3: auditoría inicial','Etapa 4: intervención','Etapa 4: seguimiento ocular','Resumen de mapas de calor','Resultado 1: cobertura textual',
+    'Resultado 2: efecto R','Conclusión','Proyección doctoral','Referencias'
+  ]
+};
+
 function positionDeck(){
   const pitch=carouselGeometry.renderedWidth+carouselGeometry.gap;
   const x=(innerWidth-carouselGeometry.renderedWidth)/2-(idx*pitch);
@@ -3914,12 +3957,10 @@ function updatePresentationIndicator(){
   const peers=[...slides].filter(item=>Number(item.dataset.chapter||1)===chapter);
   const localIndex=peers.indexOf(slide)+1;
   const chapterNames=CHAPTER_LABELS[currentLanguage]||CHAPTER_LABELS.zh;
-  const heading=slide.querySelector('h1,h2');
-  const title=(heading?.textContent||slide.dataset.shortTitle||'').replace(/\s+/g,' ').trim();
+  const titlePack=INDICATOR_TITLES[currentLanguage]||INDICATOR_TITLES.zh;
 
-  // Left Titles
-  indicatorChapter.textContent = (CHAPTER_LABELS.en[chapter-1] || '').toUpperCase();
-  indicatorTitle.textContent = title;
+  indicatorChapter.textContent = `${String(chapter).padStart(2,'0')} · ${chapterNames[chapter-1] || slide.dataset.chapterTitle || ''}`;
+  indicatorTitle.textContent = titlePack[idx] || slide.dataset.shortTitle || '';
 
   // Page Numbers
   indicatorSectionPage.textContent=`${String(localIndex).padStart(2,'0')} / ${String(peers.length).padStart(2,'0')}`;
