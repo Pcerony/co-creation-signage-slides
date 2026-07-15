@@ -62,6 +62,50 @@ const newSlides = `
     font-size: 18px !important;
     font-weight: 600 !important;
   }
+
+  /* ============ Cover Page Language Switcher (Inverse Scale) ============ */
+  .cover-lang-switch {
+    display: flex;
+    gap: calc(6px / var(--slide-scale, 1)) !important;
+    background: rgba(255, 255, 255, 0.08);
+    padding: calc(4px / var(--slide-scale, 1)) !important;
+    border-radius: calc(20px / var(--slide-scale, 1)) !important;
+    border: calc(1px / var(--slide-scale, 1)) solid rgba(255, 255, 255, 0.12) !important;
+    pointer-events: auto;
+  }
+  .cover-lang-switch .lang-top-btn {
+    border: 0;
+    background: transparent;
+    padding: calc(4px / var(--slide-scale, 1)) calc(10px / var(--slide-scale, 1)) !important;
+    border-radius: calc(16px / var(--slide-scale, 1)) !important;
+    font-family: var(--sans);
+    font-size: calc(12px / var(--slide-scale, 1)) !important;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cover-lang-switch .lang-top-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+  .cover-lang-switch .lang-top-btn.active {
+    background: #ffffff;
+    color: var(--accent) !important;
+    font-weight: 600;
+    box-shadow: 0 calc(2px / var(--slide-scale, 1)) calc(6px / var(--slide-scale, 1)) rgba(0, 0, 0, 0.1);
+  }
+
+  /* ============ Mobile Evidence Media Alignment & Responsiveness ============ */
+  @media (max-width: 900px) {
+    .slide .evidence-media {
+      align-items: center !important;
+    }
+    /* Hide Cover Top-left language switcher on mobile viewports since the new cover switcher is prominent */
+    .slide[data-layout="SWISS-COVER-ASCII"] .chrome-min .l {
+      display: none !important;
+    }
+  }
 </style>
 
 <!-- Chapter 1: 研究背景与目的 -->
@@ -89,8 +133,17 @@ const newSlides = `
           <span style="display:inline-flex;align-items:center;gap:.5em"><i data-lucide="signpost" style="width:18px;height:18px;stroke-width:1.6"></i>Signage</span>
         </div>
         <div style="display:flex;justify-content:space-between;align-items:end">
-          <div class="t-meta" style="color:rgba(255,255,255,.6)">PINGCHENG WANG · 2026.06</div>
-          <div class="t-meta" style="color:rgba(255,255,255,.6)">KYUSHU UNIVERSITY</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div class="t-meta" style="color:rgba(255,255,255,.6)">PINGCHENG WANG · 2026.06</div>
+            <div class="t-meta" style="color:rgba(255,255,255,.6)">KYUSHU UNIVERSITY</div>
+          </div>
+          <!-- Prominent language switcher -->
+          <div class="cover-lang-switch" style="pointer-events:auto;">
+            <button class="lang-top-btn" onclick="applyLanguage('zh')">ZH</button>
+            <button class="lang-top-btn" onclick="applyLanguage('en')">EN</button>
+            <button class="lang-top-btn" onclick="applyLanguage('ja')">JA</button>
+            <button class="lang-top-btn" onclick="applyLanguage('es-MX')">ES</button>
+          </div>
         </div>
       </div>
     </div>
