@@ -2299,7 +2299,7 @@
 </section>
 
 
-<section class="slide" data-chapter="0" data-chapter-title="研究对象" data-short-title="研究对象" data-layout="S16" data-animate="field-notes">
+<section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究对象" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">RESEARCH SUBJECT</div><div class="r">02 / 20</div></div>
     <div style="display:flex;flex-direction:column;gap:2.5vh;flex:1;min-height:0">
@@ -4203,7 +4203,7 @@ function initPresentationIndicator() {
     if (!chapters[ch]) {
       chapters[ch] = {
         id: ch,
-        titleEn: (CHAPTER_LABELS.en[ch - 1] || '').toUpperCase(),
+        titleEn: (CHAPTER_LABELS.en[Math.max(0, ch - 1)] || '').toUpperCase(),
         slides: []
       };
     }
