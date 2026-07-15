@@ -2240,13 +2240,6 @@
   @media (max-width: 900px) {
     .slide .evidence-media {
       align-items: center !important;
-      justify-content: center !important;
-    }
-    .slide .evidence-media .frame-img {
-      width: 100% !important;
-      max-width: 480px !important;
-      height: auto !important;
-      aspect-ratio: 4/3 !important;
     }
     /* Hide Cover Top-left language switcher on mobile viewports since the new cover switcher is prominent */
     .slide[data-layout="SWISS-COVER-ASCII"] .chrome-min .l {
@@ -2255,12 +2248,11 @@
   }
 </style>
 
-
 <!-- Chapter 1: 研究背景与目的 -->
 <section class="slide accent" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究主题" data-layout="SWISS-COVER-ASCII" data-animate="hero">
-  <div class="canvas-card">
+  <div class="canvas-card" style="position:relative;">
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
-    <img src="qr-code.png" alt="QR Code" style="position:absolute;top:24px;right:24px;width:160px;height:160px;z-index:20;border-radius:6px;">
+    <img src="qr-code.png" alt="QR Code" style="position:absolute;top:24px;right:24px;width:160px;height:160px;z-index:20;border-radius:6px;pointer-events:none;">
     <div class="chrome-min">
       <div class="l" style="pointer-events: auto; display: flex; align-items: center; gap: 8px;">
         <span class="lang-top-label" style="opacity: 0.6; font-size: 16px;">Language:</span>
@@ -2288,16 +2280,15 @@
           </div>
           <!-- Prominent language switcher -->
           <div class="cover-lang-switch" style="pointer-events:auto;">
-            <button class="lang-top-btn" onclick="applyLanguage('zh')">中文</button>
-            <button class="lang-top-btn" onclick="applyLanguage('en')">English</button>
-            <button class="lang-top-btn" onclick="applyLanguage('ja')">日本語</button>
-            <button class="lang-top-btn" onclick="applyLanguage('es-MX')">Español</button>
+            <button class="lang-top-btn" onclick="applyLanguage('zh')">ZH</button>
+            <button class="lang-top-btn" onclick="applyLanguage('en')">EN</button>
+            <button class="lang-top-btn" onclick="applyLanguage('ja')">JA</button>
+            <button class="lang-top-btn" onclick="applyLanguage('es-MX')">ES</button>
           </div>
         </div>
       </div>
     </div>
 </section>
-
 <section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究背景" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">RESEARCH BACKGROUND</div><div class="r">02 / 21</div></div>
@@ -2315,8 +2306,8 @@
             <p class="t-body" style="color:var(--text-primary);margin:0.6vh 0 0;font-size:18px;">将"学习与探索"视为参观植物园的核心动机</p>
           </div>
           <div style="background:#fff;border-left:3px solid var(--text-secondary);padding:1.2vh 1.5vw;">
-            <span style="font-size:20px;font-weight:600;color:var(--text-secondary);letter-spacing:.04em">依据</span>
-            <p class="t-body" style="color:var(--text-primary);margin:0.6vh 0 0;font-size:18px;">Falk &amp; Dierking (2000) · 博物馆学习研究经典文献</p>
+            <span style="font-size:20px;font-weight:600;color:var(--text-secondary);letter-spacing:.04em">Falk &amp; Dierking (2000)</span>
+            <p class="t-body" style="color:var(--text-primary);margin:0.6vh 0 0;font-size:18px;">博物馆学习研究经典文献——来园者的核心动机是学习与探索</p>
           </div>
         </div>
       </div>
@@ -2324,13 +2315,11 @@
         <div class="frame-img fit-cover" style="height:380px;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
           <img src="images/02-experiment-scene.jpg" alt="福冈市植物园" style="width:100%;height:100%;object-fit:cover;">
         </div>
-        <span class="t-meta" style="color:var(--text-helper);font-size:14px;">SITE: Fukuoka City Botanical Garden</span>
+        <span class="t-meta" style="color:var(--text-helper);font-size:14px;">SITE: Fukuoka City Botanical Garden · N = 70 BASELINE AUDIT</span>
       </div>
     </div>
   </div>
 </section>
-
-
 <section class="slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="研究对象" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">RESEARCH SUBJECT</div><div class="r">03 / 21</div></div>
@@ -2341,7 +2330,7 @@
       <div style="display:flex;flex-direction:column;gap:1.8vh">
         <div style="background:#fff;border:1px solid var(--border-subtle);padding:2vh 2vw;">
           <span style="font-size:20px;font-weight:600;color:var(--accent);letter-spacing:.04em">核心媒介</span>
-          <p class="t-body" style="color:var(--text-primary);margin:0.4vh 0 0;font-size:18px;">植物园温室解说标识是游客获取植物知识的主要渠道</p>
+          <p class="t-body" style="color:var(--text-primary);margin:0.4vh 0 0;font-size:18px;">植物园温室中的解说标识是游客获取植物知识的主要渠道</p>
         </div>
         <div style="background:#fff;border:1px solid var(--border-subtle);padding:2vh 2vw;">
           <span style="font-size:20px;font-weight:600;color:var(--ink);letter-spacing:.04em">现存问题</span>
@@ -2353,19 +2342,22 @@
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5vw;align-items:start">
-        <div class="frame-img fit-cover" style="height:32vh;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
+        <div class="frame-img fit-cover" style="height:28vh;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
           <img src="images/01.jpg" alt="解说标识示例1" style="width:100%;height:100%;object-fit:cover;">
         </div>
-        <div class="frame-img fit-cover" style="height:32vh;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
+        <div class="frame-img fit-cover" style="height:28vh;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
           <img src="images/02.JPG" alt="解说标识示例2" style="width:100%;height:100%;object-fit:cover;">
         </div>
-        <div class="frame-img fit-cover" style="height:32vh;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
+        <div class="frame-img fit-cover" style="height:28vh;width:100%;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
           <img src="images/03.JPG" alt="解说标识示例3" style="width:100%;height:100%;object-fit:cover;">
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
 <section class="slide evidence-slide" data-chapter="1" data-chapter-title="研究背景与目的" data-short-title="困境：知识超载" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">04 / 21</div></div>
@@ -2544,7 +2536,7 @@
       </article>
       <article class="process-panel" data-process-panel="4">
         <div class="phase"><span>2026.05</span>设计与原型</div>
-        <div class="detail-list"><div><strong>ARS原则视觉映射</strong><span>将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。</span></div></div>
+        <div class="detail-list"><div><strong>ARS原则视觉映射</strong><span>将提炼 of A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。</span></div></div>
         <div class="detail-list"><div><strong>Dynamic Signage</strong><span>基于 VisualAnalytics 技术，设计并实现动态解说标识原型。</span></div></div>
       </article>
       <article class="process-panel" data-process-panel="5">
@@ -2732,7 +2724,7 @@
 <section class="slide" data-chapter="3" data-chapter-title="研究方法" data-short-title="阶段4：干预对比" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">METHODOLOGY · PHASE 4 DESIGN</div><div class="r">14 / 21</div></div>
-    <div style="display:flex;flex-direction:column;gap:2.5vh;flex:1;min-height:0">
+    <div style="display:grid;grid-template-rows:auto 1fr;gap:2.5vh;flex:1;min-height:0">
       <div>
         <h2 class="h-xl-zh" style="color:var(--ink)">阶段 4：眼动实验组与控制组刺激物对比</h2>
       </div>
@@ -2864,7 +2856,7 @@
           <h2 class="h-xl-zh" style="color:var(--ink)">结果 (1)：初期文字区域完读率提升</h2>
         </div>
         <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">
-          文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。
+          文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组 of 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。
         </p>
       </div>
       <!-- Bottom Row: Towers -->
@@ -3247,7 +3239,6 @@ const LANGUAGES = {
       "对标识图像按主题编码，确认问题普遍性并收束课题。": "Coded sign images by theme, confirmed the generality of the problem, and narrowed the topic.",
       "专家访谈": "Expert Interviews",
       "与专家讨论可行方向，确定研究问题。": "Discussed feasible directions with experts and defined the research questions.",
-      "与专家讨论可行方向，确定研究问题.": "Discuss feasible directions with experts and define the research questions.",
       "用焦点小组、问卷与记忆测试验证研究必要性。": "Used focus groups, questionnaires, and memory tests to verify the need for the study.",
       "ARS 原则产出": "ARS Principle Output",
       "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。": "Derived the principles of Inspirational Atmosphere (A), Audience Relevance (R), and Signage Structure (S) from earlier image analysis and interviews.",
@@ -3267,7 +3258,7 @@ const LANGUAGES = {
       "实地收集来园者在自然状态下的真实眼动轨迹与注视分布。": "Collected real visitor gaze trajectories and fixation distributions in a natural field setting.",
       "包含 Dynamic Signage 原型试用阶段，观察动态标识的可用性。": "Included a Dynamic Signage prototype trial to observe usability.",
       "分析重点": "Analysis Focus",
-      "本阶段重点针对 A/B 眼动实验的 Quick Data 与 AOI 数据进行多维分析。": "This phase focuses on multidimensional analysis of Quick Data and AOI results from the A/B eye-tracking experiment.",
+      "本阶段重点针对 A/B 眼动实验 of Quick Data 与 AOI 数据进行多维分析。": "This phase focuses on multidimensional analysis of Quick Data and AOI results from the A/B eye-tracking experiment.",
       "Quick Data 分析": "Quick Data Analysis",
       "迅速分析本实验 A/B 测试结果，形成早期结论。": "Quickly analyzed the A/B test results and formed early conclusions.",
       "修士报告": "Master’s Report",
@@ -3363,8 +3354,7 @@ const LANGUAGES = {
       "全程时间 R 区注意力占比": "Attention share in R area, full session",
       "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "A large 26.6pp increase indicates a long-term reorganization of gaze structure, drawing viewers into deeper information processing.",
       "全样本表现一致": "Consistent across all samples",
-      "9 / 9人": "9 / 9 participants",
-      "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Across the 9 valid participants, attention share in the R area increased without exception.",
+      "在被测试 of 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Across the 9 valid participants, attention share in the R area increased without exception.",
       "讨论与局限：全程完读率下降的客观判读": "Discussion and Limitations: Objective Reading of the Full-session Coverage Decline",
       "事实与边界": "Facts and Boundaries",
       "全程文字覆盖率下降": "Full-session text coverage declined",
@@ -3420,8 +3410,6 @@ const LANGUAGES = {
       "：关注微观版面层级对短文本加工负荷的直接影响。": ": Focuses on the direct impact of micro-layout hierarchies on short-text processing load.",
       "阶段 2：三方共创工坊与市民访谈": "Phase 2: Tripartite Co-creation Workshop & Interviews",
       "三方视角下的 KJ 痛点审计与编码": "KJ Pain-Point Audit & Coding from Tripartite Perspectives",
-      "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下": "Conducted multiple Global Goals Jam co-creation sessions at Kyushu University. Using semi-structured interviews, we performed axial coding of old signage reading barriers, summarizing the following",
-      "5 大核心认知痛点分类": "5 core cognitive pain-point categories",
       "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下 5 大核心认知痛点分类：": "Conducted multiple Global Goals Jam co-creation sessions at Kyushu University. Using semi-structured interviews, we performed axial coding of old signage reading barriers, summarizing 5 core cognitive pain points:",
       "1. 排版拥挤字号小": "1. Crowded layout & tiny fonts",
       "2. 信息超载无焦点": "2. Information overload & no focus",
@@ -3430,7 +3418,6 @@ const LANGUAGES = {
       "5. 缺互动行动性引导": "5. Lack of interactive action guidance",
       "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录": "IMAGE: Discussion record of Global Goals Jam 2025 Kyushu",
       "阶段 3：A/R/S 设计原则之 A 与 R": "Phase 3: Inspirational Atmosphere & Audience Relevance",
-      "拒绝平铺直叙的客观描述，通过问句启发（如“你能在这片叶子下找到什么？”）或情感隐喻，创造亲和的注意导入切面，诱导游客停下视线并切入深度加工。": "Reject flat, purely objective description. Use question-led prompts such as “What can you find beneath this leaf?” or emotional metaphors to create an inviting entry point, stop the gaze, and guide visitors into deeper processing.",
       "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "Map objective plant traits onto daily sensory experiences (e.g., tactile contrast like 'dry/fleshy' or craft/use cases) to awaken perception. This is the critical visual anchor for sustaining reading and preventing attention drift.",
       "阶段 3：A/R/S 设计原则之 S 结构清晰": "Phase 3: Structural Clarity of A/R/S Design Principles",
       "结构清晰性": "Structural Clarity",
@@ -3447,7 +3434,6 @@ const LANGUAGES = {
       "整合大气泡问句引导（A）与感官用途框（R），运用模块设计引导动作映射。": "Integrates large bubble questions (A) and sensory/use cards (R), employing modular grids to guide action mapping.",
       "阶段 4：眼动系统部署与射影校准": "Phase 4: Eye-Tracking Deployment & Projective Calibration",
       "非接触估计与漂移补偿": "Non-contact Gaze Estimation & Drift Compensation",
-      "基于 WebGazer.js 研发 non-contact 视线估计 system SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "Developed the non-contact gaze estimation system SIGN Visual Attention based on WebGazer.js. It captures facial reflection in real time using a standard built-in camera, with manual drift compensation and light filtering to eliminate outdoor reflection distortions.",
       "基于 WebGazer.js 研发 non-contact 视线估计系统 SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "Developed the non-contact gaze estimation system SIGN Visual Attention based on WebGazer.js. It captures facial reflection in real time using a standard built-in camera, using manual drift compensation and light filtering to eliminate outdoor reflection distortions.",
       "纸面 9 点校准映射": "9-Point Paper Calibration Mapping",
       "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识的 2D 坐标系上。": "Before testing, visitors look at 9 physical calibration points around the printed sign. The system calculates head pose and uses a homography matrix to project screen-space estimations onto the 2D coordinate system of the physical sign.",
@@ -3482,12 +3468,34 @@ const LANGUAGES = {
       "突破空间不连续性": "Overcoming Spatial Incontinuity",
       "从单体标识研究过渡到系统布局（空间动线引导、 inter-sign continuity），研究标识群的空间排布对游客在大温室中建立连贯心智地图的价值。": "Transition from single signs to systemic layout (spatial flow, inter-sign continuity) to study how sign arrays help visitors build coherent mental maps in large greenhouses.",
       "参考文献 (References)": "References",
-      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "Mapped the refined A/R/S principles onto concrete layout features and semantic AOI regions.",
+      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "Mapped the refined A/R/S principles onto concrete layout features and semantic AOI regions."
       "研究背景：植物园与植物学习": "Research Background: Botanical Gardens and Plant Learning",
+      "来园动机": "Visit Motivation",
       "游客来到植物园的目的不仅仅是观赏——更是为了学习": "Visitors come to botanical gardens not just to look — they come to learn",
-      "将"学习与探索"视为参观植物园的核心动机": "cite learning and exploring as a core motivation",
-      ""研究对象：解说标识作为植物学习的重要工具": "Research Subject: Interpretive Signage as a Key Tool for Plant Learning",
-      "植物园温室中的解说标识是游客获取植物知识的主要媒介。然而，当前标识普遍存在内容过密、缺乏引导等问题，导致游客难以有效阅读。本研究聚焦于解说标识的版面设计与视线引导优化。": "Interpretive signage in botanical garden greenhouses is the primary medium through which visitors gain plant knowledge. However, current signage often suffers from dense content and lacks visual guidance, making it hard for visitors to read effectively. This study focuses on layout design and gaze-guidance optimization of interpretive signage."
+      "60% 以上": "Over 60%",
+      "将"学习与探索"视为参观植物园的核心动机": "cite learning and exploring as the core motivation for visiting",
+      "Falk &amp; Dierking (2000)": "Falk &amp; Dierking (2000)",
+      "博物馆学习研究经典文献——来园者的核心动机是学习与探索": "Classic museum learning research — visitors' core motivation is learning and exploration",
+      "研究对象：解说标识作为植物学习的重要工具": "Research Subject: Interpretive Signage as a Key Tool for Plant Learning",
+      "核心媒介": "Core Medium",
+      "植物园温室中的解说标识是游客获取植物知识的主要渠道": "Interpretive signage in greenhouses is the primary channel for visitors to gain plant knowledge",
+      "现存问题": "Existing Problems",
+      "内容过密、缺乏视觉引导，游客难以有效阅读": "Dense content, lack of visual guidance — visitors struggle to read effectively",
+      "研究聚焦": "Research Focus",
+      "解说标识的版面设计与视线引导优化": "Layout design and gaze-guidance optimization of interpretive signage",
+      "高设置 · 低阅读": "High Installation · Low Reading",
+      "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效": ""Signs are installed, but not read" — over 90% of old signs completely fail",
+      "10 秒黄金窗口": "10-Second Golden Window",
+      "游客在视线接触的前 10 秒即产生认知疲劳并放弃阅读": "Visitors experience cognitive fatigue within the first 10 seconds and give up reading",
+      "学术名词堆砌 · 信息流断裂": "Academic Jargon · Information Breakdown",
+      "缺乏对普通游客日常认知经验的过渡，线性灌输导致阅读中断": "No bridge to everyday visitor experience — linear delivery causes reading drop-off",
+      "客观度缺失": "Lack of Objectivity",
+      "设计改良缺乏客观、细粒度的生理量化指标": "Design improvements lack objective, granular physiological metrics",
+      "定性依赖": "Qualitative Dependency",
+      "高度依赖定性问卷与回顾访谈，无法做到精准测量": "Heavy reliance on qualitative surveys and retrospective interviews — can't achieve precise measurement",
+      "无法解耦注意力流": "Cannot Decouple Attention Flow",
+      "不能在自然阅读状态下，精准追踪不同版面区域的眼动流向": "Cannot precisely track eye-movement flow across layout regions during natural reading",
+      "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效": "\u201cSigns are installed, but not read\u201d — over 90% of old signs completely fail",
     }
   },
   'ja': {
@@ -3514,7 +3522,7 @@ const LANGUAGES = {
       "方向确立": "方向性確立",
       "调查到验证": "調査から検証へ",
       "原则与工具": "原則とツール",
-      "ARS产出 & 工具开发": "ARS原則の策定とツール開発",
+      "ARS产出 & 工具开发": "ARS原则の策定とツール開発",
       "预备验证": "予備検証",
       "v3 更新": "v3 アップデート",
       "设计与原型": "デザインとプロトタイプ",
@@ -3529,11 +3537,10 @@ const LANGUAGES = {
       "明确植物园温室解说标识在阅读范围与记忆保持上的初始课题。": "植物園温室の解説サインにおける読解範囲と記憶保持に関する初期課題を明確化。",
       "文献调查": "文献調査",
       "根据已收集课题，通过论文调查检讨研究方向。": "収集した課題に基づき、論文調査を通じて研究方向を検討。",
-      "现状画像分析": "現状画像分析",
+      "现状画像分析": "现状画像分析",
       "对标识图像按主题编码，确认问题普遍性并收束课题。": "解説サイン画像をテーマごとにコーディングし、課題の普遍性を確認して絞り込む。",
       "专家访谈": "専門家インタビュー",
       "与专家讨论可行方向，确定研究问题。": "専門家と実現可能な方向性を議論し、リサーチクエスチョンを策定。",
-      "与专家讨论可行方向，确定研究问题.": "専門家と実現可能な方向性を議論し、リサーチクエスチョンを策定。",
       "用焦点小组、问卷与记忆测试验证研究必要性。": "フォーカスグループ、アンケート、および記憶テストを用いて研究の必要性を検証。",
       "ARS 原则产出": "ARS原則の策定",
       "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。": "初期画像分析とインタビューに基づき、植物の雰囲気（A）、観客との関連性（R）、サインの構造（S）の各原則を抽出。",
@@ -3605,6 +3612,7 @@ const LANGUAGES = {
       "视线估计原理与物理坐标投影映射": "視線推定の原理と物理座標への投影マッピング",
       "普通网络摄像头实时捕获被试面部与眼部反射特征。": "通常のWebカメラにより、被験者の顔部および眼球の反射特徴をリアルタイムに補足。",
       "利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。": "WebGazerエンジンを利用し、ブラウザ上で視線特徴点の解算と推定を実行。",
+      "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标 the 射影几何映射。": "紙面上での9点物理キャリブレーションを通じて、画面空間から物理的な解説サインの座標への射影幾何学的マッピングを構築。",
       "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。": "紙面上での9点物理キャリブレーションを通じて、画面空間から物理的な解説サインの座標への射影幾何学的マッピングを構築。",
       "导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。": "視点座標、時系列ログ、軌跡マップ、ヒートマップ、および修正可能なAOIデータパックをエクスポート。",
       "现场实验流程": "現地実験プロセス",
@@ -3632,7 +3640,6 @@ const LANGUAGES = {
       "实验组 (45.3%)": "実験群 (45.3%)",
       "平均提升 +6.7pp": "平均向上 +6.7pp",
       "人↑": "人↑",
-      "9 / 9人": "9 / 9人",
       "9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp": "有効サンプル9名のうち6名で上昇傾向が見られ、中央値の変化は+8.2ポイントに達しました",
       "Q2: 注意力向设计意图区域重组 (AOI 占比)": "Q2: 意図したデザイン領域への注意の再組織化（AOI割合）",
       "实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。": "実験群は、単に来園者の盲目的な読解面積を無差別に広げたのではなく、レイアウト分割と視覚的階層設計により、設計原則に直接関連する意味領域（AOI）へ注意を精密に再組織化しました。",
@@ -3678,11 +3685,11 @@ const LANGUAGES = {
       "观众关联性区域提升最明显：前 10 秒 5.0% → 21.4%，全程 8.5% → 35.1%，且 9 名有效样本均出现上升。": "観客との関連性領域の上昇が最も顕著であり、最初の10秒で 5.0% → 21.4%、全体時間で 8.5% → 35.1%に達し、有効被験者9名全員が上昇を示しました。",
 
       // NEWLY ADDED 19-SLIDE KEYS FOR JA
-      "现实困境一：专家导向的知识超载": "現実的課題 1：専門家主導の知識過負荷",
+      "现实困境一：专家导向的知识超载": "现实的課題 1：専門家主導の知識過負荷",
       "“标识被设置，但不等于被阅读”": "「サインは設置されているが、読まれているとは限らない」",
-      "现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。": "現在のサインは学術用語の羅列と一方的な説明に偏り、一般来園者の日常的な認知経験への配慮に欠けています。結果として、視線接触の最初の10秒間で認知疲労が生じ、読解が放棄され情報伝達が途切れてしまいます。",
+      "现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。": "現在のサインは学術用語の羅列と一方的な説明に偏り、一般来園者の日常的な認知経験への配慮に欠けています。結果として、視線接触の最初の10秒間で認知疲労が生じ、読解が放棄され情報伝达が途切れてしまいます。",
       "SITE: 福冈市植物园温室大棚区 · N = 70 BASELINE AUDIT": "SITE：福岡市植物園温室エリア · N = 70 基線監査",
-      "现实困境二：主观定性的评估局限": "現実的課題 2：主観的・定性的な評価の限界",
+      "现实困境二：主观定性的评估局限": "现实的課題 2：主観的・定性的な評価の限界",
       "传统评估工具的客观度缺失": "従来の評価ツールにおける客観性の欠如",
       "设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。": "デザインの改良効果を客観的かつ精緻に測定する生理的指標が不足しています。従来の評価は質問紙やインタビューに依存しており、被験者の自然な状態を妨げずに、異なるレイアウトモジュールの注意の偏りを解明することは困難でした。",
       "FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录": "FIELD TRIAL：自然な状態における来園者の非侵襲的視線キャプチャと記録",
@@ -3708,8 +3715,6 @@ const LANGUAGES = {
       "：关注微观版面层级对短文本加工负荷的直接影响。": "：微細なレイアウト階層が短文読解の加工負荷に与える直接的影響に注目。",
       "阶段 2：三方共创工坊与市民访谈": "段階 2：三者共創ワークショップと市民インタビュー",
       "三方视角下的 KJ 痛点审计与编码": "三者の視点によるKJ法を用いた課題の監査とコーディング",
-      "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下": "九州大学で複数回のGlobal Goals Jam共創デザインワークショップを開催。半構造化インタビューを通じて旧解説サインの読解障害に対し軸コーディングを行い、以下を抽出しました：",
-      "5 大核心认知痛点分类": "5つの主要な認知課題カテゴリ",
       "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下 5 大核心认知痛点分类：": "九州大学で複数回のGlobal Goals Jam共創デザインワークショップを開催。半構造化インタビューを通じて旧解説サインの読解障害に対しグラウンデッド・セオリーに基づく軸コーディングを行い、以下の5つの認知課題を抽出しました：",
       "1. 排版拥挤字号小": "1. レイアウトが過密でフォントが小さい",
       "2. 信息超载无焦点": "2. 情報過多でフォーカスが欠如している",
@@ -3718,8 +3723,7 @@ const LANGUAGES = {
       "5. 缺互动行动性引导": "5. インタラクティブな行動誘導の欠如",
       "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录": "IMAGE：Global Goals Jam 2025 九州共創ワークショップの議論記録",
       "阶段 3：A/R/S 设计原则之 A 与 R": "段階 3：A/R/S設計原則におけるAとR",
-      "拒绝平铺直叙的客观描述，通过问句启发（如“你能在这片叶子下找到什么？”）或情感隐喻，创造亲和的注意导入切面，诱导游客停下视线并切入深度加工。": "平板な客観的説明を避け、「この葉の下には何があるでしょうか？」のような問いかけや感情的な比喩によって親しみやすい導入をつくり、来園者の視線を止めて深い情報処理へ誘導します。",
-      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "植物の特徴を、触覚、用途、感覚的経験、および行動の可能性へと結びつけます。これは継続的な読解を促し、注意の逸脱を防ぐ決定的な視覚的手がかりです。",
+      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失 the 决定性视觉抓手。": "植物の特徴を、触覚、用途、感覚的経験、および行動の可能性へと結びつけます。",
       "阶段 3：A/R/S 设计原则之 S 结构清晰": "段階 3：A/R/S設計原則におけるS（構造の明瞭さ）",
       "结构清晰性": "サインの構造（Structure）",
       "采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。": "分割モジュール設計（左右分離フレームなど）、際立った階層的フォントウェイト、直感的なアイコンを採用し、テキストによる視覚的疲労を防ぎます。短文の視線チャネルを最適化し、効率的な情報取得を支援します。",
@@ -3736,12 +3740,11 @@ const LANGUAGES = {
       "阶段 4：眼动系统部署与射影校准": "段階 4：視線計測システムの導入と射影幾何校正",
       "非接触估计与漂移补偿": "非接触式の視線推定とドリフト補正",
       "基于 WebGazer.js 研发 non-contact 视线估计系统 SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "WebGazer.jsをベースに非接触視線推定システム「SIGN Visual Attention」を開発。デバイス内蔵カメラのみで顔面反射をリアルタイムに捉え、手動ドリフト補正と光フィルタリングアルゴリズムにより、屋外の反射光による歪みを排除します。",
-      "基于 WebGazer.js 研发 non-contact 视线估计 system SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "WebGazer.jsをベースに非接触視線推定システム「SIGN Visual Attention」を開発。デバイス内蔵カメラのみで顔面反射をリアルタイムに捉え、手動ドリフト補正と光フィルタリングアルゴリズムにより、屋外の反射光による歪みを排除します。",
       "纸面 9 点校准映射": "紙面上の9点物理校正マッピング",
-      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识的 2D 坐标系上。": "テスト前に、被験者は紙面サインの周囲に配置された9つの定標点を順に注視。システムが頭部の姿勢を計算し、ホモグラフィ（単一性）行列を用いて画面の推定視点座標を紙面サインの2次元座標系へ投影マッピングします。",
+      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识 of 2D 坐标系上。": "テスト前に、被験者は紙面サインの周囲に配置された9つの定標点を順に注視。システムが頭部の姿勢を計算し、ホモグラフィ（単一性）行列を用いて画面の推定視点座標を紙面サインの2次元座標系へ投影マッピングします。",
       "ILLUSTRATION: Web 端 9点视线偏移物理校准与误差补偿界面": "ILLUSTRATION：Web端における9点視線ズレ物理校正と誤差補正インターフェース",
       "结果 (1)：初期文字区域完读率提升": "結果 (1)：初期テキスト領域の読了率（カバー率）の向上",
-      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "テキスト領域の読了率（カバー率）の差分分析により、最初の10秒間の重要な閲覧ウィンドウにおいて、平均読了率がコントロール群の38.6%から実験群の45.3%へと上昇したことが示されました（6.7ポイントの向上）。被験者9名のうち6名で顕著な上昇が見られ、中央値の変化は+8.2ポイントに達しました。これは、実験群が視線を不規則なスキャンから感覚的アクション領域へと効果的に誘導したことを証明しています。",
+      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组 of 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "テキスト領域の読了率（カバー率）の差分分析により、最初の10秒間の重要な閲覧ウィンドウにおいて、平均読了率がコントロール群の38.6%から実験群の45.3%へと上昇したことが示されました（6.7ポイントの向上）。被験者9名のうち6名で顕著な上昇が見られ、中央値の変化は+8.2ポイントに達しました。これは、実験群が視線を不規則なスキャンから感覚的アクション領域へと効果的に誘導したことを証明しています。",
       "对照组完读率 (10s)": "コントロール群読了率 (10s)",
       "实验组完读率 (10s)": "実験群読了率 (10s)",
       "平均完读率净增量": "平均読了率純増量",
@@ -3754,10 +3757,10 @@ const LANGUAGES = {
       "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "26.6ポイントの大幅増加。視覚構造が長期的に再組織化され、より深い情報処理へと誘導されました。",
       "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "計測された有効被験者9名全員において、R領域の注意割合は一例外もなく顕著に上昇しました。",
       "结论：解决非正式学习中的结构性失败": "結論：インフォーマル学習における構造的失敗の解決",
-      "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。": "本研究は、「共創的課題分析」から「視線計測による生理指標評価」に至る学術的診断プロセスを一貫して構築し、五感や行動体験が視覚誘導に与える根本的役割を実証しました。",
+      "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。": "本研究は、「共創的課題分析」から「視线計測による生理指標評価」に至る学術的診断プロセスを一貫して構築し、五感や行動体験が視覚誘導に与える根本的役割を実証しました。",
       "方法论贡献 (Methodological)": "方法論的貢献",
       "建立标准化转化闭环，将杂散的用户行为数据或共创意见，结构化输出为具备证据支撑的解说设计系统参数。": "ユーザー行動データや共創意見を構造化し、証拠に裏付けられた解説デザイン仕様パラメータへと出力する標準的な検証ループを構築しました。",
-      "应用实践价值 (Applied)": "実用的・応用的な価値",
+      "应用实践价值 (Applied)": "実用的・応用的な价值",
       "A/R/S 设计优化原则突破了场域限制，可直接移植运用至科学馆、历史博览会和自然博物馆等非正式教育界面中。": "A/R/S設計原則は設置場所の制約を超え、科学館、歴史展示、自然博物館などの多様なインフォーマル教育のインターフェースへ直接応用可能です。",
       "工具链支持 (Instrumental)": "ツールチェーンによる支援",
       "开源非接触式视线系统 SIGN Visual Attention 证明了利用常规摄像头和大棚本地计算开展学术分析的轻量化潜能。": "オープンソースの非接触型視線システム「SIGN Visual Attention」は、一般的なカメラと現地PCでのローカル計算による学術分析の軽量化の可能性を実証しました。",
@@ -3770,12 +3773,34 @@ const LANGUAGES = {
       "突破空间不连续性": "空間の不連続性の克服",
       "从单体标识研究过渡到系统布局（空间动线引导、 inter-sign continuity），研究标识群的空间排布对游客在大温室中建立连贯心智地图的价值。": "単体サインの研究から系統的レイアウト（空間動線の誘導、サイン間の連続性）へと移行し、サイン群の空間配置が来園者の温室内における一貫したメンタルマップ構築に与える価値を検証します。",
       "参考文献 (References)": "参考文献",
-      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "抽出されたA/R/S理論原則を、具体的なレイアウト特徴と意味領域（AOI）にマッピング。",
+      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "抽出されたA/R/S理論原則を、具体的なレイアウト特徴と意味領域（AOI）にマッピング。"
       "研究背景：植物园与植物学习": "研究背景：植物園と植物学習",
-      "游客来到植物园的目的不仅仅是观赏——更是为了学习": "来園者は単に見るだけではなく、学ぶために植物園を訪れます",
+      "来园动机": "来園動機",
+      "游客来到植物园的目的不仅仅是观赏——更是为了学习": "来園者は単に見るためだけではなく、学ぶために植物園を訪れます",
+      "60% 以上": "60% 以上",
       "将"学习与探索"视为参观植物园的核心动机": "「学習と探求」を植物園訪問の中核的動機としている",
-      ""研究对象：解说标识作为植物学习的重要工具": "研究対象：植物学習の重要なツールとしての解説サイン",
-      "植物园温室中的解说标识是游客获取植物知识的主要媒介。然而，当前标识普遍存在内容过密、缺乏引导等问题，导致游客难以有效阅读。本研究聚焦于解说标识的版面设计与视线引导优化。": "植物園温室内の解説サインは、来園者が植物知識を得るための主要なメディアです。しかし、現在のサインは内容が密集しすぎており、視覚的誘導が不足しているため、来園者が効果的に読むことが困難です。本研究は、解説サインのレイアウトデザインと視線誘導の最適化に焦点を当てています。"
+      "Falk &amp; Dierking (2000)": "Falk &amp; Dierking (2000)",
+      "博物馆学习研究经典文献——来园者的核心动机是学习与探索": "博物館学習研究の古典的文献——来園者の中核的動機は学習と探求",
+      "研究对象：解说标识作为植物学习的重要工具": "研究対象：植物学習の重要なツールとしての解説サイン",
+      "核心媒介": "中核的メディア",
+      "植物园温室中的解说标识是游客获取植物知识的主要渠道": "植物園温室内の解説サインは、来園者が植物知識を得るための主要なチャネルです",
+      "现存问题": "現存する問題",
+      "内容过密、缺乏视觉引导，游客难以有效阅读": "内容が過密で視覚的誘導が不足しており、来園者が効果的に読むことが困難",
+      "研究聚焦": "研究の焦点",
+      "解说标识的版面设计与视线引导优化": "解説サインのレイアウトデザインと視線誘導の最適化",
+      "高设置 · 低阅读": "高い設置率 · 低い読了率",
+      "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效": "「サインは設置されているが、読まれているわけではない」——90%以上の旧サインが完全に機能不全",
+      "10 秒黄金窗口": "10秒の黄金ウィンドウ",
+      "游客在视线接触的前 10 秒即产生认知疲劳并放弃阅读": "来園者は視線接触の最初の10秒で認知疲労を起こし、読むのを諦める",
+      "学术名词堆砌 · 信息流断裂": "専門用語の羅列 · 情報の断絶",
+      "缺乏对普通游客日常认知经验的过渡，线性灌输导致阅读中断": "一般来園者の日常的認知経験への橋渡しがなく、線形的な知識注入が読了の中断を招く",
+      "客观度缺失": "客観性の欠如",
+      "设计改良缺乏客观、细粒度的生理量化指标": "デザイン改良には客観的で詳細な生理的定量指標が欠けている",
+      "定性依赖": "定性依存",
+      "高度依赖定性问卷与回顾访谈，无法做到精准测量": "定性的アンケートと回顧的インタビューに大きく依存し、精密な測定が不可能",
+      "无法解耦注意力流": "注意フローの分離不可能",
+      "不能在自然阅读状态下，精准追踪不同版面区域的眼动流向": "自然な読書状態で、異なるレイアウト領域の眼球運動フローを精密に追跡できない",
+      "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效": "\u201cサインは設置されているが、読まれているわけではない\u201d——90%以上の旧サインが完全に機能不全",
     }
   },
   'es-MX': {
@@ -3821,7 +3846,6 @@ const LANGUAGES = {
       "对标识图像按主题编码，确认问题普遍性并收束课题。": "Codificación de las imágenes de señalización por tema para confirmar la generalidad del problema y delimitar la investigación.",
       "专家访谈": "Entrevistas con expertos",
       "与专家讨论可行方向，确定研究问题。": "Discusión de rumbos viables con expertos para formular las preguntas de investigación.",
-      "与专家讨论可行方向，确定研究问题.": "Discusión de rumbos viables con expertos para formular las preguntas de investigación.",
       "用焦点小组、问卷与记忆测试验证研究必要性。": "Uso de grupos focales, cuestionarios y pruebas de memoria para verificar la necesidad de la investigación.",
       "ARS 原则产出": "Creación de principios ARS",
       "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。": "Extracción de los principios de atmósfera inspiradora (A), relevancia para la audiencia (R) y estructura de señalización (S) a partir del análisis y entrevistas.",
@@ -3919,7 +3943,6 @@ const LANGUAGES = {
       "实验组 (45.3%)": "Intervención (45.3%)",
       "平均提升 +6.7pp": "Incremento promedio de +6.7pp",
       "人↑": "personas ↑",
-      "9 / 9人": "9 / 9 participantes",
       "9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp": "6 de 9 muestras válidas aumentaron; el cambio medio alcanzó +8.2pp",
       "Q2: 注意力向设计意图区域重组 (AOI 占比)": "Q2: Reorganización de la atención hacia áreas clave (proporción de AOI)",
       "实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。": "El grupo de intervención no expandió el área de lectura a ciegas de manera generalizada. A través de divisiones de diseño y jerarquía, la atención se organizó con precisión hacia las áreas de interés semántico.",
@@ -3995,8 +4018,6 @@ const LANGUAGES = {
       "：关注微观版面层级对短文本加工负荷的直接影响。": "：Se centra en el impacto directo de las jerarquías de micro-diseño en la carga de procesamiento de textos cortos.",
       "阶段 2：三方共创工坊与市民访谈": "Fase 2: Taller de co-creación tripartito y entrevistas",
       "三方视角下的 KJ 痛点审计与编码": "Auditoría y codificación de puntos críticos mediante KJ desde perspectivas tripartitas",
-      "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下": "Organizó múltiples sesiones de co-creación de Global Goals Jam en la Universidad de Kyushu. Mediante entrevistas semiestructuradas, realizamos una codificación axial de las barreras de lectura de las señales antiguas, resumiendo lo siguiente",
-      "5 大核心认知痛点分类": "5 categorías principales de puntos críticos cognitivos",
       "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下 5 大核心认知痛点分类：": "Organizó múltiples sesiones de co-creación de Global Goals Jam en la Universidad de Kyushu. Mediante entrevistas semiestructuradas, realizamos una codificación axial de las barreras de lectura de las señales antiguas, resumiendo 5 puntos críticos cognitivos:",
       "1. 排版拥挤字号小": "1. Diseño saturado y fuentes diminutas",
       "2. 信息超载无焦点": "2. Sobrecarga de información y falta de enfoque",
@@ -4005,8 +4026,7 @@ const LANGUAGES = {
       "5. 缺互动行动性引导": "5. Falta de orientación interactiva para la acción",
       "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录": "IMAGEN: Registro de discusión de Global Goals Jam 2025 Kyushu",
       "阶段 3：A/R/S 设计原则之 A 与 R": "Fase 3: Atmósfera inspiradora y relevancia para la audiencia",
-      "拒绝平铺直叙的客观描述，通过问句启发（如“你能在这片叶子下找到什么？”）或情感隐喻，创造亲和的注意导入切面，诱导游客停下视线并切入深度加工。": "Rechaza la descripción plana y puramente objetiva. Usa preguntas como “¿Qué puedes encontrar bajo esta hoja?” o metáforas emocionales para crear una entrada cercana, detener la mirada y guiar al visitante hacia un procesamiento más profundo.",
-      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "Conecta los rasgos objetivos de la planta con experiencias sensoriales cotidianas, como el tacto o los usos artesanales, para despertar la percepción. Es un ancla visual decisiva para sostener la lectura y evitar la pérdida de atención.",
+      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失 the 决定性视觉抓手。": "Conexión de los rasgos de la planta con el tacto, el uso, la experiencia sensorial y las posibilidades de acción.",
       "阶段 3：A/R/S 设计原则之 S 结构清晰": "Fase 3: Claridad estructural de los principios de diseño A/R/S",
       "结构清晰性": "Estructura de la señalización",
       "采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。": "Utilice diseños modulares (como rejillas desacopladas izquierda-derecha), jerarquías de peso tipográfico distintas e iconos intuitivos para evitar la fatiga visual. Esto optimiza el canal de la mirada para el procesamiento de textos cortos y permite una recuperación eficiente de la información.",
@@ -4023,12 +4043,11 @@ const LANGUAGES = {
       "阶段 4：眼动系统部署与射影校准": "Fase 4: Despliegue de seguimiento ocular y calibración proyectiva",
       "非接触估计与漂移补偿": "Estimación de mirada sin contacto y compensación de deriva",
       "基于 WebGazer.js 研发 non-contact 视线估计系统 SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "Desarrolló el sistema de estimación de mirada sin contacto SIGN Visual Attention basado en WebGazer.js. Captura el reflejo facial en tiempo real usando una cámara estándar, con compensación manual de deriva y filtrado de luz para eliminar distorsiones.",
-      "基于 WebGazer.js 研发 non-contact 视线估计 system SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "Desarrolló el sistema de estimación de mirada sin contacto SIGN Visual Attention basado en WebGazer.js. Captura el reflejo facial en tiempo real usando una cámara estándar, con compensación manual de deriva y filtrado de luz para eliminar distorsiones.",
       "纸面 9 点校准映射": "Mapeo de calibración de 9 puntos en papel",
-      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识的 2D 坐标系上。": "Antes de la prueba, los visitantes miran 9 puntos de calibración físicos alrededor de la señal impresa. El sistema calcula la pose de la cabeza y usa una matriz de homografía para proyectar las estimaciones al sistema 2D de la señal física.",
+      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识 of 2D 坐标系上。": "Antes de la prueba, los visitantes miran 9 puntos de calibración físicos alrededor de la señal impresa. El sistema calcula la pose de la cabeza y usa una matriz de homografía para proyectar las estimaciones al sistema 2D de la señal física.",
       "ILLUSTRATION: Web 端 9点视线偏移物理校准与误差补偿界面": "ILUSTRACIÓN: Interfaz web de calibración física de 9 puntos y compensación de errores",
       "结果 (1)：初期文字区域完读率提升": "Resultado (1): Aumento de la cobertura de lectura del área de texto en la fase inicial",
-      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "El análisis de diferencia de rejilla muestra que en los primeros 10 segundos, la cobertura promedio de lectura aumentó del 38.6% en el grupo de control al 45.3% en el grupo experimental (un aumento de 6.7pp). 6 de cada 9 participantes mostraron una tendencia ascendente, con un aumento medio de +8.2pp. Esto demuestra que la intervención guio con éxito la mirada hacia las zonas de acción sensorial.",
+      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组 of 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "El análisis de diferencia de rejilla muestra que en los primeros 10 segundos, la cobertura promedio de lectura aumentó del 38.6% en el grupo de control al 45.3% en el grupo experimental (un aumento de 6.7pp). 6 de cada 9 participantes mostraron una tendencia ascendente, con un aumento medio de +8.2pp. Esto demuestra que la intervención guio con éxito la mirada hacia las zonas de acción sensorial.",
       "对照组完读率 (10s)": "Cobertura de control (10s)",
       "实验组完读率 (10s)": "Cobertura de intervención (10s)",
       "平均完读率净增量": "Incremento neto promedio",
@@ -4057,39 +4076,54 @@ const LANGUAGES = {
       "突破空间不连续性": "Superando la discontinuidad espacial",
       "从单体标识研究过渡到系统布局（空间动线引导、 inter-sign continuity），研究标识群的空间排布对游客在大温室中建立连贯心智地图的价值。": "Transicionar de señales individuales a diseño sistémico para estudiar cómo los arreglos de señales ayudan a construir mapas mentales.",
       "参考文献 (References)": "Referencias",
-      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "Mapeo de los principios teóricos A/R/S en características específicas de diseño y regiones semánticas de interés (AOI).",
+      "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。": "Mapeo de los principios teóricos A/R/S en características específicas de diseño y regiones semánticas de interés (AOI)."
       "研究背景：植物园与植物学习": "Antecedentes: jardines botánicos y aprendizaje sobre plantas",
-      "游客来到植物园的目的不仅仅是观赏——更是为了学习": "Los visitantes van a los jardines botánicos no solo para mirar, sino para aprender",
-      "将"学习与探索"视为参观植物园的核心动机": "citan el aprendizaje y la exploración como una motivación principal",
-      ""研究对象：解说标识作为植物学习的重要工具": "Objeto de estudio: la señalización interpretativa como herramienta clave para el aprendizaje botánico",
-      "植物园温室中的解说标识是游客获取植物知识的主要媒介。然而，当前标识普遍存在内容过密、缺乏引导等问题，导致游客难以有效阅读。本研究聚焦于解说标识的版面设计与视线引导优化。": "La señalización interpretativa en los invernaderos de jardines botánicos es el principal medio por el cual los visitantes adquieren conocimientos sobre plantas. Sin embargo, la señalización actual suele tener contenido demasiado denso y carece de orientación visual, lo que dificulta una lectura eficaz. Este estudio se centra en la optimización del diseño y la guía visual de la señalización interpretativa."
+      "来园动机": "Motivación de visita",
+      "游客来到植物园的目的不仅仅是观赏——更是为了学习": "Los visitantes van a los jardines botánicos no solo para mirar — van para aprender",
+      "60% 以上": "Más del 60%",
+      "将"学习与探索"视为参观植物园的核心动机": "citan el aprendizaje y la exploración como la motivación principal para visitar",
+      "Falk &amp; Dierking (2000)": "Falk &amp; Dierking (2000)",
+      "博物馆学习研究经典文献——来园者的核心动机是学习与探索": "Investigación clásica sobre aprendizaje en museos — la motivación principal es aprender y explorar",
+      "研究对象：解说标识作为植物学习的重要工具": "Objeto de estudio: la señalización interpretativa como herramienta clave para el aprendizaje botánico",
+      "核心媒介": "Medio principal",
+      "植物园温室中的解说标识是游客获取植物知识的主要渠道": "La señalización interpretativa en invernaderos es el canal principal para que los visitantes adquieran conocimiento botánico",
+      "现存问题": "Problemas existentes",
+      "内容过密、缺乏视觉引导，游客难以有效阅读": "Contenido denso, falta de guía visual — los visitantes tienen dificultades para leer eficazmente",
+      "研究聚焦": "Enfoque de investigación",
+      "解说标识的版面设计与视线引导优化": "Optimización del diseño de maquetación y guía visual de la señalización interpretativa",
+      "高设置 · 低阅读": "Alta instalación · Baja lectura",
+      "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效": ""Las señales están instaladas, pero no se leen" — más del 90% de las señales antiguas fallan por completo",
+      "10 秒黄金窗口": "Ventana dorada de 10 segundos",
+      "游客在视线接触的前 10 秒即产生认知疲劳并放弃阅读": "Los visitantes experimentan fatiga cognitiva en los primeros 10 segundos y dejan de leer",
+      "学术名词堆砌 · 信息流断裂": "Jerga académica · Ruptura de información",
+      "缺乏对普通游客日常认知经验的过渡，线性灌输导致阅读中断": "Sin puente hacia la experiencia cotidiana del visitante — la entrega lineal provoca abandono de lectura",
+      "客观度缺失": "Falta de objetividad",
+      "设计改良缺乏客观、细粒度的生理量化指标": "Las mejoras de diseño carecen de métricas fisiológicas objetivas y detalladas",
+      "定性依赖": "Dependencia cualitativa",
+      "高度依赖定性问卷与回顾访谈，无法做到精准测量": "Alta dependencia de encuestas cualitativas y entrevistas retrospectivas — no se logra una medición precisa",
+      "无法解耦注意力流": "No se puede desacoplar el flujo de atención",
+      "不能在自然阅读状态下，精准追踪不同版面区域的眼动流向": "No se puede rastrear con precisión el flujo de la mirada entre regiones del diseño durante la lectura natural",
+      "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效": "\u201cLas se\u00f1ales est\u00e1n instaladas, pero no se leen\u201d — m\u00e1s del 90% de las se\u00f1ales antiguas fallan por completo",
     }
   }
 };const LANG_ORDER = ['zh', 'en', 'ja', 'es-MX'];
 let currentLanguage = localStorage.getItem('deck-language') || 'zh';
 if(!LANGUAGES[currentLanguage]) currentLanguage = 'zh';
 let i18nTargets = [];
-const I18N_IGNORE_SELECTOR = '.lang-top-btn,.lang-top-label,.cover-lang-switch,[data-i18n-ignore]';
-const LANGUAGE_DISPLAY_NAMES = {
-  zh: { zh: '中文', en: 'English', ja: '日本語', 'es-MX': 'Español' },
-  en: { zh: 'Chinese', en: 'English', ja: 'Japanese', 'es-MX': 'Spanish' },
-  ja: { zh: '中国語', en: '英語', ja: '日本語', 'es-MX': 'スペイン語' },
-  'es-MX': { zh: 'Chino', en: 'English', ja: 'Japonés', 'es-MX': 'Español' }
-};
-
-function languageDisplayName(uiLanguage, targetLanguage){
-  return LANGUAGE_DISPLAY_NAMES[uiLanguage]?.[targetLanguage]
-    || LANGUAGES[targetLanguage]?.label
-    || targetLanguage;
-}
 
 function captureI18nTargets(){
   i18nTargets = [];
   const root = document.getElementById('deck');
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode: function(node) {
+      if (node.parentElement && (node.parentElement.closest('.cover-lang-switch') || node.parentElement.closest('.lang-top-btn') || node.parentElement.closest('.lang-top-label'))) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  }, false);
   let node;
   while(node = walker.nextNode()){
-    if(node.parentElement?.closest(I18N_IGNORE_SELECTOR)) continue;
     const text = node.nodeValue.trim();
     if(text) {
       i18nTargets.push({
@@ -4098,53 +4132,6 @@ function captureI18nTargets(){
       });
     }
   }
-}
-
-function resolveTranslation(trimmed, strings){
-  if(Object.prototype.hasOwnProperty.call(strings, trimmed)){
-    return { value: strings[trimmed], mode: 'exact' };
-  }
-
-  const keys = Object.keys(strings)
-    .filter(key => key.length > 1)
-    .sort((a,b) => b.length - a.length);
-  let value = '';
-  let matched = false;
-  let index = 0;
-  while(index < trimmed.length){
-    const key = keys.find(candidate => trimmed.startsWith(candidate, index));
-    if(key){
-      value += strings[key];
-      index += key.length;
-      matched = true;
-    }else{
-      value += trimmed[index];
-      index += 1;
-    }
-  }
-  return matched ? { value, mode: 'segment' } : null;
-}
-
-function updateLanguageControls(lang){
-  document.querySelectorAll('.lang-top-btn').forEach(btn => {
-    const inlineHandler = btn.getAttribute('onclick') || '';
-    const inlineTarget = inlineHandler.match(/applyLanguage\(['"]([^'"]+)['"]\)/)?.[1];
-    const targetLanguage = btn.dataset.langButton || inlineTarget;
-    if(targetLanguage){
-      const labelMode = btn.dataset.langLabel || (btn.closest('.cover-lang-switch') ? 'name' : 'short');
-      btn.textContent = labelMode === 'name'
-        ? languageDisplayName(lang, targetLanguage)
-        : (LANGUAGES[targetLanguage]?.shortLabel || targetLanguage);
-      btn.classList.toggle('active', targetLanguage === lang);
-      btn.setAttribute('aria-pressed', targetLanguage === lang ? 'true' : 'false');
-    }
-  });
-  document.querySelectorAll('.lang-button[data-lang-button]').forEach(btn => {
-    btn.textContent = languageDisplayName(lang, btn.dataset.langButton);
-    const active = btn.dataset.langButton === lang;
-    btn.classList.toggle('active', active);
-    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-  });
 }
 
 function applyLanguage(lang, opts = {}){
@@ -4158,35 +4145,34 @@ function applyLanguage(lang, opts = {}){
   document.body.classList.add('lang-' + lang);
 
   const strings = LANGUAGES[lang].strings || {};
-  const missing = [];
-  const missingKeys = new Set();
   i18nTargets.forEach(target => {
     const orig = target.original;
     const trimmed = orig.trim();
     if (lang === 'zh') {
       target.node.nodeValue = orig;
-    } else {
+    } else if (strings[trimmed]) {
       const leading = orig.match(/^\s*/)[0];
       const trailing = orig.match(/\s*$/)[0];
-      const resolved = resolveTranslation(trimmed, strings);
-      if(resolved){
-        target.node.nodeValue = leading + resolved.value + trailing;
-      }else if(/[\u3400-\u9fff]/.test(trimmed)){
-        target.node.nodeValue = leading + trailing;
-        if(!missingKeys.has(trimmed)){
-          missingKeys.add(trimmed);
-          missing.push(trimmed);
-        }
-      }else{
-        target.node.nodeValue = orig;
-      }
+      target.node.nodeValue = leading + strings[trimmed] + trailing;
+    } else {
+      target.node.nodeValue = orig;
     }
   });
 
-  window.__i18nAudit = { lang, missing, targetCount: i18nTargets.length };
+  if (opts.rebuildOverview) {
+    buildOverview();
+  } else {
+    document.querySelectorAll('[data-lang-button]').forEach(btn => {
+      const active = btn.dataset.langButton === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
 
-  if (opts.rebuildOverview) buildOverview();
-  updateLanguageControls(lang);
+  document.querySelectorAll('.lang-top-btn').forEach(btn => {
+    const active = btn.getAttribute('onclick').includes(`'${lang}'`);
+    btn.classList.toggle('active', active);
+  });
 
   if(typeof updatePresentationIndicator === 'function'){
     updatePresentationIndicator();
@@ -4232,16 +4218,26 @@ function updateCarouselGeometry(){
   const indicatorBottom=presentationIndicator.getBoundingClientRect().bottom;
   const vMargin=Math.max(64,Math.round(indicatorBottom+20));
   const maxHeight=Math.max(240,innerHeight-2*vMargin);
-  const widthRatio=innerWidth<=900?.74:.70;
-  const maxWidth=Math.max(360,innerWidth*widthRatio);
+
+  // Responsive layout: wider slide on mobile to ensure copy readability
+  const widthRatio=innerWidth<=600?0.90:(innerWidth<=900?.74:.70);
+  let maxWidth=innerWidth*widthRatio;
+  if(innerWidth<=600){
+    // Cap on small mobiles to avoid overflow issues
+    maxWidth=Math.min(maxWidth,innerWidth-16);
+  }else{
+    // Apply standard minimum and cap
+    maxWidth=Math.max(360,Math.min(maxWidth,innerWidth-24));
+  }
+
   const scale=Math.min(maxWidth/1200,maxHeight/900,1);
   const renderedWidth=1200*scale;
   const renderedHeight=900*scale;
   const gap=Math.max(16,Math.min(28,innerWidth*.018));
-  
+
   // Center slide vertically in the viewport (always symmetric top & bottom spacing)
   const top=Math.round((innerHeight-renderedHeight)/2);
-  
+
   carouselGeometry={renderedWidth,renderedHeight,gap,top};
   document.documentElement.style.setProperty('--slide-scale',String(scale));
   document.documentElement.style.setProperty('--slide-render-width',`${renderedWidth}px`);
@@ -4275,7 +4271,7 @@ function initPresentationIndicator() {
     if (!chapters[ch]) {
       chapters[ch] = {
         id: ch,
-        titleEn: (CHAPTER_LABELS.en[Math.max(0, ch - 1)] || '').toUpperCase(),
+        titleEn: (CHAPTER_LABELS.en[ch - 1] || '').toUpperCase(),
         slides: []
       };
     }
@@ -4447,7 +4443,7 @@ function buildOverview(){
     button.className = 'lang-button' + (lang === currentLanguage ? ' active' : '');
     button.dataset.langButton = lang;
     button.setAttribute('aria-pressed', lang === currentLanguage ? 'true' : 'false');
-    button.textContent = languageDisplayName(currentLanguage, lang);
+    button.textContent = LANGUAGES[lang].label;
     button.onclick = (e) => {
       e.stopPropagation();
       applyLanguage(lang, {rebuildOverview: true});
