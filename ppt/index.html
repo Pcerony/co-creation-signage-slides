@@ -2045,8 +2045,8 @@
 
   /* Evidence pages: one editorial copy column beside one dominant image. */
   .evidence-layout{
-    display:grid;grid-template-columns:5fr 7fr;gap:4vw;
-    flex:1;min-height:0;align-items:stretch;
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4vw;
+    flex:1;min-width:0;min-height:0;align-items:stretch;
   }
   .evidence-copy{
     display:flex;flex-direction:column;min-width:0;
@@ -2065,7 +2065,7 @@
   }
   .evidence-index{font-family:var(--mono);font-size:14px;color:var(--accent)}
   .evidence-media{
-    min-height:0;height:auto;aspect-ratio:4/3;align-self:center;
+    min-width:0;min-height:0;width:100%;height:auto;aspect-ratio:4/3;align-self:center;
     border:0;border-top:2px solid var(--accent);background:var(--grey-1);
   }
   .evidence-media.evidence-media-wide{aspect-ratio:16/9}
@@ -2240,23 +2240,23 @@
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">02 / 19</div></div>
 
-    <div class="evidence-layout" style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start;flex:1;min-height:0;padding-top:20px;">
-      <!-- Left column: Heading and copy -->
-      <div style="display:flex;flex-direction:column;gap:24px;">
-        <h2 class="h-xl-zh" style="color:var(--ink);margin:0;">现实困境一：专家导向的知识超载</h2>
-        <div style="width:60px;height:4px;background-color:var(--accent);"></div>
-        <p class="t-body" style="color:var(--text-primary);margin:0;font-weight:400;">
-          “标识被设置，但不等于被阅读”。现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。
+    <div class="evidence-layout">
+      <div class="evidence-copy">
+        <h2 class="h-xl-zh" style="color:var(--ink)">现实困境一：专家导向的知识超载</h2>
+        <div class="evidence-rule" aria-hidden="true"></div>
+        <p class="evidence-lead">“标识被设置，但不等于被阅读”</p>
+        <p class="t-body" style="color:var(--text-primary);margin-top:2.4vh">
+          现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。
         </p>
-      </div>
-
-      <!-- Right column: Dominant field image -->
-      <div class="evidence-media" style="display:flex;flex-direction:column;gap:12px;align-self:stretch;justify-content:center;">
-        <div class="frame-img fit-cover" style="height:360px;width:480px;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
-          <img src="images/01-field-observation.jpg" alt="福冈市植物园温室实地环境" style="width:100%;height:100%;object-fit:cover;">
+        <div class="evidence-meta">
+          <span class="t-meta" style="color:var(--text-helper)">SITE / N = 70 BASELINE AUDIT</span>
+          <span class="evidence-index">01</span>
         </div>
-        <span class="t-meta" style="color:var(--text-helper);font-size:16px;">SITE: 福冈市植物园温室大棚区 · N = 70 BASELINE AUDIT</span>
       </div>
+      <figure class="evidence-media frame-img fit-cover">
+        <img src="images/01-field-observation.jpg" alt="福冈市植物园温室实地环境">
+        <figcaption>福冈市植物园温室大棚区 · 现场观察</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -2265,23 +2265,23 @@
   <div class="canvas-card">
     <div class="chrome-min"><div class="l">CONTEXT & PROBLEM STATEMENT</div><div class="r">03 / 19</div></div>
 
-    <div class="evidence-layout" style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start;flex:1;min-height:0;padding-top:20px;">
-      <!-- Left column: Heading and copy -->
-      <div style="display:flex;flex-direction:column;gap:24px;">
-        <h2 class="h-xl-zh" style="color:var(--ink);margin:0;">现实困境二：主观定性的评估局限</h2>
-        <div style="width:60px;height:4px;background-color:var(--accent);"></div>
-        <p class="t-body" style="color:var(--text-primary);margin:0;font-weight:400;">
-          传统评估工具的客观度缺失。设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。
+    <div class="evidence-layout">
+      <div class="evidence-copy">
+        <h2 class="h-xl-zh" style="color:var(--ink)">现实困境二：主观定性的评估局限</h2>
+        <div class="evidence-rule" aria-hidden="true"></div>
+        <p class="evidence-lead">传统评估工具的客观度缺失</p>
+        <p class="t-body" style="color:var(--text-primary);margin-top:2.4vh">
+          设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。
         </p>
-      </div>
-
-      <!-- Right column: Dominant field image -->
-      <div class="evidence-media" style="display:flex;flex-direction:column;gap:12px;align-self:stretch;justify-content:center;">
-        <div class="frame-img fit-cover" style="height:360px;width:480px;border-radius:10px;border:1px solid var(--border-subtle);overflow:hidden;">
-          <img src="images/02-experiment-scene.jpg" alt="游客在植物园阅读标识场景" style="width:100%;height:100%;object-fit:cover;">
+        <div class="evidence-meta">
+          <span class="t-meta" style="color:var(--text-helper)">FIELD TRIAL / EYE-TRACKING</span>
+          <span class="evidence-index">02</span>
         </div>
-        <span class="t-meta" style="color:var(--text-helper);font-size:16px;">FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录</span>
       </div>
+      <figure class="evidence-media evidence-media-wide frame-img fit-cover">
+        <img src="images/02-experiment-scene.jpg" alt="游客在植物园阅读标识场景">
+        <figcaption>游客自然状态下的无感视线捕捉与记录</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -2392,7 +2392,7 @@
       </article>
       <article class="process-panel" data-process-panel="4">
         <div class="phase"><span>2026.05</span>设计与原型</div>
-        <div class="detail-list"><div><strong>ARS原则视觉映射</strong><span>将提炼 of A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。</span></div></div>
+        <div class="detail-list"><div><strong>ARS原则视觉映射</strong><span>将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。</span></div></div>
         <div class="detail-list"><div><strong>Dynamic Signage</strong><span>基于 VisualAnalytics 技术，设计并实现动态解说标识原型。</span></div></div>
       </article>
       <article class="process-panel" data-process-panel="5">
@@ -2712,7 +2712,7 @@
           <h2 class="h-xl-zh" style="color:var(--ink)">结果 (1)：初期文字区域完读率提升</h2>
         </div>
         <p class="t-body-sm" style="line-height:1.6;color:var(--text-primary)">
-          文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组 of 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。
+          文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。
         </p>
       </div>
       <!-- Bottom Row: Towers -->
@@ -3114,7 +3114,7 @@ const LANGUAGES = {
       "实地收集来园者在自然状态下的真实眼动轨迹与注视分布。": "Collected real visitor gaze trajectories and fixation distributions in a natural field setting.",
       "包含 Dynamic Signage 原型试用阶段，观察动态标识的可用性。": "Included a Dynamic Signage prototype trial to observe usability.",
       "分析重点": "Analysis Focus",
-      "本阶段重点针对 A/B 眼动实验 of Quick Data 与 AOI 数据进行多维分析。": "This phase focuses on multidimensional analysis of Quick Data and AOI results from the A/B eye-tracking experiment.",
+      "本阶段重点针对 A/B 眼动实验的 Quick Data 与 AOI 数据进行多维分析。": "This phase focuses on multidimensional analysis of Quick Data and AOI results from the A/B eye-tracking experiment.",
       "Quick Data 分析": "Quick Data Analysis",
       "迅速分析本实验 A/B 测试结果，形成早期结论。": "Quickly analyzed the A/B test results and formed early conclusions.",
       "修士报告": "Master’s Report",
@@ -3210,7 +3210,7 @@ const LANGUAGES = {
       "全程时间 R 区注意力占比": "Attention share in R area, full session",
       "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "A large 26.6pp increase indicates a long-term reorganization of gaze structure, drawing viewers into deeper information processing.",
       "全样本表现一致": "Consistent across all samples",
-      "在被测试 of 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Across the 9 valid participants, attention share in the R area increased without exception.",
+      "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Across the 9 valid participants, attention share in the R area increased without exception.",
       "讨论与局限：全程完读率下降的客观判读": "Discussion and Limitations: Objective Reading of the Full-session Coverage Decline",
       "事实与边界": "Facts and Boundaries",
       "全程文字覆盖率下降": "Full-session text coverage declined",
@@ -3245,7 +3245,7 @@ const LANGUAGES = {
       "设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。": "Design improvements lack objective, fine-grained physiological metrics. Traditional methods rely heavily on questionnaires and interviews, failing to capture natural gaze distribution across different layout modules without disruption.",
       "FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录": "FIELD TRIAL: Non-disruptive gaze tracking of visitors in natural state",
       "探究解说标识的实证化改良路径": "Empirical Improvement Paths for Interpretive Signage",
-      "本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。": "This study establishes a validation loop from "problem identification" to "gaze-based diagnosis" by proposing co-creation design principles and a low-cost, non-contact eye-tracking system. It transitions signage from static information boards to experience-inducing media.",
+      "本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。": "This study establishes a validation loop from 'problem identification' to 'gaze-based diagnosis' by proposing co-creation design principles and a low-cost, non-contact eye-tracking system. It transitions signage from static information boards to experience-inducing media.",
       "Q1 · 初期文字区域完读率提升": "Q1 · Reading Coverage Increase in Initial Window",
       "A/R设计是否能在游客与标识接触的黄金前 10 秒（视觉入口期）内，有效提高游客对核心文字内容的整体空间覆盖率，降低盲目扫视率？": "Can A/R design effectively improve the spatial coverage of core text and reduce random scanning during the golden first 10 seconds of visual entry?",
       "语义区注意力配额与视线转换机制": "Attention Allocation and Gaze Transition in Semantic Areas",
@@ -3274,7 +3274,7 @@ const LANGUAGES = {
       "5. 缺互动行动性引导": "5. Lack of interactive action guidance",
       "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录": "IMAGE: Discussion record of Global Goals Jam 2025 Kyushu",
       "阶段 3：A/R/S 设计原则之 A 与 R": "Phase 3: Inspirational Atmosphere & Audience Relevance",
-      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "Map objective plant traits onto daily sensory experiences (e.g., tactile contrast like "dry/fleshy" or craft/use cases) to awaken perception. This is the critical visual anchor for sustaining reading and preventing attention drift.",
+      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "Map objective plant traits onto daily sensory experiences (e.g., tactile contrast like 'dry/fleshy' or craft/use cases) to awaken perception. This is the critical visual anchor for sustaining reading and preventing attention drift.",
       "阶段 3：A/R/S 设计原则之 S 结构清晰": "Phase 3: Structural Clarity of A/R/S Design Principles",
       "结构清晰性": "Structural Clarity",
       "采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。": "Utilize modular layouts (such as left-right decoupled grids), distinct typographic weight hierarchies, and intuitive icons to prevent text fatigue. This optimizes visual channels for short-text processing and enables efficient information retrieval.",
@@ -3308,7 +3308,7 @@ const LANGUAGES = {
       "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "Grew by 26.6pp, representing a long-term restructuring of gaze that draws viewers into deep cognitive processing.",
       "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Among the 9 valid participants tested, attention share in the R Area increased significantly without exception.",
       "结论：解决非正式学习中的结构性失败": "Conclusion: Resolving Structural Failures in Informal Learning",
-      "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。": "This study successfully establishes a research diagnostics pipeline from "co-creation pain points" to "eye-tracking metrics", providing empirical evidence for the fundamental role of sensory and action experience in gaze guidance.",
+      "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。": "This study successfully establishes a research diagnostics pipeline from 'co-creation pain points' to 'eye-tracking metrics', providing empirical evidence for the fundamental role of sensory and action experience in gaze guidance.",
       "方法论贡献 (Methodological)": "Methodological Contribution",
       "建立标准化转化闭环，将杂散的用户行为数据或共创意见，结构化输出为具备证据支撑的解说设计系统参数。": "Establishes a standardized loop to output fragmented behavioral data or co-creation feedback into evidence-supported signage design parameters.",
       "应用实践价值 (Applied)": "Applied Practice Value",
@@ -3316,7 +3316,7 @@ const LANGUAGES = {
       "工具链支持 (Instrumental)": "Instrumental Toolchain Support",
       "开源非接触式视线系统 SIGN Visual Attention 证明了利用常规摄像头和大棚本地计算开展学术分析的轻量化潜能。": "The open-source non-contact gaze system SIGN Visual Attention demonstrates the lightweight potential of utilizing standard cameras and local computing for academic analysis.",
       "博士阶段展望：从视觉捕获到信息提取": "Doctoral Outlook: From Visual Capture to Information Extraction",
-      "在第一阶段突破了“视觉可达性与注意力分流”屏障后，博士阶段将向大脑的信息解码与空间导航连贯性发起挑战。": "Having resolved the initial barrier of "visual accessibility and attention redistribution", the doctoral phase will address brain information decoding and spatial navigation coherence.",
+      "在第一阶段突破了“视觉可达性与注意力分流”屏障后，博士阶段将向大脑的信息解码与空间导航连贯性发起挑战。": "Having resolved the initial barrier of 'visual accessibility and attention redistribution', the doctoral phase will address brain information decoding and spatial navigation coherence.",
       "解决第二痛点：信息记忆衰退": "Solving Pain Point 2: Cognitive Memory Decline",
       "引入认知负荷理论 (Sweller, 1988) 与双重编码理论 (Paivio, 1971)，研究如何通过合理的图文匹配优化大脑记忆编码强度。": "Integrate Cognitive Load Theory (Sweller, 1988) and Dual Coding Theory (Paivio, 1971) to optimize memory encoding through layout matching.",
       "全生命周期眼动与延迟信息召回": "Full-Session Eye-tracking and Delayed Memory Recall",
@@ -3424,7 +3424,7 @@ const LANGUAGES = {
       "重新组织": "再組織化",
       "到核心设计区域？": "され、核心的な設計エリアへと誘導されているか？",
       "各语义区域 (AOI) 注意力占比": "意味領域（AOI）ごとの注意割合",
-      "Q3 · 效能比较": "Q3 · 効果 of 比較",
+      "Q3 · 效能比较": "Q3 · 効果の比較",
       "在 A/R/S 原则中，哪种设计介入产生的": "A/R/S原則の中で、どのデザイン介入が最も",
       "效应最强、最稳定": "強く安定した効果をもたらすか？",
       "9名有效被试的各区注意力增幅": "有効被験者9名における各領域の注意増加量",
@@ -3441,7 +3441,6 @@ const LANGUAGES = {
       "视线估计原理与物理坐标投影映射": "視線推定の原理と物理座標への投影マッピング",
       "普通网络摄像头实时捕获被试面部与眼部反射特征。": "通常のWebカメラにより、被験者の顔部および眼球の反射特徴をリアルタイムに補足。",
       "利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。": "WebGazerエンジンを利用し、ブラウザ上で視線特徴点の解算と推定を実行。",
-      "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标 the 射影几何映射。": "紙面上での9点物理キャリブレーションを通じて、画面空間から物理的な解説サインの座標への射影幾何学的マッピングを構築。",
       "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。": "紙面上での9点物理キャリブレーションを通じて、画面空間から物理的な解説サインの座標への射影幾何学的マッピングを構築。",
       "导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。": "視点座標、時系列ログ、軌跡マップ、ヒートマップ、および修正可能なAOIデータパックをエクスポート。",
       "现场实验流程": "現地実験プロセス",
@@ -3552,7 +3551,7 @@ const LANGUAGES = {
       "5. 缺互动行动性引导": "5. インタラクティブな行動誘導の欠如",
       "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录": "IMAGE：Global Goals Jam 2025 九州共創ワークショップの議論記録",
       "阶段 3：A/R/S 设计原则之 A 与 R": "段階 3：A/R/S設計原則におけるAとR",
-      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失 the 决定性视觉抓手。": "植物の特徴を、触覚、用途、感覚的経験、および行動の可能性へと結びつけます。",
+      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "植物の特徴を、触覚、用途、感覚的経験、および行動の可能性へと結びつけます。",
       "阶段 3：A/R/S 设计原则之 S 结构清晰": "段階 3：A/R/S設計原則におけるS（構造の明瞭さ）",
       "结构清晰性": "サインの構造（Structure）",
       "采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。": "分割モジュール設計（左右分離フレームなど）、際立った階層的フォントウェイト、直感的なアイコンを採用し、テキストによる視覚的疲労を防ぎます。短文の視線チャネルを最適化し、効率的な情報取得を支援します。",
@@ -3570,10 +3569,10 @@ const LANGUAGES = {
       "非接触估计与漂移补偿": "非接触式の視線推定とドリフト補正",
       "基于 WebGazer.js 研发 non-contact 视线估计系统 SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "WebGazer.jsをベースに非接触視線推定システム「SIGN Visual Attention」を開発。デバイス内蔵カメラのみで顔面反射をリアルタイムに捉え、手動ドリフト補正と光フィルタリングアルゴリズムにより、屋外の反射光による歪みを排除します。",
       "纸面 9 点校准映射": "紙面上の9点物理校正マッピング",
-      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识 of 2D 坐标系上。": "テスト前に、被験者は紙面サインの周囲に配置された9つの定標点を順に注視。システムが頭部の姿勢を計算し、ホモグラフィ（単一性）行列を用いて画面の推定視点座標を紙面サインの2次元座標系へ投影マッピングします。",
+      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸面标识的 2D 坐标系上。": "テスト前に、被験者は紙面サインの周囲に配置された9つの定標点を順に注視。システムが頭部の姿勢を計算し、ホモグラフィ（単一性）行列を用いて画面の推定視点座標を紙面サインの2次元座標系へ投影マッピングします。",
       "ILLUSTRATION: Web 端 9点视线偏移物理校准与误差补偿界面": "ILLUSTRATION：Web端における9点視線ズレ物理校正と誤差補正インターフェース",
       "结果 (1)：初期文字区域完读率提升": "結果 (1)：初期テキスト領域の読了率（カバー率）の向上",
-      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组 of 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "テキスト領域の読了率（カバー率）の差分分析により、最初の10秒間の重要な閲覧ウィンドウにおいて、平均読了率がコントロール群の38.6%から実験群の45.3%へと上昇したことが示されました（6.7ポイントの向上）。被験者9名のうち6名で顕著な上昇が見られ、中央値の変化は+8.2ポイントに達しました。これは、実験群が視線を不規則なスキャンから感覚的アクション領域へと効果的に誘導したことを証明しています。",
+      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "テキスト領域の読了率（カバー率）の差分分析により、最初の10秒間の重要な閲覧ウィンドウにおいて、平均読了率がコントロール群の38.6%から実験群の45.3%へと上昇したことが示されました（6.7ポイントの向上）。被験者9名のうち6名で顕著な上昇が見られ、中央値の変化は+8.2ポイントに達しました。これは、実験群が視線を不規則なスキャンから感覚的アクション領域へと効果的に誘導したことを証明しています。",
       "对照组完读率 (10s)": "コントロール群読了率 (10s)",
       "实验组完读率 (10s)": "実験群読了率 (10s)",
       "平均完读率净增量": "平均読了率純増量",
@@ -3617,7 +3616,7 @@ const LANGUAGES = {
       "植物解说标识的 A/R/S 设计改良与眼动评估实验分析": "Análisis experimental del diseño mejorado A/R/S de señalización interpretativa de plantas y evaluación ocular",
       "非正式学习标识的": "La señalización de aprendizaje informal como",
       "现实困境与低阅读课题": "dilema de instalación y bajo nivel de lectura",
-      "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。": "Como interfaz de aprendizaje informal en invernaderos, la señalización interpretativa a menudo enfrenta el dilema de "alta instalación, baja lectura". Este estudio explora cómo las intervenciones de diseño A/R/S pueden guiar la atención visual de los visitantes, acortar la toma de decisiones de lectura y ayudar a que la mirada se enfoque antes y de manera más constante en áreas semánticas clave.",
+      "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。": "Como interfaz de aprendizaje informal en invernaderos, la señalización interpretativa a menudo enfrenta el dilema de 'alta instalación, baja lectura'. Este estudio explora cómo las intervenciones de diseño A/R/S pueden guiar la atención visual de los visitantes, acortar la toma de decisiones de lectura y ayudar a que la mirada se enfoque antes y de manera más constante en áreas semánticas clave.",
       "温室区": "Invernadero",
       "福冈市植物园": "Jardín Botánico de la Ciudad de Fukuoka",
       "被设置": "Instalada",
@@ -3757,7 +3756,7 @@ const LANGUAGES = {
       "非目标区域 · 全程 (对照组)": "Áreas no clave · sesión completa (control)",
       "对照组参考：A/R 相关区域 10s 为 38.7%，全程为 45.0%；非目标区域 10s 为 30.1%，全程为 34.5%。": "Referencia del grupo de control: las áreas relacionadas con A/R representaron el 38.7% a los 10 s y el 45.0% en general; las áreas no clave fueron el 30.1% a los 10 s y el 34.5% en general.",
       "Q3: 观众关联性 (R原则) 产生最稳定、最强的视线吸引效应": "Q3: La relevancia para la audiencia (principio R) produjo el efecto de atracción más fuerte y estable",
-      "“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。": "La "relevancia para la audiencia" vincula las características objetivas de la planta con el tacto, la experiencia sensorial, el uso cotidiano y la acción de los visitantes. La investigación demuestra que este aspecto lideró la retención de la mirada.",
+      "“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。": "La 'relevancia para la audiencia' vincula las características objetivas de la planta con el tacto, la experiencia sensorial, el uso cotidiano y la acción de los visitantes. La investigación demuestra que este aspecto lideró la retención de la mirada.",
       "前 10 秒 R 区注意力占比": "Proporción de atención en el área R (Primeros 10s)",
       "提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。": "Aumento de 16.4pp, lo que indica que la información de relevancia se captura rápidamente como un ancla visual.",
       "全程时间 R 区注意力占比": "Proporción de atención en el área R (Sesión completa)",
@@ -3768,7 +3767,7 @@ const LANGUAGES = {
       "事实与边界": "Hechos y límites",
       "全程文字覆盖率下降": "Disminución de la cobertura de texto en sesión completa",
       "实验组的全程文字区域覆盖率从 65.4% 降至 60.0%，这是本次 Quick Data 中必须承认的结果。它说明改良版并没有在全程尺度上增加文字区域的总体覆盖量。": "La cobertura de texto de sesión completa en el grupo experimental bajó del 65.4% al 60.0%. Este resultado debe ser admitido, indicando que el diseño no incrementó la cobertura general de texto.",
-      "不能宣称“整体阅读量全面提升”": "No se puede afirmar un "incremento total de la lectura general"",
+      "不能宣称“整体阅读量全面提升”": "No se puede afirmar un 'incremento total de la lectura general'",
       "当前结论基于 9 名有效样本与修正后热力图": "Las conclusiones se basan en 9 muestras válidas y mapas de calor corregidos.",
       "结果可能受到现场环境、观看路径与个体兴趣差异影响": "Los resultados pueden verse afectados por el entorno, las rutas de visualización e intereses.",
       "讨论方向": "Dirección de discusión",
@@ -3799,7 +3798,7 @@ const LANGUAGES = {
       "设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。": "Las mejoras de diseño carecen de métricas fisiológicas objetivas y detalladas. Los métodos tradicionales dependen de cuestionarios y entrevistas, sin captar la distribución natural de la mirada en los módulos de diseño sin interrupción.",
       "FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录": "PRUEBA DE CAMPO: Seguimiento visual no intrusivo de visitantes en estado natural",
       "探究解说标识的实证化改良路径": "Vías de mejora empírica para la señalización interpretativa",
-      "本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。": "Este estudio establece un ciclo de validación desde la "identificación de problemas" hasta el "diagnóstico cuantitativo" al proponer principios de co-creación y un sistema de seguimiento ocular de bajo costo. Transforma las señales de tableros estáticos a medios de experiencia.",
+      "本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。": "Este estudio establece un ciclo de validación desde la 'identificación de problemas' hasta el 'diagnóstico cuantitativo' al proponer principios de co-creación y un sistema de seguimiento ocular de bajo costo. Transforma las señales de tableros estáticos a medios de experiencia.",
       "Q1 · 初期文字区域完读率提升": "Q1 · Aumento de la cobertura de lectura inicial",
       "A/R设计是否能在游客与标识接触的黄金前 10 秒（视觉入口期）内，有效提高游客对核心文字内容的整体空间覆盖率，降低盲目扫视率？": "¿Puede el diseño A/R mejorar la cobertura espacial del texto principal y reducir la exploración aleatoria durante los primeros 10 segundos de entrada visual?",
       "语义区注意力配额与视线转换机制": "Asignación de atención y transición de mirada en áreas semánticas",
@@ -3828,7 +3827,7 @@ const LANGUAGES = {
       "5. 缺互动行动性引导": "5. Falta de orientación interactiva para la acción",
       "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录": "IMAGEN: Registro de discusión de Global Goals Jam 2025 Kyushu",
       "阶段 3：A/R/S 设计原则之 A 与 R": "Fase 3: Atmósfera inspiradora y relevancia para la audiencia",
-      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失 the 决定性视觉抓手。": "Conexión de los rasgos de la planta con el tacto, el uso, la experiencia sensorial y las posibilidades de acción.",
+      "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。": "Conexión de los rasgos de la planta con el tacto, el uso, la experiencia sensorial y las posibilidades de acción.",
       "阶段 3：A/R/S 设计原则之 S 结构清晰": "Fase 3: Claridad estructural de los principios de diseño A/R/S",
       "结构清晰性": "Estructura de la señalización",
       "采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。": "Utilice diseños modulares (como rejillas desacopladas izquierda-derecha), jerarquías de peso tipográfico distintas e iconos intuitivos para evitar la fatiga visual. Esto optimiza el canal de la mirada para el procesamiento de textos cortos y permite una recuperación eficiente de la información.",
@@ -3846,10 +3845,10 @@ const LANGUAGES = {
       "非接触估计与漂移补偿": "Estimación de mirada sin contacto y compensación de deriva",
       "基于 WebGazer.js 研发 non-contact 视线估计系统 SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。": "Desarrolló el sistema de estimación de mirada sin contacto SIGN Visual Attention basado en WebGazer.js. Captura el reflejo facial en tiempo real usando una cámara estándar, con compensación manual de deriva y filtrado de luz para eliminar distorsiones.",
       "纸面 9 点校准映射": "Mapeo de calibración de 9 puntos en papel",
-      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识 of 2D 坐标系上。": "Antes de la prueba, los visitantes miran 9 puntos de calibración físicos alrededor de la señal impresa. El sistema calcula la pose de la cabeza y usa una matriz de homografía para proyectar las estimaciones al sistema 2D de la señal física.",
+      "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸面标识的 2D 坐标系上。": "Antes de la prueba, los visitantes miran 9 puntos de calibración físicos alrededor de la señal impresa. El sistema calcula la pose de la cabeza y usa una matriz de homografía para proyectar las estimaciones al sistema 2D de la señal física.",
       "ILLUSTRATION: Web 端 9点视线偏移物理校准与误差补偿界面": "ILUSTRACIÓN: Interfaz web de calibración física de 9 puntos y compensación de errores",
       "结果 (1)：初期文字区域完读率提升": "Resultado (1): Aumento de la cobertura de lectura del área de texto en la fase inicial",
-      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组 of 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "El análisis de diferencia de rejilla muestra que en los primeros 10 segundos, la cobertura promedio de lectura aumentó del 38.6% en el grupo de control al 45.3% en el grupo experimental (un aumento de 6.7pp). 6 de cada 9 participantes mostraron una tendencia ascendente, con un aumento medio de +8.2pp. Esto demuestra que la intervención guio con éxito la mirada hacia las zonas de acción sensorial.",
+      "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。": "El análisis de diferencia de rejilla muestra que en los primeros 10 segundos, la cobertura promedio de lectura aumentó del 38.6% en el grupo de control al 45.3% en el grupo experimental (un aumento de 6.7pp). 6 de cada 9 participantes mostraron una tendencia ascendente, con un aumento medio de +8.2pp. Esto demuestra que la intervención guio con éxito la mirada hacia las zonas de acción sensorial.",
       "对照组完读率 (10s)": "Cobertura de control (10s)",
       "实验组完读率 (10s)": "Cobertura de intervención (10s)",
       "平均完读率净增量": "Incremento neto promedio",
@@ -3860,9 +3859,9 @@ const LANGUAGES = {
       "提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。": "Aumento de 16.4pp, lo que indica que la información de relevancia se captura rápidamente como un ancla visual.",
       "全程时间 R 区注意力占比": "Proporción de atención en el área R (Sesión completa)",
       "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。": "Aumento sustancial de 26.6pp, lo que indica una reestructuración de la mirada que atrae al público hacia un procesamiento profundo.",
-      "在被测试 of 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Entre los 9 participantes válidos analizados, la proporción de atención en el área R aumentó significativamente sin excepción.",
+      "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。": "Entre los 9 participantes válidos analizados, la proporción de atención en el área R aumentó significativamente sin excepción.",
       "结论：解决非正式学习中的结构性失败": "Conclusión: Resolviendo fallas estructurales en el aprendizaje informal",
-      "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。": "Este estudio establece una vía de diagnóstico desde los "puntos críticos de co-creación" hasta las "métricas de seguimiento ocular", aportando evidencia empírica sobre el papel fundamental de la experiencia sensorial y de acción.",
+      "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。": "Este estudio establece una vía de diagnóstico desde los 'puntos críticos de co-creación' hasta las 'métricas de seguimiento ocular', aportando evidencia empírica sobre el papel fundamental de la experiencia sensorial y de acción.",
       "方法论贡献 (Methodological)": "Contribución metodológica",
       "建立标准化转化闭环，将杂散的用户行为数据或共创意见，结构化输出为具备证据支撑的解说设计系统参数。": "Establece un ciclo estandarizado para transformar datos de comportamiento fragmentados u opiniones de co-creación en parámetros de diseño respaldados por evidencia.",
       "应用实践价值 (Applied)": "Valor de práctica aplicada",
@@ -3870,7 +3869,7 @@ const LANGUAGES = {
       "工具链支持 (Instrumental)": "Soporte de herramientas instrumentales",
       "开源非接触式视线系统 SIGN Visual Attention 证明了利用常规摄像头和大棚本地计算开展学术分析的轻量化潜能。": "El sistema de mirada sin contacto de código abierto SIGN Visual Attention demuestra el potencial de utilizar cámaras estándar y computación local.",
       "博士阶段展望：从视觉捕获到信息提取": "Perspectivas doctorales: De la captura visual a la extracción de información",
-      "在第一阶段突破了“视觉可达性与注意力分流”屏障后，博士阶段将向大脑的信息解码与空间导航连贯性发起挑战。": "Tras haber resuelto la barrera inicial de "accesibilidad visual y redistribución de la atención", la fase doctoral abordará la decodificación cerebral.",
+      "在第一阶段突破了“视觉可达性与注意力分流”屏障后，博士阶段将向大脑的信息解码与空间导航连贯性发起挑战。": "Tras haber resuelto la barrera inicial de 'accesibilidad visual y redistribución de la atención', la fase doctoral abordará la decodificación cerebral.",
       "解决第二痛点：信息记忆衰退": "Resolviendo el punto crítico 2: Decadencia de la memoria",
       "引入认知负荷理论 (Sweller, 1988) 与双重编码理论 (Paivio, 1971)，研究如何通过合理的图文匹配优化大脑记忆编码强度。": "Integrar la Teoría de la Carga Cognitiva (Sweller, 1988) y la Teoría de la Codificación Dual para optimizar la codificación de la memoria.",
       "全生命周期眼动与延迟信息召回": "Seguimiento ocular de sesión completa y recuperación de memoria retrasada",
