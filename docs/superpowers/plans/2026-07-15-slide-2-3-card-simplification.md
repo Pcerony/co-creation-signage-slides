@@ -220,7 +220,7 @@ git commit -m "docs: record evidence layout and card reduction"
 
 ### Task 5: Final Verification
 
-- [ ] **Step 1: Run the complete verification set**
+- [x] **Step 1: Run the complete verification set**
 
 ```bash
 node test/check-slide-2-3.js
@@ -233,7 +233,7 @@ git diff --check
 git status --short --branch
 ```
 
-- [ ] **Step 2: Confirm focused Git history**
+- [x] **Step 2: Confirm focused Git history**
 
 ```bash
 git log --oneline --decorate -8
