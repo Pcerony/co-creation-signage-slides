@@ -1,0 +1,12 @@
+* text=auto eol=lf
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.pdf binary
+*.doc binary
+*.docx binary
+dist/index.html -diff linguist-generated=true
+
+# Optimized presentation assets remain below repository budgets and do not use
+# Git LFS. Restricted raw research media must not be committed.

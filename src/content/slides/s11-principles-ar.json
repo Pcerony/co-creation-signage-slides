@@ -1,0 +1,16 @@
+{
+  "id": "s11-principles-ar",
+  "chapterId": "methods",
+  "layout": "principles",
+  "chapter": "3",
+  "chapterTitle": "方法与结果",
+  "shortTitle": "阶段三：编码分析",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide",
+  "assets": [
+    "intervention-sign"
+  ],
+  "claims": [],
+  "markup": "<div class=\"canvas-card method-sequence method-principles\"><div class=\"chrome-min\"><div class=\"l\">STEPS 1–2 · RESEARCH OUTCOME</div><div class=\"r\">09 / 19</div></div><div class=\"principles-stage\"><div class=\"principles-main\"><header class=\"method-sequence__header\"><span class=\"method-stage-tag\">STEPS 1–2 · OUTCOME</span><h2 class=\"h-xl-zh\" data-i18n=\"slides.s11.title\">A/R/S 解说设计原则</h2><p class=\"t-body\" data-i18n=\"slides.s11.subtitle\">从文献、现场调查与专家访谈中提炼的三个协同设计维度</p></header><figure class=\"method-evidence principles__evidence\"><div class=\"principles__image-map\"><img src=\"asset:intervention-sign\" alt=\"A/R/S原则版面映射样例\"><span class=\"ars-marker ars-marker--a ars-marker--a1\"><b>A</b></span><span class=\"ars-marker ars-marker--a ars-marker--a2\"><b>A</b></span><span class=\"ars-marker ars-marker--r ars-marker--r1\"><b>R</b></span><span class=\"ars-marker ars-marker--r ars-marker--r2\"><b>R</b></span></div><figcaption data-i18n=\"slides.s11.evidence\">A/R/S 原则在实验组 A2 标识中的版面映射</figcaption></figure></div><div class=\"principles__rail\"><section class=\"principle\"><span class=\"principle__letter\">A</span><span class=\"t-meta\">ATMOSPHERE</span><h3 data-i18n=\"slides.s11.a.title\">启发性氛围</h3><p data-i18n=\"slides.s11.a.body\">以问句或情感隐喻引入主题，让游客愿意停下并开始阅读。</p></section><section class=\"principle\"><span class=\"principle__letter\">R</span><span class=\"t-meta\">RELEVANCE</span><h3 data-i18n=\"slides.s11.r.title\">观众关联性</h3><p data-i18n=\"slides.s11.r.body\">将植物特征与感官经验和日常知识建立可感知的联系。</p></section><section class=\"principle\"><span class=\"principle__letter\">S</span><span class=\"t-meta\">STRUCTURE</span><h3 data-i18n=\"slides.s11.s.title\">结构清晰性</h3><p data-i18n=\"slides.s11.s.body\">通过分区、层级和图形线索组织阅读路径，降低信息负担。</p></section></div></div></div>"
+}

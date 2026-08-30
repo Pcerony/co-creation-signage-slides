@@ -1,0 +1,16 @@
+{
+  "id": "s18-audience-relevance",
+  "chapterId": "methods",
+  "layout": "data",
+  "chapter": "3",
+  "chapterTitle": "方法与结果",
+  "shortTitle": "阶段四：視線実験",
+  "animation": "stacked-ledger",
+  "legacyLayout": "S20",
+  "legacyClass": "slide",
+  "assets": [],
+  "claims": [
+    "claim-audience-relevance"
+  ],
+  "markup": "<div class=\"canvas-card\">\n    <div class=\"chrome-min\"><div class=\"l\">DATA 03 · AUDIENCE RELEVANCE EFFECT (Q3)</div><div class=\"r\">16 / 19</div></div>\n    <div class=\"s18-layout\">\n      <!-- Top Row: Academic Discussion -->\n      <div class=\"s18-summary\">\n        <div>\n          <h2 class=\"h-xl-zh\" style=\"color:var(--ink)\" data-i18n=\"slides.s18.title\">阶段 4：结果 (2)：数据深度分析</h2>\n        </div>\n      </div>\n      <!-- Bottom Row: Stacked Ledger -->\n      <div class=\"s18-ledger\">\n        <div class=\"ledger-row s18-ledger__row\">\n          <div class=\"s18-metric s18-metric--comparison\"><span>5.0</span><span class=\"s18-metric__arrow\" aria-hidden=\"true\">↓</span><span>21.4<small>%</small></span></div>\n          <div class=\"t-h-prod s18-label\" style=\"color:var(--ink)\">前 10 秒 R 区注意力占比</div>\n          <div class=\"t-body-sm s18-detail\" data-hybrid-ja=\"never\">提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。</div>\n        </div>\n        <div class=\"ledger-row s18-ledger__row\">\n          <div class=\"s18-metric s18-metric--comparison\"><span>8.5</span><span class=\"s18-metric__arrow\" aria-hidden=\"true\">↓</span><span>35.1<small>%</small></span></div>\n          <div class=\"t-h-prod s18-label\" style=\"color:var(--ink)\">全程时间 R 区注意力占比</div>\n          <div class=\"t-body-sm s18-detail\" data-hybrid-ja=\"never\">大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。</div>\n        </div>\n        <div class=\"ledger-row s18-ledger__row s18-ledger__row--last\">\n          <div class=\"s18-metric s18-metric--single\">9 / 9</div>\n          <div class=\"t-h-prod s18-label\" style=\"color:var(--ink)\">全样本表现一致</div>\n          <div class=\"t-body-sm s18-detail\" data-hybrid-ja=\"never\">在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。</div>\n        </div>\n      </div>\n    </div>\n  </div>"
+}

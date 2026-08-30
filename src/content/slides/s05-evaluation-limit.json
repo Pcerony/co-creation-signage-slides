@@ -1,0 +1,34 @@
+{
+  "id": "s05-evaluation-limit",
+  "chapterId": "research-design",
+  "layout": "evidence",
+  "chapter": "2",
+  "chapterTitle": "问题与目的",
+  "shortTitle": "研究缺口",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide evidence-slide",
+  "assets": [
+    "gap-evidence-principles",
+    "gap-diagnostic-tool"
+  ],
+  "claims": [],
+  "markup": [
+    "<div class=\"canvas-card\">",
+    "  <div class=\"chrome-min\"><div class=\"l\">CONTEXT &amp; PROBLEM STATEMENT</div><div class=\"r\">04 / 19</div></div>",
+    "  <div class=\"s05-limit\">",
+    "    <div class=\"s05-gap-grid\">",
+    "      <article class=\"s05-gap-card\">",
+    "        <div class=\"s05-gap-copy\"><span class=\"s05-gap-badge\">RESEARCH GAP 1</span><h3 data-i18n=\"slides.s05.gap1.title\">现有标识设计实践缺少循证设计原则</h3><p class=\"s05-gap-description\" data-i18n=\"slides.s05.gap1.body\">过去的设计多依赖设计师直觉或主观偏好，缺乏基于认知科学与眼动生理行为的循证设计框架支撑。</p></div>",
+    "        <figure class=\"s05-gap-visual\" tabindex=\"0\" aria-label=\"Gap 1: evidence-based design principles\"><img src=\"asset:gap-evidence-principles\" alt=\"直觉导向设计与循证原则之间的断裂\"><figcaption class=\"s05-gap-overlay\"><svg class=\"s05-objective-icon lucide\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"3\"></circle><path d=\"M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2\"></path></svg><span class=\"s05-objective-kicker\">RESEARCH OBJECTIVE 1</span><h4 data-i18n=\"slides.s05.gap1.objective\" data-hybrid-ja=\"always\">建立注意力导向的解说标识原则</h4><p data-i18n=\"slides.s05.gap1.objectiveBody\">融合认知科学与眼动证据，建立引导注意力从信息入口进入深度阅读的 A/R/S 解说标识原则。</p></figcaption></figure>",
+    "      </article>",
+    "      <article class=\"s05-gap-card\">",
+    "        <div class=\"s05-gap-copy\"><span class=\"s05-gap-badge\">RESEARCH GAP 2</span><h3 data-i18n=\"slides.s05.gap2.title\">缺乏客观诊断工具评估解说效果</h3><p class=\"s05-gap-description\" data-i18n=\"slides.s05.gap2.body\">缺少对视觉焦点分布和注意力流的精准诊断手段，使得迭代改良无法建立在定量的实证依据之上。</p></div>",
+    "        <figure class=\"s05-gap-visual\" tabindex=\"0\" aria-label=\"Gap 2: objective diagnostic tools\"><img src=\"asset:gap-diagnostic-tool\" alt=\"视线路径缺少客观测量工具\"><figcaption class=\"s05-gap-overlay\"><svg class=\"s05-objective-icon lucide\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2\"></path><circle cx=\"11\" cy=\"11\" r=\"3\"></circle><path d=\"m16 16-2.1-2.1\"></path></svg><span class=\"s05-objective-kicker\">RESEARCH OBJECTIVE 2</span><h4 data-i18n=\"slides.s05.gap2.objective\" data-hybrid-ja=\"always\">针对共创流程开发客观诊断工具</h4><p data-i18n=\"slides.s05.gap2.objectiveBody\">定性工具用于多方协同编码与标注；定量工具用于视线测量、热力图生成与 AOI 效果评估。</p></figcaption></figure>",
+    "      </article>",
+    "    </div>",
+    "    <div class=\"cross-page-mount workshop-mount is-gap-loop\" data-cross-page-component=\"workshop-flow\" data-cross-page-instance=\"workshop-research-gap\" data-cross-page-variant=\"gap-loop\" aria-label=\"Research gap loop\"></div>",
+    "  </div>",
+    "</div>"
+  ]
+}

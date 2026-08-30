@@ -2,9 +2,10 @@
 */.DS_Store
 node_modules/
 .cache/
-dist/
 tmp/
 *.log
-output/playwright/
+output/
 pdf/
 .playwright-cli/
+.worktrees/
+dist/.tmp-*

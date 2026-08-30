@@ -1,0 +1,31 @@
+{
+  "name": "co-creation-signage-slides",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:check": "node scripts/build.mjs --check",
+    "test": "npm run test:fast",
+    "test:fast": "node --test tests/unit/*.test.mjs",
+    "test:shared": "node --test tests/unit/*.test.mjs tests/dom/*.test.mjs",
+    "test:browser": "node --test tests/browser/*.test.mjs",
+    "qa": "npm run validate:content && npm run validate:i18n && npm run test:shared && npm run test:browser && npm run check:performance && npm run build:check",
+    "serve": "node scripts/serve.mjs",
+    "migrate:slides": "node scripts/migrate-slides.mjs",
+    "migrate:css": "node scripts/migrate-css.mjs",
+    "optimize:assets": "node scripts/optimize-assets.mjs",
+    "check:performance": "node scripts/check-performance.mjs",
+    "validate:content": "node scripts/validate-content.mjs",
+    "validate:i18n": "node scripts/validate-i18n.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "esbuild": "0.25.5",
+    "playwright": "1.61.0",
+    "yaml": "2.9.0"
+  }
+}

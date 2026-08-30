@@ -1,0 +1,18 @@
+{
+  "id": "s13b-state-analysis",
+  "chapterId": "methods",
+  "layout": "standard",
+  "chapter": "3",
+  "chapterTitle": "方法与结果",
+  "shortTitle": "阶段三：编码分析",
+  "animation": "field-notes",
+  "legacyLayout": "S16b",
+  "legacyClass": "slide",
+  "assets": [
+    "signage-field-map"
+  ],
+  "claims": [
+    "claim-baseline-ar-absence"
+  ],
+  "markup": "<div class=\"canvas-card method-sequence method-diagnosis\"><div class=\"chrome-min\"><div class=\"l\" data-i18n=\"slides.s13b.subtitle\">METHODS &amp; RESULTS · STATE ANALYSIS</div><div class=\"r\">11 / 19</div></div><header class=\"method-sequence__header\"><span class=\"method-stage-tag\">PHASE 3</span><h2 class=\"h-xl-zh\" data-i18n=\"slides.s13b.title\" data-hybrid-ja=\"always\">编码结果与定量分析</h2></header><div class=\"diagnosis__body\"><section class=\"diagnosis-hero\"><span class=\"t-meta\" style=\"color:#d32f2f\">A1 SHARE</span><strong style=\"color:#d32f2f\">15%</strong><p data-i18n=\"slides.s13b.stat.conclusion\">在 182 个编码特征中，A1 问答与启发子类型约占 15%</p><div class=\"diagnosis-totals\"><span><b>7</b><small data-i18n=\"slides.s13b.stat.zones\">温室区域</small></span><span><b>70</b><small data-i18n=\"slides.s13b.stat.signs\">审计标识</small></span><span><b>182</b><small data-i18n=\"slides.s13b.stat.features\">编码特征</small></span></div><div class=\"diagnosis-distribution\"><span style=\"color:#d32f2f\"><b style=\"background:#d32f2f;color:#fff\">A</b><strong>41</strong></span><span style=\"color:#1976d2\"><b style=\"background:#1976d2;color:#fff\">R</b><strong>47</strong></span><span style=\"color:#2e7d32\"><b style=\"background:#2e7d32;color:#fff\">S</b><strong>94</strong></span></div></section><section class=\"diagnosis-defects\"><h3 data-i18n=\"slides.s13b.defects.title\">各温室区域的显著设计缺失</h3><ul><li><span data-i18n=\"slides.s13b.defects.g1\">大温室</span><b style=\"color:#d32f2f\">A2</b></li><li><span data-i18n=\"slides.s13b.defects.g2\">钵花室</span><b style=\"color:#1976d2\">R</b></li><li><span data-i18n=\"slides.s13b.defects.g3\">仙人掌温室</span><b style=\"color:var(--text-primary)\"><span style=\"color:#d32f2f\">A1</span> / <span style=\"color:#1976d2\">R2</span></b></li><li><span data-i18n=\"slides.s13b.defects.g4\">兰花温室</span><b style=\"color:var(--text-primary)\"><span style=\"color:#d32f2f\">A1</span> / <span style=\"color:#2e7d32\">S2</span></b></li><li><span data-i18n=\"slides.s13b.defects.g5\">原种兰花室</span><b style=\"color:var(--text-primary)\"><span style=\"color:#d32f2f\">A1</span> / <span style=\"color:#1976d2\">R1</span></b></li><li><span data-i18n=\"slides.s13b.defects.g6\">廊道温室</span><b style=\"color:var(--text-primary)\"><span style=\"color:#d32f2f\">A</span> / <span style=\"color:#1976d2\">R1</span></b></li></ul></section><figure style=\"margin-top:2.5vh;padding:0;background:none;border:none;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:0\"><img src=\"asset:signage-field-map\" alt=\"福冈市植物园标识现场调查分区图\" style=\"width:100%;height:100%;max-height:none;object-fit:contain;border-radius:6px\"></figure><div style=\"margin-top:2.5vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:0;padding-left:1vw\"><strong data-i18n=\"slides.s13b.conclusion\" style=\"color:var(--text-primary);font-size:26px;font-weight:300;text-align:left;letter-spacing:0.02em;line-height:1.2\">A/R 被验证具有必要性，而 S 被验证已普遍存在于现有标识中</strong></div></div></div>"
+}

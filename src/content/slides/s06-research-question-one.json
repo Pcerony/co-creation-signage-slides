@@ -1,0 +1,14 @@
+{
+  "id": "s06-research-question-one",
+  "chapterId": "research-design",
+  "layout": "standard",
+  "chapter": "2",
+  "chapterTitle": "问题与目的",
+  "shortTitle": "研究目的：RQ1",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide stage-title-slide",
+  "assets": [],
+  "claims": [],
+  "markup": "<div class=\"canvas-card\">\n    <div class=\"chrome-min\"><div class=\"l\">RESEARCH OBJECTIVES</div><div class=\"r\">05 / 20</div></div>\n    <div style=\"display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0\">\n      <div>\n        <h2 class=\"h-xl-zh\" style=\"color:var(--ink)\">探究解说标识的实证化改良路径</h2>\n      </div>\n      \n      <p class=\"t-body\" style=\"color:var(--text-primary);margin:0;font-size:26px\">\n        本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。\n      </p>\n\n      <div style=\"background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh\">\n        <div style=\"display:flex;justify-content:space-between;align-items:center\">\n          <span style=\"font-family:var(--mono);font-size:20px;color:var(--accent);font-weight:700\">RESEARCH QUESTION 1</span>\n          <i data-lucide=\"eye\" style=\"color:var(--accent);width:28px;height:28px\"></i>\n        </div>\n        <h3 class=\"t-h-prod\" style=\"margin:0;font-size:32px;color:var(--ink);font-weight:600\">Q1 · 初期文字区域完读率提升</h3>\n        <p class=\"t-body\" style=\"color:var(--text-primary);margin:0;font-size:26px\">\n          A/R设计是否能在游客与标识接触的黄金前 10 秒（视觉入口期）内，有效提高游客对核心文字内容的整体空间覆盖率，降低盲目扫视率？\n        </p>\n        <span class=\"t-meta\" style=\"color:var(--text-helper);margin-top:1.5vh\">EVALUATION METRIC: TEXT COVERAGE (10S)</span>\n      </div>\n    </div>\n  </div>"
+}

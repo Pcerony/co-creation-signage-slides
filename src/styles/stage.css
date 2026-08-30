@@ -1,0 +1,26 @@
+/* ============ WebGL 网格背景 ============ */
+  canvas.bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;opacity:.55;mix-blend-mode:multiply;pointer-events:none}
+  body.dark-bg canvas.bg{mix-blend-mode:screen;opacity:.42}
+  body.low-power canvas.bg,
+  body.low-power canvas.ascii-bg{display:none!important}
+
+  /* ============ Deck 容器 + 翻页 ============ */
+  #deck{position:absolute;left:0;top:96px;width:max-content;height:var(--slide-render-height);display:flex;flex-wrap:nowrap;gap:var(--slide-gap);z-index:10;will-change:transform}
+  .slide{
+    width:var(--slide-width);height:var(--slide-height);flex:0 0 var(--slide-width);
+    position:relative;
+    padding:0;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    background:var(--paper);color:var(--ink);
+  }
+  .slide.grey{background:var(--grey-1)}
+  .slide.dark{background:var(--ink);color:var(--paper)}
+  .slide.dark .grey-only{display:none}
+  .slide.accent{background:var(--accent);color:var(--accent-on)}
+  .slide.accent .accent-block{background:var(--accent-on);color:var(--accent)}
+
+  /* Hero 页透出网格背景多一点 */
+  .slide.hero{background:transparent}
+  .slide.hero.grey{background:rgba(var(--paper-rgb),.86);backdrop-filter:blur(1px)}
+  .slide.hero.dark{background:rgba(var(--ink-rgb),.92);color:var(--paper)}

@@ -1,0 +1,50 @@
+{
+  "id": "s04-knowledge-overload",
+  "chapterId": "background",
+  "layout": "evidence",
+  "chapter": "1",
+  "chapterTitle": "研究背景",
+  "shortTitle": "现状问题",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide evidence-slide stage-title-slide",
+  "assets": [
+    "heatmap-p70-orizururan",
+    "gazeplot-p70-orizururan"
+  ],
+  "claims": [
+    "claim-signage-reading-gap",
+    "claim-long-form-deep-reading-rate"
+  ],
+  "markup": [
+    "<div class=\"canvas-card\">",
+    "  <div class=\"chrome-min\"><div class=\"l\">CONTEXT &amp; PROBLEM STATEMENT</div><div class=\"r\">03 / 19</div></div>",
+    "  <div class=\"s04-problem\">",
+    "    <div class=\"stage-title-region\"><h2 class=\"h-xl-zh\" data-i18n=\"legacy.text.0182\">引入共创设计来改善低文本阅读率</h2></div>",
+    "    <div class=\"s04-problem-grid\">",
+    "      <div class=\"s04-problem-copy\">",
+    "        <section class=\"s04-reading-card\">",
+    "          <span class=\"t-meta\">DEEP READING RATE</span>",
+    "          <div class=\"s04-reading-metric\"><strong>20%</strong><span>FOR LONG-FORM CONTENT</span></div>",
+    "          <p class=\"t-body-sm s04-reading-copy\" data-i18n=\"legacy.text.0117\">游客对长篇大段的学术性内容往往浅尝辄止，无法进行深层认知加工。</p>",
+    "          <span class=\"metric-citation\">Source: Beverly Serrell (2015). Exhibit Labels: An Interpretive Approach</span>",
+    "          <div class=\"cross-page-mount attention-mount is-barrier\" data-hybrid-ja=\"never\" data-cross-page-component=\"attention-path\" data-cross-page-instance=\"background-attention\" data-cross-page-variant=\"barrier\" aria-label=\"Interpretive-signage attention barrier\"></div>",
+    "        </section>",
+    "      </div>",
+    "      <div class=\"s04-evidence\">",
+    "        <figure class=\"frame-img fit-cover\"><img src=\"asset:heatmap-p70-orizururan\" alt=\"折鹤兰传统解说标识眼动热力图\"></figure>",
+    "        <figure class=\"frame-img fit-cover\"><img src=\"asset:gazeplot-p70-orizururan\" alt=\"折鹤兰传统解说标识视线焦点图\"></figure>",
+    "      </div>",
+    "    </div>",
+    "    <section class=\"s04-cocreation\">",
+    "      <div class=\"s04-cocreation-head\">",
+    "        <span class=\"s04-cocreation-title\" data-i18n=\"common.workshopProcess\">共创工坊流程</span>",
+    "        <div class=\"s04-participant-tag\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg><span data-i18n=\"common.workshopParticipants\">植物专家、运营方、市民与设计师</span></div>",
+    "        <p class=\"t-body-sm s04-transition\" data-i18n=\"legacy.text.0183\">针对这些课题，植物园的运营中往往会引入共创设计。</p>",
+    "      </div>",
+    "      <div class=\"cross-page-mount workshop-mount is-workshop\" data-cross-page-component=\"workshop-flow\" data-cross-page-instance=\"workshop-research-gap\" data-cross-page-variant=\"workshop\" aria-label=\"Co-creation workshop process\"></div>",
+    "    </section>",
+    "  </div>",
+    "</div>"
+  ]
+}

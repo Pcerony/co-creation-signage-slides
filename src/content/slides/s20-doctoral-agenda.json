@@ -1,0 +1,14 @@
+{
+  "id": "s20-doctoral-agenda",
+  "chapterId": "conclusions",
+  "layout": "closing",
+  "chapter": "4",
+  "chapterTitle": "讨论与结论",
+  "shortTitle": "未来工作",
+  "animation": "split-statement",
+  "legacyLayout": "SWISS-CLOSING-ASCII",
+  "legacyClass": "slide split",
+  "assets": [],
+  "claims": [],
+  "markup": "<div class=\"canvas-card\"><div class=\"split-half\"><div class=\"half b-accent\" style=\"padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden;background-color:var(--ink)\"><canvas class=\"ascii-bg\" aria-hidden=\"true\"></canvas><div class=\"chrome-min\" style=\"margin-bottom:0;position:relative;z-index:1;color:#fff\"><div class=\"l\">18 / 19</div><div class=\"r\">FUTURE WORK</div></div><div data-anim=\"manifesto\" style=\"display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1\"><h2 class=\"slide16-title\" style=\"font-family:var(--sans),var(--sans-zh);font-size:52px;line-height:1.15;letter-spacing:-.025em;font-weight:200;color:#fff\" data-i18n=\"slides.s20.title\">未来工作：系统优化与实证验证</h2></div><div data-anim=\"signature\" style=\"display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1;color:#fff\"><div class=\"t-meta\" style=\"color:rgba(255,255,255,.62)\">FUTURE RESEARCH AGENDA</div></div></div><div class=\"half\" style=\"padding:5.6vh 3.6vw 4.4vh;justify-content:space-between\"><div class=\"chrome-min\"><div class=\"l\">NEXT STEPS</div><div class=\"r\">EMPIRICAL EVIDENCE</div></div><div data-anim=\"rules\" style=\"display:flex;flex-direction:column;gap:2.2vh\"><div style=\"display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh\"><div class=\"t-meta\" style=\"color:var(--ink);font-weight:600\">STEP 1</div><div><h3 class=\"t-h-prod\" data-i18n=\"slides.s20.step1Title\">A/B 测试数据的全量与深度分析</h3><p class=\"t-body-sm\" style=\"line-height:1.5;color:var(--text-primary)\" data-i18n=\"slides.s20.step1Content\">对不同设计版本（传统、共创、优化版）的眼动追踪、注意力分流及加工深度数据进行全量清洗与多维方差分析（ANOVA），量化并评估各关键设计原则在视线引导层面的提升显著性。</p></div></div><div style=\"display:grid;grid-template-columns:4em 1fr;gap:1.4vw;border-top:1px solid var(--border-subtle);padding-top:2vh\"><div class=\"t-meta\" style=\"color:var(--ink);font-weight:600\">STEP 2</div><div><h3 class=\"t-h-prod\" data-i18n=\"slides.s20.step2Title\">Prototype 试用阶段的数据分析</h3><p class=\"t-body-sm\" style=\"line-height:1.5;color:var(--text-primary)\" data-i18n=\"slides.s20.step2Content\">结合福冈市植物园实地部署的新版解说标识原型，收集并分析真实游客的阅读行为、注视时长与满意度反馈数据，以在实地自然场景下检验解说学经典理论与视觉优化法则的适配性。</p></div></div></div><div data-anim=\"foot\" class=\"t-meta\" style=\"color:var(--text-helper);text-align:right\">FUTURE AGENDA</div></div></div></div>"
+}

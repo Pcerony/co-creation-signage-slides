@@ -143,7 +143,7 @@ git commit -m "refactor: normalize deck typography and overflow"
 - Modify: \`docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md\`
 - Modify: \`docs/superpowers/plans/2026-07-14-focused-4x3-deck.md\`
 - Modify: \`ppt/项目记录.md\`
-- Add or modify: \`design-qa.md\`
+- Add or modify: \`docs/reviews/design-qa.md\`
 
 - [x] **Step 1: Remove stale 16-slide references**
 
@@ -156,7 +156,7 @@ Replace the line-clamp claim with full-text visibility, record the legacy footer
 - [x] **Step 3: Run documentation consistency checks**
 
 \`\`\`bash
-rg -n "16 slides|16-slide|06 / 16|five chapter|clamped|line-clamp" docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md docs/superpowers/plans/2026-07-14-focused-4x3-deck.md ppt/项目记录.md design-qa.md
+rg -n "16 slides|16-slide|06 / 16|five chapter|clamped|line-clamp" docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md docs/superpowers/plans/2026-07-14-focused-4x3-deck.md ppt/项目记录.md docs/reviews/design-qa.md
 \`\`\`
 
 Expected: no stale implementation-contract references remain; historical research text outside the deck contract may remain.
@@ -164,7 +164,7 @@ Expected: no stale implementation-contract references remain; historical researc
 - [x] **Step 4: Commit the documentation alignment**
 
 \`\`\`bash
-git add docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md docs/superpowers/plans/2026-07-14-focused-4x3-deck.md ppt/项目记录.md design-qa.md
+git add docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md docs/superpowers/plans/2026-07-14-focused-4x3-deck.md ppt/项目记录.md docs/reviews/design-qa.md
 git commit -m "docs: align focused deck contract and QA record"
 \`\`\`
 

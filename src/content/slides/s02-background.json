@@ -1,0 +1,46 @@
+{
+  "id": "s02-background",
+  "chapterId": "background",
+  "layout": "evidence",
+  "chapter": "1",
+  "chapterTitle": "研究背景",
+  "shortTitle": "研究对象",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide stage-title-slide",
+  "assets": [
+    "fukuoka-botanical-garden",
+    "sign-example-02"
+  ],
+  "claims": [
+    "claim-visitor-learning-motivation"
+  ],
+  "markup": [
+    "<div class=\"canvas-card\">",
+    "  <div class=\"chrome-min\"><div class=\"l\">RESEARCH BACKGROUND</div><div class=\"r\">02 / 19</div></div>",
+    "  <div class=\"s02-context\">",
+    "    <div class=\"stage-title-region\"><h2 class=\"h-xl-zh\" data-i18n=\"legacy.text.0195\">植物园与植物学习</h2></div>",
+    "    <div class=\"s02-context-grid\">",
+    "      <div class=\"s02-context-copy\">",
+    "        <section class=\"s02-topic\">",
+    "          <span class=\"t-meta\">VISIT MOTIVATION</span>",
+    "          <h3 class=\"s02-focus\" data-i18n=\"legacy.text.0014\" data-hybrid-ja=\"never\">超过 60%</h3>",
+    "          <p class=\"t-body s02-focus-copy\" data-i18n=\"legacy.text.0210\">游客将“学习与探索”视为参观植物园的核心动机，而不仅仅是观赏。</p>",
+    "          <span class=\"metric-citation\">Source: Falk &amp; Dierking (2000)</span>",
+    "        </section>",
+    "        <section class=\"s02-signage-copy\">",
+    "          <h3 data-i18n=\"common.interpretiveSignage\">解说标识</h3>",
+    "          <p data-i18n=\"common.botanicalGardenChannel\">植物园温室中游客获取植物知识的主要渠道</p>",
+    "        </section>",
+    "        <div class=\"cross-page-mount attention-mount is-expanded\" data-hybrid-ja=\"never\" data-cross-page-component=\"attention-path\" data-cross-page-instance=\"background-attention\" data-cross-page-variant=\"expanded\" aria-label=\"Interpretive-signage learning path\"></div>",
+    "      </div>",
+    "      <div class=\"s02-context-media\">",
+    "        <figure class=\"frame-img fit-cover\"><img src=\"asset:fukuoka-botanical-garden\" alt=\"福冈市植物园入口\"></figure>",
+    "        <figure class=\"frame-img fit-cover\"><img src=\"asset:sign-example-02\" alt=\"温室中的植物解说标识\"></figure>",
+    "        <span class=\"t-meta s02-site-caption\">SITE: FUKUOKA CITY BOTANICAL GARDEN</span>",
+    "      </div>",
+    "    </div>",
+    "  </div>",
+    "</div>"
+  ]
+}

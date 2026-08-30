@@ -1,0 +1,157 @@
+{
+  "description": "Area of Interest (AOI) definitions for A1, A2, B1, B2 botanical signs (Normalized coordinates [xMin, yMin, xMax, yMax] where 0..1 corresponds to 297mm x 210mm landscape A4)",
+  "images": {
+    "a1": {
+      "name": "a1",
+      "plant": "Bougainvillea",
+      "designType": "traditional",
+      "condition": "control",
+      "aois": [
+        {
+          "id": "header_title",
+          "label": "大标题与分类区",
+          "category": "header",
+          "bbox": [0.05, 0.04, 0.85, 0.22]
+        },
+        {
+          "id": "image_photo",
+          "label": "左侧植物主照片",
+          "category": "image",
+          "bbox": [0.05, 0.24, 0.45, 0.93]
+        },
+        {
+          "id": "body_text",
+          "label": "右侧说明文字区",
+          "category": "text",
+          "bbox": [0.45, 0.26, 0.95, 0.93]
+        }
+      ]
+    },
+    "a2": {
+      "name": "a2",
+      "plant": "Sennichikobou",
+      "designType": "interactive",
+      "condition": "experiment",
+      "aois": [
+        {
+          "id": "header_title",
+          "label": "疑问引导与大标题区",
+          "category": "header",
+          "bbox": [0.05, 0.03, 0.75, 0.20]
+        },
+        {
+          "id": "image_photo",
+          "label": "左侧植物主照片",
+          "category": "image",
+          "bbox": [0.04, 0.21, 0.44, 0.88]
+        },
+        {
+          "id": "dialogue_bubble",
+          "label": "拟人化对话气泡",
+          "category": "interactive_bubble",
+          "bbox": [0.05, 0.21, 0.26, 0.44]
+        },
+        {
+          "id": "body_text",
+          "label": "右侧说明与触觉引导",
+          "category": "text",
+          "bbox": [0.44, 0.24, 0.95, 0.60]
+        },
+        {
+          "id": "interactive_bubble",
+          "label": "下部感官提示气泡",
+          "category": "interactive_bubble",
+          "bbox": [0.44, 0.63, 0.85, 0.77]
+        },
+        {
+          "id": "bottom_icons",
+          "label": "底部特性图标组",
+          "category": "icons",
+          "bbox": [0.44, 0.78, 0.95, 0.95]
+        },
+        {
+          "id": "flower_meaning",
+          "label": "花语提示栏",
+          "category": "footer",
+          "bbox": [0.05, 0.89, 0.42, 0.95]
+        }
+      ]
+    },
+    "b1": {
+      "name": "b1",
+      "plant": "Sennichikobou",
+      "designType": "traditional",
+      "condition": "control",
+      "aois": [
+        {
+          "id": "header_title",
+          "label": "大标题与分类区",
+          "category": "header",
+          "bbox": [0.05, 0.04, 0.85, 0.22]
+        },
+        {
+          "id": "image_photo",
+          "label": "左侧植物主照片",
+          "category": "image",
+          "bbox": [0.05, 0.24, 0.45, 0.93]
+        },
+        {
+          "id": "body_text",
+          "label": "右侧说明文字区",
+          "category": "text",
+          "bbox": [0.45, 0.26, 0.95, 0.93]
+        }
+      ]
+    },
+    "b2": {
+      "name": "b2",
+      "plant": "Bougainvillea",
+      "designType": "interactive",
+      "condition": "experiment",
+      "aois": [
+        {
+          "id": "header_title",
+          "label": "疑问引导与大标题区",
+          "category": "header",
+          "bbox": [0.05, 0.03, 0.75, 0.20]
+        },
+        {
+          "id": "image_photo",
+          "label": "左侧植物主照片",
+          "category": "image",
+          "bbox": [0.04, 0.21, 0.44, 0.88]
+        },
+        {
+          "id": "dialogue_bubble",
+          "label": "拟人化对话气泡",
+          "category": "interactive_bubble",
+          "bbox": [0.05, 0.21, 0.30, 0.40]
+        },
+        {
+          "id": "body_text",
+          "label": "右侧说明与触觉引导",
+          "category": "text",
+          "bbox": [0.44, 0.24, 0.95, 0.62]
+        },
+        {
+          "id": "interactive_bubble",
+          "label": "下部感官提示气泡",
+          "category": "interactive_bubble",
+          "bbox": [0.47, 0.66, 0.85, 0.77]
+        },
+        {
+          "id": "bottom_icons",
+          "label": "底部特性图标组",
+          "category": "icons",
+          "bbox": [0.44, 0.78, 0.95, 0.95]
+        },
+        {
+          "id": "flower_meaning",
+          "label": "花语提示栏",
+          "category": "footer",
+          "bbox": [0.05, 0.88, 0.42, 0.95]
+        }
+      ]
+    }
+  }
+}

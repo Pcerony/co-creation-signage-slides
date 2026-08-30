@@ -1,0 +1,19 @@
+{
+  "id": "s09-literature-review",
+  "chapterId": "methods",
+  "layout": "standard",
+  "chapter": "3",
+  "chapterTitle": "方法与结果",
+  "shortTitle": "阶段一至二：研究基础与共创",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide",
+  "assets": [
+    "literature-flowchart",
+    "field-workshop",
+    "field-quantitative",
+    "field-qualitative"
+  ],
+  "claims": [],
+  "markup": "<div class=\"canvas-card merged-research-slide\"><div class=\"chrome-min\"><div class=\"l\">METHODOLOGY · PHASES 1–2</div><div class=\"r\">06 / 17</div></div><section class=\"merged-lit\"><div class=\"merged-lit__copy\"><span class=\"merged-phase-label\">PHASE 1</span><h3 data-i18n=\"slides.s09.leftTitle\">文献选定与脉络梳理</h3><p data-i18n=\"slides.s09.leftContent\">通过文献综述确定研究方向，并提炼适用于解说标识的循证设计原则。</p></div><figure class=\"merged-lit__flow\"><img src=\"asset:literature-flowchart\" alt=\"文献筛选流程与排除标准漏斗图\"></figure><div class=\"merged-lit__theory\"><ul><li data-i18n=\"slides.s09.tilden\">Tilden：将解说与来园者的个人经验关联。</li><li data-i18n=\"slides.s09.erot\">EROT：保持启发性与结构清晰。</li><li data-i18n=\"slides.s09.serrell\">Serrell：以清晰版面降低短文本加工负荷。</li></ul></div></section><section class=\"merged-field\"><div class=\"merged-field__heading\"><div><span>PHASE 2</span><h3 data-i18n=\"slides.s09.phase2Title\">三方共创工坊与访谈</h3></div><div class=\"method-participants\" aria-label=\"Method participants\"><strong><svg class=\"lucide\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 1 0 7.75\"></path></svg><span data-i18n=\"common.participants\">参与者</span></strong><span data-i18n=\"common.participants.visitors\">游客</span><span data-i18n=\"common.participants.gardenStaff\">植物园工作人员</span><span data-i18n=\"common.participants.interpretationExperts\">植物解说专家</span><span data-i18n=\"common.participants.designers\">设计师</span></div></div><div class=\"merged-methods\"><article><h4 data-i18n=\"slides.s10.method1Title\">实地调查</h4><p data-i18n=\"slides.s10.method1Content\">在福冈市植物园进行实地调查，随机收集并分析所有区域的解说标识图像。</p><figure class=\"merged-method-media\"><img src=\"asset:field-workshop\" alt=\"Co-creation workshop in the botanical garden\"></figure></article><article><h4 data-i18n=\"slides.s10.method2Title\">访谈</h4><p data-i18n=\"slides.s10.method2Content\">通过专家、植物园工作人员与游客访谈识别研究问题。</p><figure class=\"merged-method-media merged-method-media--quantitative\"><img src=\"asset:field-quantitative\" alt=\"Quantitative study measurement and charts\"></figure></article><article><h4 data-i18n=\"slides.s10.method3Title\">问卷调查</h4><p data-i18n=\"slides.s10.method3Content\">以植物园游客为对象进行问卷调查，验证研究问题的普遍性。</p><figure class=\"merged-method-media\"><img src=\"asset:field-qualitative\" alt=\"Qualitative interview session\"></figure></article></div></section></div>"
+}

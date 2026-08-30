@@ -1,0 +1,869 @@
+{
+  "schemaVersion": 1,
+  "migrationSource": "ppt/index.html",
+  "entries": {
+    "legacy.text.0001": {
+      "legacySource": "：关注微观版面层级对短文本加工负荷的直接影响。"
+    },
+    "legacy.text.0002": {
+      "legacySource": "：解说必须与来园者的个人经验及日常利益建立关联；"
+    },
+    "legacy.text.0003": {
+      "legacySource": "：强调解说的启发性（Provocative）与组织清晰度；"
+    },
+    "legacy.text.0004": {
+      "legacySource": "“标识被设置，但不等于被阅读”"
+    },
+    "legacy.text.0005": {
+      "legacySource": "“标识被设置，但不等于被阅读”——超过 90% 的旧标识完全失效"
+    },
+    "legacy.text.0006": {
+      "legacySource": "“观众关联性”将植物的客观性状特征，与观众的触摸、感官经验、生活用途及行为可能性建立关联。实验表明，这一设计维度在激发持续阅读动力、维持视线停留方面发挥了主导作用。"
+    },
+    "legacy.text.0007": {
+      "legacySource": "≠ 被阅读"
+    },
+    "legacy.text.0008": {
+      "legacySource": "1. 排版拥挤字号小"
+    },
+    "legacy.text.0009": {
+      "legacySource": "10 秒黄金窗口"
+    },
+    "legacy.text.0010": {
+      "legacySource": "2. 信息超载无焦点"
+    },
+    "legacy.text.0011": {
+      "legacySource": "3. 缺乏日常经验联结"
+    },
+    "legacy.text.0012": {
+      "legacySource": "4. 学术词汇过密难读"
+    },
+    "legacy.text.0013": {
+      "legacySource": "5. 缺互动行动性引导"
+    },
+    "legacy.text.0014": {
+      "legacySource": "60% 以上"
+    },
+    "legacy.text.0015": {
+      "legacySource": "9 名有效样本中 6 人呈上升趋势；中位变化达 +8.2pp"
+    },
+    "legacy.text.0016": {
+      "legacySource": "9点物理空间校准"
+    },
+    "legacy.text.0017": {
+      "legacySource": "9名有效被试的各区注意力增幅"
+    },
+    "legacy.text.0018": {
+      "legacySource": "把植物特征连接到触摸、用途、感官经验和行动可能性。"
+    },
+    "legacy.text.0019": {
+      "legacySource": "包含 Dynamic Signage 原型试用阶段，观察动态标识的可用性。"
+    },
+    "legacy.text.0020": {
+      "legacySource": "保存注视点、轨迹、热力图与 AOI 统计。"
+    },
+    "legacy.text.0021": {
+      "legacySource": "被设置"
+    },
+    "legacy.text.0022": {
+      "legacySource": "被试依次注视纸面 9 个物理校准点，实验者多次触发确认，用于校正空间透视映射并稳定纸面坐标。"
+    },
+    "legacy.text.0023": {
+      "legacySource": "被试在自然状态下阅读纸面标识，系统在后台记录映射后的二维坐标、注视流和观看时序。"
+    },
+    "legacy.text.0024": {
+      "legacySource": "本阶段重点针对 A/B 眼动实验的 Quick Data 与 AOI 数据进行多维分析。"
+    },
+    "legacy.text.0025": {
+      "legacySource": "本研究成功搭建了从“共创痛点分析”到“眼动生理指标评估”的学术诊断全链路，用数据实证了感官及行动经验对视觉引导的根本作用。"
+    },
+    "legacy.text.0026": {
+      "legacySource": "本研究旨在通过提出共创导向的设计原则，并开发开源、低成本的非接触式眼动追踪系统，建立从“发现问题 → 提炼原则 → 定量诊断”的完整评价与验证闭环。帮助解说标识实现从静态的“知识陈列板”向“体验诱导型媒介”的转型。"
+    },
+    "legacy.text.0027": {
+      "legacySource": "编码与分析工具研发"
+    },
+    "legacy.text.0028": {
+      "legacySource": "博士阶段展望：从视觉捕获到信息提取"
+    },
+    "legacy.text.0029": {
+      "legacySource": "博物馆学习研究经典文献——来园者的核心动机是学习与探索"
+    },
+    "legacy.text.0030": {
+      "legacySource": "不能宣称“整体阅读量全面提升”"
+    },
+    "legacy.text.0031": {
+      "legacySource": "不能在自然阅读状态下，精准追踪不同版面区域的眼动流向"
+    },
+    "legacy.text.0032": {
+      "legacySource": "采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，实现高效获取。"
+    },
+    "legacy.text.0033": {
+      "legacySource": "参考文献 (References)"
+    },
+    "legacy.text.0034": {
+      "legacySource": "参与者的二维坐标与注视流数据，用于后续的 AOI 语义分析。"
+    },
+    "legacy.text.0035": {
+      "legacySource": "参与者在自然状态下阅读实体印刷标识。系统仅通过普通网络摄像头捕捉面部与眼部状态，实时估计视线视点，并将其动态映射至纸面二维坐标，输出学术分析级热力图与眼动轨迹。"
+    },
+    "legacy.text.0036": {
+      "legacySource": "参与者自然阅读，系统静默记录视线。"
+    },
+    "legacy.text.0037": {
+      "legacySource": "测量系统与软硬件"
+    },
+    "legacy.text.0038": {
+      "legacySource": "传统的全通栏大段正文排版，缺乏视觉分区，导致游客无焦点地随意浏览。"
+    },
+    "legacy.text.0039": {
+      "legacySource": "传统评估工具的客观度缺失"
+    },
+    "legacy.text.0040": {
+      "legacySource": "从单体标识研究过渡到系统布局（空间动线引导、 inter-sign continuity），研究标识群的空间排布对游客在大温室中建立连贯心智地图的价值。"
+    },
+    "legacy.text.0041": {
+      "legacySource": "大幅增长 26.6pp，视线结构发生了长效重组，吸引受众进行深度信息加工。"
+    },
+    "legacy.text.0042": {
+      "legacySource": "当前结论基于 9 名有效样本与修正后热力图"
+    },
+    "legacy.text.0043": {
+      "legacySource": "导出包含视点坐标、时序日志、轨迹图、热力图与可修正的 AOI 数据包。"
+    },
+    "legacy.text.0044": {
+      "legacySource": "到核心设计区域？"
+    },
+    "legacy.text.0045": {
+      "legacySource": "调查到验证"
+    },
+    "legacy.text.0046": {
+      "legacySource": "定性依赖"
+    },
+    "legacy.text.0047": {
+      "legacySource": "对标识图像按主题编码，确认问题普遍性并收束课题。"
+    },
+    "legacy.text.0048": {
+      "legacySource": "对各语义兴趣区（AOI）进行分类分析，结果证实了 Audience Relevance（R原则，感官与栽培用途） 获得了极强的注意力捕获效能，注意力从其他装饰区（21.2% -> 8.9%）成功引流。而 Inspirational Atmosphere（A原则）主要充当阅读情境的引导漏斗。"
+    },
+    "legacy.text.0049": {
+      "legacySource": "对照组"
+    },
+    "legacy.text.0050": {
+      "legacySource": "对照组 (38.6%)"
+    },
+    "legacy.text.0051": {
+      "legacySource": "对照组参考：A/R 相关区域 10s 为 38.7%，全程为 45.0%；非目标区域 10s 为 30.1%，全程为 34.5%。"
+    },
+    "legacy.text.0052": {
+      "legacySource": "对照组完读率 (10s)"
+    },
+    "legacy.text.0053": {
+      "legacySource": "方法论贡献 (Methodological)"
+    },
+    "legacy.text.0054": {
+      "legacySource": "方向确立"
+    },
+    "legacy.text.0055": {
+      "legacySource": "非接触估计与漂移补偿"
+    },
+    "legacy.text.0056": {
+      "legacySource": "非目标区域 · 全程 (对照组)"
+    },
+    "legacy.text.0057": {
+      "legacySource": "非目标区域 · 全程 (实验组)"
+    },
+    "legacy.text.0058": {
+      "legacySource": "非正式学习标识的"
+    },
+    "legacy.text.0059": {
+      "legacySource": "分析重点"
+    },
+    "legacy.text.0060": {
+      "legacySource": "福冈市植物园"
+    },
+    "legacy.text.0061": {
+      "legacySource": "改良版在早期阅读窗口中提升文字区域覆盖率：38.6% → 45.3%；但全程文字覆盖率下降，不能解释为整体阅读量全面增加。"
+    },
+    "legacy.text.0062": {
+      "legacySource": "改良设计是否能提升受众对文字区域的"
+    },
+    "legacy.text.0063": {
+      "legacySource": "高度依赖定性问卷与回顾访谈，无法做到精准测量"
+    },
+    "legacy.text.0064": {
+      "legacySource": "高设置 · 低阅读"
+    },
+    "legacy.text.0065": {
+      "legacySource": "各语义区域 (AOI) 注意力占比"
+    },
+    "legacy.text.0066": {
+      "legacySource": "根据已收集课题，通过论文调查检讨研究方向。"
+    },
+    "legacy.text.0067": {
+      "legacySource": "根据预备实验结果与反馈，将工具更新为 VisualAttention v3。"
+    },
+    "legacy.text.0068": {
+      "legacySource": "工具开发 3"
+    },
+    "legacy.text.0069": {
+      "legacySource": "工具链支持 (Instrumental)"
+    },
+    "legacy.text.0070": {
+      "legacySource": "关于用于设计解说标识的共创工具的研究"
+    },
+    "legacy.text.0071": {
+      "legacySource": "观众关联性"
+    },
+    "legacy.text.0072": {
+      "legacySource": "观众关联性区域提升最明显：前 10 秒 5.0% → 21.4%，全程 8.5% → 35.1%，且 9 名有效样本均出现上升。"
+    },
+    "legacy.text.0073": {
+      "legacySource": "核心媒介"
+    },
+    "legacy.text.0074": {
+      "legacySource": "核心研究流程：原则产出——工具设计——利用工具验证原则有效性"
+    },
+    "legacy.text.0075": {
+      "legacySource": "后续计划"
+    },
+    "legacy.text.0076": {
+      "legacySource": "后续计划 (未来规划)"
+    },
+    "legacy.text.0077": {
+      "legacySource": "环境与设备校验"
+    },
+    "legacy.text.0078": {
+      "legacySource": "基于 Quick Data 分析结果，完成博士出愿用修士报告。"
+    },
+    "legacy.text.0079": {
+      "legacySource": "基于 VisualAnalytics 技术，设计并实现动态解说标识原型。"
+    },
+    "legacy.text.0080": {
+      "legacySource": "基于 WebGazer 核心研发的非接触式眼动追踪与注视分析软件。"
+    },
+    "legacy.text.0081": {
+      "legacySource": "基于 WebGazer.js 研发 non-contact 视线估计系统 SIGN Visual Attention。仅利用设备自带摄像头实时捕获面部反射。开发手动漂移补偿与光照过滤算法，彻底过滤室外反光畸变。"
+    },
+    "legacy.text.0082": {
+      "legacySource": "基于前期画像分析与访谈提炼启发性氛围(A)、观众关联性(R)与结构清晰性(S)原则。"
+    },
+    "legacy.text.0083": {
+      "legacySource": "基于自主开发的 Signage Annotator 多人协同标注平台，对温室大棚内现存 70 块传统解说标识进行系统审计。结果显示 91.4% 的旧标识在 A（启发性）与 R（关联性）维度上完全缺位，证明了进行设计重构与优化的紧迫必要性。"
+    },
+    "legacy.text.0084": {
+      "legacySource": "建立标准化转化闭环，将杂散的用户行为数据或共创意见，结构化输出为具备证据支撑的解说设计系统参数。"
+    },
+    "legacy.text.0085": {
+      "legacySource": "建立视线估计与纸面坐标的映射。"
+    },
+    "legacy.text.0086": {
+      "legacySource": "将\"学习与探索\"视为参观植物园的核心动机"
+    },
+    "legacy.text.0087": {
+      "legacySource": "将前期方法论与 ARS 框架整理并进行学术发表，奠定理论基础。"
+    },
+    "legacy.text.0088": {
+      "legacySource": "将提炼的 A/R/S 理论原则映射为具体的版面排版特征与语义区域（AOI）。"
+    },
+    "legacy.text.0089": {
+      "legacySource": "将植物客观性状映射到日常感官经验（如触觉对比“干巴巴/肉乎乎”、手工原料用途），唤醒知觉。这是吸引持续阅读、防止注意流失的决定性视觉抓手。"
+    },
+    "legacy.text.0090": {
+      "legacySource": "阶段 1：文献调查与经典理论模型"
+    },
+    "legacy.text.0091": {
+      "legacySource": "阶段 2：三方共创工坊与市民访谈"
+    },
+    "legacy.text.0092": {
+      "legacySource": "阶段 3：现有标识的基线现状审计"
+    },
+    "legacy.text.0093": {
+      "legacySource": "阶段 3：A/R/S 设计原则之 A 与 R"
+    },
+    "legacy.text.0094": {
+      "legacySource": "阶段 3：A/R/S 设计原则之 S 结构清晰"
+    },
+    "legacy.text.0095": {
+      "legacySource": "阶段 4：眼动实验组与控制组刺激物对比"
+    },
+    "legacy.text.0096": {
+      "legacySource": "阶段 4：眼动系统部署与射影校准"
+    },
+    "legacy.text.0097": {
+      "legacySource": "揭示以“问句”为首的启发性氛围（A）和以“感官用途”为首的观众关联（R）如何相互支撑，在长效阅读流中共同充当视觉引导漏斗与动作诱导锚点。"
+    },
+    "legacy.text.0098": {
+      "legacySource": "结构清晰性"
+    },
+    "legacy.text.0099": {
+      "legacySource": "结果 (1)：初期文字区域完读率提升"
+    },
+    "legacy.text.0100": {
+      "legacySource": "结果 (2)：R原则发挥核心决定性效应"
+    },
+    "legacy.text.0101": {
+      "legacySource": "结果可能受到现场环境、观看路径与个体兴趣差异影响"
+    },
+    "legacy.text.0102": {
+      "legacySource": "结果热力图一览"
+    },
+    "legacy.text.0103": {
+      "legacySource": "结合更长期的动态视线数据流，在游客离开温室 10-30 分钟后开展延迟记忆提取实验，探明注视时间与最终知识存留的关系系数。"
+    },
+    "legacy.text.0104": {
+      "legacySource": "结论：解决非正式学习中的结构性失败"
+    },
+    "legacy.text.0105": {
+      "legacySource": "解决第二痛点：信息记忆衰退"
+    },
+    "legacy.text.0106": {
+      "legacySource": "解说标识的版面设计与视线引导优化"
+    },
+    "legacy.text.0107": {
+      "legacySource": "解说学的三大理论支柱"
+    },
+    "legacy.text.0108": {
+      "legacySource": "进入修士论文写作阶段，将实验结果整合到完整研究论述中。"
+    },
+    "legacy.text.0109": {
+      "legacySource": "开发多人标识编码工具 Signage Annotator 与视线分析工具 VisualAnalytics。"
+    },
+    "legacy.text.0110": {
+      "legacySource": "开源非接触式视线系统 SIGN Visual Attention 证明了利用常规摄像头和大棚本地计算开展学术分析的轻量化潜能。"
+    },
+    "legacy.text.0111": {
+      "legacySource": "客观度缺失"
+    },
+    "legacy.text.0112": {
+      "legacySource": "课题收集"
+    },
+    "legacy.text.0113": {
+      "legacySource": "控制组"
+    },
+    "legacy.text.0114": {
+      "legacySource": "控制组 A1 (经典版)"
+    },
+    "legacy.text.0115": {
+      "legacySource": "快速产出"
+    },
+    "legacy.text.0116": {
+      "legacySource": "来园动机"
+    },
+    "legacy.text.0117": {
+      "legacySource": "来园者多处于随机浏览状态，大量长文本信息未被视线有效覆盖"
+    },
+    "legacy.text.0118": {
+      "legacySource": "利用 WebGazer 引擎在浏览器中进行视线特征点解算与估计。"
+    },
+    "legacy.text.0119": {
+      "legacySource": "明确植物园温室解说标识在阅读范围与记忆保持上的初始课题。"
+    },
+    "legacy.text.0120": {
+      "legacySource": "内容过密、缺乏视觉引导，游客难以有效阅读"
+    },
+    "legacy.text.0121": {
+      "legacySource": "平均提升 +6.7pp"
+    },
+    "legacy.text.0122": {
+      "legacySource": "平均完读率净增量"
+    },
+    "legacy.text.0123": {
+      "legacySource": "评估指标"
+    },
+    "legacy.text.0124": {
+      "legacySource": "普通网络摄像头实时捕获被试面部与眼部反射特征。"
+    },
+    "legacy.text.0125": {
+      "legacySource": "启发性氛围"
+    },
+    "legacy.text.0126": {
+      "legacySource": "前 10 秒 R 区注意力占比"
+    },
+    "legacy.text.0127": {
+      "legacySource": "前 10 秒文字覆盖率 38.6% → 45.3%，9 人中 6 人上升"
+    },
+    "legacy.text.0128": {
+      "legacySource": "前 10 秒文字覆盖率提升"
+    },
+    "legacy.text.0129": {
+      "legacySource": "前 10 秒文字区域完读率 (覆盖率)"
+    },
+    "legacy.text.0130": {
+      "legacySource": "全程时间 R 区注意力占比"
+    },
+    "legacy.text.0131": {
+      "legacySource": "全程文字覆盖率下降"
+    },
+    "legacy.text.0132": {
+      "legacySource": "全生命周期眼动与延迟信息召回"
+    },
+    "legacy.text.0133": {
+      "legacySource": "全样本表现一致"
+    },
+    "legacy.text.0134": {
+      "legacySource": "缺乏对普通游客日常认知经验的过渡，线性灌输导致阅读中断"
+    },
+    "legacy.text.0135": {
+      "legacySource": "确认受光、面部捕捉与摄像头状态。"
+    },
+    "legacy.text.0136": {
+      "legacySource": "人↑"
+    },
+    "legacy.text.0137": {
+      "legacySource": "三方视角下的 KJ 痛点审计与编码"
+    },
+    "legacy.text.0138": {
+      "legacySource": "设计改良缺乏客观、细粒度的生理量化指标"
+    },
+    "legacy.text.0139": {
+      "legacySource": "设计改良缺乏客观、细粒度的生理量化指标。传统评估高度依赖定性问卷与回顾访谈，无法在不打扰被试的自然阅读状态下，精准解耦不同文本版面模块的眼动注意力流向。"
+    },
+    "legacy.text.0140": {
+      "legacySource": "设计干预的核心成效："
+    },
+    "legacy.text.0141": {
+      "legacySource": "设计意图区域"
+    },
+    "legacy.text.0142": {
+      "legacySource": "设计与原型"
+    },
+    "legacy.text.0143": {
+      "legacySource": "设立控制组与改良组对照实验，并引入 AOI 进行眼动数据分析"
+    },
+    "legacy.text.0144": {
+      "legacySource": "实地测试"
+    },
+    "legacy.text.0145": {
+      "legacySource": "实地收集来园者在自然状态下的真实眼动轨迹与注视分布。"
+    },
+    "legacy.text.0146": {
+      "legacySource": "实验数据分析结果分享 · A/R AOI Eye-tracking"
+    },
+    "legacy.text.0147": {
+      "legacySource": "实验探讨的具体问题"
+    },
+    "legacy.text.0148": {
+      "legacySource": "实验验证"
+    },
+    "legacy.text.0149": {
+      "legacySource": "实验组"
+    },
+    "legacy.text.0150": {
+      "legacySource": "实验组 (45.3%)"
+    },
+    "legacy.text.0151": {
+      "legacySource": "实验组 A2 (改良版)"
+    },
+    "legacy.text.0152": {
+      "legacySource": "实验组并非泛泛地扩大受众的盲目阅读面积，而是通过版面分割与层级设计，把注意力精准组织到与设计原则直接关联的语义区域。"
+    },
+    "legacy.text.0153": {
+      "legacySource": "实验组的全程文字区域覆盖率从 65.4% 降至 60.0%，这是本次 Quick Data 中必须承认的结果。它说明改良版并没有在全程尺度上增加文字区域的总体覆盖量。"
+    },
+    "legacy.text.0154": {
+      "legacySource": "实验组完读率 (10s)"
+    },
+    "legacy.text.0155": {
+      "legacySource": "实验组与对照组"
+    },
+    "legacy.text.0156": {
+      "legacySource": "事实与边界"
+    },
+    "legacy.text.0157": {
+      "legacySource": "视觉注意力是否被"
+    },
+    "legacy.text.0158": {
+      "legacySource": "视线估计原理与物理坐标投影映射"
+    },
+    "legacy.text.0159": {
+      "legacySource": "数据导出与数据包清洗"
+    },
+    "legacy.text.0160": {
+      "legacySource": "数据细化与撰写"
+    },
+    "legacy.text.0161": {
+      "legacySource": "双维协同的动作映射机制"
+    },
+    "legacy.text.0162": {
+      "legacySource": "探究解说标识的实证化改良路径"
+    },
+    "legacy.text.0163": {
+      "legacySource": "讨论方向"
+    },
+    "legacy.text.0164": {
+      "legacySource": "讨论与局限：全程完读率下降的客观判读"
+    },
+    "legacy.text.0165": {
+      "legacySource": "提升 16.4pp，表明观众关联信息能被迅速捕捉，成为极佳的“视觉锚点”。"
+    },
+    "legacy.text.0166": {
+      "legacySource": "停止追踪后保存日志，导出注视点记录、归一化热力图、轨迹图与可修正的 AOI 统计表，用于 Quick Data 分析。"
+    },
+    "legacy.text.0167": {
+      "legacySource": "通过精确分割 A 区域（启发背景）与 R 区域（感官与栽培用途）的语义兴趣区（AOI），检验实验组设计是否实现了注意力从背景噪声区向关键行为诱导区的结构化转移。"
+    },
+    "legacy.text.0168": {
+      "legacySource": "通过实地调查、焦点小组与 KJ 法收集用户反馈。"
+    },
+    "legacy.text.0169": {
+      "legacySource": "通过提问、叙事和植物情境提示，建立“为什么值得看”的入口。"
+    },
+    "legacy.text.0170": {
+      "legacySource": "通过纸面 9 点物理校准，构建屏幕空间向物理纸面标识坐标的射影几何映射。"
+    },
+    "legacy.text.0171": {
+      "legacySource": "突破空间不连续性"
+    },
+    "legacy.text.0172": {
+      "legacySource": "完读率"
+    },
+    "legacy.text.0173": {
+      "legacySource": "温室区"
+    },
+    "legacy.text.0174": {
+      "legacySource": "文献调查"
+    },
+    "legacy.text.0175": {
+      "legacySource": "文献脉络梳理"
+    },
+    "legacy.text.0176": {
+      "legacySource": "文字区域完读率网格差分分析表明，在前10秒黄金阅读窗口中，实验组的文字区域完读率均值由对照组的 38.6% 提升至实验组的 45.3%（提升了 6.7pp）。9 名被试中有 6 名呈现出显著上升趋势，中位提升幅度达到 +8.2pp。这证明了实验组成功将视线从盲目扫视引流至感官行动区。"
+    },
+    "legacy.text.0177": {
+      "legacySource": "问题入口"
+    },
+    "legacy.text.0178": {
+      "legacySource": "无法解耦注意力流"
+    },
+    "legacy.text.0179": {
+      "legacySource": "现场实验流程"
+    },
+    "legacy.text.0180": {
+      "legacySource": "现存问题"
+    },
+    "legacy.text.0181": {
+      "legacySource": "现实困境二：主观定性的评估局限"
+    },
+    "legacy.text.0182": {
+      "legacySource": "现实困境一：专家导向的知识超载"
+    },
+    "legacy.text.0183": {
+      "legacySource": "现实困境与低阅读课题"
+    },
+    "legacy.text.0184": {
+      "legacySource": "现行标识多陷入学术名词堆砌与线性灌输模式，缺乏对普通游客日常认知经验的合理过渡。这导致游客在视线接触的黄金前 10 秒内便产生认知疲劳并放弃阅读，形成信息流的不连贯。"
+    },
+    "legacy.text.0185": {
+      "legacySource": "现状画像分析"
+    },
+    "legacy.text.0186": {
+      "legacySource": "详细分析本实验得到的全部数据，细化指标与图表。"
+    },
+    "legacy.text.0187": {
+      "legacySource": "效应最强、最稳定"
+    },
+    "legacy.text.0188": {
+      "legacySource": "信息混杂在单一长文本中"
+    },
+    "legacy.text.0189": {
+      "legacySource": "行为与体验诱导"
+    },
+    "legacy.text.0190": {
+      "legacySource": "修士报告"
+    },
+    "legacy.text.0191": {
+      "legacySource": "修士论文"
+    },
+    "legacy.text.0192": {
+      "legacySource": "学术发表"
+    },
+    "legacy.text.0193": {
+      "legacySource": "学术名词堆砌 · 信息流断裂"
+    },
+    "legacy.text.0194": {
+      "legacySource": "迅速分析本实验 A/B 测试结果，形成早期结论。"
+    },
+    "legacy.text.0195": {
+      "legacySource": "研究背景：植物园与植物学习"
+    },
+    "legacy.text.0196": {
+      "legacySource": "研究对象：解说标识作为植物学习的重要工具"
+    },
+    "legacy.text.0197": {
+      "legacySource": "研究聚焦"
+    },
+    "legacy.text.0198": {
+      "legacySource": "研究流程"
+    },
+    "legacy.text.0199": {
+      "legacySource": "研究整体技术路线"
+    },
+    "legacy.text.0200": {
+      "legacySource": "眼动追踪的现场"
+    },
+    "legacy.text.0201": {
+      "legacySource": "样本与数据口径：现场实验共招募 15 名真实来园者；本次 Quick Data/AOI 分析使用 9 名参与者的修正后热力图作为有效样本。"
+    },
+    "legacy.text.0202": {
+      "legacySource": "依次阅读一个控制组和一个实验组纸质标识，记录被试在自然观看状态下的视线轨迹。"
+    },
+    "legacy.text.0203": {
+      "legacySource": "以福冈市植物园温室区域为例"
+    },
+    "legacy.text.0204": {
+      "legacySource": "引导视线更早聚焦"
+    },
+    "legacy.text.0205": {
+      "legacySource": "引入认知负荷理论 (Sweller, 1988) 与双重编码理论 (Paivio, 1971)，研究如何通过合理的图文匹配优化大脑记忆编码强度。"
+    },
+    "legacy.text.0206": {
+      "legacySource": "应用 A/R 原则进行独立分区设计"
+    },
+    "legacy.text.0207": {
+      "legacySource": "应用实践价值 (Applied)"
+    },
+    "legacy.text.0208": {
+      "legacySource": "用标识层级与视觉分区降低读解负荷，支撑关键区域可达。"
+    },
+    "legacy.text.0209": {
+      "legacySource": "用焦点小组、问卷与记忆测试验证研究必要性。"
+    },
+    "legacy.text.0210": {
+      "legacySource": "游客来到植物园的目的不仅仅是观赏——更是为了学习"
+    },
+    "legacy.text.0211": {
+      "legacySource": "游客在测试前依次观看纸质标识四周的 9 个物理定标点。系统计算头部姿态，并利用单应性矩阵（Homography）将屏幕空间估计点投影映射到纸质标识的 2D 坐标系上。"
+    },
+    "legacy.text.0212": {
+      "legacySource": "游客在视线接触的前 10 秒即产生认知疲劳并放弃阅读"
+    },
+    "legacy.text.0213": {
+      "legacySource": "与专家讨论可行方向，确定研究问题。"
+    },
+    "legacy.text.0214": {
+      "legacySource": "予備実験"
+    },
+    "legacy.text.0215": {
+      "legacySource": "语义区注意力配额与视线转换机制"
+    },
+    "legacy.text.0216": {
+      "legacySource": "预备验证"
+    },
+    "legacy.text.0217": {
+      "legacySource": "原则与工具"
+    },
+    "legacy.text.0218": {
+      "legacySource": "阅读两个标识"
+    },
+    "legacy.text.0219": {
+      "legacySource": "在 A/R/S 原则中，哪种设计介入产生的"
+    },
+    "legacy.text.0220": {
+      "legacySource": "在被测试的 9 名有效被试中，R 区的注意力占比无一例外均发生显著提升。"
+    },
+    "legacy.text.0221": {
+      "legacySource": "在承认全程完读率下降的前提下，其他指标显示注意力并非简单减少，而是向特定语义区域重新分配。这更适合表述为局部有效，而非全局阅读量提升。"
+    },
+    "legacy.text.0222": {
+      "legacySource": "在第一阶段突破了“视觉可达性与注意力分流”屏障后，博士阶段将向大脑的信息解码与空间导航连贯性发起挑战。"
+    },
+    "legacy.text.0223": {
+      "legacySource": "在九州大学举办多轮 Global Goals Jam 共创设计坊。通过半结构化访谈与市民发声，对旧标识的阅读障碍进行扎根理论主轴编码，归纳得出以下 5 大核心认知痛点分类："
+    },
+    "legacy.text.0224": {
+      "legacySource": "在前 10 秒的黄金阅读窗口中，实验组的文字区域完读率平均提升了 6.7pp (从对照组的 38.6% 提高到 45.3%)。这证明改良设计能有效提升阅读效率，迅速激活信息入口。"
+    },
+    "legacy.text.0225": {
+      "legacySource": "在实验室进行小规模验证，确认 VisualAnalytics 和实验本身的可行性。"
+    },
+    "legacy.text.0226": {
+      "legacySource": "在植物园实施眼动实验，全面验证 A/R/S 改良版标识的视线引导有效性。"
+    },
+    "legacy.text.0227": {
+      "legacySource": "在自然温室环境中检查面部受光、阴影干扰、眼部捕捉范围与摄像头帧率，避免后续注视点记录失真。"
+    },
+    "legacy.text.0228": {
+      "legacySource": "早期入口与 AOI 重组"
+    },
+    "legacy.text.0229": {
+      "legacySource": "整合大气泡问句引导（A）与感官用途框（R），运用模块设计引导动作映射。"
+    },
+    "legacy.text.0230": {
+      "legacySource": "植物解说标识的 A/R/S 设计改良与眼动评估实验分析"
+    },
+    "legacy.text.0231": {
+      "legacySource": "植物园温室中的解说标识是游客获取植物知识的主要渠道"
+    },
+    "legacy.text.0232": {
+      "legacySource": "纸面 9 点校准映射"
+    },
+    "legacy.text.0233": {
+      "legacySource": "中位提升 +8.2pp"
+    },
+    "legacy.text.0234": {
+      "legacySource": "重新组织"
+    },
+    "legacy.text.0235": {
+      "legacySource": "注：上述实验探究问题在后续的数据分析中，将依次以 Q1、Q2、Q3（即数据 1、2、3 页面）进行量化解答与论证。"
+    },
+    "legacy.text.0236": {
+      "legacySource": "注视点数据"
+    },
+    "legacy.text.0237": {
+      "legacySource": "注意力转向设计意图区域"
+    },
+    "legacy.text.0238": {
+      "legacySource": "专家访谈"
+    },
+    "legacy.text.0239": {
+      "legacySource": "转向"
+    },
+    "legacy.text.0240": {
+      "legacySource": "自由观看与视轨记录"
+    },
+    "legacy.text.0241": {
+      "legacySource": "综合 Tilden (1957) 的解说六原则、Ham (2016)的 EROT 解释机制、与 Serrell (2015) 的微观排版规约。锁定视觉注意力瓶颈与游客认知负荷的对立关系，推导出了适用于动态园艺环境的低负荷传达框架。"
+    },
+    "legacy.text.0242": {
+      "legacySource": "总结：从信息解说"
+    },
+    "legacy.text.0243": {
+      "legacySource": "作为温室环境中的非正式学习界面，解说标识往往面临“高设置、低阅读”的困境。本项研究探讨：如何通过 A/R/S 设计干预，引导来园者的视觉注意力，缩短阅读决策路径，使视线更早且更持续地聚焦于关键语义区域。"
+    },
+    "legacy.text.0244": {
+      "legacySource": "A/B TEST 验证"
+    },
+    "legacy.text.0245": {
+      "legacySource": "A/R 目标区域 · 10s (对照组)"
+    },
+    "legacy.text.0246": {
+      "legacySource": "A/R 目标区域 · 10s (实验组)"
+    },
+    "legacy.text.0247": {
+      "legacySource": "A/R 目标区域 · 全程 (对照组)"
+    },
+    "legacy.text.0248": {
+      "legacySource": "A/R 目标区域 · 全程 (实验组)"
+    },
+    "legacy.text.0249": {
+      "legacySource": "A/R 目标区域的注意力占比上升：10 秒内 38.7% → 47.8%，全程 45.0% → 60.2%，说明视线被重新组织到核心语义区。"
+    },
+    "legacy.text.0250": {
+      "legacySource": "A/R 目标区域全程占比 45.0% → 60.2%"
+    },
+    "legacy.text.0251": {
+      "legacySource": "A/R 兴趣区注意力配额"
+    },
+    "legacy.text.0252": {
+      "legacySource": "A/R/S 的核心价值并非修饰版面，而是系统性重构注意力，将无序的“盲目扫视”组织为具有非正式学习与感官体验意义的深度阅读。"
+    },
+    "legacy.text.0253": {
+      "legacySource": "A/R/S 解说标识设计原则假说"
+    },
+    "legacy.text.0254": {
+      "legacySource": "A/R/S 设计优化原则突破了场域限制，可直接移植运用至科学馆、历史博览会和自然博物馆等非正式教育界面中。"
+    },
+    "legacy.text.0255": {
+      "legacySource": "A/R/S 是一套基于先前阶段研究（实地调研与理论分析）提炼而成的解说标识设计原则，旨在通过氛围、关联与结构的维度改良，预期能够显著提升来园者的标识阅读意愿与非正式学习体验。"
+    },
+    "legacy.text.0256": {
+      "legacySource": "A/R/S 原则的版面语义映射样例 (实验组 A2)"
+    },
+    "legacy.text.0257": {
+      "legacySource": "A/R设计是否能在游客与标识接触的黄金前 10 秒（视觉入口期）内，有效提高游客对核心文字内容的整体空间覆盖率，降低盲目扫视率？"
+    },
+    "legacy.text.0258": {
+      "legacySource": "ARS 原则产出"
+    },
+    "legacy.text.0259": {
+      "legacySource": "ARS产出 & 工具开发"
+    },
+    "legacy.text.0260": {
+      "legacySource": "ARS有效性验证"
+    },
+    "legacy.text.0261": {
+      "legacySource": "ARS原则视觉映射"
+    },
+    "legacy.text.0262": {
+      "legacySource": "Data 分析"
+    },
+    "legacy.text.0263": {
+      "legacySource": "EROT 模型"
+    },
+    "legacy.text.0264": {
+      "legacySource": "Falk &amp; Dierking (2000)"
+    },
+    "legacy.text.0265": {
+      "legacySource": "FIELD TRIAL: 游客自然状态下的无感视线捕捉与记录"
+    },
+    "legacy.text.0266": {
+      "legacySource": "ILLUSTRATION: Signage Annotator 标识分类与定量标注工具界面"
+    },
+    "legacy.text.0267": {
+      "legacySource": "ILLUSTRATION: Web 端 9点视线偏移物理校准与误差补偿界面"
+    },
+    "legacy.text.0268": {
+      "legacySource": "IMAGE: Global Goals Jam 2025 九州共创现场讨论记录"
+    },
+    "legacy.text.0269": {
+      "legacySource": "N = 70 块大棚标识审计结论"
+    },
+    "legacy.text.0270": {
+      "legacySource": "Q1 · 初期文字区域完读率提升"
+    },
+    "legacy.text.0271": {
+      "legacySource": "Q1 · 完读率提升"
+    },
+    "legacy.text.0272": {
+      "legacySource": "Q1: 完读率是否有被提升 (前 10 秒覆盖率)"
+    },
+    "legacy.text.0273": {
+      "legacySource": "Q2 · 注意分配"
+    },
+    "legacy.text.0274": {
+      "legacySource": "Q2: 注意力向设计意图区域重组 (AOI 占比)"
+    },
+    "legacy.text.0275": {
+      "legacySource": "Q3 · 效能比较"
+    },
+    "legacy.text.0276": {
+      "legacySource": "Q3: 观众关联性 (R原则) 产生最稳定、最强的视线吸引效应"
+    },
+    "legacy.text.0277": {
+      "legacySource": "Quick Data 分析"
+    },
+    "legacy.text.0278": {
+      "legacySource": "R 区全程占比 8.5% → 35.1%，9 名样本均上升"
+    },
+    "legacy.text.0279": {
+      "legacySource": "R 原则产生最稳定效应"
+    },
+    "legacy.text.0280": {
+      "legacySource": "S原则: 杂乱扫视大幅缩减"
+    },
+    "legacy.text.0281": {
+      "legacySource": "Serrell 策略"
+    },
+    "legacy.text.0282": {
+      "legacySource": "SITE: 福冈市植物园温室大棚区 · N = 70 BASELINE AUDIT"
+    },
+    "legacy.text.0283": {
+      "legacySource": "Tilden 原则"
+    },
+    "legacy.text.0284": {
+      "legacySource": "v3 更新"
+    }
+  },
+  "droppedLegacyOrphans": [
+    "轻量化 / 注意力转向设计意图区域"
+  ],
+  "forbiddenJapanesePhrases": [
+    "现实",
+    "现状",
+    "原则",
+    "价值",
+    "视线",
+    "信息传达"
+  ]
+}

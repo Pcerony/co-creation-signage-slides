@@ -1,0 +1,14 @@
+{
+  "id": "s07-research-questions-two-three",
+  "chapterId": "research-design",
+  "layout": "principles",
+  "chapter": "2",
+  "chapterTitle": "研究问题与目的",
+  "shortTitle": "研究目的：RQ2/3",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide",
+  "assets": [],
+  "claims": [],
+  "markup": "<div class=\"canvas-card\">\n    <div class=\"chrome-min\"><div class=\"l\">RESEARCH OBJECTIVES</div><div class=\"r\">06 / 21</div></div>\n    <div style=\"display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0\">\n      <div>\n        <h2 class=\"h-xl-zh\" style=\"color:var(--ink)\">语义区注意力配额与视线转换机制</h2>\n      </div>\n\n      <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;align-items:stretch\">\n        <div style=\"background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 2.5vw;display:flex;flex-direction:column;gap:1.5vh\">\n          <div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh\">\n            <span style=\"font-family:var(--mono);font-size:16px;color:var(--accent);font-weight:700\">RQ2</span>\n            <i data-lucide=\"layout-grid\" style=\"color:var(--accent);width:24px;height:24px\"></i>\n          </div>\n          <h3 class=\"t-h-prod\" style=\"margin:0;font-size:32px;color:var(--ink);font-weight:600\">A/R 兴趣区注意力配额</h3>\n          <p class=\"t-body-sm\" style=\"color:var(--text-primary);margin:0;font-size:22px;\">\n            通过精确分割 A 区域（启发背景）与 R 区域（感官与栽培用途）的语义兴趣区（AOI），检验实验组设计是否实现了注意力从背景噪声区向关键行为诱导区的结构化转移。\n          </p>\n          <span class=\"t-meta\" style=\"color:var(--text-helper);margin-top:auto\">METRIC: SEMANTIC AOI SHARE</span>\n        </div>\n\n        <div style=\"background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 2.5vw;display:flex;flex-direction:column;gap:1.5vh\">\n          <div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:1vh\">\n            <span style=\"font-family:var(--mono);font-size:16px;color:var(--accent);font-weight:700\">RQ3</span>\n            <i data-lucide=\"activity\" style=\"color:var(--accent);width:24px;height:24px\"></i>\n          </div>\n          <h3 class=\"t-h-prod\" style=\"margin:0;font-size:32px;color:var(--ink);font-weight:600\">双维协同的动作映射机制</h3>\n          <p class=\"t-body-sm\" style=\"color:var(--text-primary);margin:0;font-size:22px;\">\n            揭示以“问句”为首的启发性氛围（A）和以“感官用途”为首的观众关联（R）如何相互支撑，在长效阅读流中共同充当视觉引导漏斗与动作诱导锚点。\n          </p>\n          <span class=\"t-meta\" style=\"color:var(--text-helper);margin-top:auto\">ANALYSIS: GAZE DYNAMICS MODEL</span>\n        </div>\n      </div>\n    </div>\n  </div>"
+}

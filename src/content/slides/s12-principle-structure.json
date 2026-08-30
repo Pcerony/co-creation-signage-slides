@@ -1,0 +1,16 @@
+{
+  "id": "s12-principle-structure",
+  "chapterId": "methods",
+  "layout": "principles",
+  "chapter": "3",
+  "chapterTitle": "方法",
+  "shortTitle": "阶段3：S原则",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide",
+  "assets": [
+    "intervention-sign"
+  ],
+  "claims": [],
+  "markup": "<div class=\"canvas-card\">\n    <div class=\"chrome-min\"><div class=\"l\">METHODOLOGY · PHASE 3 PRINCIPLES</div><div class=\"r\">11 / 20</div></div>\n    <div style=\"display:grid;grid-template-rows:auto 1fr;gap:3vh;flex:1;min-height:0\">\n      <div>\n        <h2 class=\"h-xl-zh\" style=\"color:var(--ink)\">阶段 3：A/R/S 设计原则之 S 结构清晰</h2>\n      </div>\n\n      <div style=\"display:grid;grid-template-columns:1.2fr 1fr;gap:3vw;align-items:stretch\">\n        <div style=\"background:#fff;border:1px solid var(--border-subtle);padding:3.5vh 3vw;display:flex;flex-direction:column;gap:1.5vh\">\n          <div style=\"display:flex;justify-content:space-between;align-items:center\">\n            <span class=\"t-meta\" style=\"color:var(--accent);font-family:var(--mono)\">S / STRUCTURE</span>\n            <i data-lucide=\"layout\" style=\"color:var(--accent);width:24px;height:24px\"></i>\n          </div>\n          <h3 class=\"t-h-prod\" style=\"color:var(--ink);margin:0\">结构清晰性</h3>\n          <p class=\"t-body\" style=\"color:var(--text-primary);margin:0\">\n            采用分区模块设计（如左右解耦框架）、显著的层级字重与直观功能图标，避免大面积文字疲劳。优化短文本的视觉流通道，提升 R 原则内容的可达性，支持整体注意力向解说功能区的有效重组。\n          </p>\n        </div>\n\n        <div style=\"background:#fff;border:1px solid var(--border-subtle);padding:2vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1vh\">\n          <img src=\"asset:intervention-sign\" alt=\"A/R/S原则版面映射\" style=\"height:32vh;width:20vw;object-fit:contain;border:1px solid var(--border-subtle)\">\n          <span style=\"font-size:16px;color:var(--text-helper)\">A/R/S 原则的版面语义映射样例 (实验组 A2)</span>\n        </div>\n      </div>\n    </div>\n  </div>"
+}

@@ -289,7 +289,7 @@ git commit -m "refactor: compress deck content and round presentation surfaces"
 - Modify: `ppt/index.html` only if QA finds defects
 - Create: `output/playwright/focused-deck-desktop.png`
 - Create: `output/playwright/focused-deck-narrow.png`
-- Create: `design-qa.md`
+- Create: `docs/reviews/design-qa.md`
 
 - [ ] **Step 1: Start a local server**
 
@@ -318,7 +318,7 @@ capture `output/playwright/focused-deck-narrow.png`.
 - [ ] **Step 4: Write and pass design QA**
 
 Compare both captures against the provided reference's spatial model. Write
-`design-qa.md` with sections for layout fidelity, visual hierarchy, typography,
+`docs/reviews/design-qa.md` with sections for layout fidelity, visual hierarchy, typography,
 interaction, and responsiveness. The last line must be exactly:
 
 ```text
@@ -343,6 +343,6 @@ composition.
 - [ ] **Step 6: Commit QA artifacts and corrections**
 
 ```bash
-git add ppt/index.html design-qa.md output/playwright/focused-deck-desktop.png output/playwright/focused-deck-narrow.png
+git add ppt/index.html docs/reviews/design-qa.md output/playwright/focused-deck-desktop.png output/playwright/focused-deck-narrow.png
 git commit -m "test: verify focused deck presentation"
 ```

@@ -1,0 +1,20 @@
+{
+  "id": "s14-stimulus-comparison",
+  "chapterId": "methods",
+  "layout": "comparison",
+  "chapter": "3",
+  "chapterTitle": "方法与结果",
+  "shortTitle": "阶段四：視線実験",
+  "animation": "field-notes",
+  "legacyLayout": "S16",
+  "legacyClass": "slide",
+  "assets": [
+    "control-sign",
+    "intervention-sign",
+    "aa",
+    "bb",
+    "visual-attention-banner"
+  ],
+  "claims": [],
+  "markup": "<div class=\"canvas-card method-sequence method-comparison\"><div class=\"chrome-min\"><div class=\"l\">METHODOLOGY · PHASE 4 DESIGN</div><div class=\"r\">12 / 19</div></div><header class=\"method-sequence__header\"><span class=\"method-stage-tag\">PHASE 4</span><h2 class=\"h-xl-zh\" data-i18n=\"slides.s14.title\">眼动实验刺激物对比</h2></header><div class=\"comparison__grid\" style=\"padding-top:6vh\"><figure class=\"comparison__stimulus method-evidence\" style=\"border-top:none;padding-top:0\"><div class=\"comparison__label\"><span class=\"t-meta\">CONTROL · A1</span><strong data-i18n=\"slides.s14.control.title\">经典版</strong></div><div class=\"stimulus-image-wrapper\" style=\"cursor:pointer;position:relative;height:48vh;margin-top:1.4vh;display:flex;justify-content:center;align-items:center\"><img class=\"stimulus-img-default\" src=\"asset:control-sign\" alt=\"控制组经典标识\"><img class=\"stimulus-img-heatmap\" src=\"asset:aa\" alt=\"控制组热力图\"></div></figure><figure class=\"comparison__stimulus method-evidence comparison__stimulus--intervention\" style=\"border-top:none;padding-top:0\"><div class=\"comparison__label\"><span class=\"t-meta\">INTERVENTION · A2</span><strong data-i18n=\"slides.s14.intervention.title\">A/R 改良版</strong></div><div class=\"stimulus-image-wrapper\" style=\"cursor:pointer;position:relative;height:48vh;margin-top:1.4vh;display:flex;justify-content:center;align-items:center\"><img class=\"stimulus-img-default\" src=\"asset:intervention-sign\" alt=\"实验组改良标识\"><img class=\"stimulus-img-heatmap\" src=\"asset:bb\" alt=\"实验组热力图\"></div></figure></div><div class=\"s14-software-intro\"><div class=\"s14-software-brand\" style=\"border-left:none;padding-left:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;flex:0 0 350px\"><img src=\"asset:visual-attention-banner\" alt=\"SIGN Visual Attention v3 Logo\" class=\"s14-software-logo\" style=\"height:8vh;width:auto;object-fit:contain\"><div class=\"s14-software-desc\" data-i18n=\"slides.s14.intro.description\" style=\"font-size:18px;color:var(--text-secondary);font-weight:500;margin-top:2px\">标识图像编码、定量分析工具</div></div><ul class=\"s14-software-details\"><li data-i18n=\"slides.s14.intro.li1\">基于网络会议摄像头与开源算法</li><li data-i18n=\"slides.s14.intro.li2\">无接触式追踪注视点、可映射追踪打印纸质标识</li><li data-i18n=\"slides.s14.intro.li3\">生成热力图、注视点轨迹图</li></ul></div></div>"
+}

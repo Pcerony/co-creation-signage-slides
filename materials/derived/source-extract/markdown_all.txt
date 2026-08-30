@@ -1,0 +1,345 @@
+
+
+===== materials/manuscripts/master-report-en.md =====
+
+Interpretive Signage Redesign in Botanical Gardens: A Co-creation Framework with Eye-tracking Validation
+Background and Objectives
+Interpretive signage functions as the primary medium for informal learning in botanical gardens, yet the field consistently registers two measurable deficits: low text read-through rates and poor information retention (Bitgood, 2013; Serrell, 2015). Field reconnaissance at Fukuoka Botanical Garden corroborated both failures at scale. Systematic literature review identified two structural causes: existing signage practice lacks evidence-based design principles, and no objective diagnostic instrument exists to evaluate interpretive effectiveness—leaving iterative improvement without empirical grounding (Spooner et al., 2024). Both failures have been documented across museum, zoo, and botanic garden contexts; yet design-science remediation protocols grounded in visitor data remain scarce. The deficits are structurally coupled: absent principled design guidance, practitioners cannot produce cognitively accessible signs; absent diagnostic tools, they cannot determine whether any intervention has succeeded. This study directly addresses both gaps by formalizing co-created design principles and operationalizing a low-cost, open-source eye-tracking instrument to quantify their effect on read-through rates.
+Research Design
+The greenhouse zone of Fukuoka Botanical Garden served as the research site. The study instantiated a bottom-up paradigm—problem identification, principle formalization, quantitative diagnosis, experimental verification—grounded in Tilden's (1957) interpretive theory, Ham's (2016) EROT model, and Serrell's (2015) label design framework. Co-creation Design was adopted as the central strategy: all interventions were derived from documented visitor pain points rather than top-down expert assumptions. The overall framework encapsulates an evidence-first logic in which each design decision is anchored to a documented visitor need.
+Methods
+The study employed a mixed-methods design across four sequential phases.
+Phase 1: Literature Review. Classical literature on interpretive system design, attention allocation, and cognitive load was synthesized to define the research scope and formalize the study architecture.
+Phase 2: Co-creation Workshop and User Survey. A participatory design session at Global Goals Jam Kyushu 2025 engaged citizens, designers, and garden staff. Semi-structured field interviews generated qualitative data across diverse visitor demographics; thematic coding produced five primary pain-point categories, confirming the two core research problems and delineating specific visitor experience barriers.
+Phase 3: Principle Derivation and Baseline Audit. Three principles targeting cognitive load reduction were formalized through systematic literature synthesis and expert interviews (Wang & Zhang, 2025a): (A) Inspirational Atmosphere—deploying interrogative or narrative framing to stimulate initial engagement; (R) Audience Relevance—mapping plant characteristics to visitors' sensory experiences and everyday knowledge; (S) Structural Clarity—enforcing legible information hierarchy and balanced typography. A custom annotation instrument, Signage Annotator, was then deployed to audit all 70 existing greenhouse signs (N = 70). The audit confirmed that principles A and R were systematically absent from the current signage corpus.
+Phase 4: A/B Eye-tracking Experiment (Within-subjects). Fifteen authentic visitors (ages 20–80) were recruited for an in-situ controlled experiment between May and June 2025. Redesigned stimuli applied A/R/S principles as the sole manipulated variable against matched baseline signs. A bespoke wearable device, SIGN Visual Attention, captured gaze heatmaps and scanpaths under natural visitor movement conditions without requiring participants to modify their behavioral patterns. Semantic Areas of Interest (AOI) analysis quantified text read-through rates at the word-region level.
+Results and Discussion
+The A/B experiment produced consistent positive effects across all 15 participants. Whole-sign text read-through rate in the initial 10 seconds increased from 38.6% to 45.3% in the intervention condition. The Audience Relevance region registered the most pronounced shift: 10-second reading rate rose from 5.0% to 21.4%, and full dwell time climbed from 8.5% to 35.1%, with every participant showing an upward trajectory. The four-fold increase in the Audience Relevance full dwell rate—from 8.5% to 35.1%—represents a magnitude rarely observed in field-based interpretive signage research. Effect decomposition identified the R principle—experiential knowledge linkage—as the decisive variable in capturing and sustaining gaze. The A principle (rhetorical framing) applied in isolation failed to generate stable fixation, establishing that co-creation interventions should prioritize experiential anchoring over linguistic embellishment.
+Conclusions and Doctoral Research Agenda
+This study delivers three interrelated contributions to interpretive signage design. Methodologically, it delineates a framework for organizing, filtering, and translating visitor feedback into actionable design specifications. In applied terms, the A/R/S principles constitute transferable guidance for botanical gardens, science museums, and analogous informal learning environments. Instrumentally, SIGN Visual Attention—open-source, passive, and deployable without specialist infrastructure—demonstrates viability for field-based gaze research at minimal cost. Collectively, these outputs operationalize the methodological and empirical foundation for Research Problem 1; the R principle alone elevated full dwell time from 8.5% to 35.1%, constituting a practically significant gain for informal learning design.
+The doctoral phase will target Research Problem 2—information retention—by integrating cognitive load theory (Sweller, 1988) and dual coding theory (Paivio, 1971). Full-session eye-tracking paired with delayed memory tests will investigate how systematic signage design variables (spatial layout, thematic zoning, and inter-sign continuity) modulate memory encoding, with the aim of resolving spatial discontinuity as a structural barrier to learning pathway formation in botanical garden contexts.
+
+## References
+Bitgood, S. (2013). Attention and value: Keys to understanding museum visitors. Left Coast Press.
+Ham, S. (2016). Interpretation: Making a difference on purpose. Fulcrum Publishing.
+Paivio, A. (1971). Imagery and verbal processes. Holt, Rinehart, and Winston.
+Serrell, B. (2015). Exhibit labels: An interpretive approach. Bloomsbury Publishing.
+Spooner, S. L., et al. (2024). Using eye-tracking to create impactful interpretation signage for botanic gardens. Journal of Zoological and Botanical Gardens, 5(3), 434-454.
+Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. Cognitive Science, 12(2), 257-285.
+Tilden, F. (1957). Interpreting our heritage. University of North Carolina Press.
+Wang, P., & Zhang, Y. (2025a). 共創による植物園解説サインに関する研究Ⅰ. 日本デザイン学会研究発表大会概要集, 91.
+
+
+===== materials/research-notes/co-creation-tool.md =====
+
+# 解説サインのための共創ツールに関する研究
+
+## **福岡市植物園温室エリアを事例として**
+
+![R0.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/R0.png)
+
+本研究は、福岡市植物園の温室エリアに設置された解説サインを事例として、現状の課題を明らかにするとともに、より良い解説サインをデザインするために、共創デザインのあり方と具体的なツールについて探求するものです。
+
+---
+
+## 時間
+
+### 研究活動
+
+### 説明
+
+2024.11
+
+GGJ2024
+
+実地調査、フォーカスグループ、およびKJ法を通じて、ユーザーからのフィードバックと課題を収集します
+
+2025.04
+
+文献調査
+
+収集した課題に基づき、論文調査を通じて研究の方向性を検討します
+
+2025.06
+
+現状画像分析
+
+収集したすべての標識画像をもとに、テーマごとにコーディング分析を行います。それによって問題の普遍性を確かめ、課題を絞り込んでいこう
+
+2025.08
+
+専門家インタビュー
+
+可能な方向性について専門家と議論し、研究課題を確定します
+
+2025.09
+
+GGJ2025
+
+フォーカスグループ、アンケート調査、記憶力テスト等の手法を用い、本研究課題の必要性を検証いたします
+
+---
+
+2025.10
+
+学会発表
+
+ここまでの方法論を「[**フレームワーク**](https://www.jstage.jst.go.jp/article/designresearch/91/0/91_62/_article/-char/ja)」としてまとめて
+
+2025.12
+
+ツール開発 1
+
+現状画像分析と専門家インタビューの手法を組み合わせ、複数人で標識のコーディング分析を行うためのWEBツール「[**Signage Annotator**](https://pcerony.github.io/signage-annotator/)」を開発してまいります
+
+2026.01
+
+ツール開発 2
+
+研究課題に向けた、視線計測用のツール「[**VisualAnalytics**](https://eyetracktool-fluxsyak.manus.space/)」を開発いたします
+
+2026.03
+
+予備実験
+
+実験室にて小規模な検証を行い、「[**VisualAnalytics**](https://eyetracktool-fluxsyak.manus.space/)」および実験自体の実現可能性を確認いたします
+
+2026.04
+
+ツール開発 3
+
+予備実験での結果やフィードバックを踏まえ、ツールを「[**VisualAttention v3**](https://pcerony.github.io/eye-tracking-tool-3/)」にアップデートしてまいります
+
+---
+
+2026.05
+
+prototype開発
+
+「[**VisualAnalytics**](https://eyetracktool-fluxsyak.manus.space/)」の技術に基づき、プロトタイプ「[**Dynamic Signage**](https://pcerony.github.io/SIGN_prototype/)」を開発いたします
+
+2026.05
+
+**本実験**
+
+植物園にて本実験を実施いたします。実験には**A/Bテスト（「[VisualAttention v3](https://pcerony.github.io/eye-tracking-tool-3/)」）**および**プロトタイプの試用（「[Dynamic Signage](https://pcerony.github.io/SIGN_prototype/)」）**フェーズを含めております
+
+2026.06
+
+Quick Data 分析
+
+本実験におけるA/Bテストの結果を迅速に分析してまいります
+
+2026.06
+
+修士報告
+
+Quick Data 分析結果に基づき、博士課程出願用の修士報告書を速やかに作成いたします
+
+---
+
+*Current progress*
+
+2026.08
+
+Data 分析
+
+本実験で得られたすべてのデータを詳細に分析してまいります
+
+2026.10
+
+修士論文
+
+修士論文の執筆でございます
+
+---
+
+## 今までの成果
+
+ツールについて
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image.png)
+
+[**Dynamic Signage**
+**2026 / prototype開発**
+視線追跡技術を活用し、ユーザーの視線に応じて情報を展開する非接触型のインタラクティブな動的スマートサイネージを開発いたします。](https://pcerony.github.io/SIGN_prototype/)
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%201.png)
+
+[**VisualAttention v3**
+**2026 / ツール開発3**
+前回のバージョンをベースにプロセスを最適化しました。また、画面上の識別表示から、実物の紙媒体の識別データへとマッピングするように変更しています。](https://pcerony.github.io/eye-tracking-tool-3/)
+
+![R2.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/R2.png)
+
+[**Visual Analytics: アイトラッキングツール**
+**2026 / ツール開発2**
+ウェブカメラを利用したアイトラッキングツール。ヒートマップを通じて、解説サインを見る際のユーザーの注意集中度や視線の動きを把握します。](https://eyetracktool-fluxsyak.manus.space/)
+
+![R1.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/R1.png)
+
+[**Signage Annotator: 画像コーディング・アノテーションツール**
+**2025 / ツール開発1**
+A/R/S解説デザイン原則に基づく、解説サイン画像の位置決め・コーディング・アノテーション・分析のための共創ツール。分析レポートを通じて各エリアの解説サインのデザイン上の特徴を提示します。](https://pcerony.github.io/signage-annotator/)
+
+![R3.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/R3.png)
+
+[**参加型・システム型問題抽出フレームワーク**
+**2025 / 学会発表**
+芸術工学会2025年度秋季大会にて口頭発表。共創デザインを適用する前の共創課題抽出フレームワークについて紹介。](https://www.jstage.jst.go.jp/article/designresearch/91/0/91_62/_article/-char/ja)
+
+---
+
+# 本実験（A/Bテストのパート）
+
+視線追跡技術を用いて、植物園の解説サインに対する注意分布を把握する実験。
+
+![画板 2.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/%E7%94%BB%E6%9D%BF_2.png)
+
+## 1. 実験背景
+
+植物園の解説サインは、来園者が植物に関する知識や場所の情報を得るための重要な媒体です。しかし、先行研究および現地調査では、この種のサインには「読まれる範囲が限られること」と「情報が記憶に残りにくいこと」という課題があると指摘されています。その要因はレイアウトだけでなく、サインが興味を喚起できるか、来園者の経験と結び付けられるか、読解負荷を下げられるかにも関係します。本研究では、福岡市植物園の温室エリアを対象に、共創デザインと視線追跡を組み合わせ、改善した解説サインが視覚的注意と文字領域の読解カバレッジを高めるかを検証します。
+
+## 2. 実験目的
+
+本実験は、参加者が印刷された解説サインを見る際の視線分布を客観的に記録し、対照版サインと A/R/S 原則に基づいて改善した実験版サインの間で、注意喚起、読解カバレッジ、重点領域への滞留にどのような差があるかを比較することを目的とします。ここでいう「読了率」は、参加者が主観的に全文を読み終えたことを意味するものではありません。ヒートマップと意味的 AOI に基づいて算出した文字領域のカバレッジ指標であり、どの文字領域が実際に視線で覆われたかを示す指標です。
+
+![画板 3.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/%E7%94%BB%E6%9D%BF_3.png)
+
+design_A
+
+![画板 2.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/%E7%94%BB%E6%9D%BF_2%201.png)
+
+design_B
+
+## 3. 理論とデザイン原則
+
+実験刺激は、A/R/S の三つの解説サインデザイン原則に基づいて改善されました。
+
+- **A: Inspirational Atmosphere**：問いかけ、物語的な語り口、状況提示によって初期興味を喚起する。
+
+- **R: Audience Relevance**：植物の特徴を来園者の感覚経験、生活経験、感情経験と結び付ける。
+
+- **S: Structural Clarity**：明確な情報階層、図文関係、レイアウト構造によって認知負荷を下げる。
+
+正式な A/B テストの前に、研究では `Signage Annotator` を用いて温室エリアの既存サイン 70 点を基線診断し、A/R に関するデザイン原則が既存サインにおいて十分に反映されていないことを確認しました。
+
+## 4. 参加者と実験場所
+
+![20260522_152215.JPG](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/20260522_152215.jpg)
+
+実験は 2025 年 5 月から 6 月にかけて、福岡市植物園の温室エリアで実施しました。
+
+参加者は現地で募集した実際の来園者 15 名で、年齢は 20 歳から 80 歳でした。実験は被験者内比較デザインを採用し、参加者は自然な見学状況の中で、異なるバージョンの印刷解説サインを閲覧しました。
+
+## 5. 使用ツール
+
+本実験では、データ収集と分析に `SIGN Visual Attention v3` を使用します。
+
+[SIGN Visual Attention v3 · 基于浏览器的实时眼动追踪系统](https://pcerony.github.io/eye-tracking-tool-3/)
+
+このツールはブラウザ上で動作し、通常のカメラと WebGazer.js によって視線位置を推定し、その視線データを印刷サイン上の座標に対応付けます。ヒートマップ、視線軌跡図、時間範囲の指定、手動座標補正、データアーカイブ、学術図としての書き出しに対応しています。
+
+## 6. 参加者の作業
+
+参加者は実験者の指示に従い、まずカメラと視線のキャリブレーションを行います。
+
+その後、印刷された解説サインを見ます。
+
+観察中、参加者は自然にサインを読んだり見たりするだけで、パソコンを操作する必要はありません。画面は主に実験者が確認と記録のために使用します。
+
+![VideoPro_20260523_164401 - frame at 0m0s.jpg](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/VideoPro_20260523_164401_-_frame_at_0m0s.jpg)
+
+![VideoPro_20260523_164410 - frame at 0m0s.jpg](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/VideoPro_20260523_164410_-_frame_at_0m0s.jpg)
+
+## 7. 実験手順
+
+1. 実験者が参加者名または参加者番号を入力します。
+
+| P01 | 50-60 | 女性 |
+| --- | --- | --- |
+| P02 | 20-30 | 女性 |
+| P03 | 20-30 | 男性 |
+| P04 | 30-40 | 女性 |
+| P05 | 40-50 | 女性 |
+| P06 | 40-50 | 女性 |
+| P07 | 40-50 | 男性 |
+| P08 | 20-30 | 女性 |
+| P09 | 60-70 | 男性 |
+| P10 | 50-60 | 女性 |
+| P11 | 20-30 | 女性 |
+| P12 | 20-30 | 男性 |
+| P13 | 20-30 | 女性 |
+| P14 | 20-30 | 女性 |
+| P15 | 20-30 | 女性 |
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%202.png)
+
+1. 視線追跡に使用するカメラを選択し、プレビューで目の位置、明るさ、映像の安定性を確認します。
+
+![20260615_194849.JPG](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/20260615_194849.jpg)
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%203.png)
+
+1. 参加者は印刷されたキャリブレーション用紙上の 9 点を順番に注視します。各点について、実験者が 3 回確認します。
+
+![20260615_194915.JPG](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/20260615_194915.jpg)
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%204.png)
+
+1. キャリブレーション完了後、実験者は対照版または実験版のサイン画像を選択します。
+
+![20260615_194946.JPG](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/20260615_194946.jpg)
+
+![20260615_195011.JPG](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/20260615_195011.jpg)
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%205.png)
+
+1. 参加者は対応する印刷解説サインを見ます。システムは視線推定データを記録します。
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%206.png)
+
+1. 各観察が終了したら、実験者が追跡を停止し、記録を保存します。
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%207.png)
+
+1. 実験者はレポート画面でヒートマップと視線軌跡図を確認し、意味的 AOI に基づいて文字領域のカバレッジと領域滞留指標を算出します。
+2. 実験者は完全なアーカイブ、CSV データ、学術図形式の画像を書き出し、後続の統計分析および論文図表作成に使用します。
+
+## 8. 記録されるデータ
+
+システムは主に、視線推定点、追跡時間、印刷サイン上の正規化座標、有効な印刷領域内にあるかどうか、閲覧した画像名、参加者名または番号、実験時刻を記録します。
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%208.png)
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%209.png)
+
+カメラ映像や視線データは自動的に外部へ送信されません。データは基本的にブラウザ内で処理され、書き出し後は実験者が保存します。
+
+## 9. 分析指標
+
+本実験では、主に以下の指標を分析します。
+
+- **サンプル数と閲覧時間**：各追跡記録のデータ量と記録品質を確認する。
+- **文字領域カバレッジ指標**：ヒートマップと意味的 AOI に基づき、文字領域が視線で覆われた割合を推定する。
+- **重点領域への滞留**：参加者が A/R/S 原則に対応する重要な内容領域に滞留したかを分析する。
+- **最初の 10 秒間の注意配分**：サインを見始めた直後に、参加者の注意が核心テキストや Audience Relevance 領域へ入るかを確認する。
+- **視線軌跡とスキャンパス**：読む順序、飛ばし読み、再注視、見落とされやすい領域を観察する。
+
+---
+
+# Quick Data 分析
+
+実験結果から、A/R/S 原則に基づいて改善したサインには明確な正の効果が確認されました。
+
+![image.png](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/image%2010.png)
+
+最初の 10 秒間における文字領域カバレッジ指標は、対照条件の **38.6%** から実験条件の **45.3%** へ上昇しました。特に **Audience Relevance** 領域の向上が顕著であり、10 秒以内の読解率は **5.0%** から **21.4%** へ、完全滞留時間の割合は **8.5%** から **35.1%** へ上昇し、全サンプルで同じ上昇傾向が確認されました。
+
+この結果は、問いかけや修辞的な喚起だけでは安定した視線滞留を生み出しにくく、植物の特徴を来園者の生活経験と結び付ける **R 原則** が、注意を獲得し維持する中核的な要因である可能性を示しています。
+
+---
+
+# 修士報告
+
+[修士报告b.pdf](%E8%A7%A3%E8%AA%AC%E3%82%B5%E3%82%A4%E3%83%B3%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E5%85%B1%E5%89%B5%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%A0%94%E7%A9%B6/%E4%BF%AE%E5%A3%AB%E6%8A%A5%E5%91%8Ab.pdf)

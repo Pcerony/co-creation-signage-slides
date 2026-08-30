@@ -1,0 +1,8 @@
+*{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    width:100%;height:100%;overflow:hidden;
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans),var(--sans-zh);
+    font-feature-settings:"ss01","cv11";
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility
+  }

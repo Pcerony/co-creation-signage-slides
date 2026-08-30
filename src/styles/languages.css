@@ -1,0 +1,347 @@
+/* Language-specific layout adjustments for i18n */
+  body:not(.lang-zh) {
+    font-family: var(--sans), var(--sans-zh);
+  }
+  /* 统一调整非中文环境下的标题字重，避免 200 字重过细或残缺 */
+  body:not(.lang-zh) h1,
+  body:not(.lang-zh) h2,
+  body:not(.lang-zh) h3,
+  body:not(.lang-zh) .h-xl-zh,
+  body:not(.lang-zh) .h-xl {
+    font-weight: 300 !important;
+  }
+  body:not(.lang-zh) h1[data-anim="title"] { max-width: 80vw !important; font-size: min(39.6px, 49.5px) !important; line-height: 1.12 !important; }
+  body:not(.lang-zh) h1[data-anim="title"] > span { font-size:36px !important; }
+  body:not(.lang-zh) [data-anim="title-block"] { max-width: 65vw !important; }
+  body:not(.lang-zh) .image-hero-body > div:first-child { max-width: 65ch !important; font-size: max(15px, 12.6px) !important; line-height: 1.5 !important; }
+  body:not(.lang-zh) [data-layout="S22"] .t-meta + div { font-size: min(26.4px, 34.2px) !important; line-height: 1.15 !important; }
+  body:not(.lang-zh) .lead { max-width: 80ch !important; }
+  body:not(.lang-zh) .flow-step .ttl { font-size: min(18px, 23.4px) !important; line-height: 1.2 !important; font-weight: 400 !important; }
+  body:not(.lang-zh) .flow-step .mini { font-size: max(11px, 8.16px) !important; line-height: 1.35 !important; }
+  body:not(.lang-zh) .slide9-footer-desc { font-size: min(10.2px, 13.5px) !important; line-height: 1.4 !important; padding-top: 1.2vh !important; }
+  body:not(.lang-zh) .flow-split { margin-top: 1.5vh !important; }
+  body:not(.lang-zh) .flow-step { min-height: 9.5vh !important; }
+  body:not(.lang-zh) .h-xl-zh { font-size: min(33.6px, 46.8px) !important; max-width: 82vw !important; line-height: 1.15 !important; }
+  body:not(.lang-zh) .main-st { font-size: min(33.6px, 45px) !important; max-width: 85vw !important; }
+  body:not(.lang-zh) [data-anim="manifesto"] h2 { font-size: min(48px, 63px) !important; max-width: 90vw !important; line-height: 1.12 !important; }
+
+  /* === Cover Page: prevent title and meta collision === */
+  body:not(.lang-zh) [data-layout="SWISS-COVER-ASCII"] h1[data-anim="title"] {
+    font-size: min(39.6px, 45px) !important;
+    line-height: 1.12 !important;
+  }
+  body:not(.lang-zh) [data-layout="SWISS-COVER-ASCII"] .lead {
+    font-size: max(14px, 11.4px) !important;
+    line-height: 1.4 !important;
+  }
+
+  /* === Slide 2 & 7: S22 layout adjustments === */
+  body:not(.lang-zh) [data-layout="S22"] [data-anim="img"] {
+    flex: 0 0 53% !important;
+  }
+  body:not(.lang-zh) [data-layout="S22"] .image-hero-body {
+    padding: 4.5vh 5vw 3vh !important;
+  }
+  body:not(.lang-zh) [data-layout="S22"] .image-hero-stats {
+    gap: 1.8vw !important;
+  }
+  body:not(.lang-zh) [data-layout="S22"] [data-anim="title-block"] div {
+    font-size: min(36px, 46.8px) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* === Slide 5 & 6: Question & Stimulus page height tuning === */
+  body:not(.lang-zh) .slide6-grid .card-fill {
+    padding: 2.2vh 1.4vw 2vh !important;
+  }
+  body:not(.lang-zh) .slide5-note {
+    margin-top: 1.8vh !important;
+    padding-top: 1.2vh !important;
+  }
+  body:not(.lang-zh) .slide6-grid {
+    max-height: 52vh !important;
+  }
+
+  /* === Slide 8: Tool URL page height limit === */
+  .tool-url {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+    padding-top: 0.6vh !important;
+  }
+  .slide8-frame-img {
+    max-height: 48vh !important;
+  }
+
+  /* === Slide 10: S03 Statement layout tuning === */
+  body:not(.lang-zh) [data-layout="S03"] h1[data-anim="statement"] {
+    max-width: 24ch !important;
+    font-size: min(50.4px, 63px) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* === Slide 13 & 14: Restrict inline h2 sizes & ledger row columns === */
+  body:not(.lang-zh) [data-layout="S07"] h2.h-xl-zh,
+  body:not(.lang-zh) [data-layout="S20"] h2.h-xl-zh {
+    font-size: min(33.6px, 46.8px) !important;
+  }
+  /* === Slide 13: S07 h-bar-chart & footer note tuning === */
+  body:not(.lang-zh) [data-layout="S07"] .h-bar-chart {
+    gap: 0.8vh 1.6vw !important;
+  }
+  body:not(.lang-zh) [data-layout="S07"] .t-body-sm {
+    font-size: min(10.2px, 13.5px) !important;
+    padding-top: 1.0vh !important;
+  }
+  body:not(.lang-zh) [data-layout="S20"] .canvas-card > div[style*="grid-template-columns"] {
+    grid-template-columns: 4.2fr 7.8fr !important;
+  }
+  body:not(.lang-zh) [data-layout="S20"] .ledger-row {
+    grid-template-columns: 4.5fr 2.7fr 4.8fr !important;
+    padding: 1.2vh 0 !important;
+  }
+  body:not(.lang-zh) [data-layout="S20"] .ledger-row > div[style*="font-size"] {
+    font-size: min(57.6px, 67.5px) !important;
+    line-height: 1.15 !important;
+  }
+
+  /* === Slide 15: S08 duo-compare spacing & text tuning === */
+  body:not(.lang-zh) .duo-compare {
+    margin-top: 4.5vh !important;
+    margin-bottom: 5.5vh !important;
+  }
+  body:not(.lang-zh) .duo-compare .col {
+    gap: 1.0vh !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-ttl {
+    font-size: min(26.4px, 34.2px) !important;
+    line-height: 1.15 !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-desc {
+    font-size: max(12px, 9.84px) !important;
+    line-height: 1.4 !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-list {
+    gap: 0.5vh !important;
+    padding-top: 1.2vh !important;
+  }
+  body:not(.lang-zh) .duo-compare .col-list li {
+    font-size: max(12px, 9.36px) !important;
+    line-height: 1.35 !important;
+  }
+
+  /* === Global Multilingual Typography Enhancements === */
+  body:not(.lang-zh) .t-meta {
+    font-family: var(--sans), var(--sans-zh) !important;
+    font-size: max(11px, 8.64px) !important;
+    letter-spacing: 0.05em !important;
+  }
+  body:not(.lang-zh) .slide5-grid .t-body-sm {
+    font-size: max(11px, 9px) !important;
+    font-weight: 500 !important;
+    color: var(--text-secondary) !important;
+  }
+
+  /* ============ Heatmap Navigation Wheel Centering ============ */
+  .heatmap-nav {
+    display: grid !important;
+    grid-template-rows: auto 1fr !important;
+    gap: 1.2vh !important;
+    min-width: 0 !important;
+  }
+
+  /* ============ Language Switcher Styling ============ */
+  /* 1. Cover page switcher */
+  .lang-top-btn {
+    border: 0;
+    background: transparent;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lang-top-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+  .lang-top-btn.active {
+    background: #ffffff;
+    color: var(--accent) !important;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 2. Overview switcher (floating pill) */
+  #overview .lang-switch {
+    position: fixed;
+    bottom: 28px;
+    right: 48px;
+    z-index: 110;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 30px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+    font-family: var(--sans), var(--sans-zh);
+    font-size: 12px;
+    color: var(--text-secondary);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #overview .lang-switch > div:first-child {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-helper);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding-right: 12px;
+    line-height: 1.4;
+  }
+  #overview .lang-options {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  #overview .lang-button {
+    border: 0;
+    background: transparent;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: var(--sans), var(--sans-zh);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #overview .lang-button:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+  }
+  #overview .lang-button.active {
+    background: var(--accent);
+    color: var(--accent-on);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(11, 93, 59, 0.25);
+  }
+
+  /* === Slide 16: Closing page title size tuning === */
+  body:not(.lang-zh) .slide16-title {
+    font-size: min(55.2px, 72px) !important;
+    max-width: 95% !important;
+    line-height: 1.1 !important;
+  }
+
+/* Style overrides to ensure all slide texts are fully visible and readable */
+  .slide .stack-block.b-accent .layer-desc {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  /* Slide font scale overrides for presentation visibility */
+  .slide h2.h-xl-zh {
+    font-size: 52px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.5vh !important;
+  }
+  .slide .t-body {
+    font-size: 26px !important;
+    line-height: 1.6 !important;
+  }
+  .slide .t-body-sm {
+    font-size: 22px !important;
+    line-height: 1.55 !important;
+  }
+  .slide .t-h-prod, .slide h3 {
+    font-size: 32px !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+  }
+  .slide .t-meta {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+  }
+  .slide .process-detail .detail-list div {
+    font-size: 22px !important;
+    line-height: 1.5 !important;
+  }
+  .slide .process-detail .phase {
+    font-size: 26px !important;
+  }
+  /* Results 1 tower chart label scale overrides */
+  .slide .bar-tower .sub {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+  .slide .bar-tower .lbl {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+
+  /* ============ Cover Page Language Switcher (Inverse Scale) ============ */
+  .cover-lang-switch {
+    display: flex;
+    gap: calc(6px / var(--slide-scale, 1)) !important;
+    background: rgba(255, 255, 255, 0.08);
+    padding: calc(4px / var(--slide-scale, 1)) !important;
+    border-radius: calc(20px / var(--slide-scale, 1)) !important;
+    border: calc(1px / var(--slide-scale, 1)) solid rgba(255, 255, 255, 0.12) !important;
+    pointer-events: auto;
+  }
+  .cover-lang-switch .lang-top-btn {
+    border: 0;
+    background: transparent;
+    padding: calc(4px / var(--slide-scale, 1)) calc(10px / var(--slide-scale, 1)) !important;
+    border-radius: calc(16px / var(--slide-scale, 1)) !important;
+    font-family: var(--sans);
+    font-size: calc(12px / var(--slide-scale, 1)) !important;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cover-lang-switch .lang-top-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+  .cover-lang-switch .lang-top-btn.active {
+    background: #ffffff;
+    color: var(--accent) !important;
+    font-weight: 600;
+    box-shadow: 0 calc(2px / var(--slide-scale, 1)) calc(6px / var(--slide-scale, 1)) rgba(0, 0, 0, 0.1);
+  }
+
+  /* ============ Mobile Evidence Media Alignment & Responsiveness ============ */
+  @media (max-width: 900px) {
+    .slide .evidence-media {
+      align-items: center !important;
+    }
+    /* Hide Cover Top-left language switcher on mobile viewports since the new cover switcher is prominent */
+    .slide[data-layout="SWISS-COVER-ASCII"] .chrome-min .l {
+      display: none !important;
+    }
+  }
+
+.hybrid-ja-text{
+  display:block;margin-top:.22em;font-family:var(--sans-zh);font-size:.62em;
+  font-weight:400;line-height:1.25;letter-spacing:0;text-transform:none;opacity:.72;
+}
+.t-cat .hybrid-ja-text,.tag .hybrid-ja-text,.row-lbl .hybrid-ja-text,
+.row-val .hybrid-ja-text,.bar-tower .lbl .hybrid-ja-text{
+  margin-top:.12em;font-size:.58em;
+}
+body.lang-en-ja .hybrid-ja-text{
+  font-style:normal;letter-spacing:0;text-transform:none;
+}
+
+body:not(.lang-zh) [data-slide-id^="s18-audience-relevance"] .s18-ledger__row {
+  grid-template-columns: 1.5fr 7.7fr 4.8fr !important;
+  gap: 1vw !important;
+}

@@ -180,7 +180,7 @@ git commit -m "refactor: reduce neutral card surfaces"
 - Create: `test/check-slide-2-3-browser.js`
 - Modify: `docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md`
 - Modify: `ppt/项目记录.md`
-- Modify: `design-qa.md`
+- Modify: `docs/reviews/design-qa.md`
 
 - [x] **Step 1: Add browser checks for both target slides**
 
@@ -214,7 +214,7 @@ documentation remain independently traceable. The documentation commit follows
 the same focused scope.
 
 ```bash
-git add docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md ppt/项目记录.md design-qa.md docs/superpowers/plans/2026-07-15-slide-2-3-card-simplification.md
+git add docs/superpowers/specs/2026-07-14-focused-4x3-deck-design.md ppt/项目记录.md docs/reviews/design-qa.md docs/superpowers/plans/2026-07-15-slide-2-3-card-simplification.md
 git commit -m "docs: record evidence layout and card reduction"
 ```
 

@@ -1,0 +1,741 @@
+{
+  "schemaVersion": 1,
+  "deckId": "co-creation-signage-report",
+  "defaultLanguage": "en-ja",
+  "languages": [
+    "en-ja",
+    "zh",
+    "en",
+    "ja",
+    "es-MX"
+  ],
+  "compositeLanguages": {
+    "en-ja": {
+      "primary": "en",
+      "secondary": "ja",
+      "policy": "balanced-emphasis"
+    }
+  },
+  "chapters": [
+    {
+      "id": "background",
+      "titleKey": "chapters.background"
+    },
+    {
+      "id": "research-design",
+      "titleKey": "chapters.researchDesign"
+    },
+    {
+      "id": "methods",
+      "titleKey": "chapters.methods"
+    },
+    {
+      "id": "conclusions",
+      "titleKey": "chapters.conclusions"
+    }
+  ],
+  "layouts": [
+    "cover",
+    "standard",
+    "evidence",
+    "process",
+    "principles",
+    "audit",
+    "comparison",
+    "system",
+    "heatmap",
+    "data",
+    "closing",
+    "references"
+  ],
+  "assets": [
+    {
+      "id": "cover-qr",
+      "path": "src/assets/images/cover-qr.png",
+      "access": "public",
+      "legacyPath": "ppt/qr-code.png"
+    },
+    {
+      "id": "aa",
+      "path": "src/assets/images/aa.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/aa.jpg"
+    },
+    {
+      "id": "bb",
+      "path": "src/assets/images/bb.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/bb.jpg"
+    },
+    {
+      "id": "field-experiment",
+      "path": "src/assets/images/field-experiment.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/02-experiment-scene.jpg"
+    },
+    {
+      "id": "fukuoka-botanical-garden",
+      "path": "src/assets/images/fukuoka-botanical-garden.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/02-fukuoka-botanical-garden.jpg"
+    },
+    {
+      "id": "sign-example-01",
+      "path": "src/assets/images/sign-example-01.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/01.jpg"
+    },
+    {
+      "id": "sign-example-02",
+      "path": "src/assets/images/sign-example-02.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/02.JPG"
+    },
+    {
+      "id": "sign-example-03",
+      "path": "src/assets/images/sign-example-03.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/03.JPG"
+    },
+    {
+      "id": "field-observation",
+      "path": "src/assets/images/field-observation.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/01-field-observation.jpg"
+    },
+    {
+      "id": "intervention-sign",
+      "path": "src/assets/images/intervention-sign.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/07-intervention-sign.jpg"
+    },
+    {
+      "id": "annotation-tool",
+      "path": "src/assets/images/annotation-tool.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/08-tool-annotator.jpg"
+    },
+    {
+      "id": "annotator-editor",
+      "path": "src/assets/images/annotator-editor.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/annotator-editor.jpg"
+    },
+    {
+      "id": "annotator-map",
+      "path": "src/assets/images/annotator-map.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/annotator-map.png"
+    },
+    {
+      "id": "annotator-coding",
+      "path": "src/assets/images/annotator-coding.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/annotator-coding.png"
+    },
+    {
+      "id": "annotator-dashboard",
+      "path": "src/assets/images/annotator-dashboard.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/annotator-dashboard.png"
+    },
+    {
+      "id": "signage-annotator-logo",
+      "path": "src/assets/images/signage-annotator-logo.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/logo1.png"
+    },
+    {
+      "id": "visual-attention-logo",
+      "path": "src/assets/images/visual-attention-logo.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/logo2.png"
+    },
+    {
+      "id": "visual-attention-banner",
+      "path": "src/assets/images/visual-attention-banner.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/visual-attention-banner.png"
+    },
+    {
+      "id": "signage-field-map",
+      "path": "src/assets/images/signage-field-map.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/标识图片.png"
+    },
+    {
+      "id": "control-sign",
+      "path": "src/assets/images/control-sign.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/06-control-sign.jpg"
+    },
+    {
+      "id": "calibration-screen",
+      "path": "src/assets/images/calibration-screen.jpg",
+      "access": "public",
+      "legacyPath": "ppt/images/10-calibration.jpg"
+    },
+    {
+      "id": "eye-flow-cover",
+      "path": "src/assets/images/eye-flow-cover.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-cover.png"
+    },
+    {
+      "id": "eye-flow-01a",
+      "path": "src/assets/images/eye-flow-01a.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-01a.jpg"
+    },
+    {
+      "id": "eye-flow-01b",
+      "path": "src/assets/images/eye-flow-01b.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-01b.jpg"
+    },
+    {
+      "id": "eye-flow-02a",
+      "path": "src/assets/images/eye-flow-02a.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-02a.jpg"
+    },
+    {
+      "id": "eye-flow-02b",
+      "path": "src/assets/images/eye-flow-02b.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-02b.jpg"
+    },
+    {
+      "id": "eye-flow-03a",
+      "path": "src/assets/images/eye-flow-03a.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-03a.jpg"
+    },
+    {
+      "id": "eye-flow-03b",
+      "path": "src/assets/images/eye-flow-03b.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-03b.jpg"
+    },
+    {
+      "id": "eye-flow-03c",
+      "path": "src/assets/images/eye-flow-03c.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-03c.png"
+    },
+    {
+      "id": "eye-flow-04a",
+      "path": "src/assets/images/eye-flow-04a.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-04a.png"
+    },
+    {
+      "id": "eye-flow-04b",
+      "path": "src/assets/images/eye-flow-04b.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/eye-flow-04b.png"
+    },
+    {
+      "id": "heatmap-p01-control",
+      "path": "src/assets/images/heatmap-p01-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_akama kumiko_a1 修正版1 (1).png"
+    },
+    {
+      "id": "heatmap-p02-control",
+      "path": "src/assets/images/heatmap-p02-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_ataqi_a1.png"
+    },
+    {
+      "id": "heatmap-p03-control",
+      "path": "src/assets/images/heatmap-p03-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_harada keiko_a1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p04-control",
+      "path": "src/assets/images/heatmap-p04-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_kimura_b1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p05-control",
+      "path": "src/assets/images/heatmap-p05-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_koga eiichi_a1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p06-control",
+      "path": "src/assets/images/heatmap-p06-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_moro izumi_a1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p07-control",
+      "path": "src/assets/images/heatmap-p07-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_saku yoshisuke_a1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p08-control",
+      "path": "src/assets/images/heatmap-p08-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_umetu ayane_b1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p09-control",
+      "path": "src/assets/images/heatmap-p09-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_yamada rena_a1 修正版1.png"
+    },
+    {
+      "id": "heatmap-p10-control",
+      "path": "src/assets/images/heatmap-p10-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p10-control.jpg"
+    },
+    {
+      "id": "heatmap-p11-control",
+      "path": "src/assets/images/heatmap-p11-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p11-control.jpg"
+    },
+    {
+      "id": "heatmap-p12-control",
+      "path": "src/assets/images/heatmap-p12-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p12-control.jpg"
+    },
+    {
+      "id": "heatmap-p13-control",
+      "path": "src/assets/images/heatmap-p13-control.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p13-control.jpg"
+    },
+    {
+      "id": "heatmap-p01-intervention",
+      "path": "src/assets/images/heatmap-p01-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_akama kumiko_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p02-intervention",
+      "path": "src/assets/images/heatmap-p02-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_ataqi_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p03-intervention",
+      "path": "src/assets/images/heatmap-p03-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_harada keiko_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p04-intervention",
+      "path": "src/assets/images/heatmap-p04-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_kimura_b2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p05-intervention",
+      "path": "src/assets/images/heatmap-p05-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_koga eiichi_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p06-intervention",
+      "path": "src/assets/images/heatmap-p06-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_moro izumi_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p07-intervention",
+      "path": "src/assets/images/heatmap-p07-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_saku yoshisuke_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p08-intervention",
+      "path": "src/assets/images/heatmap-p08-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_umetu ayane_b2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p09-intervention",
+      "path": "src/assets/images/heatmap-p09-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "ab2/academic_heatmap_yamada rena_a2 修正版1.png"
+    },
+    {
+      "id": "heatmap-p10-intervention",
+      "path": "src/assets/images/heatmap-p10-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p10-intervention.jpg"
+    },
+    {
+      "id": "heatmap-p11-intervention",
+      "path": "src/assets/images/heatmap-p11-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p11-intervention.jpg"
+    },
+    {
+      "id": "heatmap-p12-intervention",
+      "path": "src/assets/images/heatmap-p12-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p12-intervention.jpg"
+    },
+    {
+      "id": "heatmap-p13-intervention",
+      "path": "src/assets/images/heatmap-p13-intervention.jpg",
+      "access": "restricted-derived",
+      "legacyPath": "src/assets/images/heatmap-p13-intervention.jpg"
+    },
+    {
+      "id": "heatmap-p70-orizururan",
+      "path": "src/assets/images/heatmap-p70-orizururan.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/heatmap-p70-orizururan.jpg"
+    },
+    {
+      "id": "gazeplot-p70-orizururan",
+      "path": "src/assets/images/gazeplot-p70-orizururan.png",
+      "access": "public",
+      "legacyPath": "src/assets/images/gazeplot-p70-orizururan.png"
+    },
+    {
+      "id": "literature-flowchart",
+      "path": "src/assets/images/literature-flowchart.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/literature-flowchart.png"
+    },
+    {
+      "id": "field-workshop",
+      "path": "src/assets/images/field-workshop.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/field-workshop.jpg"
+    },
+    {
+      "id": "field-quantitative",
+      "path": "src/assets/images/field-quantitative.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/field-quantitative.png"
+    },
+    {
+      "id": "field-qualitative",
+      "path": "src/assets/images/field-qualitative.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/field-qualitative.png"
+    },
+    {
+      "id": "sign-thinking-vector",
+      "path": "src/assets/images/sign-thinking-vector.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/sign-thinking-vector.jpg"
+    },
+    {
+      "id": "gap-evidence-principles",
+      "path": "src/assets/images/gap-evidence-principles.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/gap-evidence-principles.png"
+    },
+    {
+      "id": "gap-diagnostic-tool",
+      "path": "src/assets/images/gap-diagnostic-tool.jpg",
+      "access": "public",
+      "legacyPath": "src/assets/images/gap-diagnostic-tool.png"
+    }
+  ],
+  "crossPageComponents": [
+    {
+      "instanceId": "background-attention",
+      "componentId": "attention-path",
+      "from": {
+        "slideId": "s02-background",
+        "variant": "expanded"
+      },
+      "to": {
+        "slideId": "s04-knowledge-overload",
+        "variant": "barrier"
+      },
+      "durationMs": 760
+    },
+    {
+      "instanceId": "workshop-research-gap",
+      "componentId": "workshop-flow",
+      "from": {
+        "slideId": "s04-knowledge-overload",
+        "variant": "workshop"
+      },
+      "to": {
+        "slideId": "s05-evaluation-limit",
+        "variant": "gap-loop"
+      },
+      "durationMs": 760
+    }
+  ],
+  "slides": [
+    {
+      "id": "s01-cover",
+      "chapterId": "background",
+      "layout": "cover",
+      "content": "src/content/slides/s01-cover.json",
+      "assets": [
+        "cover-qr"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s02-background",
+      "chapterId": "background",
+      "layout": "evidence",
+      "content": "src/content/slides/s02-background.json",
+      "assets": [
+        "fukuoka-botanical-garden",
+        "sign-example-02"
+      ],
+      "claims": [
+        "claim-visitor-learning-motivation"
+      ]
+    },
+    {
+      "id": "s04-knowledge-overload",
+      "chapterId": "background",
+      "layout": "evidence",
+      "content": "src/content/slides/s04-knowledge-overload.json",
+      "assets": [
+        "heatmap-p70-orizururan",
+        "gazeplot-p70-orizururan"
+      ],
+      "claims": [
+        "claim-signage-reading-gap",
+        "claim-long-form-deep-reading-rate"
+      ]
+    },
+    {
+      "id": "s05-evaluation-limit",
+      "chapterId": "research-design",
+      "layout": "evidence",
+      "content": "src/content/slides/s05-evaluation-limit.json",
+      "assets": [
+        "gap-evidence-principles",
+        "gap-diagnostic-tool"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s08-research-process",
+      "chapterId": "research-design",
+      "layout": "process",
+      "content": "src/content/slides/s08-research-process.json",
+      "assets": [
+        "signage-annotator-logo",
+        "visual-attention-banner"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s09-literature-review",
+      "chapterId": "methods",
+      "layout": "standard",
+      "content": "src/content/slides/s09-literature-review.json",
+      "assets": [
+        "literature-flowchart",
+        "field-workshop",
+        "field-quantitative",
+        "field-qualitative"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s11-principles-ar",
+      "chapterId": "methods",
+      "layout": "principles",
+      "content": "src/content/slides/s11-principles-ar.json",
+      "assets": [
+        "intervention-sign"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s13-baseline-audit",
+      "chapterId": "methods",
+      "layout": "audit",
+      "content": "src/content/slides/s13-baseline-audit.json",
+      "assets": [
+        "signage-annotator-logo",
+        "annotation-tool"
+      ],
+      "claims": [
+        "claim-baseline-ar-absence"
+      ]
+    },
+    {
+      "id": "s13b-state-analysis",
+      "chapterId": "methods",
+      "layout": "standard",
+      "content": "src/content/slides/s13b-state-analysis.json",
+      "assets": [
+        "signage-field-map"
+      ],
+      "claims": [
+        "claim-baseline-ar-absence"
+      ]
+    },
+    {
+      "id": "s14-stimulus-comparison",
+      "chapterId": "methods",
+      "layout": "comparison",
+      "content": "src/content/slides/s14-stimulus-comparison.json",
+      "assets": [
+        "control-sign",
+        "intervention-sign",
+        "aa",
+        "bb",
+        "visual-attention-banner"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s15-eye-tracking-system",
+      "chapterId": "methods",
+      "layout": "system",
+      "content": "src/content/slides/s15-eye-tracking-system.json",
+      "assets": [
+        "eye-flow-cover",
+        "eye-flow-01a",
+        "eye-flow-01b",
+        "eye-flow-02a",
+        "eye-flow-02b",
+        "eye-flow-03a",
+        "eye-flow-03b",
+        "eye-flow-03c",
+        "eye-flow-04a",
+        "eye-flow-04b"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s16-heatmap-overview",
+      "chapterId": "methods",
+      "layout": "heatmap",
+      "content": "src/content/slides/s16-heatmap-overview.json",
+      "assets": [
+        "heatmap-p01-control",
+        "heatmap-p02-control",
+        "heatmap-p03-control",
+        "heatmap-p04-control",
+        "heatmap-p05-control",
+        "heatmap-p06-control",
+        "heatmap-p07-control",
+        "heatmap-p08-control",
+        "heatmap-p09-control",
+        "heatmap-p10-control",
+        "heatmap-p11-control",
+        "heatmap-p12-control",
+        "heatmap-p13-control",
+        "heatmap-p01-intervention",
+        "heatmap-p02-intervention",
+        "heatmap-p03-intervention",
+        "heatmap-p04-intervention",
+        "heatmap-p05-intervention",
+        "heatmap-p06-intervention",
+        "heatmap-p07-intervention",
+        "heatmap-p08-intervention",
+        "heatmap-p09-intervention",
+        "heatmap-p10-intervention",
+        "heatmap-p11-intervention",
+        "heatmap-p12-intervention",
+        "heatmap-p13-intervention"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s16b-analysis-menu",
+      "chapterId": "methods",
+      "layout": "data",
+      "content": "src/content/slides/s16b-analysis-menu.json",
+      "assets": [],
+      "claims": []
+    },
+    {
+      "id": "s17-initial-coverage",
+      "chapterId": "methods",
+      "layout": "data",
+      "content": "src/content/slides/s17-initial-coverage.json",
+      "assets": [],
+      "claims": [
+        "claim-initial-coverage",
+        "claim-audience-relevance"
+      ]
+    },
+    {
+      "id": "s17b-reading-order",
+      "chapterId": "methods",
+      "layout": "data",
+      "content": "src/content/slides/s17b-reading-order.json",
+      "assets": [
+        "control-sign",
+        "intervention-sign"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s17c-switching-saccades",
+      "chapterId": "methods",
+      "layout": "data",
+      "content": "src/content/slides/s17c-switching-saccades.json",
+      "assets": [
+        "control-sign",
+        "intervention-sign"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s17d-rereading-subgroups",
+      "chapterId": "methods",
+      "layout": "data",
+      "content": "src/content/slides/s17d-rereading-subgroups.json",
+      "assets": [
+        "control-sign",
+        "intervention-sign"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s17e-statistical-synthesis",
+      "chapterId": "methods",
+      "layout": "data",
+      "content": "src/content/slides/s17e-statistical-synthesis.json",
+      "assets": [
+        "control-sign",
+        "intervention-sign"
+      ],
+      "claims": []
+    },
+    {
+      "id": "s19-conclusions",
+      "chapterId": "conclusions",
+      "layout": "closing",
+      "content": "src/content/slides/s19-conclusions.json",
+      "assets": [],
+      "claims": []
+    },
+    {
+      "id": "s20-doctoral-agenda",
+      "chapterId": "conclusions",
+      "layout": "closing",
+      "content": "src/content/slides/s20-doctoral-agenda.json",
+      "assets": [],
+      "claims": []
+    },
+    {
+      "id": "s21-references",
+      "chapterId": "conclusions",
+      "layout": "references",
+      "content": "src/content/slides/s21-references.json",
+      "assets": [],
+      "claims": []
+    }
+  ]
+}
