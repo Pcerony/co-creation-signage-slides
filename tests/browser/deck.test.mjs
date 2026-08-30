@@ -340,8 +340,7 @@ test('heatmap fullscreen boundaries do not skip slides under repeated input', as
     await page.waitForFunction((index) => window.__deckDebug.getState().currentSlideIndex === index, previousIndex);
     await page.waitForTimeout(800);
 
-    const entryContinuity = await page.evaluate(() => {
-      const ids = ['s15-eye-tracking-system', 's16-heatmap-overview', 's17-initial-coverage'];
+    const entryContinuity = await page.evaluate((ids) => {
       const shells = ids.map((id) => document.querySelector(`[data-slide-id="${id}"]`).parentElement);
       const pick = (node) => {
         const rect = node.getBoundingClientRect();
@@ -356,7 +355,7 @@ test('heatmap fullscreen boundaries do not skip slides under repeated input', as
         after,
         fullscreenPreviewWidth: document.querySelector('[data-slide-id="s16-heatmap-overview"]').getBoundingClientRect().width
       };
-    });
+    }, [slideIds[previousIndex], slideIds[fullscreenIndex], slideIds[nextIndex]]);
     assert.equal(entryContinuity.stateIndex, fullscreenIndex);
     for (const [index, before] of entryContinuity.before.entries()) {
       for (const property of ['x', 'y', 'width', 'height']) {
@@ -402,16 +401,16 @@ test('heatmap fullscreen boundaries do not skip slides under repeated input', as
     await page.keyboard.press('ArrowRight');
     assert.equal((await page.evaluate(() => window.__deckDebug.getState())).currentSlideIndex, nextIndex);
     await page.waitForTimeout(300);
-    const returnMidpoint = await page.evaluate(() => {
+    const returnMidpoint = await page.evaluate((targetId) => {
       const oldFullscreen = document.querySelector('[data-slide-id="s16-heatmap-overview"]');
-      const current = document.querySelector('[data-slide-id="s17-initial-coverage"]');
+      const current = document.querySelector(`[data-slide-id="${targetId}"]`);
       return {
         deckOpacity: getComputedStyle(document.querySelector('#deck')).opacity,
         currentOpacity: getComputedStyle(current).opacity,
         oldFullscreenWidth: oldFullscreen.getBoundingClientRect().width,
         stableSlotWidth: current.parentElement.getBoundingClientRect().width
       };
-    });
+    }, slideIds[nextIndex]);
     assert.equal(returnMidpoint.deckOpacity, '1');
     assert.equal(returnMidpoint.currentOpacity, '1');
     assert.ok(returnMidpoint.oldFullscreenWidth > returnMidpoint.stableSlotWidth + 5);

@@ -494,9 +494,14 @@
   body.dark-bg #nav .dot{background:rgba(255,255,255,.32)}
   body.dark-bg #nav .dot.active{background:var(--accent)}
 
-  /* ESC 索引页: 缩略图必须脱离主放映动效状态 */
+  /* ESC 索引页: 缩略图必须脱离主放映动效状态与全屏裁剪 */
+  #overview .slide {
+    clip-path: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
   #overview [data-anim],
-  #overview [data-motion-item]{opacity:1!important}
+  #overview [data-motion-item]{opacity:1!important;visibility:visible!important}
   #overview .slide *{animation:none!important;transition:none!important}
 
 #overview {
@@ -505,8 +510,9 @@
     z-index: 100;
     background: rgba(250, 250, 248, 0.96);
     backdrop-filter: blur(12px);
-    overflow: auto;
-    padding: 2vh 4vw;
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+    padding: 0;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
@@ -516,6 +522,15 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+  }
+  #overview .overview-scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2vh 4vw 14vh;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
   }
   #overview .esc-grid-wrap {
     transform: translateY(10px);

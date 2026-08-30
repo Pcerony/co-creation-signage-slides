@@ -12,10 +12,17 @@ function createPreview(slide) {
   preview.setAttribute('aria-hidden', 'true');
 
   const clone = slide.cloneNode(true);
-  clone.classList.remove('is-current', 'is-before', 'is-after');
+  clone.removeAttribute('data-slide-id');
+  clone.classList.remove('is-current', 'is-before', 'is-after', 'is-hidden', 'is-fullscreen', 'is-fullscreen-capable');
   clone.removeAttribute('aria-current');
   clone.setAttribute('inert', '');
+  clone.style.visibility = 'visible';
+  clone.style.opacity = '1';
+  clone.style.display = 'block';
+  clone.querySelectorAll('[data-slide-id]').forEach(node => node.removeAttribute('data-slide-id'));
   clone.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'));
+  clone.querySelectorAll('canvas').forEach(canvas => canvas.remove());
+  clone.querySelectorAll('.cover-lang-switch').forEach(el => el.remove());
   clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((node) => {
     node.setAttribute('tabindex', '-1');
     if ('disabled' in node) node.disabled = true;
@@ -23,6 +30,15 @@ function createPreview(slide) {
   clone.querySelectorAll('[data-anim], [data-motion-item]').forEach((node) => {
     node.style.opacity = '1';
     node.style.transform = 'none';
+    node.style.visibility = 'visible';
+  });
+  // 确保所有延迟加载图片在预览缩略图中均能正常显示
+  clone.querySelectorAll('img[data-src]').forEach((img) => {
+    if (!img.getAttribute('src') && img.dataset.src) {
+      img.src = img.dataset.src;
+    }
+    img.loading = 'eager';
+    img.decoding = 'sync';
   });
   preview.append(clone);
   return preview;
@@ -37,6 +53,10 @@ export function mountOverview({ slides, controller, languages = [], dictionaries
   overview.id = 'overview';
   overview.setAttribute('role', 'dialog');
   overview.setAttribute('aria-label', 'Slide overview');
+
+  const scrollContainer = document.createElement('div');
+  scrollContainer.className = 'overview-scroll-container';
+
   const grid = document.createElement('div');
   grid.className = 'esc-grid-wrap';
   slides.forEach((slide, index) => {
@@ -63,7 +83,8 @@ export function mountOverview({ slides, controller, languages = [], dictionaries
     button.addEventListener('click', () => controller.dispatch({ type: 'GO_TO', index }));
     grid.append(button);
   });
-  overview.append(grid);
+  scrollContainer.append(grid);
+  overview.append(scrollContainer);
 
   if (languages.length > 0) {
     const langSwitch = document.createElement('div');
@@ -99,7 +120,17 @@ export function mountOverview({ slides, controller, languages = [], dictionaries
   const unsubscribe = controller.subscribe((state) => {
     overview.classList.toggle('active', state.overviewOpen);
     overview.setAttribute('aria-hidden', state.overviewOpen ? 'false' : 'true');
-    if (state.overviewOpen) requestAnimationFrame(scalePreviews);
+    if (state.overviewOpen) {
+      requestAnimationFrame(scalePreviews);
+      overview.querySelectorAll('img[data-src]').forEach((img) => {
+        if (!img.getAttribute('src') && img.dataset.src) {
+          img.src = img.dataset.src;
+        }
+      });
+    }
+    overview.querySelectorAll('.lang-button').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.language === state.language);
+    });
   });
   return () => {
     unsubscribe();
